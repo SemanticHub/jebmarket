@@ -7,7 +7,10 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'JebMarket',
+    
+        // default theme
+        'theme'=> 'jebmarket',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -32,6 +35,9 @@ return array(
 
 	// application components
 	'components'=>array(
+                'themeManager'=>array(
+                    'basePath'=> dirname(__FILE__).'/../themes',                    
+                ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -85,6 +91,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'ekram.syed@gmail.com',
 	),
 );
