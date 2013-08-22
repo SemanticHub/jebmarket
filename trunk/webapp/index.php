@@ -1,8 +1,7 @@
 <?php
-
 // change the following paths if necessary
-$yii=dirname(__FILE__).DIRECTORY_SEPARATOR .'..'.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'framework'.DIRECTORY_SEPARATOR.'yii.php';
-$config=dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'protected'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'main.php';
+$yii=dirname(__FILE__).'/../resources/framework/yii.php';
+$config=dirname(__FILE__).'/../resources/protected/config/main.php';
 
 // remove the following lines when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG',true);

@@ -8,6 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'JebMarket',
+        'sourceLanguage'=> '00',
+        'language'=> 'en',
     
         # default theme
         'theme'=> 'jebmarket',
@@ -54,10 +56,6 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-                # SQLite Database
-		/*'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),*/
 		# MySQL database
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
@@ -79,9 +77,9 @@ return array(
 				),
 				# uncomment the following to show log messages on web pages.
                                 # just for development purpose, in prduction must disabled.
-				/*array(
+				array(
 					'class'=>'CWebLogRoute',
-				),*/
+				),
 			),
 		),
 	),
