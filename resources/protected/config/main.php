@@ -1,5 +1,4 @@
 <?php
-
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -35,6 +34,7 @@ return array(
 
 	# application components
 	'components'=>array(
+                # Theme Settings
                 'themeManager'=>array(
                     'basePath'=> dirname(__FILE__).'/../themes',                    
                 ),
@@ -42,7 +42,7 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
-		// enable URLs in path-format
+		# enable URLs in path-format
 		'urlManager'=>array(
 			'urlFormat'=>'path',
                         'showScriptName' => false,
@@ -64,10 +64,20 @@ return array(
 			'password' => '99.9%available',
 			'charset' => 'utf8',
 		),
+                # Authorization Manager
+                'authManager' => array(
+                                'class' => 'CDbAuthManager',
+                                'connectionID' => 'db',
+                                'assignmentTable' => 'jebapp_auth_assignment',
+                                'itemTable' => 'jebapp_auth_item',
+                                'itemChildTable' => 'jebapp_auth_item_child',
+                ),
+                # Default Error Handler
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
+                # Application Log
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -77,9 +87,9 @@ return array(
 				),
 				# uncomment the following to show log messages on web pages.
                                 # just for development purpose, in prduction must disabled.
-				array(
+				/*array(
 					'class'=>'CWebLogRoute',
-				),
+				),*/
 			),
 		),
 	),

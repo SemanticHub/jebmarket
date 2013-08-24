@@ -1,26 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "jebapp_settings".
+ * This is the model class for table "jebapp_auth_item".
  *
- * The followings are the available columns in table 'jebapp_settings':
- * @property integer $id
+ * The followings are the available columns in table 'jebapp_auth_item':
  * @property string $name
+ * @property integer $type
  * @property string $description
- * @property string $options
- * @property string $value
- * @property string $type
- * @property string $validation
- * @property string $tag
+ * @property string $bizrule
+ * @property string $data
+ *
+ * The followings are the available model relations:
+ * @property AuthAssignment[] $authAssignments
+ * @property AuthItemChild[] $authItemChildren
+ * @property AuthItemChild[] $authItemChildren1
  */
-class Settings extends CActiveRecord
+class AuthItem extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'jebapp_settings';
+		return 'jebapp_auth_item';
 	}
 
 	/**
@@ -31,12 +33,13 @@ class Settings extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name, description', 'length', 'max'=>255),
-			array('options, value, type, validation, tag', 'length', 'max'=>45),
+			array('name, type', 'required'),
+			array('type', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>64),
+			array('description, bizrule, data', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description, options, value, type, validation, tag', 'safe', 'on'=>'search'),
+			array('name, type, description, bizrule, data', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,6 +51,9 @@ class Settings extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'authAssignments' => array(self::HAS_MANY, 'AuthAssignment', 'itemname'),
+			'authItemChildren' => array(self::HAS_MANY, 'AuthItemChild', 'parent'),
+			'authItemChildren1' => array(self::HAS_MANY, 'AuthItemChild', 'child'),
 		);
 	}
 
@@ -57,14 +63,11 @@ class Settings extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
 			'name' => 'Name',
-			'description' => 'Description',
-			'options' => 'Options',
-			'value' => 'Value',
 			'type' => 'Type',
-			'validation' => 'Validation',
-			'tag' => 'Tag',
+			'description' => 'Description',
+			'bizrule' => 'Bizrule',
+			'data' => 'Data',
 		);
 	}
 
@@ -86,14 +89,11 @@ class Settings extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('type',$this->type);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('options',$this->options,true);
-		$criteria->compare('value',$this->value,true);
-		$criteria->compare('type',$this->type,true);
-		$criteria->compare('validation',$this->validation,true);
-		$criteria->compare('tag',$this->tag,true);
+		$criteria->compare('bizrule',$this->bizrule,true);
+		$criteria->compare('data',$this->data,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -104,7 +104,7 @@ class Settings extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Settings the static model class
+	 * @return AuthItem the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
