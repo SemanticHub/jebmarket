@@ -1,26 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "jebapp_settings".
+ * This is the model class for table "jebapp_auth_item_child".
  *
- * The followings are the available columns in table 'jebapp_settings':
- * @property integer $id
- * @property string $name
- * @property string $description
- * @property string $options
- * @property string $value
- * @property string $type
- * @property string $validation
- * @property string $tag
+ * The followings are the available columns in table 'jebapp_auth_item_child':
+ * @property string $parent
+ * @property string $child
+ *
+ * The followings are the available model relations:
+ * @property AuthItem $parent0
+ * @property AuthItem $child0
  */
-class Settings extends CActiveRecord
+class AuthItemChild extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'jebapp_settings';
+		return 'jebapp_auth_item_child';
 	}
 
 	/**
@@ -31,12 +29,11 @@ class Settings extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name, description', 'length', 'max'=>255),
-			array('options, value, type, validation, tag', 'length', 'max'=>45),
+			array('parent, child', 'required'),
+			array('parent, child', 'length', 'max'=>64),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description, options, value, type, validation, tag', 'safe', 'on'=>'search'),
+			array('parent, child', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,6 +45,8 @@ class Settings extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'parent0' => array(self::BELONGS_TO, 'AuthItem', 'parent'),
+			'child0' => array(self::BELONGS_TO, 'AuthItem', 'child'),
 		);
 	}
 
@@ -57,14 +56,8 @@ class Settings extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
-			'options' => 'Options',
-			'value' => 'Value',
-			'type' => 'Type',
-			'validation' => 'Validation',
-			'tag' => 'Tag',
+			'parent' => 'Parent',
+			'child' => 'Child',
 		);
 	}
 
@@ -86,14 +79,8 @@ class Settings extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('options',$this->options,true);
-		$criteria->compare('value',$this->value,true);
-		$criteria->compare('type',$this->type,true);
-		$criteria->compare('validation',$this->validation,true);
-		$criteria->compare('tag',$this->tag,true);
+		$criteria->compare('parent',$this->parent,true);
+		$criteria->compare('child',$this->child,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -104,7 +91,7 @@ class Settings extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Settings the static model class
+	 * @return AuthItemChild the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
