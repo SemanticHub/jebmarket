@@ -1,6 +1,6 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo Yii::app()->language;?>">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/theme.css">
-        <title><?php echo CHtml::encode($this->pageTitle); ?></title>
+        <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
     </head>
 
     <body>
@@ -26,26 +26,21 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">Project name</a>
+                            <a class="navbar-brand" href="#"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
                         </div>
                         <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#contact">Contact</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Nav header</li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li><a href="#">One more separated link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <?php
+                            $this->widget('zii.widgets.CMenu', array(
+                                'htmlOptions' => array('class'=>'nav navbar-nav'),
+                                'items' => array(
+                                    array('label' => Yii::t('phrase', 'Home'), 'url' => array('/site/index')),
+                                    array('label' => Yii::t('phrase', 'About'), 'url' => array('/site/page', 'view' => 'about')),
+                                    array('label' => Yii::t('phrase', 'Contact'), 'url' => array('/site/contact')),
+                                    array('label' => Yii::t('phrase', 'Login'), 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+                                    array('label' => Yii::t('phrase', 'Logout').' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                                ),
+                            ));
+                            ?>                            
                         </div>
                     </div>
                 </div>
