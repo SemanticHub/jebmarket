@@ -64,15 +64,15 @@ return array(
 			'password' => '99.9%available',
 			'charset' => 'utf8',
 		),
-                # Authorization Manager
-                'authManager' => array(
-                                'class' => 'CDbAuthManager',
-                                'connectionID' => 'db',
-                                'assignmentTable' => 'jebapp_auth_assignment',
-                                'itemTable' => 'jebapp_auth_item',
-                                'itemChildTable' => 'jebapp_auth_item_child',
-                ),
-                # Default Error Handler
+        # Authorization Manager
+        'authManager' => array(
+            'class' => 'CDbAuthManager',
+            'connectionID' => 'db',
+            'assignmentTable' => 'jebapp_auth_assignment',
+            'itemTable' => 'jebapp_auth_item',
+            'itemChildTable' => 'jebapp_auth_item_child',
+        ),
+        # Default Error Handler
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
