@@ -70,5 +70,4 @@
         <?php //echo $form->hiddenField($model, 'userDetails.city') ?>
         
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->
+</div>
