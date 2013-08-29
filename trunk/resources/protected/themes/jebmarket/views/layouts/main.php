@@ -8,7 +8,6 @@
         <meta name="author" content="">
         <!-- favicon -->
         <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/icon/favicon.png">
-        <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/theme.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
@@ -18,47 +17,52 @@
     <body>
         <div class="navbar-wrapper">
             <div class="container">
-
-                <div class="navbar navbar-inverse navbar-static-top">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
-                        </div>
-                        <div class="navbar-collapse collapse">
-                            <?php
-                            $this->widget('zii.widgets.CMenu', array(
-                                'htmlOptions' => array('class'=>'nav navbar-nav'),
-                                'items' => array(
-                                    array('label' => Yii::t('phrase', 'Home'), 'url' => array('/site/index')),
-                                    array('label' => Yii::t('phrase', 'About'), 'url' => array('/site/page', 'view' => 'about')),
-                                    array('label' => Yii::t('phrase', 'Contact'), 'url' => array('/site/contact')),
-                                    array('label' => Yii::t('phrase', 'FAQ'), 'url' => array('/faq/index'), 'visible' => Yii::app()->user->isGuest),
-                                    array('label' => Yii::t('phrase', 'FAQ'), 'url' => array('/faq/admin'), 'visible' => !Yii::app()->user->isGuest),
-                                    array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/index'), 'visible' => !Yii::app()->user->isGuest),
-                                    array('label' => Yii::t('phrase', 'signup'), 'url' => array('/user/signup')),
-                                    array('label' => Yii::t('phrase', 'Login'), 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-                                    array('label' => Yii::t('phrase', 'Logout').' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
-                                ),
-                            ));
-                            ?>                            
+                <div class="row">
+                <div class="col-md-2">
+                    <a class="navbar-brand logo" href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
+                </div>
+                <div class="col-md-10">
+                    <div class="navbar navbar-inverse navbar-static-top">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>                                
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <?php
+                                $this->widget('zii.widgets.CMenu', array(
+                                    'htmlOptions' => array('class' => 'nav navbar-nav'),
+                                    'items' => array(
+                                        array('label' => Yii::t('phrase', 'Home'), 'url' => array('/site/index')),
+                                        array('label' => Yii::t('phrase', 'About'), 'url' => array('/site/page', 'view' => 'about')),
+                                        array('label' => Yii::t('phrase', 'Contact'), 'url' => array('/site/contact')),
+                                        array('label' => Yii::t('phrase', 'FAQ'), 'url' => array('/faq/index'), 'visible' => Yii::app()->user->isGuest),
+                                        array('label' => Yii::t('phrase', 'FAQ'), 'url' => array('/faq/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => Yii::t('phrase', 'Pages'), 'url' => array('/pages/admin'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/index'), 'visible' => !Yii::app()->user->isGuest),
+                                        array('label' => Yii::t('phrase', 'signup'), 'url' => array('/user/signup')),
+                                        array('label' => Yii::t('phrase', 'Login'), 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+                                        array('label' => Yii::t('phrase', 'Logout') . ' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                                    ),
+                                ));
+                                ?>                            
+                            </div>
                         </div>
                     </div>
                 </div>
-
+                </div>    
             </div>
         </div>      
 
         <?php echo $content; ?>        
         
-        <div class="container footer">
-            <footer>
-                <p class="pull-right"><a href="#"><?php echo Yii::t('phrase', 'Back to top')?></a></p>
-                <p><?php echo Yii::t('phrase', '&copy; 2013 Jebmarket &middot;') ?><a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <div class="container">
+            <footer class="footer">
+                <p class="pull-right"><a class="footer-logo" href="#"><?php echo Yii::t('phrase', 'Back to top')?></a></p>
+                <p class="footer-menu"><a style="color: #aaa"><?php echo Yii::t('phrase', '&copy; 2013 Jebmarket') ?></a><span class="separator"> | </span><a href="#">Privacy</a><span class="separator"> | </span><a href="#">Terms</a></p>
             </footer>
         </div>
         
