@@ -38,9 +38,15 @@ return array(
                 'themeManager'=>array(
                     'basePath'=> dirname(__FILE__).'/../themes',                    
                 ),
+                'clientScript' => array(
+                    'scriptMap' => array(
+                        'jquery.min.js' => 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+                    ),
+                ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+                        'class' => 'WebUser',
 		),
 		# enable URLs in path-format
 		'urlManager'=>array(
@@ -92,12 +98,28 @@ return array(
 				),*/
 			),
 		),
-	),
+	),        
 
 	# application-level parameters that can be accessed
 	# using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'ekram.syed@gmail.com',
+                'sitemenu'=> array(
+                    'site/contact'=>'Contact',
+                    'site/login'=>'Login',
+                    'user/signup'=>'Signup',
+                    'faq/index'=> 'FAQ',
+                ),
+                'usermenu'=> array(
+
+                ),
+                'adminmenu'=> array(                   
+                    array('label' => Yii::t('phrase', 'FAQ'), 'url' => array('/faq/admin'), 'visible' => !Yii::app()->user->isGuest),
+                    array('label' => Yii::t('phrase', 'Pages'), 'url' => array('/pages/admin'), 'visible' => !Yii::app()->user->isGuest),
+                    array('label' => Yii::t('phrase', 'Menu'), 'url' => array('/menu/admin'), 'visible' => !Yii::app()->user->isGuest),
+                    array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/admin'), 'visible' => !Yii::app()->user->isGuest),
+                    array('label' => Yii::t('phrase', 'Logout'), 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                ),
 	),
 );

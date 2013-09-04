@@ -1,6 +1,6 @@
 <?php
 
-class PagesController extends Controller {
+class MenuController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -34,7 +34,7 @@ class PagesController extends Controller {
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
+                'actions' => array('admin', 'delete', 'menuItemOptions'),
                 'users' => array('admin'),
             ),
             array('deny', // deny all users
@@ -43,6 +43,22 @@ class PagesController extends Controller {
         );
     }
 
+    public function actionMenuItemOptions() {
+        switch ($_POST['type']) {
+            case 'page':
+                echo CHtml::dropDownList("Menu[url]", "", CHtml::listData(Pages::model()->findAll(), 'slug', 'title'), array('class' => 'form-control'));
+                break;
+            case 'module':
+                echo CHtml::dropDownList("Menu[url]", "", Yii::app()->params['sitemenu'], array('class' => 'form-control'));
+                break;
+            case 'custom':
+                 echo CHtml::textField('Menu[url]', '', array('class' => 'form-control'));
+                break;
+            default:
+                echo '<div class="alert alert-info" style="margin-bottom: 0">Select a \'Menu Item Type\' from above to \'URL\' see options</div>';
+        }
+    }
+    
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
@@ -58,19 +74,20 @@ class PagesController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Pages;
+        $model = new Menu;
 
-        // if AJAX validation is needed
-        $this->performAjaxValidation($model);
-
-        if (isset($_POST['Pages'])) {
-            $model->attributes = $_POST['Pages'];
+        if (isset($_POST['Menu'])) {
+            $model->attributes = $_POST['Menu'];
+            //if($model->type == 'page') {
+               // if($model->url && $model->url != "")
+                //   $model->url = 'page/view/'.$model->url;
+            //}
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('create', array(
-            'model' => $model,
+            'model' => $model, 'listData'=>$listData
         ));
     }
 
@@ -82,11 +99,9 @@ class PagesController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // AJAX validation is needed
-        $this->performAjaxValidation($model);
-
-        if (isset($_POST['Pages'])) {
-            $model->attributes = $_POST['Pages'];
+        if (isset($_POST['Menu'])) {
+            $model->attributes = $_POST['Menu'];
+            if($model->url == "") unset ($model->url);
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -113,7 +128,7 @@ class PagesController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Pages');
+        $dataProvider = new CActiveDataProvider('Menu');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -123,10 +138,10 @@ class PagesController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Pages('search');
+        $model = new Menu('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Pages']))
-            $model->attributes = $_GET['Pages'];
+        if (isset($_GET['Menu']))
+            $model->attributes = $_GET['Menu'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -137,11 +152,11 @@ class PagesController extends Controller {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Pages the loaded model
+     * @return Menu the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Pages::model()->findByPk($id);
+        $model = Menu::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -149,10 +164,10 @@ class PagesController extends Controller {
 
     /**
      * Performs the AJAX validation.
-     * @param Pages $model the model to be validated
+     * @param Menu $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'pages-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'menu-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

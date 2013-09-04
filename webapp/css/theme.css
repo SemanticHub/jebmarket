@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
     /* Navbar positioning foo */
     .navbar-wrapper {
-        margin-top: 20px;
+        margin-top: 10px;
     }
     /* The navbar becomes detached from the top, so we round the corners */
     .navbar-wrapper .navbar {
@@ -175,4 +175,59 @@ h1.page-title, .h1.page-title {
 }
 .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
   border-top: none; border-bottom: 1px dotted #ddd;  
+}
+
+.navbar {
+    min-height: 0;
+}
+.navbar-nav > li > a {
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+.navbar-footer > li > a {
+    display: inline; padding: 5px 10px
+}
+.navbar-top > li > a {
+    padding: 0px; width: 24px; height: 24px; text-indent: -9999px; outline: none; border-radius: 1px; margin: 0; margin-left: 8px;
+}
+.navbar-top > li > a.facebook {
+    background: url(../icon/social/facebook.png) no-repeat center center
+}
+.navbar-top > li > a.twitter {
+    background: url(../icon/social/twitter.png) no-repeat center center
+}
+.navbar-top > li > a.google {
+    background: url(../icon/social/google.png) no-repeat center center
+}
+ul.nav.nav-pills.navbar-footer {
+    display: inline-block
+}
+.nav-pills.navbar-top > li {
+    float: right
+}
+.nav-pills.navbar-top > li + li {
+    margin-left: 0
+}
+.navbar.navbar-main {
+    margin-bottom: 0; margin-top: 8px
+}
+.dropdown-menu>li>a {
+    text-transform: uppercase; font-size: 13px
+}
+.navbar-inverse .navbar-nav>.open>a, 
+.navbar-inverse .navbar-nav>.open>a:hover, 
+.navbar-inverse .navbar-nav>.open>a:focus {
+    background: #20488e;
+}
+.dropdown-menu {
+    border-top: none
+}
+.navbar-nav>li>.dropdown-menu {
+    background: #20488e;
+}
+.dropdown-menu>li>a {
+    padding: 5px 15px; color: #fff;    
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color: #2755a5;
 }
