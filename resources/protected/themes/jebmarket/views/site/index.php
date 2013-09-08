@@ -2,46 +2,28 @@
 /* @var $this SiteController */
 $this->layout = 'main';
 $this->pageTitle = Yii::app()->name;
+$slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => array(':tag' => 'home-slider')));
 ?>
 
 <div id="myCarousel" class="carousel slide">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <?php $slideIndex = 0; foreach ($slider as $slide) {  ?>
+        <li data-target="#myCarousel" data-slide-to="<?php echo $slideIndex; ?>" class="<?php echo ($slideIndex == 0 )? 'active' : '' ?>"></li>
+        <?php $slideIndex++; } ?>
     </ol>
     <div class="carousel-inner">
-        <div class="item active">
-            <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
+        <?php $slideIndex = 0; foreach ($slider as $slide) {  ?>
+        <div class="item <?php echo $slide['class'] ?> <?php echo ($slideIndex == 0 )? 'active' : '' ?>">
+            <img src="<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['uploadUrl'].$slide['image'] ?>"  alt="<?php echo $slide['headline']; ?>">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>Example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-large btn-primary" href="#">Sign up today</a></p>
+                    <h1><?php echo $slide['headline'] ?></h1>
+                    <p><?php echo $slide['content'] ?></p>
                 </div>
             </div>
         </div>
-        <div class="item">
-            <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Second slide" alt="Second slide">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Third slide" alt="Third slide">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
-                </div>
-            </div>
-        </div>
+        <?php $slideIndex++; } ?>        
     </div>
     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -107,3 +89,7 @@ $this->pageTitle = Yii::app()->name;
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){$('#myCarousel').carousel();});
+</script>
