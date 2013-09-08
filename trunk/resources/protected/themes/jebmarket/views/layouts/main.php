@@ -87,7 +87,6 @@
           <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/respond.min.js"></script>
         <![endif]-->
         
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-        <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/holder.js"></script>        
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>       
     </body>
 </html>
