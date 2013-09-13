@@ -110,7 +110,7 @@ class Menu extends CActiveRecord {
     }
     
     public static function renderMenuItems($menuType) {
-        $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id IS NULL', 'params' => array(':tag' => $menuType)));
+        $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id IS NULL', 'order'=>'odr' ,'params' => array(':tag' => $menuType)));
         foreach ($menuItems as $item) {
             $subItems = array();
             $subMenuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id=:id', 'params' => array(':tag' => $menuType, ':id' => $item['id'])));
@@ -133,7 +133,7 @@ class Menu extends CActiveRecord {
         }
         $adminMenuItems = array(
             array(
-                'label' => Yii::t('phrase', 'Administrator <b class="caret"></b>'), 
+                'label' => Yii::t('phrase', 'Admin <b class="caret"></b>'), 
                 'url' => array('#'), 
                 'linkOptions'=> array('class'=>'dropdown-toggle', 'data-toggle'=>'dropdown', 'data-target'=>'#'),
                 'visible' => !Yii::app()->user->isGuest,

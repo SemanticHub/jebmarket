@@ -105,7 +105,8 @@ class Slider extends CActiveRecord {
         if (is_object($this->image)) {
             $this->image->saveAs($uploadPath . $this->image->name);
             if (!empty($this->oldSlideImage)) {
-                $delete = Yii::app()->params['uploadPath'] . '/' . $this->oldSlideImage;
+                //$delete = Yii::app()->params['uploadPath'] . '/' . $this->oldSlideImage;
+                $delete = $uploadPath . $this->oldSlideImage;
                 if (file_exists($delete))
                     unlink($delete);
             }
@@ -122,7 +123,8 @@ class Slider extends CActiveRecord {
 
     public function deleteImage() {
         $image = $this->image;
-        return unlink(Yii::app()->params['uploadUrl'] . '/' . $image);
+        $uploadPath = Yii::app()->params['uploadUrl'];
+        return unlink($uploadPath . $image);
     }
 
     /**
