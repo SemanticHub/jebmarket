@@ -81,19 +81,23 @@ class SliderController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        if($model->image) $model->oldSlideImage = $model->image;
+        $model->image = CUploadedFile::getInstance($model,'image');
 
         if (isset($_POST['Slider'])) {
             $model->attributes = $_POST['Slider'];
+            if($model->image) {
+               $model->image = CUploadedFile::getInstance($model,'image'); 
+            } else {
+                unset($model->image);
+                $model->oldSlideImage = null;
+            }
+            
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
-
-        $this->render('update', array(
-            'model' => $model,
-        ));
+        
+        $this->render('update', array('model' => $model,));
     }
 
     /**

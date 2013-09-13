@@ -44,7 +44,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 <a href="#" class="btn btn-warning fileupload-exists" data-dismiss="fileupload">Remove</a>
             </div>
             <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+                <img src="<?php echo ($model->oldSlideImage) ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadUrl'].$model->oldSlideImage : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image' ?>" />
             </div>
             <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>            
         </div>        
