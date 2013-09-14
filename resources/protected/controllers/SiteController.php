@@ -25,9 +25,8 @@ class SiteController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        // renders the view file 'protected/views/site/index.php'
-        // using the default layout 'protected/views/layouts/main.php'
         $this->render('index');
+
     }
 
     /**
@@ -95,6 +94,15 @@ class SiteController extends Controller {
     public function actionLogout() {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
+    }
+    
+    public function actionNewstore(){
+        if(isset($_POST['existing-user'])) {
+            $this->redirect(array('site/login', 'store-name'=> $_POST['store-name']));
+        }
+        if(isset($_POST['new-user'])) {
+            $this->redirect(array('user/signup', 'store-name'=> $_POST['store-name']));
+        }
     }
 
 }

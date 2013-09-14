@@ -1,12 +1,24 @@
 <?php
-/* @var $this SiteController */
+/* Home Page Content */
 $this->layout = 'main';
 $this->pageTitle = Yii::app()->name;
 $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => array(':tag' => 'home-slider')));
 ?>
 
 <div id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
+    <div class="mini-signup-form-wrapper">
+        <div class="mini-signup-form">
+            <form class="form-inline" method="post" action="<?php echo Yii::app()->baseUrl.'/site/newstore' ?>" role="form">
+                <div class="form-group">
+                    <label class="sr-only" for="store-name">Store Name</label>
+                    <input name="store-name" type="text" class="form-control" id="store-name" placeholder="Store Name">
+                </div>
+                <button type="button" id="mini-signup-button" class="btn btn-danger">Create Store Now!</button>
+                <button name="new-user" value="true" style="display: none" type="submit" id="mini-signup-new-user" class="btn btn-warning">New User ?</button>
+                <button name="existing-user" value="true" style="display: none" type="submit" id="mini-signup-existing-user" class="btn btn-info">Existing User</button>
+            </form>
+        </div>
+    </div>    
     <ol class="carousel-indicators">
         <?php $slideIndex = 0; foreach ($slider as $slide) {  ?>
         <li data-target="#myCarousel" data-slide-to="<?php echo $slideIndex; ?>" class="<?php echo ($slideIndex == 0 )? 'active' : '' ?>"></li>
@@ -53,43 +65,24 @@ $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => 
         </div>
     </div>
 
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-            <img class="featurette-image img-responsive" src="data:image/png;base64," data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-5">
-            <img class="featurette-image img-responsive" src="data:image/png;base64," data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-        <div class="col-md-7">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-            <img class="featurette-image img-responsive" src="data:image/png;base64," data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-    </div>
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){$('#myCarousel').carousel();});
+$(document).ready(function(){
+    $('#myCarousel').carousel();
+    $('#store-name').popover({
+          placement: 'top',
+          content: 'You\'ve a Store name, Right?'
+    });
+    $('#mini-signup-button').click(function(ev){
+        if($('#store-name').val() == "") {
+            $('#store-name').popover('toggle');
+        } else {
+            $(this).hide('slow', function(){
+            $('#mini-signup-new-user').show('slow');
+            $('#mini-signup-existing-user').show('slow');
+        });
+        } 
+    });
+});
 </script>
