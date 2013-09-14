@@ -3,7 +3,7 @@ class UserController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
+     * using two-column layout.
      */
     public $layout = '//layouts/column2';
 
@@ -40,7 +40,7 @@ class UserController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('signup','captcha'),
+                'actions' => array('signup','captcha', 'pending'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -58,11 +58,22 @@ class UserController extends Controller {
     }
 
     /**
-     * Displays a particular model.
+     * Displays User model.
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
         $this->render('view', array(
+            'model' => $this->loadModel($id),
+        ));
+    }
+
+    /**
+     * Displays User Pending Activation model.
+     * @param integer $id the ID of the model to be displayed
+     */
+    public function actionPending($id) {
+        $this->layout = "column1";
+        $this->render('pending', array(
             'model' => $this->loadModel($id),
         ));
     }
@@ -89,23 +100,36 @@ class UserController extends Controller {
     }
     
     /**
-     * Signup a new User.
-     * After signup request is successful, the browser will be redirected to the 'view' page.
+     * Sign-up a User.
+     * After sign-up request is successful, the browser will be redirected to the 'view' page.
+     * @param  string $shopName register with a shop name
      */
-    public function actionSignup() {
-        $model = new User;                
+    public function actionSignup($shopName = '') {
+        $this->layout = "column1";
+
+        $model = new User;
         $model->userDetails = new UserDetails;
 
         // AJAX validation
-        $this->performAjaxValidation($model);
+        //$this->performAjaxValidation($model);
         
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
-        }
 
+            $model->salt = $model->generateSalt();
+            $model->password = $model->hashPassword($model->password, $model->salt);
+            $model->joined = date("Y-m-d H:i:s");
+            $model->activationstatus = '0';
+            $model->activationcode = $model->generateActivationCode($model->email, $model->salt);
+
+            if ($model->userDetails->save()) {
+                $model->user_details_id = $model->userDetails->id;
+                if($model->save()) {
+                    $this->redirect(array('pending', 'id' => $model->id));
+                }
+            }
+        }
         $this->render('signup', array('model' => $model));
     }
 
@@ -117,8 +141,7 @@ class UserController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        $this->performAjaxValidation($model);
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];

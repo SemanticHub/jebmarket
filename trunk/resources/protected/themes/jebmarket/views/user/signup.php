@@ -1,8 +1,3 @@
-<?php
-/* @var $this UserController */
-/* @var $model User */
-//$this->layout = 'main';
-?>
 <h1 class="page-title"><?php echo Yii::t('phrase', 'Sign Up')?></h1>
 
 <div class="note bs-callout bs-callout-info">

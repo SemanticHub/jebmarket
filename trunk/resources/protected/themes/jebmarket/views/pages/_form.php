@@ -1,10 +1,4 @@
 <?php
-/* @var $this PagesController */
-/* @var $model Pages */
-/* @var $form CActiveForm */
-?>
-
-<?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'pages-form',
     'enableAjaxValidation' => true,
