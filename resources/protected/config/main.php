@@ -98,11 +98,20 @@ return array(
             'site/login'=>'Login',
             'user/signup'=>'Signup',
             'faq/index'=> 'FAQ',
+            'user/profile'=> 'User Profile'
         ),
         'usermenu'=> array(
-
+           'account'=> array('label'=>'User', 'linkOptions'=>array('class'=>'list-group-title')),
+           'dashboard' => array('label'=>'Dashboard', 'url'=>array('dashboard')),
+           'profile' => array('label'=>'Profile', 'url'=>array('profile')),
+           'edit' => array('label'=>'Edit Account', 'url'=>array('edit')),
+           'password' => array('label'=>'Change Password', 'url'=>array('password')),
+           'store' => array('label'=>'Store', 'linkOptions'=>array('class'=>'list-group-title')),
+           'products' => array('label'=>'Products', 'url'=>array('products')),
+           'orders' => array('label'=>'Orders', 'url'=>array('orders')),
         ),
         'adminmenu'=> array(                   
+            array('label' => Yii::t('phrase', 'User'), 'url' => array('/user/admin'), 'visible' => !Yii::app()->user->isGuest),
             array('label' => Yii::t('phrase', 'Slider'), 'url' => array('/slider/admin'), 'visible' => !Yii::app()->user->isGuest),
             array('label' => Yii::t('phrase', 'FAQ'), 'url' => array('/faq/admin'), 'visible' => !Yii::app()->user->isGuest),
             array('label' => Yii::t('phrase', 'Pages'), 'url' => array('/pages/admin'), 'visible' => !Yii::app()->user->isGuest),

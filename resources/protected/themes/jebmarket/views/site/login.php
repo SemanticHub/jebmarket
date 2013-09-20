@@ -27,19 +27,19 @@ $this->pageTitle = Yii::app()->name . ' - Login';
         <div class="form-group">
             <?php echo $form->labelEx($model, 'username', array('class' => 'control-label')); ?>
             <?php echo $form->textField($model, 'username', array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'username'); ?>
+            <?php echo $form->error($model, 'username', array('class' => 'text-danger control-hint')); ?>
         </div>
 
         <div class="form-group">
             <?php echo $form->labelEx($model, 'password', array('class' => 'control-label')); ?>
             <?php echo $form->passwordField($model, 'password', array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'password'); ?>
+            <?php echo $form->error($model, 'password', array('class' => 'text-danger control-hint')); ?>
         </div>
 
         <div class="form-group rememberMe">
             <?php echo $form->checkBox($model, 'rememberMe'); ?>
             <?php echo $form->label($model, 'rememberMe', array('class' => 'control-label')); ?>
-            <?php echo $form->error($model, 'rememberMe'); ?>
+            <?php echo $form->error($model, 'rememberMe', array('class' => 'text-danger control-hint')); ?>
         </div>
 
         <div class="form-group buttons">

@@ -1,5 +1,6 @@
 <?php
-class UserController extends Controller {
+class UserController extends Controller
+{
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -7,11 +8,12 @@ class UserController extends Controller {
      */
     public $layout = '//layouts/column2';
 
-    
+
     /**
      * Declares class-based actions.
      */
-    public function actions() {
+    public function actions()
+    {
         return array(
             // captcha action renders the CAPTCHA image displayed on the contact page
             'captcha' => array(
@@ -20,12 +22,13 @@ class UserController extends Controller {
             )
         );
     }
-    
-    
+
+
     /**
      * @return array action filters
      */
-    public function filters() {
+    public function filters()
+    {
         return array(
             'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
@@ -37,31 +40,103 @@ class UserController extends Controller {
      * This method is used by the 'accessControl' filter.
      * @return array access control rules
      */
-    public function accessRules() {
+    public function accessRules()
+    {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('signup','captcha', 'pending'),
+            array('allow',
+                'actions' => array('signup', 'captcha', 'success'),
                 'users' => array('*'),
             ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+            array('allow',
+                'actions' => array('profile', 'dashboard', 'password', 'edit'),
                 'users' => array('@'),
             ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
+            array('allow',
+                'actions' => array('admin', 'delete', 'profile'),
                 'users' => array('admin'),
             ),
-            array('deny', // deny all users
+            array('deny',
                 'users' => array('*'),
             ),
         );
     }
 
     /**
+     * Update User Profile Fields
+     */
+
+    public function actionEdit(){
+        $model = new User;
+        $model->userDetails = new UserDetails;
+
+        $this->render('profile_edit', array('model' => $model));
+    }
+
+    /**
+     * Displays the Change Password Form and Change Password Action
+     */
+    public function actionPassword() {
+
+        $model = new Password;
+
+        // if it is ajax validation request
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'change-password-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+
+        // collect user input data
+        if (isset($_POST['Password'])) {
+            $model->attributes = $_POST['Password'];
+            if ($model->validate()) {
+                $user = $this->loadModel(Yii::app()->user->id);
+                $user->salt = $user->generateSalt();
+                $user->password = $user->hashPassword($model->new_password, $user->salt);
+                if($user->update()) {
+                    Yii::app()->user->setFlash('success', "New Password Updated Successfully");
+                } else {
+                    Yii::app()->user->setFlash('danger', "An Error Occurred While Changing New Password");
+                }
+            }
+        }
+        // display the login form
+        $this->render('password', array('model' => $model));
+    }
+
+    /**
+     * Display User Dashboard
+     * The starting point of a user
+     * @internal @param integet $id, the id of the User model
+     */
+
+    public function actionDashboard(){
+        $id = Yii::app()->user->id;
+        $this->render('dashboard',
+            array(
+                'model' => $this->loadModel($id)
+            )
+        );
+    }
+
+    /**
+     * Displays User Profile.
+     * @internal param int $id, the ID of the model to be displayed
+     */
+
+    public function actionProfile()
+    {
+        $id = Yii::app()->user->id;
+        $this->render('profile', array(
+            'model' => $this->loadModel($id),
+        ));
+    }
+
+    /**
      * Displays User model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
@@ -70,19 +145,24 @@ class UserController extends Controller {
     /**
      * Displays User Pending Activation model.
      * @param integer $id the ID of the model to be displayed
+     * @param string $store, the name of the store
      */
-    public function actionPending($id) {
+    public function actionSuccess($id, $store)
+    {
         $this->layout = "column1";
-        $this->render('pending', array(
+        $this->render('success', array(
             'model' => $this->loadModel($id),
+            'store' => $store
         ));
     }
 
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @deprecated
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $model = new User;
 
         // Uncomment the following line if AJAX validation is needed
@@ -98,13 +178,14 @@ class UserController extends Controller {
             'model' => $model,
         ));
     }
-    
+
     /**
      * Sign-up a User.
      * After sign-up request is successful, the browser will be redirected to the 'view' page.
      * @param  string $shopName register with a shop name
      */
-    public function actionSignup($shopName = '') {
+    public function actionSignup($shopName = '')
+    {
         $this->layout = "column1";
 
         $model = new User;
@@ -112,7 +193,7 @@ class UserController extends Controller {
 
         // AJAX validation
         //$this->performAjaxValidation($model);
-        
+
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
@@ -120,13 +201,14 @@ class UserController extends Controller {
             $model->salt = $model->generateSalt();
             $model->password = $model->hashPassword($model->password, $model->salt);
             $model->joined = date("Y-m-d H:i:s");
-            $model->activationstatus = '0';
+            //Let user 7 day to explore the account, then disable the account (activationstatus=0) again.
+            $model->activationstatus = '1';
             $model->activationcode = $model->generateActivationCode($model->email, $model->salt);
 
             if ($model->userDetails->save()) {
                 $model->user_details_id = $model->userDetails->id;
-                if($model->save()) {
-                    $this->redirect(array('pending', 'id' => $model->id));
+                if ($model->save()) {
+                    $this->redirect(array('success', 'id' => $model->id, 'store'=> $shopName));
                 }
             }
         }
@@ -137,8 +219,10 @@ class UserController extends Controller {
      * Updates a particular model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
+     * @deprecated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = $this->loadModel($id);
 
         $this->performAjaxValidation($model);
@@ -159,7 +243,8 @@ class UserController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         $this->loadModel($id)->delete();
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -170,7 +255,8 @@ class UserController extends Controller {
     /**
      * Lists all models.
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $dataProvider = new CActiveDataProvider('User');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
@@ -180,9 +266,11 @@ class UserController extends Controller {
     /**
      * Manages all models.
      */
-    public function actionAdmin() {
+    public function actionAdmin()
+    {
+        $this->layout = "column1";
         $model = new User('search');
-        $model->unsetAttributes();  // clear any default values
+        $model->unsetAttributes(); // clear any default values
         if (isset($_GET['User']))
             $model->attributes = $_GET['User'];
 
@@ -198,7 +286,8 @@ class UserController extends Controller {
      * @return User the loaded model
      * @throws CHttpException
      */
-    public function loadModel($id) {
+    public function loadModel($id)
+    {
         $model = User::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
@@ -209,7 +298,8 @@ class UserController extends Controller {
      * Performs the AJAX validation.
      * @param User $model the model to be validated
      */
-    protected function performAjaxValidation($model) {
+    protected function performAjaxValidation($model)
+    {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'user-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();

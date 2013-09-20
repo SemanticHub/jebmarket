@@ -67,29 +67,23 @@ class UserDetails extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'f_name' => 'F Name',
-			'l_name' => 'L Name',
+			'f_name' => 'First Name',
+			'l_name' => 'Last Name',
 			'organization' => 'Organization',
-			'address1' => 'Address1',
-			'address2' => 'Address2',
+			'address1' => 'Address Line 1',
+			'address2' => 'Address Line 2',
 			'country' => 'Country',
 			'state' => 'State',
 			'city' => 'City',
 			'zip' => 'Zip',
 			'phone' => 'Phone',
 			'fax' => 'Fax',
-			'avater' => 'Avater',
+			'avater' => 'Avatar',
 		);
 	}
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
 	 *
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.

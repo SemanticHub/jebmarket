@@ -12,15 +12,19 @@ $this->menu = array(
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'menu-grid',
-    'itemsCssClass' => 'table',
-    'summaryCssClass' => 'label label-info pull-right',
+    'itemsCssClass' => 'table table-striped table-hover',
+    'summaryCssClass' => 'label label-info',
     'htmlOptions' => array('class' => 'table-responsive'),
     'dataProvider' => $model->search(),
+    'pagerCssClass' => 'page-nav',
+    'pager'=>array('header'=>'','selectedPageCssClass'=>'active','htmlOptions'=>array('class'=>'pagination')),
     'filter' => $model,
     'columns' => array(
-        'odr',
+        array(
+            'name'=>'odr',
+            'htmlOptions'=>array('style'=>'width:30px; text-align: right')
+        ),
         'label',
-        //'url',
         'visibility',
         array(
             'name' => 'active',
@@ -34,6 +38,24 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'tag',
         array(
             'class' => 'CButtonColumn',
+            'template'=>'{update}{view}{delete}',
+            'buttons' => array(
+                'update' => array(
+                    'label'=> Yii::t('phrase','Edit'),
+                    'imageUrl'=> false,
+                    'options'=>array('class'=>'btn btn-warning btn-xs')
+                ),
+                'delete' => array(
+                    'label'=> Yii::t('phrase','Delete'),
+                    'imageUrl'=> false,
+                    'options'=>array('class'=>'btn btn-danger btn-xs')
+                ),
+                'view' => array(
+                    'label'=> Yii::t('phrase','View'),
+                    'imageUrl'=> false,
+                    'options'=>array('class'=>'btn btn-info btn-xs')
+                )
+            )
         ),
     ),
 ));

@@ -1,16 +1,36 @@
 <?php
-/* @var $this PagesController */
-/* @var $model Pages */
+/* @var $this SettingsController */
+/* @var $model Settings */
 
-$this->layout = 'column1';
+$this->menu = array(
+    array('label' => 'Create Settings', 'url' => array('create')),
+);
+
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+$('.search-form form').submit(function(){
+	$('#settings-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+");
 ?>
 
-<h1 class="page-title">Manage Pages</h1>
+<h1 class="page-title">Manage Settings</h1>
 
-<?php echo CHtml::link('Create a Page', 'create', array('class' => 'btn btn-success')); ?>
+<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<div class="search-form" style="display:none">
+    <?php $this->renderPartial('_search', array(
+        'model' => $model,
+    )); ?>
+</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'pages-grid',
+    'id' => 'settings-grid',
     'itemsCssClass' => 'table table-striped table-hover',
     'summaryCssClass' => 'label label-info',
     'htmlOptions' => array('class' => 'table-responsive'),
@@ -19,15 +39,9 @@ $this->layout = 'column1';
     'pager' => array('header' => '', 'selectedPageCssClass' => 'active', 'htmlOptions' => array('class' => 'pagination')),
     'filter' => $model,
     'columns' => array(
-        'title',
-        'slug',
-        'meta_keywords',
-        array(
-            'name' => 'active',
-            'type' => 'html',
-            'htmlOptions' => array('style' => 'width:30px; text-align:center'),
-            'value' => '($data->active == 1) ? "<span class=\"glyphicon glyphicon-ok\"></span>" : "<span class=\"glyphicon glyphicon-remove\"></span>"'
-        ),
+        'name',
+        'description',
+        'value',
         array(
             'class' => 'CButtonColumn',
             'template' => '{update}{view}{delete}',

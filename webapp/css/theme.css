@@ -86,7 +86,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-bottom: 60px; display: block; clear: both;
     /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
     /*margin-top: -90px;*/
-    margin-top: 10px;
+    margin-top: -30px;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -172,7 +172,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #adc7f0; text-transform: uppercase;
 }
 .bs-callout {
-    margin: 20px 0;padding: 15px 30px 15px 15px;border-left: 5px solid #eee;
+    margin: 15px 0;padding: 12px 20px 12px 12px;border-left: 5px solid #eee;
 }
 .bs-callout h4 {
     margin-top: 0;
@@ -216,7 +216,7 @@ span.required {
     font-style: italic; margin-bottom: 0;
 }
 h1.page-title, .h1.page-title {
-    font-size: 30px;color: #EC6030;border-bottom: 1px solid #f5f5f5;padding: 10px 0; margin: 10px 0;
+    font-size: 30px;color: #EC6030;border-bottom: 1px solid #f5f5f5;padding: 10px 0; margin: 10px 0 30px;
 }
 .panel .list-group {
     margin-bottom: 0;
@@ -252,15 +252,21 @@ h1.page-title, .h1.page-title {
     display: inline; padding: 5px 10px
 }
 .navbar-top > li > a {
-    padding: 0px; width: 24px; height: 24px; text-indent: -9999px; outline: none; border-radius: 1px; margin: 0; margin-left: 8px;
+    padding: 0px;  outline: none; border-radius: 1px; margin: 0; margin-left: 8px; font-weight: bold;
+}
+.navbar-top > li > a:hover {
+    background: transparent; text-decoration: underline;
 }
 .navbar-top > li > a.facebook {
+    width: 24px; height: 24px; text-indent: -9999px;
     background: url(../icon/social/facebook.png) no-repeat center center
 }
 .navbar-top > li > a.twitter {
+    width: 24px; height: 24px; text-indent: -9999px;
     background: url(../icon/social/twitter.png) no-repeat center center
 }
 .navbar-top > li > a.google {
+    width: 24px; height: 24px; text-indent: -9999px;
     background: url(../icon/social/google.png) no-repeat center center
 }
 ul.nav.nav-pills.navbar-footer {
@@ -308,4 +314,34 @@ ul.nav.nav-pills.navbar-footer {
 }
 .container {
     width: 100%;  max-width: 100%;
+}
+.page-nav {
+    text-align: right;
+}
+.button-column {
+    white-space: nowrap;
+}
+.button-column a {
+    margin-left: 2px; text-transform: uppercase; font-size: 10px; font-weight: bold;
+}
+.filters input {
+    border: 1px solid #ccc; box-shadow: 0 0 3px #ddd inset;
+}
+.table {
+    margin-top: 10px;
+}
+.table th {
+    background: #eee;
+}
+.table-responsive {
+    margin-top: 6px;
+}
+.table-view th {
+    text-align: right; background: #fff;
+}
+.content-body {
+    margin: 40px auto;
+}
+.list-group-item.active a, .list-group-item.active:hover a, .list-group-item.active:focus a{
+    color: #fff;
 }

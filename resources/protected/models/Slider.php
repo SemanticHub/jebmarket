@@ -61,11 +61,11 @@ class Slider extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'headline' => 'Slide Headline',
+            'headline' => 'Headline',
             'content' => 'Content',
-            'image' => 'Slide Image',
+            'image' => 'Image',
             'tag' => 'Tag',
-            'order' => 'Slide Order',
+            'order' => 'Order',
             'class' => 'CSS Class',
         );
     }
