@@ -1,7 +1,6 @@
 <?php
 /* @var $this SliderController */
 /* @var $model Slider */
-
 $this->menu=array(
 	array('label'=>'Manage Slider', 'url'=>array('admin')),
 );

@@ -1,13 +1,10 @@
 <?php
 /* @var $this UserController */
 /* @var $model User */
-
 $this->menu=$this->menu=Yii::app()->params['usermenu'];
 $this->menu['profile']['active']=true;
 ?>
-
 <h1 class="page-title">User <?php echo $model->username; ?></h1>
-
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
     'htmlOptions' => array('class' => 'table table-view'),
@@ -31,4 +28,5 @@ $this->menu['profile']['active']=true;
         'userDetails.fax',
         'userDetails.avater',
 	),
-)); ?>
+));
+?>

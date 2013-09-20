@@ -111,13 +111,22 @@ return array(
            'orders' => array('label'=>'Orders', 'url'=>array('orders')),
         ),
         'adminmenu'=> array(                   
-            array('label' => Yii::t('phrase', 'User'), 'url' => array('/user/admin'), 'visible' => !Yii::app()->user->isGuest),
-            array('label' => Yii::t('phrase', 'Slider'), 'url' => array('/slider/admin'), 'visible' => !Yii::app()->user->isGuest),
-            array('label' => Yii::t('phrase', 'FAQ'), 'url' => array('/faq/admin'), 'visible' => !Yii::app()->user->isGuest),
+            array('label' => Yii::t('phrase', 'Users'), 'url' => array('/user/admin'), 'visible' => !Yii::app()->user->isGuest),
+            array('label' => Yii::t('phrase', 'Sliders'), 'url' => array('/slider/admin'), 'visible' => !Yii::app()->user->isGuest),
+            array('label' => Yii::t('phrase', 'Email Templates'), 'url' => array('/emailTemplate/admin'), 'visible' => !Yii::app()->user->isGuest),
+            array('label' => Yii::t('phrase', 'FAQs'), 'url' => array('/faq/admin'), 'visible' => !Yii::app()->user->isGuest),
             array('label' => Yii::t('phrase', 'Pages'), 'url' => array('/pages/admin'), 'visible' => !Yii::app()->user->isGuest),
-            array('label' => Yii::t('phrase', 'Menu'), 'url' => array('/menu/admin'), 'visible' => !Yii::app()->user->isGuest),
+            array('label' => Yii::t('phrase', 'Menus'), 'url' => array('/menu/admin'), 'visible' => !Yii::app()->user->isGuest),
             array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/admin'), 'visible' => !Yii::app()->user->isGuest),
             array('label' => Yii::t('phrase', 'Logout'), 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+        ),
+        'emailTemplateVars' => array(
+            '##USER##' => 'The username',
+            '##ACTIVATION_URL##' => 'User Email activation Link',
+            '##APPLICATION_NAME##' => 'JebMarket',
+            '##DATE##' => 'Today date',
+            '##DATE_TIME##' => 'Today with time now.',
+            '##LOGO##' => 'The JebMarket Logo'
         ),
         'uploadPath'=>dirname(__FILE__).'/../data/media/upload',
         'uploadUrl'=>'assets/up/',

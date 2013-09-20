@@ -5,7 +5,6 @@
 $this->menu = array(
     array('label' => 'Create Settings', 'url' => array('create')),
 );
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -19,16 +18,13 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-
 <h1 class="page-title">Manage Settings</h1>
-
 <?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
     <?php $this->renderPartial('_search', array(
         'model' => $model,
     )); ?>
-</div><!-- search-form -->
-
+</div>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'settings-grid',
     'itemsCssClass' => 'table table-striped table-hover',

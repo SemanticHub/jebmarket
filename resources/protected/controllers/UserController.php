@@ -3,11 +3,9 @@ class UserController extends Controller
 {
 
     /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout.
+     * @var string the default layout for the views.
      */
     public $layout = '//layouts/column2';
-
 
     /**
      * Declares class-based actions.
@@ -22,7 +20,6 @@ class UserController extends Controller
             )
         );
     }
-
 
     /**
      * @return array action filters
@@ -44,7 +41,7 @@ class UserController extends Controller
     {
         return array(
             array('allow',
-                'actions' => array('signup', 'captcha', 'success'),
+                'actions' => array('signup', 'captcha', 'success', 'recover'),
                 'users' => array('*'),
             ),
             array('allow',
@@ -62,29 +59,50 @@ class UserController extends Controller
     }
 
     /**
+     * Password Recovery
+     */
+    public function actionRecover() {
+        $model = new Recover();
+        // if it is ajax validation request
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'password-recover-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+        // collect user input data
+        if (isset($_POST['Recover'])) {
+            $model->attributes = $_POST['Recover'];
+            if ($model->validate()) {
+                $user = $this->loadModel($model->username);
+
+                Yii::app()->user->setFlash('success', "Please follow the instruction sent to your Email to recover your password.");
+            }
+        }
+        // display the change password form
+        $this->render('recover', array('model' => $model));
+    }
+
+    /**
      * Update User Profile Fields
      */
 
-    public function actionEdit(){
+    public function actionEdit()
+    {
         $model = new User;
         $model->userDetails = new UserDetails;
-
         $this->render('profile_edit', array('model' => $model));
     }
 
     /**
      * Displays the Change Password Form and Change Password Action
      */
-    public function actionPassword() {
-
+    public function actionPassword()
+    {
         $model = new Password;
-
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'change-password-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
-
         // collect user input data
         if (isset($_POST['Password'])) {
             $model->attributes = $_POST['Password'];
@@ -92,14 +110,14 @@ class UserController extends Controller
                 $user = $this->loadModel(Yii::app()->user->id);
                 $user->salt = $user->generateSalt();
                 $user->password = $user->hashPassword($model->new_password, $user->salt);
-                if($user->update()) {
+                if ($user->update()) {
                     Yii::app()->user->setFlash('success', "New Password Updated Successfully");
                 } else {
                     Yii::app()->user->setFlash('danger', "An Error Occurred While Changing New Password");
                 }
             }
         }
-        // display the login form
+        // display the change password form
         $this->render('password', array('model' => $model));
     }
 
@@ -109,7 +127,8 @@ class UserController extends Controller
      * @internal @param integet $id, the id of the User model
      */
 
-    public function actionDashboard(){
+    public function actionDashboard()
+    {
         $id = Yii::app()->user->id;
         $this->render('dashboard',
             array(
@@ -145,7 +164,7 @@ class UserController extends Controller
     /**
      * Displays User Pending Activation model.
      * @param integer $id the ID of the model to be displayed
-     * @param string $store, the name of the store
+     * @param string $store , the name of the store
      */
     public function actionSuccess($id, $store)
     {
@@ -164,7 +183,6 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User;
-
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
@@ -187,17 +205,13 @@ class UserController extends Controller
     public function actionSignup($shopName = '')
     {
         $this->layout = "column1";
-
         $model = new User;
         $model->userDetails = new UserDetails;
 
         // AJAX validation
         //$this->performAjaxValidation($model);
-
-
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-
             $model->salt = $model->generateSalt();
             $model->password = $model->hashPassword($model->password, $model->salt);
             $model->joined = date("Y-m-d H:i:s");
@@ -208,7 +222,24 @@ class UserController extends Controller
             if ($model->userDetails->save()) {
                 $model->user_details_id = $model->userDetails->id;
                 if ($model->save()) {
-                    $this->redirect(array('success', 'id' => $model->id, 'store'=> $shopName));
+                    $headers = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                    $headers .= 'From: JebMarket <no-reply@jebmarket.com>' . "\r\n";
+
+                    $to = $model->email;
+                    $subject = "JebMarket, Action Required";
+                    $params = array(
+                        $model->username,
+                        Yii::app()->createAbsoluteUrl('user/activate', array('email' => $model->email, 'key' => $model->activationcode)),
+                        'JebMarket',
+                        date('Y-m-d'),
+                        date('Y-m-d'),
+                        'JebMarket Logo'
+                    );
+                    $message = EmailTemplate::model()->findByPk(1)->make($params);
+
+                    mail($to, $subject, $message, $headers);
+                    $this->redirect(array('success', 'id' => $model->id, 'store' => $shopName));
                 }
             }
         }

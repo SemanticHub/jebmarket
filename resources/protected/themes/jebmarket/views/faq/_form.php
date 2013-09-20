@@ -3,7 +3,6 @@
 /* @var $model Faq */
 /* @var $form CActiveForm */
 ?>
-
 <?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'faq-form',
@@ -11,13 +10,10 @@ $form = $this->beginWidget('CActiveForm', array(
     'htmlOptions' => array('class' => 'form-horizontal', 'role' => 'form')
         ));
 ?>
-
 <div class="note bs-callout bs-callout-info">
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 </div>
-
 <?php echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger')); ?>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'faq', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -25,7 +21,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'faq', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'answer', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -33,7 +28,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'answer', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'order', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -41,7 +35,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'order', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'tag', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -49,7 +42,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'tag', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group rememberMe">
     <span class="col-lg-2"></span>
     <div class="col-lg-10">
@@ -57,8 +49,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->labelEx($model, 'active', array('class' => 'control-label')); ?>            		
         <?php echo $form->error($model, 'active', array('class' => 'text-danger control-hint')); ?>
     </div>
-</div>	
-
+</div>
 <div class="form-group buttons">
     <label class="control-label col-lg-2"></label>
     <div class="col-lg-10">

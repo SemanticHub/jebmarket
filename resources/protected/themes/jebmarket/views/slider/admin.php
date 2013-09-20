@@ -1,14 +1,11 @@
 <?php
 /* @var $this SliderController */
 /* @var $model Slider */
-
 $this->menu = array(
     array('label' => 'Create Slide', 'url' => array('create')),
 );
 ?>
-
 <h1 class="page-title">Manage Sliders</h1>
-
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'slider-grid',
     'itemsCssClass' => 'table table-striped table-hover',

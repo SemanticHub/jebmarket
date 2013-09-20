@@ -1,14 +1,10 @@
 <?php
 /* @var $this PagesController */
 /* @var $model Pages */
-
 $this->layout = 'column1';
 ?>
-
 <h1 class="page-title">Manage Pages</h1>
-
 <?php echo CHtml::link('Create a Page', 'create', array('class' => 'btn btn-success')); ?>
-
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'pages-grid',
     'itemsCssClass' => 'table table-striped table-hover',
