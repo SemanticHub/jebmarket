@@ -1,7 +1,6 @@
 <?php
 /* @var $this PagesController */
 /* @var $model Pages */
-
 $this->menu=array(
 	array('label'=>'Create Page', 'url'=>array('create')),
 	array('label'=>'Update Page', 'url'=>array('update', 'id'=>$model->id)),
@@ -9,9 +8,7 @@ $this->menu=array(
 	array('label'=>'Manage Pages', 'url'=>array('admin')),
 );
 ?>
-
 <h1 class="page-title">View Page '<?php echo $model->title; ?>'</h1>
-
 <?php $this->widget('zii.widgets.CDetailView', array(
         'htmlOptions' => array('class' => 'table'),
 	'data'=>$model,

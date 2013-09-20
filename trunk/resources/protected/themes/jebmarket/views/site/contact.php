@@ -5,20 +5,17 @@
 $this->pageTitle = Yii::app()->name . ' - Contact Us';
 ?>
 <h1 class="page-title">Contact Us</h1>
-
 <?php if (Yii::app()->user->hasFlash('contact')): ?>
     <div class="flash-success">
         <?php echo Yii::app()->user->getFlash('contact'); ?>
     </div>
 <?php else: ?>
-
 <div class="note bs-callout bs-callout-info">
     <p>
         If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
     </p>
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 </div>
-
 <?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'contact-form',
@@ -29,9 +26,7 @@ $form = $this->beginWidget('CActiveForm', array(
     'htmlOptions' => array( 'class' => 'form-horizontal', 'role' => 'form')
 ));
 ?>
-
 <?php echo $form->errorSummary($model); ?>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'name', array('class'=>'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -39,7 +34,6 @@ $form = $this->beginWidget('CActiveForm', array(
     <?php echo $form->error($model, 'name'); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'email', array('class'=>'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -47,7 +41,6 @@ $form = $this->beginWidget('CActiveForm', array(
     <?php echo $form->error($model, 'email'); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'subject', array('class'=>'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -55,7 +48,6 @@ $form = $this->beginWidget('CActiveForm', array(
     <?php echo $form->error($model, 'subject'); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'body', array('class'=>'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -63,7 +55,6 @@ $form = $this->beginWidget('CActiveForm', array(
     <?php echo $form->error($model, 'body'); ?>
     </div>
 </div>
-
 <?php if (CCaptcha::checkRequirements()): ?>
     <div class="form-group">
         <?php echo $form->labelEx($model, 'verifyCode', array('class'=>'control-label col-lg-2')); ?>
@@ -76,7 +67,6 @@ $form = $this->beginWidget('CActiveForm', array(
             </p>
         </div>
 <?php endif; ?>
-
 <div class="form-group buttons">
     <div class="col-lg-2"></div>
     <div class="col-lg-10">

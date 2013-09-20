@@ -1,7 +1,6 @@
 <?php
 /* @var $this MenuController */
 /* @var $model Menu */
-
 $this->menu=array(
 	array('label'=>'Create Menu', 'url'=>array('create')),
 	array('label'=>'Update Menu', 'url'=>array('update', 'id'=>$model->id)),
@@ -9,9 +8,7 @@ $this->menu=array(
 	array('label'=>'Manage Menu', 'url'=>array('admin')),
 );
 ?>
-
 <h1 class="page-title">View Menu '<?php echo $model->label; ?>'</h1>
-
 <?php $this->widget('zii.widgets.CDetailView', array(
         'htmlOptions' => array('class' => 'table'),
 	'data'=>$model,

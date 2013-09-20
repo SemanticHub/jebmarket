@@ -10,13 +10,10 @@ $form = $this->beginWidget('CActiveForm', array(
     'htmlOptions' => array('class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data')
 ));
 ?>
-
 <div class="note bs-callout bs-callout-info">
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 </div>
-
 <?php echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger')); ?>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'headline', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -78,6 +75,5 @@ $form = $this->beginWidget('CActiveForm', array(
     <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-primary')); ?>
     </div>
 </div>
-
 <?php $this->endWidget(); ?>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/app.js"></script>  
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/app.js"></script>

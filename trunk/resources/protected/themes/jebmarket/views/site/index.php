@@ -4,7 +4,6 @@ $this->layout = 'main';
 $this->pageTitle = Yii::app()->name;
 $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => array(':tag' => 'home-slider')));
 ?>
-
 <div id="myCarousel" class="carousel slide">
     <div class="mini-signup-form-wrapper">
         <div class="mini-signup-form">
@@ -40,7 +39,6 @@ $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => 
     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 </div>
-
 <div class="container marketing">    
     <div class="row">
         <div class="col-lg-4">
@@ -49,14 +47,12 @@ $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => 
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
             <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
         </div>
-
         <div class="col-lg-4">
             <img class="img-circle" src="data:image/png;base64," data-src="holder.js/140x140" alt="Generic placeholder image">
             <h2>Heading</h2>
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
             <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
         </div>
-
         <div class="col-lg-4">
             <img class="img-circle" src="data:image/png;base64," data-src="holder.js/140x140" alt="Generic placeholder image">
             <h2>Heading</h2>
@@ -64,9 +60,7 @@ $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => 
             <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
         </div>
     </div>
-
 </div>
-
 <script type="text/javascript">
 $(document).ready(function(){
     $('#myCarousel').carousel();

@@ -3,15 +3,12 @@ $form = $this->beginWidget('CActiveForm', array(
     'id' => 'pages-form',
     'enableAjaxValidation' => true,
     'htmlOptions' => array('class' => 'form-horizontal', 'role' => 'form')
-        ));
+));
 ?>
-
 <div class="note bs-callout bs-callout-info">
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 </div>
-
-<?php echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger')); ?>	
-
+<?php echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger')); ?>
 <div class="form-group">
     <?php echo $form->labelEx($model, 'title', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -19,7 +16,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'title', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'slug', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -27,15 +23,13 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'slug', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'content', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
         <?php echo $form->textArea($model, 'content', array('form-groups' => 6, 'cols' => 50, 'class' => 'ckeditor form-control')); ?>
         <?php echo $form->error($model, 'content', array('class' => 'text-danger control-hint')); ?>
     </div>
-</div>	
-
+</div>
 <div class="form-group">
     <?php echo $form->labelEx($model, 'meta_title', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -43,7 +37,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'meta_title', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'meta_desc', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -51,7 +44,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'meta_desc', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group">
     <?php echo $form->labelEx($model, 'meta_keywords', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -59,7 +51,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'meta_keywords', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group rememberMe">
     <span class="col-lg-2"></span>    
     <div class="col-lg-10">        
@@ -68,7 +59,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'active', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-
 <div class="form-group buttons">
     <label class="control-label col-lg-2"></label>
     <div class="col-lg-10">

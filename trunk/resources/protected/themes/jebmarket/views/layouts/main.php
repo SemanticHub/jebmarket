@@ -8,9 +8,9 @@
         <meta name="author" content="">
         <!-- favicon -->
         <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/icon/favicon.png">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/theme.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
         <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
         <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
     </head>

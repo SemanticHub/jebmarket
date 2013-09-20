@@ -1,14 +1,11 @@
 <?php
 /* @var $this MenuController */
 /* @var $model Menu */
-
 $this->menu = array(
     array('label' => 'Create Menu Item', 'url' => array('create')),
 );
 ?>
-
 <h1 class="page-title">Menus</h1>
-
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'menu-grid',
