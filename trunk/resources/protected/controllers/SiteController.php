@@ -66,7 +66,7 @@ class SiteController extends Controller {
     }
 
     /**
-     * Displays the login page
+     * Displays the login Form
      */
     public function actionLogin() {
         $model = new LoginForm;

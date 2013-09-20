@@ -7,27 +7,47 @@
  */
 class UserIdentity extends CUserIdentity
 {
-	/**
-	 * Authenticates a user.
-	 * The example implementation makes sure if the username and password
-	 * are both 'demo'.
-	 * In practical applications, this should be changed to authenticate
-	 * against some persistent user identity storage (e.g. database).
-	 * @return boolean whether authentication succeeds.
-	 */
-	public function authenticate()
-	{
-		$users=array(
-			// username => password
-			'demo'=>'demo',
-			'admin'=>'admin',
-		);
-		if(!isset($users[$this->username]))
-			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		elseif($users[$this->username]!==$this->password)
-			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-		else
-			$this->errorCode=self::ERROR_NONE;
-		return !$this->errorCode;
-	}
+
+    private $_id;
+    private $_username;
+
+    // Define Custom Error Constant, For other defined constant see CUserIdentity Class
+    const ERROR_USER_NOT_ACTIVATED = 3;
+    /**
+     * Authenticates a user.
+     * @return integer errorCode
+     */
+    public function authenticate()
+    {
+        $data = User::model()->findByAttributes(array('username' => $this->username));
+        if ($data === null)
+        $data = User::model()->findByAttributes(array('email' => $this->username));
+
+        if ($data === null)
+            $this->errorCode = self::ERROR_USERNAME_INVALID;
+        else if ($data->password !== $data->hashPassword($this->password, $data->salt)) {
+            $this->errorCode = self::ERROR_PASSWORD_INVALID;
+        } else if ($data->activationstatus == 0) {
+            $this->errorCode = self::ERROR_USER_NOT_ACTIVATED;
+        } else {
+            $this->_id = $data->id;
+            $this->_username = $data->username;
+            $this->errorCode = self::ERROR_NONE;
+        }
+        return $this->errorCode;
+    }
+
+    /**
+     * @return integer $id, id of User model
+     */
+    public function getId() {
+       return $this->_id;
+    }
+
+    /**
+     * @return string $username, the username of User model
+     */
+    public function getName() {
+        return $this->_username;
+    }
 }

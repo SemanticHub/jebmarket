@@ -27,8 +27,6 @@ class Menu extends CActiveRecord {
      * @return array validation rules for model attributes.
      */
     public function rules() {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
             array('parent_id, odr', 'numerical', 'integerOnly' => true),
             array('label, visibility, tag, type', 'length', 'max' => 45),
@@ -70,12 +68,6 @@ class Menu extends CActiveRecord {
     /**
      * Retrieves a list of models based on the current search/filter conditions.
      *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
      * @return CActiveDataProvider the data provider that can return the models
      * based on the search/filter conditions.
      */
@@ -95,7 +87,7 @@ class Menu extends CActiveRecord {
         $criteria->compare('type', $this->type, true);
 
         return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
+            'criteria' => $criteria
         ));
     }
 
@@ -108,7 +100,15 @@ class Menu extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-    
+
+    protected static  function getMenuItem($item){
+        if($item == "##USERNAME##") {
+            return Yii::app()->user->name;
+        } else {
+            return $item;
+        }
+    }
+
     public static function renderMenuItems($menuType) {
         $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id IS NULL', 'order'=>'odr' ,'params' => array(':tag' => $menuType)));
         foreach ($menuItems as $item) {
@@ -123,9 +123,10 @@ class Menu extends CActiveRecord {
                     );
                 }
             }
+
             $items[] = array(
-                'label' => $item['label'].(($subItems==NULL)?'':'<b class="caret"></b>'),
-                'url' => ($item['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $item['url']) ): Yii::app()->createUrl($item['url']),
+                'label' => Menu::getMenuItem($item['label']).(($subItems==NULL)?'':'<b class="caret"></b>'),
+                'url' => ($item['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $item['url'])) :  Yii::app()->createUrl($item['url']),
                 //'visible' => ($item['visibility'] == 'private') ? !Yii::app()->user->isGuest : '',
                 'items' => $subItems,
                 'linkOptions'=> ($subItems) ? array('class'=>'dropdown-toggle ', 'data-toggle'=>'dropdown', 'data-target'=>'#') : array('class'=>$item['class']),

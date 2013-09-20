@@ -67,7 +67,7 @@ class User extends CActiveRecord {
             'email' => 'Email',
             'password' => 'Password',
             'joined' => 'Joined',
-            'activationstatus' => 'Activationstatus',
+            'activationstatus' => 'Status',
             'last_login' => 'Last Login',
             'timezone' => 'Timezone',
             'verifyCode'=>'Verification Code',

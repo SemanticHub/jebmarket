@@ -1,8 +1,10 @@
 <?php
-/* @var $this FaqController */
-/* @var $model Faq */
+/* @var $this UserController */
+/* @var $model User */
 
-$this->layout = 'column1';
+$this->menu = array(
+    array('label' => 'Create User', 'url' => array('create')),
+);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -10,14 +12,15 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#faq-grid').yiiGridView('update', {
+	$('#user-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
 });
 ");
 ?>
-<h1 class="page-title">Manage FAQs</h1>
+
+<h1 class="page-title">Manage Users</h1>
 
 <div class="note bs-callout bs-callout-info">
     <p>
@@ -27,19 +30,15 @@ $('.search-form form').submit(function(){
 </div>
 
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button btn btn-primary')); ?> &nbsp;
-<?php echo CHtml::link('Create FAQ', 'create', array('class' => 'btn btn-success')); ?>
 
 <div class="search-form" style="display:none">
-    <?php
-    $this->renderPartial('_search', array(
+    <?php $this->renderPartial('_search', array(
         'model' => $model,
-    ));
-    ?>
-</div><!-- search-form -->
+    )); ?>
+</div>
 
-<?php
-$this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'faq-grid',
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+    'id' => 'user-grid',
     'itemsCssClass' => 'table table-striped table-hover',
     'summaryCssClass' => 'label label-info',
     'htmlOptions' => array('class' => 'table-responsive'),
@@ -49,26 +48,23 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'filter' => $model,
     'columns' => array(
         array(
-            'name' => 'order',
+            'name'=>'id',
             'htmlOptions' => array('style' => 'width:30px; text-align:right')
         ),
         array(
-            'name' => 'active',
+            'name' => 'activationstatus',
             'type' => 'html',
-            'value' => '($data->active == 1) ? "<span class=\"glyphicon glyphicon-ok\"></span>" : "<span class=\"glyphicon glyphicon-remove\"></span>"',
+            'value' => '($data->activationstatus == 1) ? "<span class=\"glyphicon glyphicon-ok\"></span>" : "<span class=\"glyphicon glyphicon-remove\"></span>"',
             'htmlOptions' => array('style' => 'width:30px; text-align:center')
         ),
-        'tag',
-        'faq',
+        'username',
+        'email',
+        'joined',
+        'last_login',
         array(
             'class' => 'CButtonColumn',
-            'template' => '{update}{view}{delete}',
+            'template' => '{view}{delete}',
             'buttons' => array(
-                'update' => array(
-                    'label' => Yii::t('phrase', 'Edit'),
-                    'imageUrl' => false,
-                    'options' => array('class' => 'btn btn-warning btn-xs')
-                ),
                 'delete' => array(
                     'label' => Yii::t('phrase', 'Delete'),
                     'imageUrl' => false,
@@ -82,5 +78,4 @@ $this->widget('zii.widgets.grid.CGridView', array(
             )
         ),
     ),
-));
-?>
+)); ?>

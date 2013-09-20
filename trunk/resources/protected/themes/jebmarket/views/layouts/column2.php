@@ -2,24 +2,26 @@
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="container">
     <div class="row">
-        <div class="col-md-3 sidebar sidebar-left">
+        <div class="col-md-2 sidebar sidebar-left">
             <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
                 'title' => 'Navigate To',
                 'decorationCssClass' => 'panel-heading',
-                //'contentCssClass' => 'panel-body',
                 'htmlOptions' => array('class' => 'panel panel-primary')
             ));
             $this->widget('zii.widgets.CMenu', array(
                 'items' => $this->menu,
                 'itemCssClass' => 'list-group-item',
                 'htmlOptions' => array('class' => 'list-group'),
+                'activateItems' => true,
+                'activateParents' => true,
+                'activeCssClass' => 'active'
             ));
             $this->endWidget();
             ?>
         </div>
         
-        <div class="col-md-9">
+        <div class="col-md-10">
             <?php echo $content; ?>
         </div>
     </div>

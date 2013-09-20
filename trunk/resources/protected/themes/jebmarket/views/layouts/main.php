@@ -60,7 +60,16 @@
             </div>
         </div>      
 
-        <?php echo $content; ?>        
+        <div class="content-body">
+            <div class="container">
+            <?php
+            foreach(Yii::app()->user->getFlashes() as $key => $message) {
+                echo '<div class="alert alert-' . $key . '">' . $message . "</div>\n";
+            }
+            ?>
+            </div>
+            <?php echo $content; ?>
+        </div>
         
         <div class="container">
             <footer class="footer">
