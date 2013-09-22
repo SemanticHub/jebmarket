@@ -61,7 +61,8 @@ class UserController extends Controller
     /**
      * Password Recovery
      */
-    public function actionRecover() {
+    public function actionRecover()
+    {
         $model = new Recover();
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'password-recover-form') {
@@ -204,6 +205,8 @@ class UserController extends Controller
      */
     public function actionSignup($shopName = '')
     {
+        //$mail = new JebMailer(Yii::app()->user->id, 'signup_activation_email');
+        //CVarDumper::dump($mail, 10, true); exit;
         $this->layout = "column1";
         $model = new User;
         $model->userDetails = new UserDetails;
@@ -215,30 +218,17 @@ class UserController extends Controller
             $model->salt = $model->generateSalt();
             $model->password = $model->hashPassword($model->password, $model->salt);
             $model->joined = date("Y-m-d H:i:s");
-            //Let user 7 day to explore the account, then disable the account (activationstatus=0) again.
+            //TODO: Let user 7 day to explore the account, then disable the account (activationstatus=0) again.
             $model->activationstatus = '1';
             $model->activationcode = $model->generateActivationCode($model->email, $model->salt);
 
             if ($model->userDetails->save()) {
                 $model->user_details_id = $model->userDetails->id;
                 if ($model->save()) {
-                    $headers = 'MIME-Version: 1.0' . "\r\n";
-                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                    $headers .= 'From: JebMarket <no-reply@jebmarket.com>' . "\r\n";
-
-                    $to = $model->email;
-                    $subject = "JebMarket, Action Required";
-                    $params = array(
-                        $model->username,
-                        Yii::app()->createAbsoluteUrl('user/activate', array('email' => $model->email, 'key' => $model->activationcode)),
-                        'JebMarket',
-                        date('Y-m-d'),
-                        date('Y-m-d'),
-                        'JebMarket Logo'
-                    );
-                    $message = EmailTemplate::model()->findByPk(1)->make($params);
-
-                    mail($to, $subject, $message, $headers);
+                    $mail = new JebMailer($model->id, 'signup_activation_email');
+                    if (!$mail->send()) {
+                        Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
+                    }
                     $this->redirect(array('success', 'id' => $model->id, 'store' => $shopName));
                 }
             }

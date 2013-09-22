@@ -18,10 +18,9 @@ $this->pageTitle = Yii::app()->name . ' - Login';
         ));
         ?>
         <div class="note bs-callout bs-callout-info">
-            <p>Please fill out the following form with your login credentials: username or email both will work</p>
-        </div>
-        <div class="note bs-callout bs-callout-warning">
-            <p>Fields with <span class="required">*</span> are required.</p>
+            <p>Please fill out the following form with your login credentials: username or email both will work<br />
+            <span class="text-danger">Fields with <span class="required">*</span> are required.</span>
+            </p>
         </div>
         <div class="form-group">
             <?php echo $form->labelEx($model, 'username', array('class' => 'control-label')); ?>

@@ -92,7 +92,9 @@ return array(
 ),        
     # application-level parameters that can be accessed Yii::app()->params['paramName']
     'params'=>array(
-        'adminEmail'=>'ekram.syed@gmail.com',
+        'superAdminEmail'=>'ekram.syed@gmail.com',
+        'adminEmail'=>'admin@jebmarket.com',
+        'supportEmail'=>'support@jebmarket.com',
         'sitemenu'=> array(
             'site/contact'=>'Contact',
             'site/login'=>'Login',
@@ -119,14 +121,6 @@ return array(
             array('label' => Yii::t('phrase', 'Menus'), 'url' => array('/menu/admin'), 'visible' => !Yii::app()->user->isGuest),
             array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/admin'), 'visible' => !Yii::app()->user->isGuest),
             array('label' => Yii::t('phrase', 'Logout'), 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
-        ),
-        'emailTemplateVars' => array(
-            '##USER##' => 'The username',
-            '##ACTIVATION_URL##' => 'User Email activation Link',
-            '##APPLICATION_NAME##' => 'JebMarket',
-            '##DATE##' => 'Today date',
-            '##DATE_TIME##' => 'Today with time now.',
-            '##LOGO##' => 'The JebMarket Logo'
         ),
         'uploadPath'=>dirname(__FILE__).'/../data/media/upload',
         'uploadUrl'=>'assets/up/',
