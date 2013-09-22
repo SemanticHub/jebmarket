@@ -9,9 +9,6 @@
         'enableAjaxValidation' => false,
         'htmlOptions' => array('class' => 'form-horizontal', 'role' => 'form')
     )); ?>
-    <div class="note bs-callout bs-callout-warning">
-        <p class="note">Fields with <span class="required">*</span> are required.</p>
-    </div>
     <?php echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger')); ?>
     <div class="form-group">
         <?php echo $form->labelEx($model, 'username', array('class' => 'control-label col-lg-2')); ?>
@@ -39,7 +36,7 @@
             <?php echo $form->labelEx($model, 'verifyCode', array('class' => 'control-label col-lg-2')); ?>
             <div class="col-lg-10">
                 <?php $this->widget('CCaptcha', array('buttonOptions' => array('class' => 'btn btn-info'))); ?>
-                <?php echo $form->textField($model, 'verifyCode', array('class' => 'form-control')); ?>
+                <?php echo $form->textField($model, 'verifyCode', array('class' => 'form-control', 'style'=>'width:150px; margin-left: 10px; display:inline')); ?>
                 <p class="control-hint text-warning">Please enter the letters as they are shown in the image above.
                     Letters are not case-sensitive.
                     <?php echo $form->error($model, 'verifyCode', array('class' => 'text-danger control-hint')); ?>
@@ -47,8 +44,13 @@
             </div>
         </div>
     <?php endif; ?>
-    <div class="note bs-callout bs-callout-danger">
-        <p class="note">By clicking on "Create an account" below, you are agreeing to the Terms of Service and the Privacy Policy.</p>
+    <div class="form-group">
+        <label class="control-label col-lg-2"></label>
+        <div class="col-lg-10">
+            <div class="note bs-callout bs-callout-danger">
+                <p class="note">By clicking on <b>"Create an account"</b> below, you are agreeing to the <a href="#">Terms of Service</a> and the <a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
     </div>
     <div class="form-group buttons">
         <label class="control-label col-lg-2"></label>

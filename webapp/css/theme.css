@@ -338,3 +338,6 @@ ul.nav.nav-pills.navbar-footer {
 .list-group-item.active a, .list-group-item.active:hover a, .list-group-item.active:focus a{
     color: #fff;
 }
+.form-group {
+    margin-bottom: 10px;
+}
