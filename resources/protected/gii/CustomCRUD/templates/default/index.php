@@ -21,9 +21,11 @@ $this->menu=array(
 );
 ?>
 
-<h1><?php echo $label; ?></h1>
+<h1 class="page-title"><?php echo $label; ?></h1>
 
 <?php echo "<?php"; ?> $this->widget('zii.widgets.CListView', array(
+        'summaryCssClass' => 'label label-success pull-right',
+        'itemsCssClass' => 'panel-group',
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>
