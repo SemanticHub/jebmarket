@@ -34,15 +34,16 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
+<h1 class="page-title">Manage <?php echo $this->pluralize($this->class2name($this->modelClass)); ?></h1>
+<div class="note bs-callout bs-callout-info">
+    <p>
+        You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+        or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+    </p>
+</div>
 
-<h1>Manage <?php echo $this->pluralize($this->class2name($this->modelClass)); ?></h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo "<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>"; ?>
+<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button btn btn-primary')); ?> &nbsp;
+<?php echo CHtml::link('Create', 'create', array('class' => 'btn btn-success')); ?>
 
 <div class="search-form" style="display:none">
 <?php echo "<?php \$this->renderPartial('_search',array(
@@ -52,9 +53,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php echo "<?php"; ?> $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'<?php echo $this->class2id($this->modelClass); ?>-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
+	'itemsCssClass' => 'table table-striped table-hover',
+        'summaryCssClass' => 'label label-info',
+        'htmlOptions' => array('class' => 'table-responsive'),
+        'dataProvider' => $model->search(),
+        'pagerCssClass' => 'page-nav',
+        'pager' => array('header' => '', 'selectedPageCssClass' => 'active', 'htmlOptions' => array('class' => 'pagination')),
+        'filter' => $model,
+        'columns'=>array(
 <?php
 $count=0;
 foreach($this->tableSchema->columns as $column)
@@ -68,6 +74,24 @@ if($count>=7)
 ?>
 		array(
 			'class'=>'CButtonColumn',
+                        'template' => '{update}{view}{delete}',
+                        'buttons' => array(
+                            'update' => array(
+                                'label' => Yii::t('phrase', 'Edit'),
+                                'imageUrl' => false,
+                                'options' => array('class' => 'btn btn-warning btn-xs')
+                            ),
+                            'delete' => array(
+                                'label' => Yii::t('phrase', 'Delete'),
+                                'imageUrl' => false,
+                                'options' => array('class' => 'btn btn-danger btn-xs')
+                            ),
+                            'view' => array(
+                                'label' => Yii::t('phrase', 'View'),
+                                'imageUrl' => false,
+                                'options' => array('class' => 'btn btn-info btn-xs')
+                            )
+                        )
 		),
 	),
 )); ?>

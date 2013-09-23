@@ -10,7 +10,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<!--<div class="form">-->
 
 <?php echo "<?php \$form=\$this->beginWidget('CActiveForm', array(
 	'id'=>'".$this->class2id($this->modelClass)."-form',
@@ -19,11 +19,14 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
+        'htmlOptions' => array('class' => 'form-horizontal', 'role' => 'form')
 )); ?>\n"; ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<div class="note bs-callout bs-callout-info">
+            <p class="note">Fields with <span class="required">*</span> are required.</p>
+        </div>
 
-	<?php echo "<?php echo \$form->errorSummary(\$model); ?>\n"; ?>
+	<?php echo "<?php echo \$form->errorSummary(\$model, '', '', array('class' => 'alert alert-danger')); ?>\n"; ?>
 
 <?php
 foreach($this->tableSchema->columns as $column)
@@ -31,19 +34,24 @@ foreach($this->tableSchema->columns as $column)
 	if($column->autoIncrement)
 		continue;
 ?>
-	<div class="row">
-		<?php echo "<?php echo ".$this->generateActiveLabel($this->modelClass,$column)."; ?>\n"; ?>
-		<?php echo "<?php echo ".$this->generateActiveField($this->modelClass,$column)."; ?>\n"; ?>
-		<?php echo "<?php echo \$form->error(\$model,'{$column->name}'); ?>\n"; ?>
+	<div class="form-group">
+		<?php echo "<?php echo \$form->labelEx(\$model,'{$column->name}', array('class' => 'control-label col-lg-2')); ?>\n"; ?>
+            <div class="col-lg-10">
+                <?php echo "<?php echo ".$this->generateActiveField($this->modelClass,$column)."; ?>\n"; ?>
+		<?php echo "<?php echo \$form->error(\$model,'{$column->name}', array('class' => 'text-danger control-hint')); ?>\n"; ?>
+            </div>
 	</div>
 
 <?php
 }
 ?>
-	<div class="row buttons">
-		<?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ? 'Create' : 'Save'); ?>\n"; ?>
+	<div class="form-group buttons">
+            <label class="control-label col-lg-2"></label>
+            <div class="col-lg-10">
+                <?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-primary')); ?>\n"; ?>
+            </div>
 	</div>
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
 
-</div><!-- form -->
+<!--</div> form -->
