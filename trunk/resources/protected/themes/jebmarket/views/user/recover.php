@@ -23,9 +23,6 @@ $this->layout = 'column1';
             <h4>Type your JebMarket Username or Email</h4>
             <p>& follow the email instructions to recover your lost password.</p>
         </div>
-        <div class="note bs-callout bs-callout-warning">
-            <p>Fields with <span class="required">*</span> are required.</p>
-        </div>
 
         <div class="form-group">
             <?php echo $form->labelEx($model, 'username', array('class' => 'control-label')); ?>
