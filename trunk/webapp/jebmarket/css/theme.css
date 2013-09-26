@@ -152,7 +152,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .navbar-brand.logo {
     display: block; width: 161px; height: 70px; text-indent: -9999px; margin-top: -18px;
-    background: url(../images/jebmarket.png) no-repeat 0 0px;
+    background: url(../jebmarket/images/jebmarket.png) no-repeat 0 0px;
     -webkit-transition: background 0.5s; -moz-transition: background 0.5s; transition: background 0.5s;
 }
 .navbar-brand.logo:hover {
@@ -199,7 +199,7 @@ span.required {
 }
 .footer-logo {
     display: block; width: 115px; height: 50px;  text-indent: -9999px; margin-top: -10px;
-    background: url(../images/footer-logo.png) no-repeat 0 -50px;
+    background: url(../jebmarket/images/footer-logo.png) no-repeat 0 -50px;
     -webkit-transition: background 0.5s; -moz-transition: background 0.5s; transition: background 0.5s;
 }
 .footer-logo:hover {
@@ -252,15 +252,15 @@ h1.page-title, .h1.page-title {
 }
 .navbar-top > li > a.facebook {
     width: 24px; height: 24px; text-indent: -9999px;
-    background: url(../icon/social/facebook.png) no-repeat center center
+    background: url(../jebmarket/icon/social/facebook.png) no-repeat center center
 }
 .navbar-top > li > a.twitter {
     width: 24px; height: 24px; text-indent: -9999px;
-    background: url(../icon/social/twitter.png) no-repeat center center
+    background: url(../jebmarket/icon/social/twitter.png) no-repeat center center
 }
 .navbar-top > li > a.google {
     width: 24px; height: 24px; text-indent: -9999px;
-    background: url(../icon/social/google.png) no-repeat center center
+    background: url(../jebmarket/icon/social/google.png) no-repeat center center
 }
 ul.nav.nav-pills.navbar-footer {
     display: inline-block
