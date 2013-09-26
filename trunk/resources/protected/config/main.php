@@ -127,6 +127,6 @@ return array(
             array('label' => Yii::t('phrase', 'Logout'), 'url' => array('/site/logout'))
         ),
         'uploadPath' => dirname(__FILE__) . '/../data/media/upload',
-        'uploadUrl' => 'assets/up/',
+        'uploadUrl' => 'medias/',
     ),
 );
