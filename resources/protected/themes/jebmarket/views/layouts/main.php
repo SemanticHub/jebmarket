@@ -1,4 +1,10 @@
-<?php /* @var $this Controller */ ?>
+<?php
+/**
+ * The main layout file for 'jebmarket' theme
+ * @var Yii::app()
+ * @var $this
+ * @developer Syed Ekramuddin Emon <ekram.syed@gmail.com>
+ */ ?>
 <!DOCTYPE html>
 <html lang="<?php echo Yii::app()->language;?>">
     <head>
@@ -7,10 +13,10 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- favicon -->
-        <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/icon/favicon.png">
+        <link rel="shortcut icon" href="<?php echo Yii::app()->theme->baseUrl; ?>/icon/favicon.png">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/theme.css">
+        <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css">
         <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
         <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
     </head>
@@ -58,8 +64,7 @@
                 </div>
                 </div>    
             </div>
-        </div>      
-
+        </div>
         <div class="content-body">
             <div class="container">
             <?php
@@ -70,7 +75,6 @@
             </div>
             <?php echo $content; ?>
         </div>
-        
         <div class="container">
             <footer class="footer">
                 <p class="pull-right"><a class="footer-logo" href="#"><?php echo Yii::t('phrase', 'Back to top')?></a></p>
@@ -89,13 +93,11 @@
                 </span>
             </footer>
         </div>
-        
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-          <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/html5shiv.js"></script>
-          <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/respond.min.js"></script>
+          <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/html5shiv.js"></script>
+          <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
         <![endif]-->
-        
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>       
     </body>
 </html>
