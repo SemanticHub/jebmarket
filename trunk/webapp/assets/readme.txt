@@ -1,2 +1,0 @@
-This directory used by the application to generate and cache various widget public assets files. You can safely cleanup this directory on deployment.
-Please note DO NOT DELETE THE 'ASSETS' DIRECTORY ITSELF.
