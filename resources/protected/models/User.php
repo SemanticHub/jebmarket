@@ -12,6 +12,7 @@
  * @property string $joined
  * @property string $activationcode
  * @property string $activationstatus
+ * @property string $status
  * @property string $last_login
  * @property string $timezone
  * @property integer $user_details_id
@@ -41,9 +42,7 @@ class User extends CActiveRecord {
             array('username, email', 'length', 'max' => 45),
             array('password', 'length', 'max' => 255),
             array('last_login', 'safe'),
-
-            // The following rule is used by search().
-            array('id, username, email, joined, activationstatus, last_login', 'safe', 'on' => 'search'),
+            array('id, username, email, joined, activationstatus, last_login, status', 'safe', 'on' => 'search'),
             array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
         );
     }
@@ -68,6 +67,7 @@ class User extends CActiveRecord {
             'password' => 'Password',
             'joined' => 'Joined',
             'activationstatus' => 'Status',
+            'status' => 'Activated?',
             'last_login' => 'Last Login',
             'timezone' => 'Timezone',
             'verifyCode'=>'Verification Code',
@@ -76,24 +76,19 @@ class User extends CActiveRecord {
 
     /**
      * Retrieves a list of models based on the current search/filter conditions.
-     *
      * @return CActiveDataProvider the data provider that can return the models
      * based on the search/filter conditions.
      */
     public function search() {
         $criteria = new CDbCriteria;
-
-        //$criteria->compare('id', $this->id);
         $criteria->compare('username', $this->username, true);
         $criteria->compare('email', $this->email, true);
-        //$criteria->compare('password', $this->password, true);
         $criteria->compare('salt', $this->salt, true);
         $criteria->compare('joined', $this->joined, true);
-        //$criteria->compare('activationcode', $this->activationcode, true);
         $criteria->compare('activationstatus', $this->activationstatus, true);
+        $criteria->compare('status', $this->status, true);
         $criteria->compare('last_login', $this->last_login, true);
         $criteria->compare('timezone', $this->timezone, true);
-        //$criteria->compare('user_details_id', $this->user_details_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -145,5 +140,4 @@ class User extends CActiveRecord {
     public function generateSalt() {
         return uniqid('', true);
     }
-
 }

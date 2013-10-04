@@ -7,10 +7,10 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- favicon -->
-        <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/icon/favicon.png">
+        <link rel="shortcut icon" href="<?php echo Yii::app()->theme->baseUrl; ?>/icon/favicon.png">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/theme.css">
+        <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css">
         <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
         <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
     </head>
@@ -61,6 +61,7 @@
         </div>      
 
         <div class="content-body">
+            <?php if(Yii::app()->user->getFlashes()) { ?>
             <div class="container">
             <?php
             foreach(Yii::app()->user->getFlashes() as $key => $message) {
@@ -68,6 +69,7 @@
             }
             ?>
             </div>
+            <?php } ?>
             <?php echo $content; ?>
         </div>
         
@@ -92,8 +94,8 @@
         
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-          <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/html5shiv.js"></script>
-          <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/respond.min.js"></script>
+          <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/html5shiv.js"></script>
+          <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
         <![endif]-->
         
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>       
