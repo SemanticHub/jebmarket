@@ -341,3 +341,6 @@ ul.nav.nav-pills.navbar-footer {
 .form-group {
     margin-bottom: 10px;
 }
+.alert ul {
+    list-style-type: none;
+}
