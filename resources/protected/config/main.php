@@ -30,8 +30,12 @@ return array(
             'flashSuccessKey'=>'success',
             'flashErrorKey'=>'error',
             'appLayout'=>'application.themes.jebmarket.views.layouts.main',
-            //'layout'=>'application.themes.jebmarket.views.layouts.main',
-            //'debug'=>true
+            'layout'=>'application.themes.jebmarket.views.rights.layout',
+            'displayDescription'=>false,
+            'cssFile' => false,
+            'enableBizRule'=>false,
+            'enableBizRuleData'=>false,
+            'debug'=>false
         )
     ),
     'components' => array(
@@ -125,6 +129,7 @@ return array(
         ),
         'adminmenu' => array(
             array('label' => Yii::t('phrase', 'Users'), 'url' => array('/user/admin')),
+            array('label' => Yii::t('phrase', 'User Access'), 'url' => array('/rights')),
             array('label' => Yii::t('phrase', 'Sliders'), 'url' => array('/slider/admin')),
             array('label' => Yii::t('phrase', 'Email Templates'), 'url' => array('/emailTemplate/admin')),
             array('label' => Yii::t('phrase', 'FAQs'), 'url' => array('/faq/admin')),

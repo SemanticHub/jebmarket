@@ -445,7 +445,8 @@ class RAuthorizer extends CApplicationComponent
 		// Loop through the functions and check the code for function calls.
 		// Append a '(' to the functions to avoid confusion between e.g. array() and array_merge().
 		foreach( $functions as $f )
-			if( preg_match('/'.$f.'\ *\({1}/', $code)>0 )
+			//if( preg_match('/'.$f.'\ *\({1}/', $code)>0 )
+			if( preg_match('/'.preg_quote($f, "/").'\ *\({1}/', $code)>0 )
 				return null; // Function call found, not safe for eval.
 
 		// Evaluate the safer code
