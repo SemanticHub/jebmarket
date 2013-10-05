@@ -137,7 +137,8 @@ class Menu extends CActiveRecord {
                 'label' => Yii::t('phrase', 'Admin <b class="caret"></b>'), 
                 'url' => array('#'), 
                 'linkOptions'=> array('class'=>'dropdown-toggle', 'data-toggle'=>'dropdown', 'data-target'=>'#'),
-                'visible' => !Yii::app()->user->isGuest,
+                //'visible' => Yii::app()->user->isSuperuser,
+                'visible' => Yii::app()->user->checkAccess(Rights::module()->superuserName),
                 'items' =>  Yii::app()->params['adminmenu']
                 ),
          );

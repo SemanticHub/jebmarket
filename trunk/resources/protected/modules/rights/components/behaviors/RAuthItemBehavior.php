@@ -140,7 +140,7 @@ class RAuthItemBehavior extends CBehavior
 			return CHtml::linkButton(Rights::t('core', 'Delete'), array(
 				'submit'=>array('authItem/delete', 'name'=>urlencode($this->owner->name)),
 				'confirm'=>Rights::t('core', 'Are you sure you want to delete this role?'),
-				'class'=>'delete-link',
+				'class'=>'delete-link btn btn-danger btn-xs',
 				'csrf'=>Yii::app()->request->enableCsrfValidation,
 			));
 		}
@@ -154,7 +154,7 @@ class RAuthItemBehavior extends CBehavior
 	{
 		return CHtml::linkButton(Rights::t('core', 'Remove'), array(
 			'submit'=>array('authItem/removeChild', 'name'=>urlencode($this->owner->name), 'child'=>urlencode($this->parent->name)),
-			'class'=>'remove-link',
+			'class'=>'remove-link btn btn-danger btn-xs',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
 		));
 	}
@@ -167,7 +167,7 @@ class RAuthItemBehavior extends CBehavior
 	{
 		return CHtml::linkButton(Rights::t('core', 'Remove'), array(
 			'submit'=>array('authItem/removeChild', 'name'=>urlencode($this->parent->name), 'child'=>urlencode($this->owner->name)),
-			'class'=>'remove-link',
+			'class'=>'remove-link btn btn-danger btn-xs',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
 		));
 	}
