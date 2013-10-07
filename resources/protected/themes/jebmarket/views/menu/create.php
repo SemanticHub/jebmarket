@@ -7,4 +7,4 @@ $this->menu = array(
 );
 ?>
 <h1 class="page-title">Create Menu Item</h1>
-<?php $this->renderPartial('_form', array('model' => $model, 'listData'=> $listData)); ?>
+<?php $this->renderPartial('_form', array('model' => $model)); ?>

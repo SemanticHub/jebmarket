@@ -102,10 +102,16 @@ class Menu extends CActiveRecord {
     }
 
     protected static  function getMenuItem($item){
-        if($item == "##USERNAME##") {
-            return Yii::app()->user->name;
+        return str_replace('##USER##', Yii::app()->user->name, $item );
+    }
+
+    protected static function getVisibility ($type) {
+        if($type == 'public') {
+            return Yii::app()->user->isGuest;
+        } else if($type == 'private') {
+            return !Yii::app()->user->isGuest;
         } else {
-            return $item;
+            return true;
         }
     }
 
@@ -119,7 +125,7 @@ class Menu extends CActiveRecord {
                     $subItems[] = array(
                         'label' => $subItem['label'],
                         'url' => ($subItem['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $subItem['url']) ): Yii::app()->createUrl($subItem['url']),
-                        //'visible' => ($subItem['visibility'] == 'public') ? Yii::app()->user->isGuest : !Yii::app()->user->isGuest
+                        'visible' => Menu::getVisibility($subItem['visibility']),
                     );
                 }
             }
@@ -127,7 +133,7 @@ class Menu extends CActiveRecord {
             $items[] = array(
                 'label' => Menu::getMenuItem($item['label']).(($subItems==NULL)?'':'<b class="caret"></b>'),
                 'url' => ($item['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $item['url'])) :  Yii::app()->createUrl($item['url']),
-                //'visible' => ($item['visibility'] == 'private') ? !Yii::app()->user->isGuest : '',
+                'visible' => Menu::getVisibility($item['visibility']),
                 'items' => $subItems,
                 'linkOptions'=> ($subItems) ? array('class'=>'dropdown-toggle ', 'data-toggle'=>'dropdown', 'data-target'=>'#') : array('class'=>$item['class']),
             );
@@ -137,7 +143,6 @@ class Menu extends CActiveRecord {
                 'label' => Yii::t('phrase', 'Admin <b class="caret"></b>'), 
                 'url' => array('#'), 
                 'linkOptions'=> array('class'=>'dropdown-toggle', 'data-toggle'=>'dropdown', 'data-target'=>'#'),
-                //'visible' => Yii::app()->user->isSuperuser,
                 'visible' => Yii::app()->user->checkAccess(Rights::module()->superuserName),
                 'items' =>  Yii::app()->params['adminmenu']
                 ),

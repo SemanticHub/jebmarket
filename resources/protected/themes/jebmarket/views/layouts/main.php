@@ -1,4 +1,3 @@
-<?php /* @var $this Controller */ ?>
 <!DOCTYPE html>
 <html lang="<?php echo Yii::app()->language;?>">
     <head>
@@ -58,21 +57,17 @@
                 </div>
                 </div>    
             </div>
-        </div>      
-
-        <div class="content-body">
-            <?php if(Yii::app()->user->getFlashes()) { ?>
-            <div class="container">
-            <?php
-            foreach(Yii::app()->user->getFlashes() as $key => $message) {
-                echo '<div class="alert alert-' . $key . '">' . $message . "</div>\n";
-            }
-            ?>
-            </div>
-            <?php } ?>
-            <?php echo $content; ?>
         </div>
-        
+        <?php if(Yii::app()->user->getFlashes()) { ?>
+            <div class="container">
+                <?php
+                foreach(Yii::app()->user->getFlashes() as $key => $message) {
+                    echo '<div class="alert alert-' . $key . '">' . $message . "</div>\n";
+                }
+                ?>
+            </div>
+        <?php } ?>
+        <?php echo $content; ?>
         <div class="container">
             <footer class="footer">
                 <p class="pull-right"><a class="footer-logo" href="#"><?php echo Yii::t('phrase', 'Back to top')?></a></p>
@@ -91,13 +86,11 @@
                 </span>
             </footer>
         </div>
-        
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/html5shiv.js"></script>
           <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
         <![endif]-->
-        
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>       
     </body>
 </html>

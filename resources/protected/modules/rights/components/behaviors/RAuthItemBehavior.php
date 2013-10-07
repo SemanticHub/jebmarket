@@ -210,7 +210,7 @@ class RAuthItemBehavior extends CBehavior
 
 				return false;				
 			",
-			'class'=>'revoke-link',
+			'class'=>'revoke-link btn btn-danger btn-xs',
 		));
 	}
 
@@ -239,7 +239,7 @@ class RAuthItemBehavior extends CBehavior
 
 				return false;				
 			",
-			'class'=>'assign-link',
+			'class'=>'assign-link btn btn-info btn-xs',
 		));
 	}
 	

@@ -24,7 +24,7 @@ class MenuController extends Controller {
      * This method is used by the 'accessControl' filter.
      * @return array access control rules
      */
-    public function accessRules() {
+    /*public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array('index', 'view'),
@@ -42,7 +42,7 @@ class MenuController extends Controller {
                 'users' => array('*'),
             ),
         );
-    }
+    }*/
 
     public function actionMenuItemOptions() {
         switch ($_POST['type']) {
@@ -79,16 +79,12 @@ class MenuController extends Controller {
 
         if (isset($_POST['Menu'])) {
             $model->attributes = $_POST['Menu'];
-            //if($model->type == 'page') {
-               // if($model->url && $model->url != "")
-                //   $model->url = 'page/view/'.$model->url;
-            //}
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('create', array(
-            'model' => $model, 'listData'=>$listData
+            'model' => $model
         ));
     }
 
@@ -140,9 +136,8 @@ class MenuController extends Controller {
      */
     public function actionAdmin() {
         $model = new Menu('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Menu']))
-            $model->attributes = $_GET['Menu'];
+        $model->unsetAttributes();
+        if (isset($_GET['Menu'])) $model->attributes = $_GET['Menu'];
 
         $this->render('admin', array(
             'model' => $model,

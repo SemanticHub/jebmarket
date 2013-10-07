@@ -20,7 +20,7 @@
     			'header'=>Rights::t('core', 'User'),
     			'type'=>'raw',
     			'htmlOptions'=>array('class'=>'name-column'),
-    			//'value'=>'$data->getAssignmentNameLink()',
+    			'value'=>'$data->getAssignmentNameLink()',
     		),
     		array(
     			'name'=>'assignments',

@@ -77,9 +77,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 -------------------------------------------------- */
 .carousel {
     margin-bottom: 60px; display: block; clear: both;
-    /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
-    /*margin-top: -90px;*/
-    margin-top: -30px;
+    margin-top: 15px;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -209,7 +207,7 @@ span.required {
     font-style: italic; margin-bottom: 0;
 }
 h1.page-title, .h1.page-title {
-    font-size: 30px;color: #EC6030;border-bottom: 1px solid #f5f5f5;padding: 10px 0; margin: 10px 0 30px;
+    font-size: 30px;color: #EC6030;border-bottom: 1px solid #f5f5f5; padding: 10px 0; margin: 20px 0 10px;
 }
 .panel .list-group {
     margin-bottom: 0;
@@ -343,4 +341,7 @@ ul.nav.nav-pills.navbar-footer {
 }
 .alert ul {
     list-style-type: none;
+}
+.nav-tabs {
+    margin-top: 20px;
 }

@@ -10,8 +10,7 @@
             <?php echo $form->dropDownList($model, 'itemname', $itemnameSelectOptions, array('class' => 'form-control')); ?>
             <?php echo $form->error($model, 'itemname'); ?>
         </div>
-        <div
-            class="col-lg-2"><?php echo CHtml::submitButton(Rights::t('core', 'Add'), array('class' => 'btn btn-primary')); ?></div>
+        <div class="col-lg-2"><?php echo CHtml::submitButton(Rights::t('core', 'Add'), array('class' => 'btn btn-primary')); ?></div>
     </div>
     <?php $this->endWidget(); ?>
 </div
