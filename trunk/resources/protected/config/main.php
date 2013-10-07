@@ -113,7 +113,7 @@ return array(
         'sitemenu' => array(
             'site/contact' => 'Contact',
             'site/login' => 'Login',
-            'user/signup' => 'Signup',
+            'site/logout' => 'Logout',
             'faq/index' => 'FAQ',
             'user/profile' => 'User Profile'
         ),
@@ -136,7 +136,6 @@ return array(
             array('label' => Yii::t('phrase', 'Pages'), 'url' => array('/pages/admin')),
             array('label' => Yii::t('phrase', 'Menus'), 'url' => array('/menu/admin')),
             array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/admin')),
-            array('label' => Yii::t('phrase', 'Logout'), 'url' => array('/site/logout'))
         ),
         # Upload Path
         'uploadPath' => dirname(__FILE__) . '/../data/media/upload',

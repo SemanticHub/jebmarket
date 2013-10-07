@@ -48,7 +48,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="form-group">
     <?php echo $form->labelEx($model, 'visibility', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
-        <?php echo $form->dropDownList($model,'visibility',array('public'=>'public', 'private'=>'private'), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model,'visibility',array('auto'=>'Auto', 'public'=>'Public', 'private'=>'Private'), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'visibility', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
@@ -77,7 +77,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="form-group">
     <?php echo $form->labelEx($model, 'tag', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
-        <?php echo $form->dropDownList($model,'tag',array('mainmenu'=>'Main Menu', 'footermenu'=>'Footer Menu', 'topmenu'=>'Top Bar Menu'), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model,'tag',array('mainmenu'=>'Main Menu', 'footermenu'=>'Footer Menu', 'topmenu'=>'Header Menu'), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'tag', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>

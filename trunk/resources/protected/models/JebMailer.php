@@ -77,14 +77,14 @@ class JebMailer extends PHPMailer{
         $this->_vars['logo']['value'] =  CHtml::image(Yii::app()->request->getBaseUrl(true).'/images/logo.png');
     }
 
-    private function getVars(){
+    public function getVars(){
         foreach ($this->_vars as $k => $v) {
             $temVars[] = $v['label'];
         }
         return $temVars;
     }
 
-    private function getVals(){
+    public function getVals(){
         foreach ($this->_vars as $k => $v) {
             $temVals[] = $v['value'];
         }
