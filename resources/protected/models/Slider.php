@@ -73,12 +73,6 @@ class Slider extends CActiveRecord {
     /**
      * Retrieves a list of models based on the current search/filter conditions.
      *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
      * @return CActiveDataProvider the data provider that can return the models
      * based on the search/filter conditions.
      */
@@ -101,7 +95,7 @@ class Slider extends CActiveRecord {
     }
 
     public function beforeSave() {
-        $uploadPath = Yii::app()->params['uploadUrl'];
+        $uploadPath = Yii::getPathOfAlias('webroot') .DIRECTORY_SEPARATOR . Yii::app()->params['uploadUrl'];
         if (is_object($this->image)) {
             $this->image->saveAs($uploadPath . $this->image->name);
             if (!empty($this->oldSlideImage)) {

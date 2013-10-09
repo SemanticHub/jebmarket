@@ -1,19 +1,25 @@
 <?php
-/* @var $this SliderController */
-/* @var $model Slider */
-/* @var $form CActiveForm */
-?>
-<?php
+/*
+ * @var $this SliderController
+ * @var $model Slider
+ */
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'slider-form',
     'enableAjaxValidation' => false,
-    'htmlOptions' => array('class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data')
+    'htmlOptions' => array(
+        'class' => 'form-horizontal',
+        'role' => 'form',
+        'enctype' => 'multipart/form-data'
+    )
 ));
 ?>
+
 <div class="note bs-callout bs-callout-info">
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 </div>
+
 <?php echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger')); ?>
+
 <div class="form-group">
     <?php echo $form->labelEx($model, 'headline', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -21,6 +27,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'headline', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
+
 <div class="form-group">
     <?php echo $form->labelEx($model, 'content', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -28,6 +35,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'content', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
+
 <div class="form-group">
     <?php echo $form->labelEx($model, 'image', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -48,6 +56,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'image', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
+
 <div class="form-group">
     <?php echo $form->labelEx($model, 'tag', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -55,6 +64,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'tag', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
+
 <div class="form-group">
     <?php echo $form->labelEx($model, 'order', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -62,6 +72,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'order', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
+
 <div class="form-group">
     <?php echo $form->labelEx($model, 'class', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10">
@@ -69,6 +80,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'class', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
+
 <div class="form-group buttons">
     <label class="control-label col-lg-2"></label>
     <div class="col-lg-10">
@@ -76,4 +88,4 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 <?php $this->endWidget(); ?>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/app.js"></script>
+<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/app.js"></script>

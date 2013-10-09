@@ -1,13 +1,15 @@
 <?php
-/* @var $this MenuController */
-/* @var $model Menu */
-/* @var $form CActiveForm */
-?>
-<?php
+/**
+ * @var $this MenuController
+ * @var $model Menu
+ */
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'menu-form',
     'enableAjaxValidation' => false,
-    'htmlOptions' => array('class' => 'form-horizontal', 'role' => 'form')
+    'htmlOptions' => array(
+        'class' => 'form-horizontal',
+        'role' => 'form'
+    )
 ));
 ?>
 <div class="note bs-callout bs-callout-info">
@@ -87,4 +89,15 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-primary')); ?>
     </div>
 </div>
+<?php
+Yii::app()->clientScript->registerScript(
+    'update_menu_type',
+    CHtml::ajax( array (
+        'type'=> 'POST',
+        'url'=> $this->createUrl('menuItemOptions'),
+        'update'=> '#menuItemOptions',
+        'data'=> array('type'=>'js:$("#Menu_type").val()', 'url'=> $model->url)
+    )),
+    CClientScript::POS_READY);
+?>
 <?php $this->endWidget(); ?>

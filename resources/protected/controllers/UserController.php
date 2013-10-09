@@ -24,18 +24,21 @@ class UserController extends Controller {
      */
     public function filters() {
         return array(
-            //'accessControl', // perform access control for CRUD operations
-            //'postOnly + delete', // we only allow deletion via POST request
             'rights'
         );
+    }
+
+    public function allowedActions() {
+        return 'signup, captcha';
     }
 
     /**
      * Specifies the access control rules.
      * This method is used by the 'accessControl' filter.
      * @return array access control rules
+     * @deprecated replaced by RBAC
      */
-    public function accessRules() {
+    /*public function accessRules() {
         return array(
             array('allow',
                 'actions' => array('signup', 'captcha', 'success', 'recover'),
@@ -53,7 +56,7 @@ class UserController extends Controller {
                 'users' => array('*'),
             ),
         );
-    }
+    }*/
 
     /**
      * Password Recovery
@@ -168,7 +171,7 @@ class UserController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @deprecated
      */
-    public function actionCreate() {
+    /*public function actionCreate() {
         $model = new User;
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
@@ -179,7 +182,7 @@ class UserController extends Controller {
         $this->render('create', array(
             'model' => $model,
         ));
-    }
+    }*/
 
     /**
      * Sign-up a User.
@@ -226,8 +229,7 @@ class UserController extends Controller {
         $this->performAjaxValidation($model);
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+            if ($model->save()) $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(

@@ -47,13 +47,13 @@ class MenuController extends Controller {
     public function actionMenuItemOptions() {
         switch ($_POST['type']) {
             case 'page':
-                echo CHtml::dropDownList("Menu[url]", "", CHtml::listData(Pages::model()->findAll(), 'slug', 'title'), array('class' => 'form-control'));
+                echo CHtml::dropDownList("Menu[url]", $_POST['url'], CHtml::listData(Pages::model()->findAll(), 'slug', 'title'), array('class' => 'form-control'));
                 break;
             case 'module':
-                echo CHtml::dropDownList("Menu[url]", "", Yii::app()->params['sitemenu'], array('class' => 'form-control'));
+                echo CHtml::dropDownList("Menu[url]", $_POST['url'], Yii::app()->params['sitemenu'], array('class' => 'form-control'));
                 break;
             case 'custom':
-                 echo CHtml::textField('Menu[url]', '', array('class' => 'form-control'));
+                 echo CHtml::textField('Menu[url]', $_POST['url'], array('class' => 'form-control'));
                 break;
             default:
                 echo '<div class="alert alert-info" style="margin-bottom: 0">Select a \'Menu Item Type\' from above to \'URL\' see options</div>';

@@ -140,6 +140,6 @@ return array(
         # Upload Path
         'uploadPath' => dirname(__FILE__) . '/../data/media/upload',
         # Upload Public URL
-        'uploadUrl' => 'media/upload/',
+        'uploadUrl' => 'media/slider/',
     ),
 );

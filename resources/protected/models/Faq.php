@@ -11,21 +11,18 @@
  * @property string $active
  * @property string $tag
  */
-class Faq extends CActiveRecord
-{
+class Faq extends CActiveRecord {
 	/**
 	 * @return string the associated database table name
 	 */
-	public function tableName()
-	{
+	public function tableName() {
 		return 'jebapp_faq';
 	}
 
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
-	{
+	public function rules() {
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
@@ -42,8 +39,7 @@ class Faq extends CActiveRecord
 	/**
 	 * @return array relational rules.
 	 */
-	public function relations()
-	{
+	public function relations() {
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
@@ -53,8 +49,7 @@ class Faq extends CActiveRecord
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
-	public function attributeLabels()
-	{
+	public function attributeLabels() {
 		return array(
 			'id' => 'ID',
 			'faq' => 'Faq',
@@ -68,17 +63,10 @@ class Faq extends CActiveRecord
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
-	{
+	public function search() {
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
@@ -101,8 +89,17 @@ class Faq extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Faq the static model class
 	 */
-	public static function model($className=__CLASS__)
-	{
+	public static function model($className=__CLASS__) {
 		return parent::model($className);
 	}
+
+    public static function getTags() {
+        $tags = Faq::model()->findAll(array('select'=> 'tag', 'distinct' => true));
+        $tagsString = "";
+        foreach ($tags as $tag) {
+            $tagsString .= $tag->tag . ', ';
+        }
+        $uniTags = implode(', ',array_unique(explode(', ', $tagsString)));
+        return rtrim($uniTags, ', ');
+    }
 }
