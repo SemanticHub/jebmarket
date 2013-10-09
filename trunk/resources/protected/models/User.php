@@ -41,9 +41,9 @@ class User extends CActiveRecord {
             array('email, username', 'unique'),
             array('username, email', 'length', 'max' => 45),
             array('password', 'length', 'max' => 255),
-            array('last_login', 'safe'),
-            array('id, username, email, joined, activationstatus, last_login, status', 'safe', 'on' => 'search'),
-            array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
+            array('last_login, activationstatus, status', 'safe'),
+            array('id, username, email, joined, activationstatus, status, last_login, status', 'safe', 'on' => 'search'),
+            array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>'signup'),
         );
     }
 

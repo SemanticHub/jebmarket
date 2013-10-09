@@ -14,7 +14,8 @@
  * @property integer $odr
  * @property string $type
  */
-class Menu extends CActiveRecord {
+class Menu extends CActiveRecord
+{
 
     /**
      * @return string the associated database table name
@@ -44,8 +45,7 @@ class Menu extends CActiveRecord {
     public function relations() {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array(
-        );
+        return array();
     }
 
     /**
@@ -101,53 +101,66 @@ class Menu extends CActiveRecord {
         return parent::model($className);
     }
 
-    protected static  function getMenuItem($item){
-        return str_replace('##USER##', Yii::app()->user->name, $item );
+    protected static function getMenuItem($item) {
+        return str_replace('##USER##', Yii::app()->user->name, $item);
     }
 
-    protected static function getVisibility ($type) {
-        if($type == 'public') {
+    protected static function getVisibility($type) {
+        if ($type == 'public') {
             return Yii::app()->user->isGuest;
-        } else if($type == 'private') {
+        } else if ($type == 'private') {
             return !Yii::app()->user->isGuest;
         } else {
             return true;
         }
     }
 
+    protected static function getURL($type, $urlString) {
+        if($type == 'page') {
+            $url = Yii::app()->createUrl('page/view', array('view' => $urlString));
+        } else if ($type == 'custom') {
+            $url = $urlString;
+        } else {
+            $url = Yii::app()->createUrl($urlString);
+        }
+        return $url;
+    }
+
     public static function renderMenuItems($menuType) {
-        $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id IS NULL', 'order'=>'odr' ,'params' => array(':tag' => $menuType)));
+        $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
         foreach ($menuItems as $item) {
             $subItems = array();
             $subMenuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id=:id', 'params' => array(':tag' => $menuType, ':id' => $item['id'])));
-            if (count($subMenuItems)) {                
+            if (count($subMenuItems)) {
                 foreach ($subMenuItems as $subItem) {
                     $subItems[] = array(
                         'label' => $subItem['label'],
-                        'url' => ($subItem['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $subItem['url']) ): Yii::app()->createUrl($subItem['url']),
+                        //'url' => ($subItem['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $subItem['url'])) : Yii::app()->createUrl($subItem['url']),
+                        'url' => Menu::getURL($subItem['type'], $subItem['url']),
                         'visible' => Menu::getVisibility($subItem['visibility']),
                     );
                 }
             }
 
             $items[] = array(
-                'label' => Menu::getMenuItem($item['label']).(($subItems==NULL)?'':'<b class="caret"></b>'),
-                'url' => ($item['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $item['url'])) :  Yii::app()->createUrl($item['url']),
+                'label' => Menu::getMenuItem($item['label']) . (($subItems == NULL) ? '' : '<b class="caret"></b>'),
+                //'url' => ($item['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $item['url'])) : Yii::app()->createUrl($item['url']),
+                'url' => Menu::getURL($item['type'], $item['url']),
                 'visible' => Menu::getVisibility($item['visibility']),
                 'items' => $subItems,
-                'linkOptions'=> ($subItems) ? array('class'=>'dropdown-toggle ', 'data-toggle'=>'dropdown', 'data-target'=>'#') : array('class'=>$item['class']),
+                'linkOptions' => ($subItems) ? array('class' => 'dropdown-toggle ', 'data-toggle' => 'dropdown', 'data-target' => '#') : array('class' => $item['class']),
             );
         }
         $adminMenuItems = array(
             array(
-                'label' => Yii::t('phrase', 'Admin <b class="caret"></b>'), 
-                'url' => array('#'), 
-                'linkOptions'=> array('class'=>'dropdown-toggle', 'data-toggle'=>'dropdown', 'data-target'=>'#'),
+                'label' => Yii::t('phrase', 'Admin <b class="caret"></b>'),
+                'url' => array('#'),
+                'linkOptions' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
                 'visible' => Yii::app()->user->checkAccess(Rights::module()->superuserName),
-                'items' =>  Yii::app()->params['adminmenu']
-                ),
-         );
-         $fullMenuItems = ($menuType == "mainmenu") ? array_merge($items, $adminMenuItems) : $items;
+                'items' => Yii::app()->params['adminmenu']
+            ),
+        );
+        $fullMenuItems = ($menuType == "mainmenu") ? array_merge($items, $adminMenuItems) : $items;
         return $fullMenuItems;
     }
 
