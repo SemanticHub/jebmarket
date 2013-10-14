@@ -60,7 +60,7 @@ class LoginForm extends CFormModel
             else if (UserIdentity::ERROR_PASSWORD_INVALID == $this->_identity->authenticate()) {
                 $this->addError('password', 'Incorrect password');
             } else if (UserIdentity::ERROR_USER_NOT_ACTIVATED == $this->_identity->authenticate()) {
-                $this->addError('username', 'User not active');
+                $this->addError('username', 'You have not yet verify your email address. Please verify your email by clicking on the verification link in the email we sent during registration. '.CHtml::link("Click Here", array('user/sendemailverification', 'user'=>$this->_identity->username),array()).' for resend the verification email');
             }
         }
     }
@@ -69,8 +69,7 @@ class LoginForm extends CFormModel
      * Logs in the user using the given username and password in the model.
      * @return boolean whether login is successful
      */
-    public function login()
-    {
+    public function login() {
         if ($this->_identity === null) {
             $this->_identity = new UserIdentity($this->username, $this->password);
             $this->_identity->authenticate();

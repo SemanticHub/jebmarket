@@ -1,7 +1,6 @@
 <?php
 /* @var $this UserController */
 /* @var $model User */
-/* @var $form CActiveForm */
 ?>
 <div class="form">
     <?php $form = $this->beginWidget('CActiveForm', array(

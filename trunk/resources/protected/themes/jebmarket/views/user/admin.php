@@ -24,7 +24,7 @@ $('.search-form form').submit(function(){
         or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
     </p>
 </div>
-<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button btn btn-primary')); ?> &nbsp;
+<?php echo CHtml::link('Create new User', array('create'), array('class' => 'btn btn-success btn-sm')); ?> &nbsp;<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button btn btn-primary btn-sm')); ?> &nbsp;
 <div class="search-form" style="display:none">
     <?php $this->renderPartial('_search', array(
         'model' => $model,
@@ -48,6 +48,12 @@ $('.search-form form').submit(function(){
             'name' => 'activationstatus',
             'type' => 'html',
             'value' => '($data->activationstatus == 1) ? "<span class=\"glyphicon glyphicon-ok\"></span>" : "<span class=\"glyphicon glyphicon-remove\"></span>"',
+            'htmlOptions' => array('style' => 'width:30px; text-align:center')
+        ),
+        array(
+            'name' => 'status',
+            'type' => 'html',
+            'value' => '($data->status == 1) ? "<span class=\"glyphicon glyphicon-ok\"></span>" : "<span class=\"glyphicon glyphicon-remove\"></span>"',
             'htmlOptions' => array('style' => 'width:30px; text-align:center')
         ),
         'username',

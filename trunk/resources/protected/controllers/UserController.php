@@ -15,6 +15,7 @@ class UserController extends Controller {
             'captcha' => array(
                 'class' => 'CCaptchaAction',
                 'backColor' => 0xFFFFFF,
+                //'testLimit' => 1
             )
         );
     }
@@ -28,53 +29,40 @@ class UserController extends Controller {
         );
     }
 
-    public function allowedActions() {
-        return 'signup, captcha';
-    }
-
     /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     * @deprecated replaced by RBAC
+     * @return string
+     * Actions those will always allow
      */
-    /*public function accessRules() {
-        return array(
-            array('allow',
-                'actions' => array('signup', 'captcha', 'success', 'recover'),
-                'users' => array('*'),
-            ),
-            array('allow',
-                'actions' => array('profile', 'dashboard', 'password', 'edit'),
-                'users' => array('@'),
-            ),
-            array('allow',
-                'actions' => array('admin', 'delete', 'profile'),
-                'users' => array('admin'),
-            ),
-            array('deny',
-                'users' => array('*'),
-            ),
-        );
-    }*/
+    public function allowedActions() {
+        return 'signup, captcha, activate, recoverpass, resetpass, sendemailverification';
+    }
 
     /**
      * Password Recovery
      */
-    public function actionRecover() {
+    public function actionRecoverpass() {
         $model = new Recover();
-        // if it is ajax validation request
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'password-recover-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
         // collect user input data
         if (isset($_POST['Recover'])) {
             $model->attributes = $_POST['Recover'];
             if ($model->validate()) {
-                $user = $this->loadModel($model->username);
+                $user = User::model()->findByAttributes(array('username' => $model->username));
+                if ($user === null)
+                    $user = User::model()->findByAttributes(array('email' => $model->username));
 
-                Yii::app()->user->setFlash('success', "Please follow the instruction sent to your Email to recover your password.");
+                if ($user === null) {
+                    throw new CHttpException(503, 'The requested User does not exists in our system.');
+                } else {
+                    $mail = new JebMailer($user->id, Yii::app()->params['passRecoveryEmailTemplate']);
+                    if (!$mail->send()) {
+                        Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
+                        return false;
+                    }
+                    Yii::app()->user->setFlash('success', "Password recovery instructions has sent to your email account. Please check your email for details");
+                    $this->redirect(array('site/login'));
+                    Yii::app()->end();
+
+                }
             }
         }
         // display the change password form
@@ -93,7 +81,7 @@ class UserController extends Controller {
     /**
      * Displays the Change Password Form and Change Password Action
      */
-    public function actionPassword() {
+    public function actionChangepass() {
         $model = new Password;
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'change-password-form') {
@@ -116,6 +104,31 @@ class UserController extends Controller {
         }
         // display the change password form
         $this->render('password', array('model' => $model));
+    }
+
+    /**
+     * Displays the Reset Password Form and Reset Password Action
+     */
+    public function actionResetpass($email) {
+        $model = new ResetPassword();
+        // collect user input data
+        if (isset($_POST['ResetPassword'])) {
+            $model->attributes = $_POST['ResetPassword'];
+            if ($model->validate()) {
+                $user = User::model()->findByAttributes(array('email' => $email));
+                $user->salt = $user->generateSalt();
+                $user->password = $user->hashPassword($model->new_password, $user->salt);
+                if ($user->update()) {
+                    Yii::app()->user->setFlash('success', "New Password Updated Successfully");
+                    $this->redirect(array('site/login'));
+                    Yii::app()->end();
+                } else {
+                    Yii::app()->user->setFlash('danger', "An Error Occurred While Changing New Password");
+                }
+            }
+        }
+        // display the change password form
+        $this->render('reset_password', array('model' => $model));
     }
 
     /**
@@ -154,37 +167,6 @@ class UserController extends Controller {
     }
 
     /**
-     * Displays User Pending Activation model.
-     * @param integer $id the ID of the model to be displayed
-     * @param string $store , the name of the store
-     */
-    public function actionSuccess($id, $store) {
-        $this->layout = "column1";
-        $this->render('success', array(
-            'model' => $this->loadModel($id),
-            'store' => $store
-        ));
-    }
-
-    /**
-     * Creates a new model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @deprecated
-     */
-    /*public function actionCreate() {
-        $model = new User;
-        if (isset($_POST['User'])) {
-            $model->attributes = $_POST['User'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
-        }
-
-        $this->render('create', array(
-            'model' => $model,
-        ));
-    }*/
-
-    /**
      * Sign-up a User.
      * After sign-up request is successful, the browser will be redirected to the 'view' page.
      * @param  string $shopName register with a shop name
@@ -199,9 +181,43 @@ class UserController extends Controller {
             $model->salt = $model->generateSalt();
             $model->password = $model->hashPassword($model->password, $model->salt);
             $model->joined = date("Y-m-d H:i:s");
-            //TODO: Let user 7 day to explore the account, then disable the account (activationstatus=0) again.
-            $model->activationstatus = '1';
-            $model->status = '0';
+            $model->activationstatus = '0';
+            $model->status = '1';
+            $model->activationcode = $model->generateActivationCode($model->email, $model->salt);
+            if (!$model->validate()) $model->password = "";
+            if ($model->userDetails->save()) {
+                $model->user_details_id = $model->userDetails->id;
+                if ($model->save()) {
+                    Rights::assign(Rights::module()->authenticatedName, $model->id);
+                    $mail = new JebMailer($model->id, Yii::app()->params['signupEmailTemplate']);
+                    if (!$mail->send()) {
+                        Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
+                    }
+                    Yii::app()->user->setFlash('success', "Welcome to JebMarket! <b>".$model->username . "</b>. Your account successfully created, You can now login and explore. You need to verify your Email within next ". Yii::app()->params['emailVerificationLimit']. " days. Check your Email for details.");
+                    //Yii::app()->user->setFlash('success', "Thanks for registering with JebMarket. Your account is successfully created and a verification email has been sent to ".$model->email.", You need to verify your email within next ". Yii::app()->params['emailVerificationLimit']. " days to be able to login to your account.");
+                    $this->redirect(array('site/login'));
+                }
+            }
+        }
+        $this->render('signup', array('model' => $model));
+    }
+
+    /**
+     * Creates a new User.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     */
+    public function actionCreate() {
+        $model = new User;
+        $model->userDetails = new UserDetails;
+        $model->activationstatus = '0';
+        $model->status = '1';
+        if (isset($_POST['User'])) {
+            $model->attributes = $_POST['User'];
+            $model->salt = $model->generateSalt();
+            $model->password = $model->hashPassword($model->password, $model->salt);
+            $model->joined = date("Y-m-d H:i:s");
+            $model->activationstatus = '0';
+            $model->status = '1';
             $model->activationcode = $model->generateActivationCode($model->email, $model->salt);
 
             if ($model->userDetails->save()) {
@@ -211,24 +227,34 @@ class UserController extends Controller {
                     if (!$mail->send()) {
                         Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
                     }
-                    $this->redirect(array('success', 'id' => $model->id, 'store' => $shopName));
+                    Yii::app()->user->setFlash('success', 'New User "'. $model->username .'" successfully created, User verification email is sent to '. $model->email);
+                    $this->redirect(array('view', 'id' => $model->id));
                 }
             }
         }
-        $this->render('signup', array('model' => $model));
+
+        $this->render('create', array(
+            'model' => $model,
+        ));
     }
 
     /**
-     * Updates a particular model.
+     * Updates a particular User.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
-     * @deprecated
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $model->password = "";
         $this->performAjaxValidation($model);
+
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
+            if($model->password != "") {
+                $model->password = $model->hashPassword($model->password, $model->salt);
+            } else {
+                unset($model->password);
+            }
             if ($model->save()) $this->redirect(array('view', 'id' => $model->id));
         }
 
@@ -251,13 +277,48 @@ class UserController extends Controller {
     }
 
     /**
-     * Lists all models.
+     * Activate a registered user email.
+     * If activation is successful, the browser will be redirected to the 'login' page else the error message will show
+     * @param string $email , the email of the user
+     * @param string $code , the activationcode of the user
+     * @throws CHttpException
      */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('User');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
+    public function actionActivate($email, $code){
+        $model = User::model()->findByAttributes(array('email' => $email));
+        if ($model === null) {
+            throw new CHttpException(503, 'The requested User does not exists in our system.');
+        } else if ($model->activationcode !== $code) {
+            throw new CHttpException(503, 'Invalid activation code.');
+        } else {
+            $model->activationstatus = 1;
+            $model->status = 1;
+            if($model->save()) {
+                Yii::app()->user->setFlash('success', "Thanks for verify your email, Your account has been successfully activated.");
+                $this->redirect(array('site/login'));
+            }
+        }
+    }
+
+    /**
+     * Resend verification Email
+     */
+    public function actionSendemailverification($user){
+        $user = User::model()->findByAttributes(array('username' => $user));
+        if ($user === null)
+            $user = User::model()->findByAttributes(array('email' => $user));
+
+        if ($user === null) {
+            throw new CHttpException(503, 'The requested User does not exists in our system.');
+        } else {
+            $mail = new JebMailer($user->id, Yii::app()->params['signupEmailTemplate']);
+            if (!$mail->send()) {
+                Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
+                return false;
+            }
+            Yii::app()->user->setFlash('success', "Instructions has resent to your email account. Please check your email for details");
+            $this->redirect(array('site/login'));
+            Yii::app()->end();
+        }
     }
 
     /**

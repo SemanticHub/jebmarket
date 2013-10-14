@@ -20,25 +20,8 @@ class PageController extends Controller {
     }
 
     /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    public function accessRules() {
-        return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('view'),
-                'users' => array('*'),
-            ),
-            array('deny', // deny all users
-                'users' => array('*'),
-            ),
-        );
-    }
-
-    /**
      * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
+     * @param integer $view the ID of the model to be displayed
      */
     public function actionView($view) {
         if (isset($view)) {

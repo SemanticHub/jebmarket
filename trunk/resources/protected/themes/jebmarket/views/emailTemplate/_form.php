@@ -1,9 +1,10 @@
 <?php
-/* @var $this EmailTemplateController */
-/* @var $model EmailTemplate */
-/* @var $form CActiveForm */
-?>
-<?php $form = $this->beginWidget('CActiveForm', array(
+/**
+ * @var $this EmailTemplateController
+ * @var $model EmailTemplate
+ */
+
+$form = $this->beginWidget('CActiveForm', array(
     'id' => 'email-template-form',
     'enableClientValidation' => true,
     'enableAjaxValidation' => true,
@@ -57,5 +58,5 @@
             <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-primary')); ?>
         </div>
     </div>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>
+    <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>
 <?php $this->endWidget(); ?>

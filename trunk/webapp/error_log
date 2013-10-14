@@ -1,0 +1,9 @@
+[04-Oct-2013 15:57:24] PHP Parse error:  syntax error, unexpected ';' in /home1/jassifie/public_html/yii/trunk/resources/protected/themes/jebmarket/views/rights/authItem/_form.php on line 32
+[04-Oct-2013 15:57:29] PHP Parse error:  syntax error, unexpected ';' in /home1/jassifie/public_html/yii/trunk/resources/protected/themes/jebmarket/views/rights/authItem/_form.php on line 32
+[04-Oct-2013 17:46:08] PHP Fatal error:  Call to a member function checkAccess() on a non-object in /home1/jassifie/public_html/yii/trunk/resources/protected/config/main.php on line 131
+[04-Oct-2013 17:46:13] PHP Fatal error:  Call to a member function checkAccess() on a non-object in /home1/jassifie/public_html/yii/trunk/resources/protected/config/main.php on line 131
+[09-Oct-2013 12:52:59] PHP Parse error:  syntax error, unexpected ')' in /home1/jassifie/public_html/yii/trunk/resources/protected/models/Menu.php on line 121
+[09-Oct-2013 12:57:29] PHP Parse error:  syntax error, unexpected ')' in /home1/jassifie/public_html/yii/trunk/resources/protected/models/Menu.php on line 121
+[09-Oct-2013 15:55:06] PHP Fatal error:  Call to a member function getNameText() on a non-object in /home1/jassifie/public_html/yii/trunk/resources/protected/modules/rights/controllers/AuthItemController.php on line 408
+[12-Oct-2013 15:26:39] PHP Fatal error:  Call to a member function save() on a non-object in /home1/jassifie/public_html/yii/trunk/resources/protected/controllers/UserController.php on line 212
+[12-Oct-2013 15:26:59] PHP Fatal error:  Call to a member function save() on a non-object in /home1/jassifie/public_html/yii/trunk/resources/protected/controllers/UserController.php on line 212

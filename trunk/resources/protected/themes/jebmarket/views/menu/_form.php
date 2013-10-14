@@ -21,7 +21,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="col-lg-10">
         <?php 
         echo $form->dropDownList($model, 'type', 
-                array('select'=> 'Select a menu item type', 'page'=> 'Page', 'module'=> 'Module', 'custom'=> 'Custom'), 
+                array(''=> 'Select a menu item type', 'page'=> 'Page', 'module'=> 'Module', 'custom'=> 'Custom'),
                 array(
                     'class' => 'form-control',
                     'ajax' => array (
@@ -37,7 +37,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="form-group">
     <?php echo $form->labelEx($model, 'url', array('class' => 'control-label col-lg-2')); ?>
     <div class="col-lg-10" id="menuItemOptions">
-        <div class="alert alert-info" style="margin-bottom: 0">Select a 'Menu Item Type' from above to 'URL' see options</div>
+        <div class="alert alert-info" style="margin-bottom: 0">Select a menu item 'Type' from above to see 'URL' options</div>
     </div>
 </div>
 <div class="form-group">

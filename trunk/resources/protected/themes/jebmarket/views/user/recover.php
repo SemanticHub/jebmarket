@@ -11,8 +11,8 @@ $this->layout = 'column1';
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'password-recover-form',
-            'enableClientValidation' => true,
-            'enableAjaxValidation' => true,
+            'enableClientValidation' => false,
+            'enableAjaxValidation' => false,
             'clientOptions' => array(
                 'validateOnSubmit' => true,
             ),

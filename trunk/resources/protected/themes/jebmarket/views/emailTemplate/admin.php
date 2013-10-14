@@ -1,9 +1,11 @@
 <?php
-/* @var $this EmailTemplateController */
-/* @var $model EmailTemplate */
+/**
+ * @var $this EmailTemplateController
+ * @var $model EmailTemplate
+ */
 
 $this->menu=array(
-	array('label'=>'Create EmailTemplate', 'url'=>array('create')),
+	array('label'=>'Create Email Template', 'url'=>array('create')),
 );
 ?>
 
