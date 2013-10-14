@@ -7,3 +7,11 @@
     </p>
 </div>
 <?php $this->renderPartial('_signup_form', array('model'=>$model)); ?>
+<?php
+if (!Yii::app()->request->isPostRequest)
+    Yii::app()->clientScript->registerScript(
+        'initCaptcha',
+        '$("#yw0_button").trigger("click");',
+        CClientScript::POS_READY
+    );
+?>

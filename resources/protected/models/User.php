@@ -36,14 +36,16 @@ class User extends CActiveRecord {
      */
     public function rules() {
         return array(
-            array('username, email, password', 'required'),
+            array('username, email', 'required'),
+            array('password', 'required', 'except'=>'update'),
             array('email', 'email'),
             array('email, username', 'unique'),
             array('username, email', 'length', 'max' => 45),
             array('password', 'length', 'max' => 255),
             array('last_login, activationstatus, status', 'safe'),
             array('id, username, email, joined, activationstatus, status, last_login, status', 'safe', 'on' => 'search'),
-            array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>'signup'),
+            array('verifyCode', 'required', 'on'=>'signup'),
+            array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>'signup, insert'),
         );
     }
 
@@ -66,8 +68,8 @@ class User extends CActiveRecord {
             'email' => 'Email',
             'password' => 'Password',
             'joined' => 'Joined',
-            'activationstatus' => 'Status',
-            'status' => 'Activated?',
+            'activationstatus' => 'Verified?',
+            'status' => 'Status',
             'last_login' => 'Last Login',
             'timezone' => 'Timezone',
             'verifyCode'=>'Verification Code',

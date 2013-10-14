@@ -24,9 +24,8 @@ return array(
         ),
         # Authorization Rights
         'rights'=>array(
-            //'install'=> true,
-            'superuserName' => 'jebadmin',
-            'authenticatedName' => 'registered',
+            'superuserName' => 'JebAdmin',
+            'authenticatedName' => 'Registered',
             'flashSuccessKey'=>'success',
             'flashErrorKey'=>'error',
             'appLayout'=>'application.themes.jebmarket.views.layouts.main',
@@ -35,7 +34,12 @@ return array(
             'cssFile' => false,
             'enableBizRule'=>false,
             'enableBizRuleData'=>false,
-            'debug'=>false
+            'debug'=>false,
+            // For Installer
+            //'install'=> true,
+//            'superUsers'=>array(
+//                40=>'jebadmin',
+//            ),
         )
     ),
     'components' => array(
@@ -51,6 +55,7 @@ return array(
             'allowAutoLogin' => true,
             //'class' => 'WebUser',
             'class' => 'RWebUser',
+            'guestName' => 'Guest',
         ),
         # SEF URL
         'urlManager' => array(
@@ -84,7 +89,8 @@ return array(
             'assignmentTable' => 'jebapp_auth_assignment',
             'itemTable' => 'jebapp_auth_item',
             'itemChildTable' => 'jebapp_auth_item_child',
-            'rightsTable' => 'jebapp_rights'
+            'rightsTable' => 'jebapp_rights',
+            'defaultRoles' => array('Guest'),
         ),
         # Default Error Handler
         'errorHandler' => array(
@@ -122,7 +128,7 @@ return array(
             'dashboard' => array('label' => 'Dashboard', 'url' => array('dashboard')),
             'profile' => array('label' => 'Profile', 'url' => array('profile')),
             'edit' => array('label' => 'Edit Account', 'url' => array('edit')),
-            'password' => array('label' => 'Change Password', 'url' => array('password')),
+            'password' => array('label' => 'Change Password', 'url' => array('changepass')),
             'store' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
             'products' => array('label' => 'Products', 'url' => array('products')),
             'orders' => array('label' => 'Orders', 'url' => array('orders')),
@@ -141,5 +147,9 @@ return array(
         'uploadPath' => dirname(__FILE__) . '/../data/media/upload',
         # Upload Public URL
         'uploadUrl' => 'media/slider/',
+        # Days limit for verify Account Email
+        'emailVerificationLimit' => 7,
+        'signupEmailTemplate' => 'signup_activation_email',
+        'passRecoveryEmailTemplate' => 'password_recovery_email',
     ),
 );

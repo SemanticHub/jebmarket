@@ -29,6 +29,7 @@ class Menu extends CActiveRecord
      */
     public function rules() {
         return array(
+            array('type, label', 'required'),
             array('parent_id, odr', 'numerical', 'integerOnly' => true),
             array('label, visibility, tag, type', 'length', 'max' => 45),
             array('url', 'length', 'max' => 255),
@@ -135,7 +136,6 @@ class Menu extends CActiveRecord
                 foreach ($subMenuItems as $subItem) {
                     $subItems[] = array(
                         'label' => $subItem['label'],
-                        //'url' => ($subItem['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $subItem['url'])) : Yii::app()->createUrl($subItem['url']),
                         'url' => Menu::getURL($subItem['type'], $subItem['url']),
                         'visible' => Menu::getVisibility($subItem['visibility']),
                     );
@@ -144,7 +144,6 @@ class Menu extends CActiveRecord
 
             $items[] = array(
                 'label' => Menu::getMenuItem($item['label']) . (($subItems == NULL) ? '' : '<b class="caret"></b>'),
-                //'url' => ($item['type'] == 'page') ? Yii::app()->createUrl('page/view', array('view' => $item['url'])) : Yii::app()->createUrl($item['url']),
                 'url' => Menu::getURL($item['type'], $item['url']),
                 'visible' => Menu::getVisibility($item['visibility']),
                 'items' => $subItems,

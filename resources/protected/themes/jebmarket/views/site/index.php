@@ -4,6 +4,7 @@ $this->layout = 'main';
 $this->pageTitle = Yii::app()->name;
 $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => array(':tag' => 'home-slider')));
 ?>
+<div class="container">
 <div id="myCarousel" class="carousel slide">
     <div class="mini-signup-form-wrapper">
         <div class="mini-signup-form">
@@ -38,6 +39,7 @@ $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => 
     </div>
     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
 </div>
 <div class="container marketing">    
     <div class="row">

@@ -39,7 +39,7 @@ $this->pageTitle = Yii::app()->name . ' - Login';
         </div>
         <div class="form-group buttons">
             <?php echo CHtml::submitButton('Login', array('class' => 'btn btn-primary')); ?>
-            <?php echo CHtml::link('Forget Password?', Yii::app()->createUrl('/user/recover'), array('class' => 'btn btn-default')); ?>
+            <?php echo CHtml::link('Forget Password?', Yii::app()->createUrl('/user/recoverpass'), array('class' => 'btn btn-default')); ?>
         </div>
         <?php $this->endWidget(); ?>
     </div>

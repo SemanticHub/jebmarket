@@ -35,10 +35,10 @@
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'joined', array('class' => 'control-label col-lg-2')); ?>
+        <?php echo $form->labelEx($model, 'password', array('class' => 'control-label col-lg-2')); ?>
         <div class="col-lg-10">
-            <?php echo $form->textField($model, 'joined', array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'joined', array('class' => 'text-danger control-hint')); ?>
+            <?php echo $form->passwordField($model, 'password', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'password', array('class' => 'text-danger control-hint')); ?>
         </div>
     </div>
 
@@ -55,14 +55,6 @@
         <div class="col-lg-10">
             <?php echo $form->textField($model, 'status', array('size' => 1, 'maxlength' => 1, 'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'status', array('class' => 'text-danger control-hint')); ?>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <?php echo $form->labelEx($model, 'last_login', array('class' => 'control-label col-lg-2')); ?>
-        <div class="col-lg-10">
-            <?php echo $form->textField($model, 'last_login', array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'last_login', array('class' => 'text-danger control-hint')); ?>
         </div>
     </div>
 

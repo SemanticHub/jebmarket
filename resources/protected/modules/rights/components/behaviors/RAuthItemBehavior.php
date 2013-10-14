@@ -59,12 +59,13 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getGridNameLink()
 	{
-		$markup = CHtml::link($this->owner->name, array(
+		$markup = CHtml::link($this->owner->name .' '. $this->childCount(), array(
 			'authItem/update',
-			'name'=>urlencode($this->owner->name),
-		));
+			'name'=>urlencode($this->owner->name)),
+            array('class'=>'btn btn-info btn-xs', 'style'=>'white-space: nowrap')
+		);
 
-		$markup .= $this->childCount();
+		//$markup .= $this->childCount();
 		$markup .= $this->sortableId();
 
 		return $markup;
@@ -79,7 +80,7 @@ class RAuthItemBehavior extends CBehavior
 		if( $this->childCount===null )
 			$this->childCount = count($this->owner->getChildren());
 
-		return $this->childCount>0 ? ' [ <span class="child-count">'.$this->childCount.'</span> ]' : '';
+		return $this->childCount>0 ? ' <span class="child-count badge" style="background:#fff; color: #999; margin: 2px 2px 0px">'.$this->childCount.'</span>' : '';
 	}
 
 	/**
@@ -109,7 +110,7 @@ class RAuthItemBehavior extends CBehavior
 		return CHtml::linkButton(Rights::t('core', 'Delete'), array(
 			'submit'=>array('authItem/delete', 'name'=>urlencode($this->owner->name)),
 			'confirm'=>Rights::t('core', 'Are you sure you want to delete this operation?'),
-			'class'=>'delete-link',
+			'class'=>'delete-link btn btn-danger btn-xs',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
 		));
 	}
