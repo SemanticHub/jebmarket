@@ -131,7 +131,7 @@ class Menu extends CActiveRecord
         $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
         foreach ($menuItems as $item) {
             $subItems = array();
-            $subMenuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id=:id', 'params' => array(':tag' => $menuType, ':id' => $item['id'])));
+            $subMenuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND parent_id=:id', 'order' => 'odr', 'params' => array(':tag' => $menuType, ':id' => $item['id'])));
             if (count($subMenuItems)) {
                 foreach ($subMenuItems as $subItem) {
                     $subItems[] = array(
