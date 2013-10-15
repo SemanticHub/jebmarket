@@ -3,8 +3,7 @@
 class MenuController extends Controller {
 
     /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
+     * @var string the default layout for the views. Defaults to '//layouts/column2'
      */
     public $layout = '//layouts/column2';
 
@@ -13,41 +12,14 @@ class MenuController extends Controller {
      */
     public function filters() {
         return array(
-            //'accessControl', // perform access control for CRUD operations
-            //'postOnly + delete', // we only allow deletion via POST request
             'rights'
         );
     }
 
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    /*public function accessRules() {
-        return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
-                'users' => array('*'),
-            ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
-                'users' => array('@'),
-            ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete', 'menuItemOptions'),
-                'users' => array('admin'),
-            ),
-            array('deny', // deny all users
-                'users' => array('*'),
-            ),
-        );
-    }*/
-
     public function actionMenuItemOptions() {
         switch ($_POST['type']) {
             case 'page':
-                echo CHtml::dropDownList("Menu[url]", $_POST['url'], CHtml::listData(Pages::model()->findAll(), 'slug', 'title'), array('class' => 'form-control'));
+                echo CHtml::dropDownList("Menu[url]", $_POST['url'], CHtml::listData(Pages::model()->findAll(array('condition' => 'slug != :slug', 'params' => array(':slug' => 'home-page-view'))), 'slug', 'title'), array('class' => 'form-control'));
                 break;
             case 'module':
                 echo CHtml::dropDownList("Menu[url]", $_POST['url'], Yii::app()->params['sitemenu'], array('class' => 'form-control'));
