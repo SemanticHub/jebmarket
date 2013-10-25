@@ -42,26 +42,29 @@ class UserController extends Controller {
      */
     public function actionRecoverpass() {
         $model = new Recover();
-        // collect user input data
         if (isset($_POST['Recover'])) {
             $model->attributes = $_POST['Recover'];
             if ($model->validate()) {
                 $user = User::model()->findByAttributes(array('username' => $model->username));
                 if ($user === null)
                     $user = User::model()->findByAttributes(array('email' => $model->username));
-
                 if ($user === null) {
                     throw new CHttpException(503, 'The requested User does not exists in our system.');
                 } else {
-                    $mail = new JebMailer($user->id, Yii::app()->params['passRecoveryEmailTemplate']);
-                    if (!$mail->send()) {
-                        Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
-                        return false;
-                    }
-                    Yii::app()->user->setFlash('success', "Password recovery instructions has sent to your email account. Please check your email for details");
-                    $this->redirect(array('site/login'));
-                    Yii::app()->end();
+                    $user->resetcode = $user->generateResetCode($user->email, $user->salt, $user->activationcode);
 
+                    if ($user->update()) {
+                        $mail = new JebMailer($user->id, Yii::app()->params['passRecoveryEmailTemplate']);
+                        if (!$mail->send()) {
+                            Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
+                            return false;
+                        }
+                        Yii::app()->user->setFlash('success', "Password recovery instructions has sent to your email account. Please check your email for details");
+                        $this->redirect(array('site/login'));
+                        Yii::app()->end();
+                    } else {
+                        throw new CHttpException(503, 'System alert. Please ask for contact support');
+                    }
                 }
             }
         }
@@ -73,9 +76,8 @@ class UserController extends Controller {
      * Update User Profile Fields
      */
     public function actionEdit() {
-        $model = new User;
-        $model->userDetails = new UserDetails;
-        $this->render('profile_edit', array('model' => $model));
+        $es = new EditableSaver('User');
+        $es->update();
     }
 
     /**
@@ -109,26 +111,36 @@ class UserController extends Controller {
     /**
      * Displays the Reset Password Form and Reset Password Action
      */
-    public function actionResetpass($email) {
-        $model = new ResetPassword();
-        // collect user input data
-        if (isset($_POST['ResetPassword'])) {
-            $model->attributes = $_POST['ResetPassword'];
-            if ($model->validate()) {
-                $user = User::model()->findByAttributes(array('email' => $email));
-                $user->salt = $user->generateSalt();
-                $user->password = $user->hashPassword($model->new_password, $user->salt);
-                if ($user->update()) {
-                    Yii::app()->user->setFlash('success', "New Password Updated Successfully");
-                    $this->redirect(array('site/login'));
-                    Yii::app()->end();
-                } else {
-                    Yii::app()->user->setFlash('danger', "An Error Occurred While Changing New Password");
+    public function actionResetpass($email, $code) {
+        if(!empty($email) && !empty($code)) {
+            $user = User::model()->findByAttributes(array('email' => $email, 'resetcode' => $code));
+            if ($user === null) {
+                Yii::app()->user->setFlash('danger', "Invalid reset password link.");
+                $this->redirect(array('site/login'));
+            } else {
+                $model = new ResetPassword();
+                if (isset($_POST['ResetPassword'])) {
+                    $model->attributes = $_POST['ResetPassword'];
+                    if ($model->validate()) {
+                        $user->salt = $user->generateSalt();
+                        $user->password = $user->hashPassword($model->new_password, $user->salt);
+                        $user->resetcode = null;
+                        if ($user->update()) {
+                            Yii::app()->user->setFlash('success', "New Password Updated Successfully");
+                            $this->redirect(array('site/login'));
+                            Yii::app()->end();
+                        } else {
+                            Yii::app()->user->setFlash('danger', "An Error Occurred While Changing New Password");
+                        }
+                    }
                 }
+                // display the change password form
+                $this->render('reset_password', array('model'=>$model, 'email'=>$email, 'code'=>$code));
             }
+        } else {
+            Yii::app()->user->setFlash('danger', "Invalid reset password link.");
+            $this->redirect(array('site/login'));
         }
-        // display the change password form
-        $this->render('reset_password', array('model' => $model));
     }
 
     /**
@@ -150,10 +162,8 @@ class UserController extends Controller {
      * @internal param int $id, the ID of the model to be displayed
      */
     public function actionProfile() {
-        $id = Yii::app()->user->id;
-        $this->render('profile', array(
-            'model' => $this->loadModel($id),
-        ));
+        $model = User::model()->findByPk(Yii::app()->user->id);
+        $this->render('profile', array('model' => $model));
     }
 
     /**

@@ -93,8 +93,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .carousel .item {
     height: 500px; background-color: #777;
 }
+.carousel-inner {
+    border: 1px solid #f7f7f7;
+}
 .carousel-inner > .item > img {
-    position: absolute;top: 0;left: 0; min-width: 100%; height: 500px;
+    position: absolute;top: 0;left: 0; min-width: 100%; height: 500px; box-shadow: 0 0 3px #000 inset;
 }
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -149,15 +152,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 }
 .navbar-inverse {
-    /*background-color: rgba(39,85,165,0.85); border:none;*/
     background-color: #fff; border:none;
 }
 .navbar-inverse .navbar-brand {
     font-weight: bold; color: #fff;
 }
 .navbar-brand.logo {
-    display: block; width: 161px; height: 70px; text-indent: -9999px; margin-top: -18px;
-    background: url(../images/jebmarket.png) no-repeat 0 0px;
+    display: block; width: 161px; height: 70px; text-indent: -9999px; background: url(../images/jebmarket.png) no-repeat 0 0px;
     -webkit-transition: background 0.5s; -moz-transition: background 0.5s; transition: background 0.5s;
 }
 .navbar-brand.logo:hover {
@@ -167,7 +168,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     background-color: #4090de;
 }
 .navbar-inverse .navbar-nav>li>a {
-    /*color: #adc7f0; text-transform: uppercase;*/
     color: #428BCA; text-transform: uppercase;
 }
 .navbar-inverse .navbar-nav>li>a:hover {
@@ -224,7 +224,7 @@ h1.page-title, .h1.page-title {
     margin-bottom: 0;
 }
 .sidebar {
-    padding-top: 20px
+    padding-top: 32px
 }
 .filters td {
     background: #eee;
@@ -241,20 +241,35 @@ h1.page-title, .h1.page-title {
 .panel-group .panel {
     margin-bottom: 5px
 }
+.list-group-item {
+    border: none; padding: 7px 15px;
+}
+.list-group-title {
+    text-transform: uppercase; color: #ccc; font-weight: 300; display: block; border-bottom: 1px solid #eee;
+}
 .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
-    border-top: none; border-bottom: 1px dotted #ddd;
+    border-top: none; /*border-bottom: 1px dotted #ddd;*/
+}
+.table-view {
+    width: auto;
+}
+.table-view th {
+    background: transparent; text-align: right; text-transform: uppercase; font-weight: 600; color: #999;
 }
 .navbar {
     min-height: 0;
 }
 .navbar-nav > li > a {
-    padding-bottom: 12px; padding-top: 12px;
+    padding: 5px 10px; font-weight: 600;
 }
 .navbar-footer > li > a {
     display: inline; padding: 5px 10px
 }
+.navbar-top {
+    margin-right: 10px;
+}
 .navbar-top > li > a {
-    padding: 0px;  outline: none; border-radius: 0px; margin: 0; margin-left: 8px; font-weight: bold; font-size: 12px; text-transform: capitalize;
+    padding: 0px;  outline: none; border-radius: 0px; margin: 5px 0px 0px 10px; font-weight: 600; font-size: 12px; text-transform: uppercase;
 }
 .navbar-top  .dropdown-menu > li > a {
     color: #428BCA; font-size: 12px; font-weight: bold; text-transform: capitalize; padding: 0 10px;
@@ -290,20 +305,23 @@ ul.nav.nav-pills.navbar-footer {
     margin-bottom: 0; margin-top: 8px
 }
 .navbar.navbar-main .navbar-nav {
-    float: right;
-}
-.navbar.navbar-main .navbar-collapse {
-    padding-right: 0px;
+    /*float: right; margin-right: 0; */ position: absolute; right: 15px; bottom: -48px;
 }
 .dropdown-menu>li>a {
     text-transform: uppercase; font-size: 13px
+}
+.dropdown-menu .divider {
+    height: 1px;margin: 5px 0;overflow: hidden; background-color: #285e8e;
+}
+.dropdown-menu .divider a {
+    display: none;
 }
 .navbar-inverse .navbar-nav>.open>a,
 .navbar-inverse .navbar-nav>.open>a:hover,
 .navbar-inverse .navbar-nav>.open>a:focus {
     background: #20488e;
 }
-.dropdown-menu {
+.navbar-main .dropdown-menu {
     border-top: none;
 }
 .open > .dropdown-menu {
@@ -327,6 +345,7 @@ ul.nav.nav-pills.navbar-footer {
     }
     .mini-signup-form {
         display: inline-block;background: rgba(255, 255, 255, 0.7)/*rgba(255, 255, 255, .4);*/; padding: 15px; border-radius: 3px;
+        -moz-box-shadow: 0 0 3px #ccc; -webkit-box-shadow: 0 0 3px #ccc; box-shadow: 0 0 3px #ccc;
     }
 }
 .container {
@@ -379,4 +398,7 @@ form .alert {
 }
 .alert-dismissable .close {
     right: 0px;
+}
+.editable-click, a.editable-click {
+    border-bottom: 1px dashed #ccc;
 }

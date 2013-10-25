@@ -36,14 +36,10 @@ class UserDetails extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('f_name, l_name, organization, country, state, city, zip', 'length', 'max'=>100),
 			array('address1, address2, avater', 'length', 'max'=>255),
 			array('phone, fax', 'length', 'max'=>45),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, f_name, l_name, organization, address1, address2, country, state, city, zip, phone, fax, avater', 'safe', 'on'=>'search'),
 		);
 	}
@@ -67,18 +63,18 @@ class UserDetails extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'f_name' => 'First Name',
-			'l_name' => 'Last Name',
-			'organization' => 'Organization',
-			'address1' => 'Address Line 1',
-			'address2' => 'Address Line 2',
-			'country' => 'Country',
-			'state' => 'State',
-			'city' => 'City',
-			'zip' => 'Zip',
-			'phone' => 'Phone',
-			'fax' => 'Fax',
-			'avater' => 'Avatar',
+			'f_name' => Yii::t('phrase','First Name'),
+			'l_name' => Yii::t('phrase','Last Name'),
+			'organization' => Yii::t('phrase','Organization'),
+			'address1' => Yii::t('phrase','Address Line 1'),
+			'address2' => Yii::t('phrase','Address Line 2'),
+			'country' => Yii::t('phrase','Country'),
+			'state' => Yii::t('phrase','State'),
+			'city' => Yii::t('phrase','City'),
+			'zip' => Yii::t('phrase','Zip'),
+			'phone' => Yii::t('phrase','Phone'),
+			'fax' => Yii::t('phrase','Fax'),
+			'avater' => Yii::t('phrase','Avatar')
 		);
 	}
 

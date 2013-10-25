@@ -1,5 +1,6 @@
 <?php
 // The main Web application configurations.
+Yii::setPathOfAlias('editable', dirname(__FILE__).'/../extensions/x-editable');
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'JebMarket',
@@ -12,7 +13,8 @@ return array(
         'application.models.*',
         'application.components.*',
         'application.modules.rights.*',
-        'application.modules.rights.components.*'
+        'application.modules.rights.components.*',
+        'editable.*'
      ),
     'modules' => array(
         # Gii tool
@@ -37,9 +39,9 @@ return array(
             'debug'=>false,
             // For Installer
             //'install'=> true,
-//            'superUsers'=>array(
-//                40=>'jebadmin',
-//            ),
+            //'superUsers'=>array(
+            // 40=>'jebadmin',
+            // ),
         )
     ),
     'components' => array(
@@ -50,6 +52,14 @@ return array(
             'scriptMap' => array(
                 'jquery.min.js' => 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
             ),
+        ),
+        'editable' => array(
+            'class'     => 'editable.EditableConfig',
+            'form'      => 'plain',
+            'mode'      => 'inline',
+            'defaults'  => array(
+                'emptytext' => 'Click to Add'
+            )
         ),
         'user' => array(
             'allowAutoLogin' => true,
@@ -127,20 +137,26 @@ return array(
             'account' => array('label' => 'User', 'linkOptions' => array('class' => 'list-group-title')),
             'dashboard' => array('label' => 'Dashboard', 'url' => array('dashboard')),
             'profile' => array('label' => 'Profile', 'url' => array('profile')),
-            'edit' => array('label' => 'Edit Account', 'url' => array('edit')),
+            //'edit' => array('label' => 'Edit Account', 'url' => array('edit')),
             'password' => array('label' => 'Change Password', 'url' => array('changepass')),
             'store' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
             'products' => array('label' => 'Products', 'url' => array('products')),
             'orders' => array('label' => 'Orders', 'url' => array('orders')),
         ),
         'adminmenu' => array(
-            array('label' => Yii::t('phrase', 'Users'), 'url' => array('/user/admin')),
-            array('label' => Yii::t('phrase', 'User Access'), 'url' => array('/rights')),
             array('label' => Yii::t('phrase', 'Sliders'), 'url' => array('/slider/admin')),
             array('label' => Yii::t('phrase', 'Email Templates'), 'url' => array('/emailTemplate/admin')),
             array('label' => Yii::t('phrase', 'FAQs'), 'url' => array('/faq/admin')),
             array('label' => Yii::t('phrase', 'Pages'), 'url' => array('/pages/admin')),
             array('label' => Yii::t('phrase', 'Menus'), 'url' => array('/menu/admin')),
+            array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
+            array('label' => Yii::t('phrase', 'Users'), 'url' => array('/user/admin')),
+            array('label' => Yii::t('phrase', 'User Access'), 'url' => array('/rights')),
+            array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
+            array('label' => Yii::t('phrase', 'Countries'), 'url' => array('/country/admin')),
+            array('label' => Yii::t('phrase', 'States'), 'url' => array('/state/admin')),
+            array('label' => Yii::t('phrase', 'Cities'), 'url' => array('/city/admin')),
+            array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
             array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/admin')),
         ),
         # Upload Path

@@ -12,7 +12,7 @@ $this->menu=array(
 <h1 class="page-title">View User #<?php echo $model->username; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
-    'htmlOptions' => array('class' => 'table'),
+    'htmlOptions' => array('class' => 'table table-view'),
 	'data'=>$model,
 	'attributes'=>array(
 		'id',

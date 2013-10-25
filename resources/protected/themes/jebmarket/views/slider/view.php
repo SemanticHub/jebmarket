@@ -10,7 +10,7 @@ $this->menu=array(
 ?>
 <h1 class="page-title">View Slide '<?php echo $model->headline; ?>'</h1>
 <?php $this->widget('zii.widgets.CDetailView', array(
-        'htmlOptions' => array('class' => 'table'),
+        'htmlOptions' => array('class' => 'table table-view'),
 	'data'=>$model,
 	'attributes'=>array(
 		'headline',
