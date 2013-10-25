@@ -34,8 +34,6 @@ class Menu extends CActiveRecord
             array('label, visibility, tag, type', 'length', 'max' => 45),
             array('url', 'length', 'max' => 255),
             array('active', 'length', 'max' => 1),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
             array('id, odr, type, label, url, visibility, active, parent_id, tag', 'safe', 'on' => 'search'),
         );
     }
@@ -44,8 +42,6 @@ class Menu extends CActiveRecord
      * @return array relational rules.
      */
     public function relations() {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
         return array();
     }
 
@@ -73,8 +69,6 @@ class Menu extends CActiveRecord
      * based on the search/filter conditions.
      */
     public function search() {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);

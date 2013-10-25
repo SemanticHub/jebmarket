@@ -3,8 +3,7 @@
 class PageController extends Controller {
 
     /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
+     * @var string the default layout for the views. Defaults to '//layouts/column2'
      */
     public $layout = '//layouts/column1';
 
@@ -13,15 +12,13 @@ class PageController extends Controller {
      */
     public function filters() {
         return array(
-            //'accessControl', // perform access control for CRUD operations
-            //'postOnly + delete', // we only allow deletion via POST request
             'rights'
         );
     }
 
     /**
-     * Displays a particular model.
-     * @param integer $view the ID of the model to be displayed
+     * Displays a particular page.
+     * @param integer $view the slug of the page to be displayed
      */
     public function actionView($view) {
         if (isset($view)) {

@@ -76,7 +76,7 @@ class JebMailer extends PHPMailer{
     private function initVars() {
         $this->_vars['user']['value'] = $this->_user->username;
         $this->_vars['activation_url']['value'] = Yii::app()->createAbsoluteUrl('user/activate', array('email' => $this->_user->email, 'code' => $this->_user->activationcode));
-        $this->_vars['recoverpass_url']['value'] = Yii::app()->createAbsoluteUrl('user/resetpass', array('email' => $this->_user->email, 'code' => $this->_user->activationcode));
+        $this->_vars['recoverpass_url']['value'] = Yii::app()->createAbsoluteUrl('user/resetpass', array('email' => $this->_user->email, 'code' => $this->_user->resetcode));
         $this->_vars['application_name']['value'] = Yii::app()->name;
         $this->_vars['date']['value'] = Yii::app()->dateFormatter->formatDateTime(date("Y-m-d H:i:s"), 'long', null);
         $this->_vars['date_time']['value'] = Yii::app()->dateFormatter->formatDateTime(date("Y-m-d H:i:s"), 'medium', 'short');

@@ -1,6 +1,7 @@
 <?php
 /* @var $this UserController */
 /* @var $model Password */
+$this->layout = "column1";
 $this->pageTitle = Yii::app()->name . ' - Reset Password';
 ?>
 <div class="row">        
@@ -8,6 +9,7 @@ $this->pageTitle = Yii::app()->name . ' - Reset Password';
         <h1 class="page-title">Change Current Password</h1>
         <?php
         $form = $this->beginWidget('CActiveForm', array(
+            'action' => array('user/resetpass', 'email'=>$email, 'code' => $code),
             'id' => 'reset-password-form',
             'clientOptions' => array(
                 'validateOnSubmit' => true,

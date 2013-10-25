@@ -25,9 +25,9 @@ class SiteController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => array(':tag' => 'home-slider')));
         $criteria = new CDbCriteria();
         $criteria->condition = "slug ='home-page-view'";
+        $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => array(':tag' => 'home-slider')));
         $page = Pages::model()->find($criteria);
         $this->render('index', array('page' => $page, 'slider'=>$slider));
     }

@@ -12,7 +12,7 @@ $this->metaKeywords = $page->meta_keywords;
             <form class="form-inline" method="post" action="<?php echo Yii::app()->baseUrl.'/site/newstore' ?>" role="form">
                 <div class="form-group">
                     <label class="sr-only" for="store-name">Shop Name</label>
-                    <input name="store-name" type="text" class="form-control" id="store-name" placeholder="Store Name">
+                    <input name="store-name" type="text" class="form-control" id="store-name" placeholder="Shop Name">
                 </div>
                 <button type="button" id="mini-signup-button" class="btn btn-danger btn-lg">Create Shop Now!</button>
                 <button name="new-user" value="true" style="display: none" type="submit" id="mini-signup-new-user" class="btn btn-warning">New User ?</button>

@@ -10,8 +10,6 @@
 <?php
 if (!Yii::app()->request->isPostRequest)
     Yii::app()->clientScript->registerScript(
-        'initCaptcha',
-        '$("#yw0_button").trigger("click");',
-        CClientScript::POS_READY
+        'initCaptcha', '$("#yw0_button").trigger("click");', CClientScript::POS_READY
     );
 ?>

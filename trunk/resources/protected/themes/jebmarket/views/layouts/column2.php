@@ -7,7 +7,7 @@
             $this->beginWidget('zii.widgets.CPortlet', array(
                 'title' => 'Navigate To',
                 'decorationCssClass' => 'panel-heading',
-                'htmlOptions' => array('class' => 'panel panel-primary')
+                'htmlOptions' => array('class' => 'panel panel-default')
             ));
             $this->widget('zii.widgets.CMenu', array(
                 'items' => $this->menu,

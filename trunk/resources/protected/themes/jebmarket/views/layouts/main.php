@@ -4,57 +4,61 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php if (isset($this->metaDescription)) { ?>
-    <meta name="description" content="<?php echo $this->metaDescription ?>"><?php } ?>
+        <meta name="description" content="<?php echo $this->metaDescription ?>"><?php } ?>
     <?php if (isset($this->metaKeywords)) { ?>
-    <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
+        <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
     <link rel="shortcut icon" href="<?php echo Yii::app()->theme->baseUrl; ?>/icon/favicon.png">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet'
+          type='text/css'>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css">
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
+    <?php
+    ?>
 </head>
 <body>
 <div class="navbar-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <?php
-                $this->widget('zii.widgets.CMenu', array(
-                    'encodeLabel' => false,
-                    'submenuHtmlOptions' => array('class' => 'dropdown-menu'),
-                    'items' => Menu::model()->renderMenuItems("topmenu"),
-                    'htmlOptions' => array('class' => 'nav nav-pills navbar-top navbar-right'),
-                ));
-                ?>
+            <div class="col-md-3">
+                <a class="navbar-brand logo" href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5">
-                <a class="navbar-brand logo"
-                   href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
-            </div>
-            <div class="col-md-7">
-                <div class="navbar navbar-inverse navbar-right navbar-main">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="navbar-collapse collapse">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
-                            'htmlOptions' => array('class' => 'nav navbar-nav'),
-                            'submenuHtmlOptions' => array('class' => 'dropdown-menu'),
-                            'activeCssClass' => 'active',
-                            'activateParents' => true,
                             'encodeLabel' => false,
-                            'items' => Menu::model()->renderMenuItems("mainmenu"),
+                            'submenuHtmlOptions' => array('class' => 'dropdown-menu'),
+                            'items' => Menu::model()->renderMenuItems("topmenu"),
+                            'htmlOptions' => array('class' => 'nav nav-pills navbar-top'),
                         ));
                         ?>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="navbar navbar-inverse navbar-main">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <?php
+                                $this->widget('zii.widgets.CMenu', array(
+                                    'htmlOptions' => array('class' => 'nav navbar-nav navbar-right'),
+                                    'submenuHtmlOptions' => array('class' => 'dropdown-menu'),
+                                    'activeCssClass' => 'active',
+                                    'activateParents' => true,
+                                    'encodeLabel' => false,
+                                    'items' => Menu::model()->renderMenuItems("mainmenu"),
+                                ));
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
