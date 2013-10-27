@@ -157,7 +157,7 @@ return array(
             array('label' => Yii::t('phrase', 'States'), 'url' => array('/state/admin')),
             array('label' => Yii::t('phrase', 'Cities'), 'url' => array('/city/admin')),
             array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
-            array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/admin')),
+            array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/index')),
         ),
         # Upload Path
         'uploadPath' => dirname(__FILE__) . '/../data/media/upload',

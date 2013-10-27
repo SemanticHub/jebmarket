@@ -35,7 +35,6 @@ class Settings extends CActiveRecord
 			array('name, description', 'length', 'max'=>255),
 			array('options, value, type, validation, tag', 'length', 'max'=>45),
 			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, name, description, options, value, type, validation, tag', 'safe', 'on'=>'search'),
 		);
 	}
@@ -82,8 +81,6 @@ class Settings extends CActiveRecord
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);

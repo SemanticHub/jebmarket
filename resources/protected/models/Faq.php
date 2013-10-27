@@ -31,7 +31,6 @@ class Faq extends CActiveRecord {
 			array('tag', 'length', 'max'=>45),
 			array('faq, answer', 'safe'),
 			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, faq, answer, order, active, tag', 'safe', 'on'=>'search'),
 		);
 	}
