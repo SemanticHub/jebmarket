@@ -1,9 +1,13 @@
+<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/comp/select2/select2.css">
 <?php
 /* @var $this CityController */
 /* @var $model City */
 
 $this->menu=array(
-	array('label'=>'Create City', 'url'=>array('create')),
+	array('label'=>Yii::t('phrase','Add a City'), 'url'=>array('create')),
+    array('label' => 'Manage', 'linkOptions' => array('class' => 'list-group-title')),
+    array('label' => Yii::t('phrase', 'Countries'), 'url' => array('/country/admin')),
+    array('label' => Yii::t('phrase', 'States'), 'url' => array('/state/admin')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -28,7 +32,7 @@ $('.search-form form').submit(function(){
     </p>
 </div>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn btn-primary')); ?>
+<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn btn-primary btn-sm')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -37,6 +41,7 @@ $('.search-form form').submit(function(){
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'city-grid',
+    'afterAjaxUpdate' => 'initSelect2',
     'itemsCssClass' => 'table table-striped table-hover',
     'summaryCssClass' => 'label label-info',
     'htmlOptions' => array('class' => 'table-responsive'),
@@ -45,12 +50,19 @@ $('.search-form form').submit(function(){
     'pager' => array('header' => '', 'selectedPageCssClass' => 'active', 'htmlOptions' => array('class' => 'pagination')),
     'filter' => $model,
 	'columns'=>array(
-		'id',
 		'name',
 		'code',
 		'area',
-		'state_id',
-		'country_id',
+        array(
+            'name' => 'state_id',
+            'value' => 'State::model()->findByPk($data->state_id)->name',
+            'filter'=>CHtml::listData(State::model()->findAll(), 'id', 'name'),
+        ),
+        array(
+            'name' => 'country_id',
+            'value' => 'Country::model()->findByPk($data->country_id)->name',
+            'filter'=>CHtml::listData(Country::model()->findAll(), 'id', 'name'),
+        ),
         array(
             'class' => 'CButtonColumn',
             'template' => '{update}{view}{delete}',
@@ -74,3 +86,10 @@ $('.search-form form').submit(function(){
         ),
 	),
 )); ?>
+<script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/select2/select2.min.js"></script>
+<script>
+    function initSelect2() {
+        $("select").select2({width: 'element'});
+    }
+    $(document).ready(function() { initSelect2()  });
+</script>
