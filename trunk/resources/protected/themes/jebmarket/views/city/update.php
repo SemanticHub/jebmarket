@@ -2,20 +2,10 @@
 /* @var $this CityController */
 /* @var $model City */
 
-$this->breadcrumbs=array(
-	'Cities'=>array('index'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
-);
-
 $this->menu=array(
-	array('label'=>'List City', 'url'=>array('index')),
-	array('label'=>'Create City', 'url'=>array('create')),
-	array('label'=>'View City', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage City', 'url'=>array('admin')),
+	array('label'=>Yii::t('phrase','Add a City'), 'url'=>array('create')),
+	array('label'=>Yii::t('phrase','Manage Cities'), 'url'=>array('admin')),
 );
 ?>
-
-<h1>Update City <?php echo $model->id; ?></h1>
-
+<h1 class="page-title"><?php echo Yii::t('phrase','Update City') . $model->name; ?></h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -3,7 +3,10 @@
 /* @var $model Country */
 
 $this->menu=array(
-	array('label'=>'Create Country', 'url'=>array('create')),
+	array('label'=>Yii::t('phrase','Add a Country'), 'url'=>array('create')),
+    array('label' => 'Manage', 'linkOptions' => array('class' => 'list-group-title')),
+    array('label' => Yii::t('phrase', 'States'), 'url' => array('/state/admin')),
+    array('label' => Yii::t('phrase', 'Cities'), 'url' => array('/city/admin')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -28,7 +31,7 @@ $('.search-form form').submit(function(){
     </p>
 </div>
 
-<?php echo CHtml::link('Advanced Search','#', array('class' => 'search-button btn btn-primary')); ?>
+<?php echo CHtml::link('Advanced Search','#', array('class' => 'search-button btn btn-primary btn-sm')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -45,7 +48,6 @@ $('.search-form form').submit(function(){
     'pager' => array('header' => '', 'selectedPageCssClass' => 'active', 'htmlOptions' => array('class' => 'pagination')),
     'filter' => $model,
 	'columns'=>array(
-		'id',
 		'code',
 		'name',
 		'ccode',

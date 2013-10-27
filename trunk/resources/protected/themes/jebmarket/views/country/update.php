@@ -2,20 +2,10 @@
 /* @var $this CountryController */
 /* @var $model Country */
 
-$this->breadcrumbs=array(
-	'Countries'=>array('index'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
-);
-
 $this->menu=array(
-	array('label'=>'List Country', 'url'=>array('index')),
-	array('label'=>'Create Country', 'url'=>array('create')),
-	array('label'=>'View Country', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Country', 'url'=>array('admin')),
+	array('label'=> Yii::t('phrase','Add a Country'), 'url'=>array('create')),
+	array('label'=> Yii::t('phrase','Manage Countries'), 'url'=>array('admin')),
 );
 ?>
-
-<h1>Update Country <?php echo $model->id; ?></h1>
-
+<h1 class="page-title"><?php echo Yii::t('phrase','Update Country') . $model->name; ?></h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

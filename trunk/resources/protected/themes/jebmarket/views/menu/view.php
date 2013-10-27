@@ -13,16 +13,16 @@ $this->menu=array(
         'htmlOptions' => array('class' => 'table  table-view'),
 	'data'=>$model,
 	'attributes'=>array(
-                'odr',
+        'odr',
 		'label',
 		'url',
-                'type',
+        'type',
 		'visibility',
-                array(
-                    'label' => 'Is Active',
-                    'type'=>'raw',
-                    'value' => ($model->active == 1) ? '<span class="glyphicon glyphicon-ok"></span>' : '<span class="glyphicon glyphicon-remove"></span>'
-                ),
+        array(
+            'label' => 'Is Active',
+            'type'=>'raw',
+            'value' => ($model->active == 1) ? '<span class="glyphicon glyphicon-ok"></span>' : '<span class="glyphicon glyphicon-remove"></span>'
+        ),
 		'parent_id',
 		'tag',
 	),
