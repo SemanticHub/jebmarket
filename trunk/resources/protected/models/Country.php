@@ -1,25 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "jebapp_auth_assignment".
+ * This is the model class for table "jebapp_country".
  *
- * The followings are the available columns in table 'jebapp_auth_assignment':
- * @property string $itemname
- * @property string $userid
- * @property string $bizrule
- * @property string $data
+ * The followings are the available columns in table 'jebapp_country':
+ * @property integer $id
+ * @property string $code
+ * @property string $name
+ * @property string $ccode
  *
  * The followings are the available model relations:
- * @property AuthItem $itemname0
+ * @property City[] $cities
+ * @property State[] $states
  */
-class AuthAssignment extends CActiveRecord
+class Country extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'jebapp_auth_assignment';
+		return 'jebapp_country';
 	}
 
 	/**
@@ -27,14 +28,13 @@ class AuthAssignment extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			array('itemname, userid', 'required'),
-			array('itemname, userid', 'length', 'max'=>64),
-			array('bizrule, data', 'safe'),
-			// The following rule is used by search().
-			array('itemname, userid, bizrule, data', 'safe', 'on'=>'search'),
+			array('code, name', 'required'),
+			array('code', 'length', 'max'=>3),
+			array('code', 'unique'),
+			array('name', 'length', 'max'=>255),
+			array('ccode', 'length', 'max'=>45),
+			array('id, code, name, ccode', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,10 +43,9 @@ class AuthAssignment extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-			'itemname0' => array(self::BELONGS_TO, 'AuthItem', 'itemname'),
+			'cities' => array(self::HAS_MANY, 'City', 'country_id'),
+			'states' => array(self::HAS_MANY, 'State', 'country_id'),
 		);
 	}
 
@@ -56,10 +55,9 @@ class AuthAssignment extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'itemname' => 'Itemname',
-			'userid' => 'Userid',
-			'bizrule' => 'Bizrule',
-			'data' => 'Data',
+			'code' => Yii::t('phrase','Country Code'),
+			'name' => Yii::t('phrase','Country Name'),
+			'ccode' => Yii::t('phrase','Country dialing code'),
 		);
 	}
 
@@ -81,10 +79,10 @@ class AuthAssignment extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('itemname',$this->itemname,true);
-		$criteria->compare('userid',$this->userid,true);
-		$criteria->compare('bizrule',$this->bizrule,true);
-		$criteria->compare('data',$this->data,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('code',$this->code,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('ccode',$this->ccode,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -95,7 +93,7 @@ class AuthAssignment extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return AuthAssignment the static model class
+	 * @return Country the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
