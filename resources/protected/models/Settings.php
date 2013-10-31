@@ -97,6 +97,18 @@ class Settings extends CActiveRecord
         $settingsParams = array();
         $settingsItems = Settings::model()->findAll();
         foreach ($settingsItems as $settingsItem) {
+            //if(!array_key_exists($settingsItem->tag, $settingsParams))
+            //    $settingsParams[$settingsItem->tag] = array();
+
+            $settingsParams[$settingsItem->name] = $settingsItem->value;
+        }
+        return $settingsParams;
+    }
+
+    public function getParamsByTag() {
+        $settingsParams = array();
+        $settingsItems = Settings::model()->findAll();
+        foreach ($settingsItems as $settingsItem) {
             if(!array_key_exists($settingsItem->tag, $settingsParams))
                 $settingsParams[$settingsItem->tag] = array();
 
