@@ -115,17 +115,17 @@ return array(
                     'levels' => 'error, warning',
                 ),
                 # uncomment the following to show log messages on web pages on development.
-               /* array(
-                        'class'=>'CWebLogRoute',
-                ),*/
+//                array(
+//                        'class'=>'CWebLogRoute',
+//                )
             ),
         ),
     ),
     # Application-level parameters, Yii::app()->params['paramName']
     'params' => array(
-        'superAdminEmail' => 'ekram.syed@gmail.com',
-        'adminEmail' => 'admin@jebmarket.com',
-        'supportEmail' => 'support@jebmarket.com',
+        //'superAdminEmail' => 'ekram.syed@gmail.com',
+        //'adminEmail' => 'admin@jebmarket.com',
+        //'supportEmail' => 'support@jebmarket.com',
         'sitemenu' => array(
             'site/contact' => 'Contact',
             'site/login' => 'Login',
@@ -144,28 +144,28 @@ return array(
             'orders' => array('label' => 'Orders', 'url' => array('orders')),
         ),
         'adminmenu' => array(
-            array('label' => Yii::t('phrase', 'Sliders'), 'url' => array('/slider/admin')),
-            array('label' => Yii::t('phrase', 'Email Templates'), 'url' => array('/emailTemplate/admin')),
-            array('label' => Yii::t('phrase', 'FAQs'), 'url' => array('/faq/admin')),
-            array('label' => Yii::t('phrase', 'Pages'), 'url' => array('/pages/admin')),
-            array('label' => Yii::t('phrase', 'Menus'), 'url' => array('/menu/admin')),
+            array('label' => 'Sliders', 'url' => array('/slider/admin')),
+            array('label' => 'Email Templates', 'url' => array('/emailTemplate/admin')),
+            array('label' => 'FAQs', 'url' => array('/faq/admin')),
+            array('label' => 'Pages', 'url' => array('/pages/admin')),
+            array('label' => 'Menus', 'url' => array('/menu/admin')),
             array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
-            array('label' => Yii::t('phrase', 'Users'), 'url' => array('/user/admin')),
-            array('label' => Yii::t('phrase', 'User Access'), 'url' => array('/rights')),
+            array('label' => 'Users', 'url' => array('/user/admin')),
+            array('label' => 'User Access', 'url' => array('/rights')),
             array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
-            array('label' => Yii::t('phrase', 'Countries'), 'url' => array('/country/admin')),
-            array('label' => Yii::t('phrase', 'States'), 'url' => array('/state/admin')),
-            array('label' => Yii::t('phrase', 'Cities'), 'url' => array('/city/admin')),
+            array('label' => 'Countries', 'url' => array('/country/admin')),
+            array('label' => 'States', 'url' => array('/state/admin')),
+            array('label' => 'Cities', 'url' => array('/city/admin')),
             array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
-            array('label' => Yii::t('phrase', 'Settings'), 'url' => array('/settings/index')),
+            array('label' => 'Settings', 'url' => array('/settings/index')),
         ),
         # Upload Path
-        'uploadPath' => dirname(__FILE__) . '/../data/media/upload',
+        //'uploadPath' => dirname(__FILE__) . '/../data/media/upload',
         # Upload Public URL
-        'uploadUrl' => 'media/slider/',
+        //'uploadUrl' => 'media/slider/',
         # Days limit for verify Account Email
-        'emailVerificationLimit' => 7,
-        'signupEmailTemplate' => 'signup_activation_email',
-        'passRecoveryEmailTemplate' => 'password_recovery_email',
+        //'emailVerificationLimit' => 7,
+        //'signupEmailTemplate' => 'signup_activation_email',
+        //'passRecoveryEmailTemplate' => 'password_recovery_email',
     ),
 );

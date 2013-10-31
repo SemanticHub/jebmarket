@@ -28,7 +28,7 @@ $this->metaKeywords = $page->meta_keywords;
     <div class="carousel-inner">
         <?php $slideIndex = 0; foreach ($slider as $slide) {  ?>
         <div class="item <?php echo $slide['class'] ?> <?php echo ($slideIndex == 0 )? 'active' : '' ?>">
-            <img src="<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['uploadUrl'].$slide['image'] ?>"  alt="<?php echo $slide['headline']; ?>">
+            <img src="<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['sliderImageUrl'].$slide['image'] ?>"  alt="<?php echo $slide['headline']; ?>">
             <div class="container">
                 <div class="carousel-caption">
                     <h1><?php echo $slide['headline'] ?></h1>

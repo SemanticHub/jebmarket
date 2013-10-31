@@ -60,13 +60,13 @@ class Slider extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'id' => 'ID',
-            'headline' => 'Headline',
-            'content' => 'Content',
-            'image' => 'Image',
-            'tag' => 'Tag',
-            'order' => 'Order',
-            'class' => 'CSS Class',
+            'id' => Yii::t('phrase', 'ID'),
+            'headline' => Yii::t('phrase', 'Headline'),
+            'content' => Yii::t('phrase', 'Content'),
+            'image' => Yii::t('phrase', 'Image'),
+            'tag' => Yii::t('phrase', 'Tag'),
+            'order' => Yii::t('phrase', 'Order'),
+            'class' => Yii::t('phrase', 'CSS Class'),
         );
     }
 
@@ -95,7 +95,7 @@ class Slider extends CActiveRecord {
     }
 
     public function beforeSave() {
-        $uploadPath = Yii::getPathOfAlias('webroot') .DIRECTORY_SEPARATOR . Yii::app()->params['uploadUrl'];
+        $uploadPath = Yii::getPathOfAlias('webroot') .DIRECTORY_SEPARATOR . Yii::app()->params['sliderImageUrl'];
         if (is_object($this->image)) {
             $this->image->saveAs($uploadPath . $this->image->name);
             if (!empty($this->oldSlideImage)) {
@@ -117,7 +117,7 @@ class Slider extends CActiveRecord {
 
     public function deleteImage() {
         $image = $this->image;
-        $uploadPath = Yii::app()->params['uploadUrl'];
+        $uploadPath = Yii::app()->params['sliderImageUrl'];
         return unlink($uploadPath . $image);
     }
 
