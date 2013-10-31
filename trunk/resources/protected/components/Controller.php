@@ -29,4 +29,12 @@ class Controller extends RController {
      * @var string the meta keyword for the website
      */
     public $metaKeywords = null;
+
+    /*
+     * Set all Application Settings from database to Yii::app()->params so that we can still use Yii::app()->params['paramName']
+     */
+    public function init() {
+        parent::init();
+        Yii::app()->params = CMap::mergeArray(Yii::app()->params, Settings::model()->getParams());
+    }
 }

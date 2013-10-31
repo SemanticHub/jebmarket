@@ -3,8 +3,7 @@
 class SettingsController extends Controller
 {
 	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
+	 * @var string the default layout for the views. Defaults to '//layouts/column2'
 	 */
 	public $layout='//layouts/column2';
 
@@ -14,35 +13,7 @@ class SettingsController extends Controller
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
-			//'postOnly + delete', // we only allow deletion via POST request
             'rights'
-		);
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
 		);
 	}
 
@@ -64,15 +35,13 @@ class SettingsController extends Controller
 	public function actionCreate()
 	{
 		$model=new Settings;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Settings']))
 		{
 			$model->attributes=$_POST['Settings'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('create',array(
@@ -89,14 +58,13 @@ class SettingsController extends Controller
 	{
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Settings']))
 		{
 			$model->attributes=$_POST['Settings'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(
@@ -119,17 +87,26 @@ class SettingsController extends Controller
 	}
 
 	/**
-	 * Lists all models.
+	 * Lists all settings group by tag.
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Settings');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'data'=> Settings::model()->getParams(),
 		));
 	}
 
-	/**
+    /**
+     * Update settings value
+     */
+
+    public function actionEdit(){
+        $param = Settings::model()->findByPk($_POST['pk']);
+        $param->value = $_POST['value'];
+        $param->update();
+    }
+
+    /**
 	 * Manages all models.
 	 */
 	public function actionAdmin()

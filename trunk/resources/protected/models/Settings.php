@@ -15,7 +15,8 @@
  */
 class Settings extends CActiveRecord
 {
-	/**
+
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -28,10 +29,9 @@ class Settings extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('name', 'required'),
+			array('name', 'unique'),
 			array('name, description', 'length', 'max'=>255),
 			array('options, value, type, validation, tag', 'length', 'max'=>45),
 			// The following rule is used by search().
@@ -44,8 +44,6 @@ class Settings extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 		);
 	}
@@ -56,25 +54,19 @@ class Settings extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
-			'options' => 'Options',
-			'value' => 'Value',
-			'type' => 'Type',
-			'validation' => 'Validation',
-			'tag' => 'Tag',
+			'id' => Yii::t('phrase', 'ID'),
+			'name' => Yii::t('phrase', 'Name'),
+			'description' => Yii::t('phrase', 'Description'),
+			'options' => Yii::t('phrase', 'Options (if type is select or multiple)'),
+			'value' => Yii::t('phrase', 'Value'),
+			'type' => Yii::t('phrase', 'Input Type'),
+			'validation' => Yii::t('phrase', 'Validation'),
+			'tag' => Yii::t('phrase', 'Tag'),
 		);
 	}
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
 	 *
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
@@ -96,6 +88,36 @@ class Settings extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * @return array, All settings from database group by tag
+     */
+
+    public function getParams() {
+        $settingsParams = array();
+        $settingsItems = Settings::model()->findAll();
+        foreach ($settingsItems as $settingsItem) {
+            if(!array_key_exists($settingsItem->tag, $settingsParams))
+                $settingsParams[$settingsItem->tag] = array();
+
+            $settingsParams[$settingsItem->tag][$settingsItem->name] = $settingsItem;
+        }
+        return $settingsParams;
+    }
+
+    /**
+     * @return string used tags as comma separated string
+     */
+
+    public static function getTags() {
+        $tags = Settings::model()->findAll(array('select'=> 'tag', 'distinct' => true));
+        $tagsString = "";
+        foreach ($tags as $tag) {
+            $tagsString .= $tag->tag . ', ';
+        }
+        $uniTags = implode(', ',array_unique(explode(', ', $tagsString)));
+        return rtrim($uniTags, ', ');
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.

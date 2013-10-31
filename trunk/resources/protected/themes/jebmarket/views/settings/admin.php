@@ -4,6 +4,7 @@
 
 $this->menu = array(
     array('label' => 'Create Settings', 'url' => array('create')),
+    array('label'=> Yii::t('phrase','Settings'), 'url'=>array('index')),
 );
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -40,7 +41,7 @@ $('.search-form form').submit(function(){
         'value',
         array(
             'class' => 'CButtonColumn',
-            'template' => '{update}{view}{delete}',
+            'template' => '{update}{delete}',
             'buttons' => array(
                 'update' => array(
                     'label' => Yii::t('phrase', 'Edit'),
@@ -52,11 +53,11 @@ $('.search-form form').submit(function(){
                     'imageUrl' => false,
                     'options' => array('class' => 'btn btn-danger btn-xs')
                 ),
-                'view' => array(
+                /*'view' => array(
                     'label' => Yii::t('phrase', 'View'),
                     'imageUrl' => false,
                     'options' => array('class' => 'btn btn-info btn-xs')
-                )
+                )*/
             )
         ),
     ),
