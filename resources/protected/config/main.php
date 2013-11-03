@@ -123,9 +123,6 @@ return array(
     ),
     # Application-level parameters, Yii::app()->params['paramName']
     'params' => array(
-        //'superAdminEmail' => 'ekram.syed@gmail.com',
-        //'adminEmail' => 'admin@jebmarket.com',
-        //'supportEmail' => 'support@jebmarket.com',
         'sitemenu' => array(
             'site/contact' => 'Contact',
             'site/login' => 'Login',
@@ -137,7 +134,6 @@ return array(
             'account' => array('label' => 'User', 'linkOptions' => array('class' => 'list-group-title')),
             'dashboard' => array('label' => 'Dashboard', 'url' => array('dashboard')),
             'profile' => array('label' => 'Profile', 'url' => array('profile')),
-            //'edit' => array('label' => 'Edit Account', 'url' => array('edit')),
             'password' => array('label' => 'Change Password', 'url' => array('changepass')),
             'store' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
             'products' => array('label' => 'Products', 'url' => array('products')),
@@ -153,19 +149,10 @@ return array(
             array('label' => 'Users', 'url' => array('/user/admin')),
             array('label' => 'User Access', 'url' => array('/rights')),
             array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
-            array('label' => 'Countries', 'url' => array('/country/admin')),
-            array('label' => 'States', 'url' => array('/state/admin')),
-            array('label' => 'Cities', 'url' => array('/city/admin')),
+            array('label' => 'Location Levels', 'url' => array('/locationLevel/admin')),
+            array('label' => 'Locations', 'url' => array('/location/admin')),
             array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
             array('label' => 'Settings', 'url' => array('/settings/index')),
         ),
-        # Upload Path
-        //'uploadPath' => dirname(__FILE__) . '/../data/media/upload',
-        # Upload Public URL
-        //'uploadUrl' => 'media/slider/',
-        # Days limit for verify Account Email
-        //'emailVerificationLimit' => 7,
-        //'signupEmailTemplate' => 'signup_activation_email',
-        //'passRecoveryEmailTemplate' => 'password_recovery_email',
     ),
 );
