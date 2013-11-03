@@ -1,4 +1,5 @@
 <?php
+//echo phpinfo(); exit();
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/../resources/framework/yii.php';
 $config=dirname(__FILE__).'/../resources/protected/config/main.php';
