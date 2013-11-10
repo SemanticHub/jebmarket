@@ -10,6 +10,7 @@
  * @property string $organization
  * @property string $address1
  * @property string $address2
+ * @property string $location
  * @property string $country
  * @property string $state
  * @property string $city
@@ -49,10 +50,9 @@ class UserDetails extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'users' => array(self::HAS_MANY, 'User', 'user_details_id'),
+			'userLocation' => array(self::HAS_ONE, 'Location', 'id'),
 		);
 	}
 
