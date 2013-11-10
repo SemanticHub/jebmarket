@@ -10,18 +10,17 @@
  * @property string $dial_code
  * @property string $next_level_name
  * @property integer $parent_id
- *
- * The followings are the available model relations:
- * @property Location[] $locations
+ * @property string $area
+ * @property string $timezone
  */
-class LocationLevel extends CActiveRecord
+class Location extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'jebapp_location_level';
+		return 'jebapp_location';
 	}
 
 	/**
@@ -35,7 +34,7 @@ class LocationLevel extends CActiveRecord
 			array('name, next_level_name', 'length', 'max'=>255),
 			array('code', 'length', 'max'=>3),
 			array('dial_code', 'length', 'max'=>45),
-			array('id, name, code, dial_code, next_level_name, parent_id', 'safe', 'on'=>'search'),
+			array('id, name, code, dial_code, next_level_name, area, timezone, parent_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,12 +44,12 @@ class LocationLevel extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'locations' => array(self::HAS_MANY, 'Location', 'location_level_id'),
+			//'locations' => array(self::HAS_MANY, 'Location', 'location_level_id'),
 		);
 	}
 
     public function getLevelinfo() {
-        $levelName = LocationLevel::model()->findByPk($this->parent_id)->next_level_name;
+        $levelName = Location::model()->findByPk($this->parent_id)->next_level_name;
         $levelName = ($levelName == "") ? 'Country' : $levelName;
         return $this->name . '  [' . $levelName . '] ';
     }
@@ -67,6 +66,8 @@ class LocationLevel extends CActiveRecord
 			'dial_code' => Yii::t('phrase','Dial Code'),
 			'next_level_name' => Yii::t('phrase','Next Level Name'),
 			'parent_id' => Yii::t('phrase','Parent'),
+			'area' => Yii::t('phrase','Area'),
+			'timezone' => Yii::t('phrase','Timezone'),
 		);
 	}
 
@@ -95,7 +96,7 @@ class LocationLevel extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return LocationLevel the static model class
+	 * @return Location the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
