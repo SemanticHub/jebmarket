@@ -149,7 +149,6 @@ return array(
             array('label' => 'Users', 'url' => array('/user/admin')),
             array('label' => 'User Access', 'url' => array('/rights')),
             array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
-            array('label' => 'Location Levels', 'url' => array('/locationLevel/admin')),
             array('label' => 'Locations', 'url' => array('/location/admin')),
             array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
             array('label' => 'Settings', 'url' => array('/settings/index')),
