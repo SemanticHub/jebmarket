@@ -2,11 +2,11 @@
 /* @var $this LocationController */
 /* @var $model Location */
 
-$this->menu=array(
-	array('label'=>'Create A Location', 'url'=>array('create')),
+
+$this->menu = array(
+    array('label' => Yii::t('phrase', 'Create A Location'), 'url' => array('create')),
     array('label' => 'Manage', 'linkOptions' => array('class' => 'list-group-title')),
     array('label' => Yii::t('phrase', 'Locations'), 'url' => array('/location/admin')),
-    array('label' => Yii::t('phrase', 'Location Levels'), 'url' => array('/locationLevel/admin')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -15,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#location-grid').yiiGridView('update', {
+	$('#location-level-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -41,20 +41,25 @@ $('.search-form form').submit(function(){
 </div>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'location-grid',
+    'id' => 'location-level-grid',
     'itemsCssClass' => 'table table-striped table-hover',
     'summaryCssClass' => 'label label-info',
     'htmlOptions' => array('class' => 'table-responsive'),
     'dataProvider' => $model->search(),
     'pagerCssClass' => 'page-nav',
     'pager' => array('header' => '', 'selectedPageCssClass' => 'active', 'htmlOptions' => array('class' => 'pagination')),
-	'filter'=>$model,
-	'columns'=>array(
-		'name',
-		'code',
-		'dial_code',
-		'area',
-		'location_level_id',
+    'filter' => $model,
+    'columns' => array(
+        'name',
+        'next_level_name',
+        array(
+            'name' => 'parent_id',
+            'value' => 'Location::model()->findByPk($data->parent_id)->name'
+        ),
+        'code',
+        'dial_code',
+        'area',
+        'timezone',
         array(
             'class' => 'CButtonColumn',
             'template' => '{update}{view}{delete}',
@@ -76,6 +81,5 @@ $('.search-form form').submit(function(){
                 )
             )
         ),
-	),
-));
-?>
+    ),
+)); ?>

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "jebapp_location_level".
+ * This is the model class for table "jebapp_location".
  *
- * The followings are the available columns in table 'jebapp_location_level':
+ * The followings are the available columns in table 'jebapp_location':
  * @property integer $id
  * @property string $name
  * @property string $code
@@ -49,8 +49,8 @@ class Location extends CActiveRecord
 	}
 
     public function getLevelinfo() {
-        $levelName = Location::model()->findByPk($this->parent_id)->next_level_name;
-        $levelName = ($levelName == "") ? 'Country' : $levelName;
+        $data = Location::model()->findByPk($this->parent_id);
+        $levelName = ($data->next_level_name == "" && $data->parent_id == "" ) ? 'Country' : $data->next_level_name;
         return $this->name . '  [' . $levelName . '] ';
     }
 

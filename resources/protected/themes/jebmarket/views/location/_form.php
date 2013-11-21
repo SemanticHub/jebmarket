@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/comp/select2/select2.css">
 <?php
  $form = $this->beginWidget('CActiveForm', array(
-    'id' => 'location-level-form',
-    'enableAjaxValidation' => true,
+    'id' => 'location-form',
+    //'enableAjaxValidation' => true,
     'enableClientValidation' => true,
     'focus' => 'input[type="text"]:first',
     'htmlOptions' => array(
@@ -53,7 +54,7 @@
         <div class="col-lg-10">
             <?php //echo $form->textField($model, 'parent_id', array('class' => 'form-control')); ?>
             <?php
-            $listData = LocationLevel::model()->findAll(array('order' => 'name'));
+            $listData = Location::model()->findAll(array('order' => 'name'));
             echo $form->dropDownList(
                 $model,
                 'parent_id',
@@ -64,11 +65,27 @@
                 ),
                 array(
                     'empty'=>'--SELECT--',
-                    'class' => 'form-control'
+                    //'class' => 'form-control'
                 )
             );
             ?>
             <?php echo $form->error($model, 'parent_id', array('class' => 'text-danger control-hint')); ?>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'area', array('class' => 'control-label col-lg-2')); ?>
+        <div class="col-lg-10">
+            <?php echo $form->textField($model, 'area', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'area', array('class' => 'text-danger control-hint')); ?>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'timezone', array('class' => 'control-label col-lg-2')); ?>
+        <div class="col-lg-10">
+            <?php echo $form->textField($model, 'timezone', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'timezone', array('class' => 'text-danger control-hint')); ?>
         </div>
     </div>
 
@@ -81,3 +98,7 @@
     </div>
 
 <?php $this->endWidget(); ?>
+<script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/select2/select2.min.js"></script>
+<script type="text/javascript">
+    $("select").select2({width: '99%'});
+</script>
