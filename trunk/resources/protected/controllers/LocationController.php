@@ -160,7 +160,7 @@ class LocationController extends Controller
         if($data->next_level_name != "") {
             $listData = Location::model()->findAll(array('condition' => 'parent_id = :parent_id', 'order' => 'name', 'params' => array(':parent_id' => $_POST['location_id'])));
             echo CHtml::dropDownList(
-                'location_'.next_level_name,
+                'location_'.$data->next_level_name,
                 '',
                 CHtml::listData(
                     $listData,
@@ -168,7 +168,7 @@ class LocationController extends Controller
                     'name'
                 ),
                 array(
-                    'empty'=>'--SELECT '.$data->next_level_name.'--',
+                    'empty'=>'SELECT A '.strtoupper($data->next_level_name),
                     'class' => 'form-control',
                     'ajax' => array(
                         'type' => 'POST',
@@ -178,6 +178,8 @@ class LocationController extends Controller
                     )
                 )
             );
+        } else {
+
         }
     }
 }

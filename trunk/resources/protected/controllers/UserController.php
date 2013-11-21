@@ -176,6 +176,14 @@ class UserController extends Controller {
         ));
     }
 
+    public function actionLocation() {
+        $user = User::model()->findByPk(Yii::app()->user->id);
+        $userDetails = UserDetails::model()->findByPk($user->user_details_id);
+        $userDetails->location = $_POST['location_id'];
+        if($userDetails->update())
+            $this->renderPartial('_location_info', array('ref'=>$userDetails->location), false, true);
+    }
+
     /**
      * Sign-up a User.
      * After sign-up request is successful, the browser will be redirected to the 'view' page.
@@ -188,6 +196,7 @@ class UserController extends Controller {
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
+            $model->userDetails->attributes = $_POST['UserDetails'];
             $model->salt = $model->generateSalt();
             $model->password = $model->hashPassword($model->password, $model->salt);
             $model->joined = date("Y-m-d H:i:s");
@@ -279,7 +288,11 @@ class UserController extends Controller {
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
-        $this->loadModel($id)->delete();
+        $user = $this->loadModel($id);
+        $userDetails = UserDetails::model()->findByPk($user->user_details_id);
+        $user->delete();
+        $userDetails->delete();
+        //$this->loadModel($id)->delete();
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
