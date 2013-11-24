@@ -5,12 +5,13 @@
         <div class="col-md-2 sidebar sidebar-left">
             <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
-                'title' => 'Navigate To',
+                'title' => '<span class="glyphicon glyphicon-list"></span> Navigate To',
                 'decorationCssClass' => 'panel-heading',
                 'htmlOptions' => array('class' => 'panel panel-default')
             ));
             $this->widget('zii.widgets.CMenu', array(
                 'items' => $this->menu,
+                'encodeLabel'=>false,
                 'itemCssClass' => 'list-group-item',
                 'htmlOptions' => array('class' => 'list-group'),
                 'activateItems' => true,
