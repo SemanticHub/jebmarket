@@ -65,7 +65,15 @@
             <?php echo $form->error($model, 'timezone', array('class' => 'text-danger control-hint')); ?>
         </div>
     </div>
-
+    <?php if(isset($model->id)) { ?>
+    <div class="form-group">
+        <label class="control-label col-lg-2"><?php echo Yii::t('phrase', 'Role') ?></label>
+        <div class="col-lg-10">
+            <?php $roles = Rights::getAssignedRoles($model->id); ?>
+            <?php echo CHtml::dropDownList('user_role', key($roles) ,Rights::getAuthItemSelectOptions(2),array('class'=>'form-control')) ?>
+        </div>
+    </div>
+    <?php } ?>
     <div class="form-group buttons">
         <label class="control-label col-lg-2"></label>
         <div class="col-lg-10">

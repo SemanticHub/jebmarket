@@ -149,12 +149,7 @@ class UserController extends Controller {
      * @internal @param integet $id, the id of the User model
      */
     public function actionDashboard() {
-        $id = Yii::app()->user->id;
-        $this->render('dashboard',
-            array(
-                'model' => $this->loadModel($id)
-            )
-        );
+        $this->render('dashboard');
     }
 
     /**
@@ -242,6 +237,7 @@ class UserController extends Controller {
             if ($model->userDetails->save()) {
                 $model->user_details_id = $model->userDetails->id;
                 if ($model->save()) {
+                    Rights::assign(Rights::module()->authenticatedName, $model->id);
                     $mail = new JebMailer($model->id, 'signup_activation_email');
                     if (!$mail->send()) {
                         Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
@@ -274,7 +270,10 @@ class UserController extends Controller {
             } else {
                 unset($model->password);
             }
-            if ($model->save()) $this->redirect(array('view', 'id' => $model->id));
+            if ($model->save()) {
+                Rights::assign($_POST['user_role'], $model->id);
+                $this->redirect(array('view', 'id' => $model->id));
+            }
         }
 
         $this->render('update', array(

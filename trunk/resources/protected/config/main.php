@@ -67,6 +67,9 @@ return array(
             'class' => 'RWebUser',
             'guestName' => 'Guest',
         ),
+        'counter' => array(
+            'class' => 'UserCounter',
+        ),
         # SEF URL
         'urlManager' => array(
             'urlFormat' => 'path',
@@ -132,12 +135,12 @@ return array(
         ),
         'usermenu' => array(
             'account' => array('label' => 'User', 'linkOptions' => array('class' => 'list-group-title')),
-            'dashboard' => array('label' => 'Dashboard', 'url' => array('dashboard')),
-            'profile' => array('label' => 'Profile', 'url' => array('profile')),
-            'password' => array('label' => 'Change Password', 'url' => array('changepass')),
+            'dashboard' => array('label' => '<span class="glyphicon glyphicon-th"></span> Dashboard', 'url' => array('/dashboard')),
+            'profile' => array('label' => '<span class="glyphicon glyphicon-user"></span> Profile', 'url' => array('profile')),
+            'password' => array('label' => '<span class="glyphicon glyphicon-lock"></span> Change Password', 'url' => array('changepass')),
             'store' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
-            'products' => array('label' => 'Products', 'url' => array('products')),
-            'orders' => array('label' => 'Orders', 'url' => array('orders')),
+            'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('products')),
+            'orders' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Orders', 'url' => array('orders')),
         ),
         'adminmenu' => array(
             array('label' => 'Sliders', 'url' => array('/slider/admin')),
@@ -153,5 +156,11 @@ return array(
             array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
             array('label' => 'Settings', 'url' => array('/settings/index')),
         ),
+        'portlets' => array(
+            'userStatistics'=> array('name' => 'userStatistics', 'title' => 'Users Statistics', 'sticky' => false,),
+            'userStatus'=> array('name' => 'userStatus', 'title' => 'Users Status', 'sticky' => false),
+            'userTwitter'=> array('name' => 'userTwitter', 'title' => 'Twitter ', 'sticky' => false),
+            'userFacebook'=> array('name' => 'userFacebook', 'title' => 'Facebook', 'sticky' => false),
+        )
     ),
 );

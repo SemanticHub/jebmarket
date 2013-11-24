@@ -3,7 +3,7 @@
 /* @var $model Password */
 /* @var $form CActiveForm  */
 $this->pageTitle = Yii::app()->name . ' - Change Password';
-$this->menu=$this->menu=Yii::app()->params['usermenu'];
+$this->menu=Yii::app()->params['usermenu'];
 $this->menu['password']['active']=true;
 ?>
 <div class="row">        

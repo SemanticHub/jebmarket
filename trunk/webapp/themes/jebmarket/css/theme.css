@@ -244,8 +244,11 @@ h1.page-title, .h1.page-title {
 .panel-group .panel {
     margin-bottom: 5px
 }
-.list-group-item {
+.sidebar .list-group-item {
     border: none; padding: 7px 15px;
+}
+#jebAppDashboard .panel-heading {
+    cursor: pointer;
 }
 .list-group-title {
     text-transform: uppercase; color: #ccc; font-weight: 300; display: block; border-bottom: 1px solid #eee;
