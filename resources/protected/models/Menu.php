@@ -110,6 +110,16 @@ class Menu extends CActiveRecord
         }
     }
 
+    protected static function getAdminMenuItemVisibility($item){
+        if(Yii::app()->user->checkAccess(Rights::module()->superuserName)){
+            return true;
+        } else if (Yii::app()->user->checkAccess('AdminMenu.'. strtolower(preg_replace("/[^a-zA-Z]+/", "", $item)))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     protected static function getURL($type, $urlString) {
         if($type == 'page') {
             $url = Yii::app()->createUrl('page/view', array('view' => $urlString));
@@ -144,13 +154,28 @@ class Menu extends CActiveRecord
                 'linkOptions' => ($subItems) ? array('class' => 'dropdown-toggle ', 'data-toggle' => 'dropdown', 'data-target' => '#') : array('class' => $item['class']),
             );
         }
+
+        $adminSubMenuItems = array();
+
+        foreach (Yii::app()->params['adminmenu'] as $adminSubMenuItem) {
+            array_push($adminSubMenuItems, array(
+                'label' => $adminSubMenuItem['label'],
+                'url' => $adminSubMenuItem['url'],
+                'visible' => Menu::getAdminMenuItemVisibility($adminSubMenuItem['label']),
+                'itemOptions' => $adminSubMenuItem['itemOptions']
+            ));
+        }
+
+        //CVarDumper::dump($adminSubMenuItems, 10, true);
+
         $adminMenuItems = array(
             array(
                 'label' => Yii::t('phrase', 'Admin <b class="caret"></b>'),
                 'url' => array('#'),
                 'linkOptions' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
-                'visible' => Yii::app()->user->checkAccess(Rights::module()->superuserName),
-                'items' => Yii::app()->params['adminmenu']
+                'visible' => Menu::getAdminMenuItemVisibility('Admin'),
+                //'items' => Yii::app()->params['adminmenu']
+                'items' => $adminSubMenuItems
             ),
         );
         $fullMenuItems = ($menuType == "mainmenu") ? array_merge($items, $adminMenuItems) : $items;

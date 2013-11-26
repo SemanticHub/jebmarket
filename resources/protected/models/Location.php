@@ -30,6 +30,7 @@ class Location extends CActiveRecord
 	{
 		return array(
 			array('name', 'required'),
+			array('name', 'checkLocationName'),
 			array('parent_id', 'numerical', 'integerOnly'=>true),
 			array('name, next_level_name', 'length', 'max'=>255),
 			array('code', 'length', 'max'=>3),
@@ -38,7 +39,25 @@ class Location extends CActiveRecord
 		);
 	}
 
-	/**
+    /**
+     * Custom validation rule for location name
+     */
+
+    public function checkLocationName($attribute) {
+        if($this->parent_id) {
+            $count = Location::count(array('condition' => 'parent_id=:parent_id AND name=:name', 'params' => array(':parent_id' => $this->parent_id, ':name' => $this->name)));
+            if($count > 0 ) {
+                $this->addError($attribute, 'Location name already exists');
+            }
+        } else {
+            $count = Location::count(array('condition' => 'parent_id IS NULL AND name=:name', 'params' => array(':name' => $this->name)));
+            if($count > 0 ) {
+                $this->addError($attribute, 'Country already exists');
+            }
+        }
+    }
+
+    /**
 	 * @return array relational rules.
 	 */
 	public function relations()

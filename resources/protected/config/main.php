@@ -136,8 +136,8 @@ return array(
         'usermenu' => array(
             'account' => array('label' => 'User', 'linkOptions' => array('class' => 'list-group-title')),
             'dashboard' => array('label' => '<span class="glyphicon glyphicon-th"></span> Dashboard', 'url' => array('/dashboard')),
-            'profile' => array('label' => '<span class="glyphicon glyphicon-user"></span> Profile', 'url' => array('profile')),
-            'password' => array('label' => '<span class="glyphicon glyphicon-lock"></span> Change Password', 'url' => array('changepass')),
+            'profile' => array('label' => '<span class="glyphicon glyphicon-user"></span> Profile', 'url' => array('/user/profile')),
+            'password' => array('label' => '<span class="glyphicon glyphicon-lock"></span> Change Password', 'url' => array('/user/changepass')),
             'store' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
             'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('products')),
             'orders' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Orders', 'url' => array('orders')),
