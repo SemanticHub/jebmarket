@@ -1,7 +1,8 @@
 <?php
-/* @var $this FaqController */
-/* @var $model Faq */
-$this->layout = 'column1';
+//$this->layout = 'column1';
+$this->menu = array(
+    array('label' => 'Create FAQ', 'url' => array('create')),
+);
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -23,7 +24,7 @@ $('.search-form form').submit(function(){
     </p>
 </div>
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button btn btn-primary')); ?> &nbsp;
-<?php echo CHtml::link('Create FAQ', 'create', array('class' => 'btn btn-success')); ?>
+<?php // echo CHtml::link('Create FAQ', 'create', array('class' => 'btn btn-success')); ?>
 <div class="search-form" style="display:none">
     <?php
     $this->renderPartial('_search', array(
@@ -35,7 +36,7 @@ $('.search-form form').submit(function(){
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'faq-grid',
     'itemsCssClass' => 'table table-striped table-hover',
-    'summaryCssClass' => 'label label-info',
+    'summaryCssClass' => 'label label-info pull-right',
     'htmlOptions' => array('class' => 'table-responsive'),
     'dataProvider' => $model->search(),
     'pagerCssClass' => 'page-nav',

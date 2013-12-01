@@ -14,7 +14,7 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'email-template-grid',
     'itemsCssClass' => 'table table-striped table-hover',
-    'summaryCssClass' => 'label label-info',
+    'summaryCssClass' => 'label label-info pull-right',
     'htmlOptions' => array('class' => 'table-responsive'),
     'dataProvider' => $model->search(),
     'pagerCssClass' => 'page-nav',

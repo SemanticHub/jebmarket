@@ -1,6 +1,4 @@
 <?php
-/* @var $this MenuController */
-/* @var $model Menu */
 $this->menu = array(
     array('label' => 'Create Menu Item', 'url' => array('create')),
 );
@@ -10,7 +8,7 @@ $this->menu = array(
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'menu-grid',
     'itemsCssClass' => 'table table-striped table-hover',
-    'summaryCssClass' => 'label label-info',
+    'summaryCssClass' => 'label label-info pull-right top-21',
     'htmlOptions' => array('class' => 'table-responsive'),
     'dataProvider' => $model->search(),
     'pagerCssClass' => 'page-nav',

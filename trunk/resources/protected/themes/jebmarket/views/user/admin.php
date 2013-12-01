@@ -1,6 +1,4 @@
 <?php
-/* @var $this UserController */
-/* @var $model User */
 $this->menu = array(
     array('label' => 'Create User', 'url' => array('create')),
 );
@@ -24,7 +22,7 @@ $('.search-form form').submit(function(){
         or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
     </p>
 </div>
-<?php echo CHtml::link('Create new User', array('create'), array('class' => 'btn btn-success btn-sm')); ?> &nbsp;<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button btn btn-primary btn-sm')); ?> &nbsp;
+<?php // echo CHtml::link('Create new User', array('create'), array('class' => 'btn btn-success btn-sm')); ?> &nbsp;<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button btn btn-primary btn-sm')); ?> &nbsp;
 <div class="search-form" style="display:none">
     <?php $this->renderPartial('_search', array(
         'model' => $model,
@@ -33,7 +31,7 @@ $('.search-form form').submit(function(){
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'user-grid',
     'itemsCssClass' => 'table table-striped table-hover',
-    'summaryCssClass' => 'label label-info',
+    'summaryCssClass' => 'label label-info pull-right',
     'htmlOptions' => array('class' => 'table-responsive'),
     'dataProvider' => $model->search(),
     'pagerCssClass' => 'page-nav',

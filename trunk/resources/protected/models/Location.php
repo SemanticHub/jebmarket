@@ -12,6 +12,7 @@
  * @property integer $parent_id
  * @property string $area
  * @property string $timezone
+ * @property string $lang
  */
 class Location extends CActiveRecord
 {
@@ -30,12 +31,13 @@ class Location extends CActiveRecord
 	{
 		return array(
 			array('name', 'required'),
-			array('name', 'checkLocationName'),
+			array('name', 'checkLocationName', 'on' => 'create, insert'),
 			array('parent_id', 'numerical', 'integerOnly'=>true),
 			array('name, next_level_name', 'length', 'max'=>255),
 			array('code', 'length', 'max'=>3),
 			array('dial_code', 'length', 'max'=>45),
-			array('id, name, code, dial_code, next_level_name, area, timezone, parent_id', 'safe', 'on'=>'search'),
+			array('lang', 'length', 'max'=>45),
+			array('id, name, code, dial_code, next_level_name, area, timezone, parent_id, lang', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,6 +89,7 @@ class Location extends CActiveRecord
 			'parent_id' => Yii::t('phrase','Parent'),
 			'area' => Yii::t('phrase','Area'),
 			'timezone' => Yii::t('phrase','Timezone'),
+			'lang' => Yii::t('phrase','Language'),
 		);
 	}
 
@@ -105,6 +108,7 @@ class Location extends CActiveRecord
 		$criteria->compare('dial_code',$this->dial_code,true);
 		$criteria->compare('next_level_name',$this->next_level_name,true);
 		$criteria->compare('parent_id',$this->parent_id);
+		$criteria->compare('lang',$this->lang);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

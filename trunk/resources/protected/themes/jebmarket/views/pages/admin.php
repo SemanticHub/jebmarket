@@ -1,14 +1,15 @@
 <?php
-/* @var $this PagesController */
-/* @var $model Pages */
-$this->layout = 'column1';
+//$this->layout = 'column1';
+$this->menu = array(
+    array('label' => 'Create Page', 'url' => array('create')),
+);
 ?>
 <h1 class="page-title">Manage Pages</h1>
-<?php echo CHtml::link('Create a Page', 'create', array('class' => 'btn btn-success btn-sm')); ?>
+<?php //echo CHtml::link('Create a Page', 'create', array('class' => 'btn btn-success btn-sm')); ?>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'pages-grid',
     'itemsCssClass' => 'table table-striped table-hover',
-    'summaryCssClass' => 'label label-info',
+    'summaryCssClass' => 'label label-info pull-right',
     'htmlOptions' => array('class' => 'table-responsive'),
     'dataProvider' => $model->search(),
     'pagerCssClass' => 'page-nav',

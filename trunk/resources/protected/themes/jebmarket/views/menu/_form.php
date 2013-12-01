@@ -1,8 +1,5 @@
+<div class="form-control-wrapper">
 <?php
-/**
- * @var $this MenuController
- * @var $model Menu
- */
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'menu-form',
     'enableAjaxValidation' => false,
@@ -17,8 +14,8 @@ $form = $this->beginWidget('CActiveForm', array(
 </div>
 <?php echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger')); ?>
 <div class="form-group">
-    <?php echo $form->labelEx($model, 'type', array('class' => 'control-label col-lg-2')); ?>
-    <div class="col-lg-10">
+    <?php echo $form->labelEx($model, 'type', array('class' => 'control-label col-lg-3')); ?>
+    <div class="col-lg-9">
         <?php 
         echo $form->dropDownList($model, 'type', 
                 array(''=> 'Select a menu item type', 'page'=> 'Page', 'module'=> 'Module', 'custom'=> 'Custom'),
@@ -35,57 +32,57 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 <div class="form-group">
-    <?php echo $form->labelEx($model, 'url', array('class' => 'control-label col-lg-2')); ?>
-    <div class="col-lg-10" id="menuItemOptions">
+    <?php echo $form->labelEx($model, 'url', array('class' => 'control-label col-lg-3')); ?>
+    <div class="col-lg-9" id="menuItemOptions">
         <div class="alert alert-info" style="margin-bottom: 0">Select a menu item 'Type' from above to see 'URL' options</div>
     </div>
 </div>
 <div class="form-group">
-    <?php echo $form->labelEx($model, 'label', array('class' => 'control-label col-lg-2')); ?>
-    <div class="col-lg-10">
-        <?php echo $form->textField($model, 'label', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control')); ?>
+    <?php echo $form->labelEx($model, 'label', array('class' => 'control-label col-lg-3')); ?>
+    <div class="col-lg-9">
+        <?php echo $form->textField($model, 'label', array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'label', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
 <div class="form-group">
-    <?php echo $form->labelEx($model, 'visibility', array('class' => 'control-label col-lg-2')); ?>
-    <div class="col-lg-10">
+    <?php echo $form->labelEx($model, 'visibility', array('class' => 'control-label col-lg-3')); ?>
+    <div class="col-lg-9">
         <?php echo $form->dropDownList($model,'visibility',array('auto'=>'Auto', 'public'=>'Public', 'private'=>'Private'), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'visibility', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
 <div class="form-group rememberMe">
-    <span class="col-lg-2"></span>
-    <div class="col-lg-10">    
+    <span class="col-lg-3"></span>
+    <div class="col-lg-9">    
         <?php echo $form->checkBox($model, 'active', array('size' => 1, 'maxlength' => 1, 'checked' => 'checked')); ?>
         <?php echo $form->labelEx($model, 'active', array('class' => 'control-label')); ?>
         <?php echo $form->error($model, 'active', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
 <div class="form-group">
-    <?php echo $form->labelEx($model, 'parent_id', array('class' => 'control-label col-lg-2')); ?>
-    <div class="col-lg-10">
+    <?php echo $form->labelEx($model, 'parent_id', array('class' => 'control-label col-lg-3')); ?>
+    <div class="col-lg-9">
         <?php echo $form->dropDownList($model,'parent_id', CHtml::listData(Menu::model()->findAll(), 'id', 'label'), array('empty'=>'--SELECT--', 'class' => 'form-control')); ?>
         <?php echo $form->error($model, 'parent_id', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
 <div class="form-group">
-    <?php echo $form->labelEx($model, 'odr', array('class' => 'control-label col-lg-2')); ?>
-    <div class="col-lg-10">
+    <?php echo $form->labelEx($model, 'odr', array('class' => 'control-label col-lg-3')); ?>
+    <div class="col-lg-9">
         <?php echo $form->textField($model, 'odr', array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'odr', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
 <div class="form-group">
-    <?php echo $form->labelEx($model, 'tag', array('class' => 'control-label col-lg-2')); ?>
-    <div class="col-lg-10">
+    <?php echo $form->labelEx($model, 'tag', array('class' => 'control-label col-lg-3')); ?>
+    <div class="col-lg-9">
         <?php echo $form->dropDownList($model,'tag',array('mainmenu'=>'Main Menu', 'footermenu'=>'Footer Menu', 'topmenu'=>'Header Menu'), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'tag', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
 <div class="form-group buttons">
-    <label class="control-label col-lg-2"></label>
-    <div class="col-lg-10">
+    <label class="control-label col-lg-3"></label>
+    <div class="col-lg-9">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-primary')); ?>
     </div>
 </div>
@@ -101,3 +98,4 @@ Yii::app()->clientScript->registerScript(
     CClientScript::POS_READY);
 ?>
 <?php $this->endWidget(); ?>
+</div>

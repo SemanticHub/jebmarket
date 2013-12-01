@@ -49,6 +49,7 @@ class SiteController extends Controller {
      */
     public function actionContact() {
         $model = new ContactForm;
+        $this->performAjaxValidation($model);
         if (isset($_POST['ContactForm'])) {
             $model->attributes = $_POST['ContactForm'];
             if ($model->validate()) {
@@ -72,7 +73,7 @@ class SiteController extends Controller {
      */
     public function actionLogin() {
         $model = new LoginForm;
-
+        $this->performAjaxValidation($model);
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
@@ -86,6 +87,13 @@ class SiteController extends Controller {
         }
         // display the login form
         $this->render('login', array('model' => $model));
+    }
+
+    protected function performAjaxValidation($model) {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
     }
 
     /**

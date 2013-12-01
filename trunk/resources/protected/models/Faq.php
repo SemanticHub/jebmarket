@@ -26,11 +26,11 @@ class Faq extends CActiveRecord {
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('faq, answer', 'required'),
 			array('order', 'numerical', 'integerOnly'=>true),
 			array('active', 'length', 'max'=>1),
 			array('tag', 'length', 'max'=>45),
 			array('faq, answer', 'safe'),
-			// The following rule is used by search().
 			array('id, faq, answer, order, active, tag', 'safe', 'on'=>'search'),
 		);
 	}
@@ -39,8 +39,6 @@ class Faq extends CActiveRecord {
 	 * @return array relational rules.
 	 */
 	public function relations() {
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 		);
 	}

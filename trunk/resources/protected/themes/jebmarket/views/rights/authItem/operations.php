@@ -8,7 +8,7 @@
     </div>
 
     <?php echo CHtml::link(Rights::t('core', 'Create a operation'), array('authItem/create', 'type' => CAuthItem::TYPE_OPERATION), array(
-        'class' => 'add-operation-link btn btn-success',
+        'class' => 'add-operation-link btn btn-success pull-right', 'style' => 'margin-top: -130px'
     )); ?>
 
     <?php $this->widget('zii.widgets.grid.CGridView', array(

@@ -187,7 +187,9 @@ class UserController extends Controller {
     public function actionSignup($shopName = '') {
         $this->layout = "column1";
         $model = new User;
+        $model->setScenario('signup');
         $model->userDetails = new UserDetails;
+        $this->performAjaxValidation($model);
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
@@ -347,7 +349,6 @@ class UserController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $this->layout = "column1";
         $model = new User('search');
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['User']))

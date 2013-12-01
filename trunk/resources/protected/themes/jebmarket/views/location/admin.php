@@ -1,8 +1,4 @@
 <?php
-/* @var $this LocationController */
-/* @var $model Location */
-
-
 $this->menu = array(
     array('label' => Yii::t('phrase', 'Create A Location'), 'url' => array('create')),
     array('label' => 'Manage', 'linkOptions' => array('class' => 'list-group-title')),
@@ -43,7 +39,7 @@ $('.search-form form').submit(function(){
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'location-level-grid',
     'itemsCssClass' => 'table table-striped table-hover',
-    'summaryCssClass' => 'label label-info',
+    'summaryCssClass' => 'label label-info pull-right top-21',
     'htmlOptions' => array('class' => 'table-responsive'),
     'dataProvider' => $model->search(),
     'pagerCssClass' => 'page-nav',

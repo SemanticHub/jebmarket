@@ -31,7 +31,7 @@ class Menu extends CActiveRecord
         return array(
             array('type, label', 'required'),
             array('parent_id, odr', 'numerical', 'integerOnly' => true),
-            array('label, visibility, tag, type', 'length', 'max' => 45),
+            array('visibility, tag, type', 'length', 'max' => 45),
             array('url', 'length', 'max' => 255),
             array('active', 'length', 'max' => 1),
             array('id, odr, type, label, url, visibility, active, parent_id, tag', 'safe', 'on' => 'search'),
@@ -97,7 +97,7 @@ class Menu extends CActiveRecord
     }
 
     protected static function getMenuItem($item) {
-        return str_replace('##USER##', Yii::app()->user->name, $item);
+        return str_replace('##USER##', '<span class="glyphicon glyphicon-user"></span> '.Yii::app()->user->name, $item);
     }
 
     protected static function getVisibility($type) {
@@ -166,11 +166,10 @@ class Menu extends CActiveRecord
             ));
         }
 
-        //CVarDumper::dump($adminSubMenuItems, 10, true);
 
         $adminMenuItems = array(
             array(
-                'label' => Yii::t('phrase', 'Admin <b class="caret"></b>'),
+                'label' => Yii::t('phrase', '<span class="glyphicon glyphicon-cog"></span> Admin <b class="caret"></b>'),
                 'url' => array('#'),
                 'linkOptions' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
                 'visible' => Menu::getAdminMenuItemVisibility('Admin'),
