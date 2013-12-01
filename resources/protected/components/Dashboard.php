@@ -22,7 +22,7 @@ class Dashboard extends CJuiSortable {
 
     public function setItemTemplate(){
         $gridSpan = 12/$this->column;
-        return '<div class="col-sm-'.$gridSpan.'" id="{id}"><div class="panel panel-default">{content}</div></div>';
+        return '<div class="col-sm-'.$gridSpan.' panel-widget" id="{id}"><div class="panel panel-info">{content}</div></div>';
     }
 
     public function loadWidgets(){

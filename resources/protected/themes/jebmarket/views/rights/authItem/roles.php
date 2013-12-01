@@ -1,13 +1,12 @@
-<div id="roles">
+ .<div id="roles">
     <h1 class="page-title"><?php echo Rights::t('core', 'Roles'); ?></h1>
-
     <div class="note bs-callout bs-callout-info">
         <p>
              <?php echo Rights::t('core', 'A role is group of permissions to perform a variety of tasks and operations.'); ?>
         </p>
     </div>
     <?php echo CHtml::link(Rights::t('core', 'New Role'), array('authItem/create', 'type' => CAuthItem::TYPE_ROLE), array(
-        'class' => 'btn btn-success',
+        'class' => 'btn btn-success pull-right', 'style' => 'margin-top: -130px'
     )); ?>
     <?php $this->widget('zii.widgets.grid.CGridView', array(
         'itemsCssClass' => 'table table-striped table-hover',

@@ -39,7 +39,7 @@ class EmailTemplate extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name', 'required'),
+            array('name, subject', 'required'),
             array('name, tag', 'length', 'max' => 45),
             array('subject', 'length', 'max' => 100),
             array('body', 'safe'),

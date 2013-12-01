@@ -73,7 +73,7 @@ class User extends CActiveRecord {
             'status' => Yii::t('phrase', 'Status'),
             'last_login' => Yii::t('phrase', 'Last Login'),
             'timezone' => Yii::t('phrase', 'Timezone'),
-            'verifyCode'=> Yii::t('phrase', 'Verification Code'),
+            'verifyCode'=> Yii::t('phrase', 'Verify'),
             'full_name'=> Yii::t('phrase', 'Full Name'),
         );
     }

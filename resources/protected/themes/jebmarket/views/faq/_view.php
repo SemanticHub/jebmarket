@@ -6,6 +6,9 @@
     
     <div class="panel-heading">
       <h4 class="panel-title">
+          <a class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" data-target="#f<?php echo CHtml::encode($data->id); ?>">
+              <span class="glyphicon glyphicon-sort"></span>
+          </a> &#160;
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f<?php echo CHtml::encode($data->id); ?>">
             <?php echo CHtml::encode($data->faq); ?>
         </a>

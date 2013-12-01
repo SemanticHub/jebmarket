@@ -14,7 +14,10 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
         'odr',
-		'label',
+        array(
+            'name' => 'label',
+            'type' => 'raw'
+        ),
 		'url',
         'type',
 		'visibility',

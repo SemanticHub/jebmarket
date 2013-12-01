@@ -21,11 +21,9 @@ class LoginForm extends CFormModel
     public function rules()
     {
         return array(
-            // username and password are required
             array('username, password', 'required'),
-            // rememberMe needs to be a boolean
+            array('username', 'exist', 'className'=>'User'),
             array('rememberMe', 'boolean'),
-            // password needs to be authenticated
             array('password', 'authenticate'),
         );
     }

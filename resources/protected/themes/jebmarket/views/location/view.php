@@ -28,6 +28,7 @@ $this->menu=array(
         array(
             'name' => 'parent_id',
             'value' => Location::model()->findByPk($model->parent_id)->name
-        )
+        ),
+        'lang'
 	),
 )); ?>

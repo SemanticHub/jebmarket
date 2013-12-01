@@ -9,7 +9,7 @@ $this->menu = array(
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'slider-grid',
     'itemsCssClass' => 'table table-striped table-hover',
-    'summaryCssClass' => 'label label-info',
+    'summaryCssClass' => 'label label-info pull-right',
     'htmlOptions' => array('class' => 'table-responsive'),
     'pagerCssClass' => 'page-nav',
     'pager' => array('header' => '', 'selectedPageCssClass' => 'active', 'htmlOptions' => array('class' => 'pagination')),
@@ -21,7 +21,7 @@ $this->menu = array(
             'htmlOptions' => array('style' => 'width:30px; text-align: right')
         ),
         'headline',
-        'image',
+        'content',
         array(
             'class' => 'CButtonColumn',
             'template' => '{update}{view}{delete}',

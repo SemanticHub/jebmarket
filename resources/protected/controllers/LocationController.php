@@ -43,9 +43,9 @@ class LocationController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
-	{
+	public function actionCreate() {
 		$model=new Location;
+        $model->setScenario('create');
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Location']))
@@ -65,16 +65,14 @@ class LocationController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
-	{
+	public function actionUpdate($id) {
 		$model=$this->loadModel($id);
-
     	$this->performAjaxValidation($model);
 
 		if(isset($_POST['Location']))
 		{
 			$model->attributes=$_POST['Location'];
-			if($model->save())
+			if($model->update())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -88,8 +86,7 @@ class LocationController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
-	{
+	public function actionDelete($id) {
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -100,8 +97,7 @@ class LocationController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
-	{
+	public function actionIndex() {
 		$dataProvider=new CActiveDataProvider('Location');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

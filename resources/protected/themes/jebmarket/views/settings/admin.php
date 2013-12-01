@@ -1,7 +1,4 @@
 <?php
-/* @var $this SettingsController */
-/* @var $model Settings */
-
 $this->menu = array(
     array('label' => 'Create Settings', 'url' => array('create')),
     array('label'=> Yii::t('phrase','Settings'), 'url'=>array('index')),

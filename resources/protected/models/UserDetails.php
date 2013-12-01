@@ -67,7 +67,7 @@ class UserDetails extends CActiveRecord
 			'f_name' => Yii::t('phrase','First Name'),
 			'l_name' => Yii::t('phrase','Last Name'),
 			'organization' => Yii::t('phrase','Organization'),
-			'address1' => Yii::t('phrase','Address Line 1'),
+			'address1' => Yii::t('phrase','Address'),
 			'address2' => Yii::t('phrase','Address Line 2'),
 			'country' => Yii::t('phrase','Country'),
 			'state' => Yii::t('phrase','State'),
