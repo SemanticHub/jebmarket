@@ -13,10 +13,10 @@ label {
 }
 /* FILE UPLOAD */
 .carousel-indicators .active {
-    background-color: #47a447;
+    background-color: #FFFFFF;
 }
 .carousel-indicators li {
-    border-color: #47a447;
+    border-color: #3DFF00;
 }
 .btn {
     text-shadow: 1px 1px 1px #777;
@@ -103,19 +103,19 @@ label {
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 .carousel {
-    margin-bottom: 60px; display: block; clear: both; margin-top: 15px;
+    margin-bottom: 40px; display: block; clear: both;
 }
 .carousel-caption {
-    z-index: 10; left: 5%; right: auto; text-align: left; width: 36%; text-shadow: 0 0 0 none;
+    z-index: 10; right: auto; text-align: center; text-shadow: 0 0 0 none;
 }
 .carousel-caption h1 {
-    color: #d2322d; font-size: 47px; font-weight: 300; line-height: 65px; padding-bottom: 7px; text-shadow:  0 0 1px #d2322d;
+    color: #FFFFFF; font-size: 47px; font-weight: 500; line-height: 65px; padding-bottom: 7px; text-shadow: 0 1px 1px #000;
 }
 .slide-3 .carousel-caption h1, .slide-3 .carousel-caption p {
     color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .carousel-caption p {
-    color: #428BCA; font-weight: normal; font-size: 30px; line-height: 36px; font-style: italic; text-shadow: 0 0 1px #fff;
+    color: #FFFFFF; font-weight: normal; font-size: 30px; line-height: 36px; font-style: italic; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .carousel-caption p strong {
     font-size: 25px; font-weight: normal; line-height: 36px;
@@ -124,10 +124,13 @@ label {
     height: 500px;
 }
 .carousel-inner {
-    border: 1px solid #f0f0f0;
+    border: none;
 }
 .carousel-inner > .item > img {
-    position: absolute;top: 0;left: 0; min-width: 100%; height: 500px; box-shadow: 0 0 3px #000 inset;
+    position: absolute;top: 0;left: 0; box-shadow: 0 0 3px #000 inset;
+}
+.carousel-inner>.item>img, .carousel-inner>.item>a>img{
+    max-width: none;
 }
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -185,7 +188,7 @@ label {
     }
 }
 .navbar-inverse {
-    background-color: #fff; border:none;
+    background-color: #000000; border:none;
 }
 .navbar-inverse .navbar-brand {
     font-weight: bold; color: #fff;
@@ -201,10 +204,10 @@ label {
     background-color: #4090de;
 }
 .navbar-inverse .navbar-nav>li>a {
-    color: #428BCA; text-transform: uppercase;
+    color: #a6a6a6; text-transform: uppercase;
 }
 .navbar-inverse .navbar-nav>li>a:hover {
-    color: #333;
+    color: #FFFFFF;
 }
 .bs-callout {
     margin: 15px 0;padding: 12px 20px 12px 12px;border-left: 5px solid #eee;
@@ -327,9 +330,13 @@ h1.page-title, .h1.page-title {
 }
 .navbar-top {
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 .navbar-top > li > a {
-    padding: 0px;  outline: none; border-radius: 0px; margin: 5px 0px 0px 10px; font-weight: 600; font-size: 12px; text-transform: uppercase;
+    padding: 0px;  outline: none; border-radius: 0px; margin: 5px 0px 0px 10px; font-weight: 600; font-size: 12px; text-transform: uppercase; color: #a6a6a6;
+}
+.navbar-top > li > a:hover {
+    color: #FFFFFF;
 }
 .navbar-top  .dropdown-menu > li > a {
     color: #428BCA; font-size: 12px; font-weight: 600; text-transform: uppercase; padding: 2px 10px;
@@ -365,7 +372,7 @@ ul.nav.nav-pills.navbar-footer {
     margin-bottom: 0; margin-top: 8px
 }
 .navbar.navbar-main .navbar-nav {
-    /*float: right; margin-right: 0; */ position: absolute; right: 15px; bottom: -48px;
+    /*float: right; margin-right: 0;  position: absolute; right: 15px; bottom: -48px; */
 }
 .dropdown-menu>li>a {
     text-transform: uppercase; font-size: 13px
@@ -373,7 +380,8 @@ ul.nav.nav-pills.navbar-footer {
 .dropdown-menu .divider {
     height: 1px;margin: 5px 0;overflow: hidden; background-color: #285e8e;
 }
-.dropdown-menu .divider a {
+.dropdown-men85572121
+u .divider a {
     display: none;
 }
 .navbar-inverse .navbar-nav>.open>a,
@@ -396,12 +404,22 @@ ul.nav.nav-pills.navbar-footer {
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     background-color: #2755a5;
 }
+.carousel-caption {
+    bottom: 40%;
+    text-align: center;
+    left: 0px;
+    text-align: center;
+    width: 100%;
+}
+.mini-signup-form-wrapper {
+    bottom: 15%;
+    left: 5%;
+    position: absolute;
+    z-index: 9999;
+}
 @media screen and (min-width: 768px) {
-    .carousel-caption {
-        bottom: 25%
-    }
     .mini-signup-form-wrapper {
-        position: absolute; display: block; z-index: 25; text-align: left; margin: 0; padding: 0; bottom: 10%; left: 5%;
+        position: absolute; display: block; z-index: 25; text-align: left; margin: 0; padding: 0;
     }
     .mini-signup-form {
         display: inline-block;background: rgba(0,0,0, 0.2)/*rgba(66,139,202, 0.6) rgba(255, 255, 255, .4);*/; padding: 15px; border-radius: 3px;
@@ -461,4 +479,9 @@ form .alert {
 }
 .editable-click, a.editable-click {
     border-bottom: 1px dashed #ccc;
+}
+#header_nav{
+    background: #000000;
+    margin: 0;
+    padding: 10px 0;
 }
