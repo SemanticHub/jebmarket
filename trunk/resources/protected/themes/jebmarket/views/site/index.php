@@ -5,7 +5,6 @@ $this->pageTitle=Yii::app()->name . ' - '. $page->title;
 $this->metaDescription = $page->meta_desc;
 $this->metaKeywords = $page->meta_keywords;
 ?>
-<div class="container">
 <div id="myCarousel" class="carousel slide">
     <div class="mini-signup-form-wrapper">
         <div class="mini-signup-form">
@@ -30,9 +29,11 @@ $this->metaKeywords = $page->meta_keywords;
         <div class="item <?php echo $slide['class'] ?> <?php echo ($slideIndex == 0 )? 'active' : '' ?>">
             <img src="<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['sliderImageUrl'].$slide['image'] ?>"  alt="<?php echo $slide['headline']; ?>">
             <div class="container">
+                <div class="row">
                 <div class="carousel-caption">
                     <h1><?php echo $slide['headline'] ?></h1>
                     <p><?php echo $slide['content'] ?></p>
+                </div>
                 </div>
             </div>
         </div>
@@ -40,7 +41,6 @@ $this->metaKeywords = $page->meta_keywords;
     </div>
     <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>-->
-</div>
 </div>
 <div class="container marketing">    
     <?php echo $page->content ?>

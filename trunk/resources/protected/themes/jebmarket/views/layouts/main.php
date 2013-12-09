@@ -18,7 +18,7 @@
     ?>
 </head>
 <body>
-<div class="navbar-wrapper">
+<div class="navbar-wrapper" id="header_nav">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -26,7 +26,6 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-md-12">
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
                             'encodeLabel' => false,
@@ -35,12 +34,11 @@
                             'htmlOptions' => array('class' => 'nav nav-pills navbar-top'),
                         ));
                         ?>
-                    </div>
-                    <div class="col-md-12">
+                </div>
+                    <div class="row">
                         <div class="navbar navbar-inverse navbar-main">
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                        data-target=".navbar-collapse">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
@@ -60,7 +58,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
