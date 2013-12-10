@@ -109,13 +109,13 @@ label {
     z-index: 10; right: auto; text-align: center; text-shadow: 0 0 0 none;
 }
 .carousel-caption h1 {
-    color: #FFFFFF; font-size: 47px; font-weight: 500; line-height: 65px; padding-bottom: 7px; text-shadow: 0 1px 1px #000;
+    color: #FFFFFF; font-size: 40px; font-weight: 500; line-height: 65px; padding-bottom: 7px; text-shadow: 0 1px 1px #000;
 }
 .slide-3 .carousel-caption h1, .slide-3 .carousel-caption p {
     color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .carousel-caption p {
-    color: #FFFFFF; font-weight: normal; font-size: 30px; line-height: 36px; font-style: italic; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    color: #FFFFFF; font-weight: normal; font-size: 25px; line-height: 36px; font-style: italic; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .carousel-caption p strong {
     font-size: 25px; font-weight: normal; line-height: 36px;
@@ -406,10 +406,8 @@ u .divider a {
 }
 .carousel-caption {
     bottom: 40%;
-    text-align: center;
-    left: 0px;
-    text-align: center;
-    width: 100%;
+    left: 5%;
+    text-align: left;
 }
 .mini-signup-form-wrapper {
     bottom: 15%;
