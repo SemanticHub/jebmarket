@@ -34,6 +34,7 @@
                             'htmlOptions' => array('class' => 'nav nav-pills navbar-top'),
                         ));
                         ?>
+
                 </div>
                     <div class="row">
                         <div class="navbar navbar-inverse navbar-main">

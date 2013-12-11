@@ -327,9 +327,12 @@ class UserController extends Controller {
      * Resend verification Email
      */
     public function actionSendemailverification($user){
-        $user = User::model()->findByAttributes(array('username' => $user));
-        if ($user === null)
-            $user = User::model()->findByAttributes(array('email' => $user));
+        if(Yii::app()->user->id) {
+            $user = User::model()->findByPk(Yii::app()->user->id);
+        } else {
+            $user = User::model()->findByAttributes(array('username' => $user));
+            if ($user === null) $user = User::model()->findByAttributes(array('email' => $user));
+        }
 
         if ($user === null) {
             throw new CHttpException(503, 'The requested User does not exists in our system.');
@@ -340,7 +343,11 @@ class UserController extends Controller {
                 return false;
             }
             Yii::app()->user->setFlash('success', "Instructions has resent to your email account. Please check your email for details");
-            $this->redirect(array('site/login'));
+            if(!Yii::app()->user->id) {
+                $this->redirect(array('site/login'));
+            } else {
+
+            }
             Yii::app()->end();
         }
     }
