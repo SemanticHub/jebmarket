@@ -106,16 +106,21 @@ label {
     margin-bottom: 40px; display: block; clear: both;
 }
 .carousel-caption {
-    z-index: 10; right: auto; text-align: center; text-shadow: 0 0 0 none;
+    z-index: 10; right: auto; text-align: center; text-shadow: 0 0 0 none; width: 100%;
 }
 .carousel-caption h1 {
-    color: #FFFFFF; font-size: 40px; font-weight: 500; line-height: 65px; padding-bottom: 7px; text-shadow: 0 1px 1px #000;
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 40px;
+    padding-bottom: 7px;
+    text-shadow: 0 1px 1px #000;
 }
 .slide-3 .carousel-caption h1, .slide-3 .carousel-caption p {
     color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .carousel-caption p {
-    color: #FFFFFF; font-weight: normal; font-size: 25px; line-height: 36px; font-style: italic; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    color: #FFFFFF; font-weight: normal; font-size: 20px; line-height: 36px; font-style: italic; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .carousel-caption p strong {
     font-size: 25px; font-weight: normal; line-height: 36px;
@@ -195,7 +200,12 @@ label {
 }
 .navbar-brand.logo {
     display: block; width: 161px; height: 70px; text-indent: -9999px; background: url(../images/jebmarket.png) no-repeat 0 0px;
-    -webkit-transition: background 0.5s; -moz-transition: background 0.5s; transition: background 0.5s;
+    -webkit-transition: background 0.5s; -moz-transition: background 0.5s; transition: background 0.5s; float: left;
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -0-transform: scale(0.7);
+    margin: 0 0 0 -34px;
 }
 .navbar-brand.logo:hover {
     background-position: 0 -70px;
@@ -329,11 +339,15 @@ h1.page-title, .h1.page-title {
     display: inline; padding: 5px 10px
 }
 .navbar-top {
-    margin-right: 10px;
     margin-bottom: 10px;
+    width: 55%;
+    float: right;
+}
+.navbar-nav{
+    margin: 0;
 }
 .navbar-top > li > a {
-    padding: 0px;  outline: none; border-radius: 0px; margin: 5px 0px 0px 10px; font-weight: 600; font-size: 12px; text-transform: uppercase; color: #a6a6a6;
+    padding: 0px;  outline: none; border-radius: 0px; margin: 5px 0px 0px 5px; font-weight: 600; font-size: 9px; text-transform: uppercase; color: #a6a6a6;
 }
 .navbar-top > li > a:hover {
     color: #FFFFFF;
@@ -369,7 +383,10 @@ ul.nav.nav-pills.navbar-footer {
     margin-left: 0
 }
 .navbar.navbar-main {
-    margin-bottom: 0; margin-top: 8px
+    margin-bottom: 0; margin-top: 0; float: right; width: 80%;
+}
+.navbar-collapse {
+    padding-right: 0px;
 }
 .navbar.navbar-main .navbar-nav {
     /*float: right; margin-right: 0;  position: absolute; right: 15px; bottom: -48px; */
@@ -405,9 +422,9 @@ u .divider a {
     background-color: #2755a5;
 }
 .carousel-caption {
-    bottom: 40%;
-    left: 5%;
-    text-align: left;
+    bottom: 50%;
+    left: 0%;
+    text-align: center;
 }
 .mini-signup-form-wrapper {
     bottom: 15%;
@@ -482,4 +499,102 @@ form .alert {
     background: #000000;
     margin: 0;
     padding: 10px 0;
+}
+.navbar-header{
+    margin: -36px 0 0;
+}
+.navbar-toggle{
+    margin-bottom: 0;
+}
+.navbar-toggle {
+    margin: 0;
+}
+.navbar-collapse {
+    margin-top: 8px;
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .carousel-caption h1 {
+        font-size: 40px;
+        font-weight: 500;
+        line-height: 65px;
+    }
+    .carousel-caption {
+        bottom: 40%;
+        left: 5%;
+        text-align: left;
+    }
+    .carousel-caption p {
+        font-size: 25px;
+    }
+    .navbar-brand.logo {
+        margin: 0;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -0-transform: scale(1);
+    }
+    .navbar-top > li > a {
+        margin: 5px 0px 0px 10px;
+        font-size: 12px;
+    }
+    .navbar-collapse .navbar-nav.navbar-right:last-child {
+        margin-right: -10px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992) {
+    .carousel-caption h1 {
+        font-size: 40px;
+        font-weight: 500;
+        line-height: 65px;
+    }
+    .carousel-caption {
+        bottom: 40%;
+        left: 5%;
+        text-align: left;
+    }
+    .carousel-caption p {
+        font-size: 25px;
+    }
+    .navbar-brand.logo {
+        margin: 0;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -0-transform: scale(1);
+    }
+    .navbar-top > li > a {
+        margin: 5px 0px 0px 10px;
+        font-size: 12px;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200) {
+    .carousel-caption h1 {
+        font-size: 40px;
+        font-weight: 500;
+        line-height: 65px;
+    }
+    .carousel-caption {
+        bottom: 40%;
+        left: 5%;
+        text-align: left;
+    }
+    .carousel-caption p {
+        font-size: 25px;
+    }
+    .navbar-brand.logo {
+        margin: 0;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -0-transform: scale(1);
+    }
+    .navbar-top > li > a {
+        margin: 5px 0px 0px 10px;
+        font-size: 12px;
+    }
 }

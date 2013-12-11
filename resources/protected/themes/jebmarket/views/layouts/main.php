@@ -21,11 +21,8 @@
 <div class="navbar-wrapper" id="header_nav">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-12">
                 <a class="navbar-brand logo" href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
-            </div>
-            <div class="col-md-9">
-                <div class="row">
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
                             'encodeLabel' => false,
@@ -34,9 +31,6 @@
                             'htmlOptions' => array('class' => 'nav nav-pills navbar-top'),
                         ));
                         ?>
-
-                </div>
-                    <div class="row">
                         <div class="navbar navbar-inverse navbar-main">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -58,7 +52,6 @@
                                 ?>
                             </div>
                         </div>
-                    </div>
             </div>
         </div>
     </div>
