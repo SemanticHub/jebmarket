@@ -21,7 +21,6 @@ return array(
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'mustbedisableonproduction',
-            // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => array('*', '::1'),
         ),
         # Authorization Rights
@@ -63,7 +62,6 @@ return array(
         ),
         'user' => array(
             'allowAutoLogin' => true,
-            //'class' => 'WebUser',
             'class' => 'RWebUser',
             'guestName' => 'Guest',
         ),
@@ -96,7 +94,6 @@ return array(
         ),
         # Authorization Manager
         'authManager' => array(
-            //'class' => 'CDbAuthManager',
             'class' => 'RDbAuthManager',
             'connectionID' => 'db',
             'assignmentTable' => 'jebapp_auth_assignment',

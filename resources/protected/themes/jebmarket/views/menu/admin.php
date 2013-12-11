@@ -19,7 +19,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name'=>'odr',
             'htmlOptions'=>array('style'=>'width:30px; text-align: right')
         ),
-        'label',
+        //'label',
+        array(
+            'name'=>'label',
+            'type'=>'raw'
+        ),
         'visibility',
         array(
             'name' => 'active',
