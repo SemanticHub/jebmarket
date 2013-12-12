@@ -23,6 +23,7 @@
         <div class="row">
             <div class="col-md-12">
                 <a class="navbar-brand logo" href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
+                <div id="header_right">
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
                             'encodeLabel' => false,
@@ -52,6 +53,7 @@
                                 ?>
                             </div>
                         </div>
+                </div>
             </div>
         </div>
     </div>

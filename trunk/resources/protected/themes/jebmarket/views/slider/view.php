@@ -19,7 +19,7 @@ $this->menu=array(
                 array(
                     'label' => 'Image Preview',
                     'type'=>'raw',
-                    'value' => '<img width="400px" src="'.Yii::app()->baseUrl.'/'.Yii::app()->params['uploadUrl'].$model->image.'" />'
+                    'value' => '<img width="400px" src="'.Yii::app()->baseUrl.'/'.Yii::app()->params['sliderImageUrl'].$model->image.'" />'
                 ),
 		'tag',
 		'order',

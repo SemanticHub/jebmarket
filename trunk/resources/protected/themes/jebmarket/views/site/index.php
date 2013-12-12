@@ -6,19 +6,19 @@ $this->metaDescription = $page->meta_desc;
 $this->metaKeywords = $page->meta_keywords;
 ?>
 <div id="myCarousel" class="carousel slide">
-    <div class="mini-signup-form-wrapper">
-        <div class="mini-signup-form">
-            <form class="form-inline" method="post" action="<?php echo Yii::app()->baseUrl.'/site/newstore' ?>" role="form">
-                <div class="form-group">
-                    <label class="sr-only" for="store-name">Shop Name</label>
-                    <input name="store-name" type="text" class="form-control" id="store-name" placeholder="Shop Name">
+            <div class="mini-signup-form-wrapper">
+                <div class="mini-signup-form">
+                    <form class="form-inline" method="post" action="<?php echo Yii::app()->baseUrl.'/site/newstore' ?>" role="form">
+                        <div class="form-group">
+                            <label class="sr-only" for="store-name">Shop Name</label>
+                            <input name="store-name" type="text" class="form-control" id="store-name" placeholder="Shop Name">
+                        </div>
+                        <button type="button" id="mini-signup-button" class="btn btn-danger">Create Shop Now!</button>
+                        <button name="new-user" value="true" style="display: none" type="submit" id="mini-signup-new-user" class="btn btn-warning">New User ?</button>
+                        <button name="existing-user" value="true" style="display: none" type="submit" id="mini-signup-existing-user" class="btn btn-info">Existing User</button>
+                    </form>
                 </div>
-                <button type="button" id="mini-signup-button" class="btn btn-danger">Create Shop Now!</button>
-                <button name="new-user" value="true" style="display: none" type="submit" id="mini-signup-new-user" class="btn btn-warning">New User ?</button>
-                <button name="existing-user" value="true" style="display: none" type="submit" id="mini-signup-existing-user" class="btn btn-info">Existing User</button>
-            </form>
-        </div>
-    </div>    
+            </div>
     <ol class="carousel-indicators">
         <?php $slideIndex = 0; foreach ($slider as $slide) {  ?>
         <li data-target="#myCarousel" data-slide-to="<?php echo $slideIndex; ?>" class="<?php echo ($slideIndex == 0 )? 'active' : '' ?>"></li>
@@ -30,14 +30,14 @@ $this->metaKeywords = $page->meta_keywords;
             <img src="<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['sliderImageUrl'].$slide['image'] ?>"  alt="<?php echo $slide['headline']; ?>">
             <div class="container">
                 <div class="row">
-                <div class="carousel-caption">
-                    <h1><?php echo $slide['headline'] ?></h1>
-                    <p><?php echo $slide['content'] ?></p>
-                </div>
+                    <div class="carousel-caption">
+                        <h1><?php echo $slide['headline'] ?></h1>
+                        <p><?php echo $slide['content'] ?></p>
+                    </div>
                 </div>
             </div>
         </div>
-        <?php $slideIndex++; } ?>        
+        <?php $slideIndex++; } ?>
     </div>
     <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>-->

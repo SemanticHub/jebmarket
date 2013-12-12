@@ -106,7 +106,12 @@ label {
     margin-bottom: 40px; display: block; clear: both;
 }
 .carousel-caption {
-    z-index: 10; right: auto; text-align: center; text-shadow: 0 0 0 none; width: 100%;
+    z-index: 10;
+    right: auto;
+    text-shadow: 0 0 0 none;
+    width: 100%;
+    left: initial;
+    padding: 0 15px;
 }
 .carousel-caption h1 {
     color: #FFFFFF;
@@ -199,13 +204,20 @@ label {
     font-weight: bold; color: #fff;
 }
 .navbar-brand.logo {
-    display: block; width: 161px; height: 70px; text-indent: -9999px; background: url(../images/jebmarket.png) no-repeat 0 0px;
-    -webkit-transition: background 0.5s; -moz-transition: background 0.5s; transition: background 0.5s; float: left;
-    transform: scale(0.7);
-    -webkit-transform: scale(0.7);
-    -moz-transform: scale(0.7);
-    -0-transform: scale(0.7);
-    margin: 0 0 0 -34px;
+    display: block;
+    width: 161px;
+    height: 70px;
+    text-indent: -9999px;
+    background: url(../images/jebmarket.png) no-repeat 0 0px;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    float: left;
+    margin: -6px 0 -12px -42px;
+    transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    -0-transform: scale(0.6);
 }
 .navbar-brand.logo:hover {
     background-position: 0 -70px;
@@ -339,15 +351,24 @@ h1.page-title, .h1.page-title {
     display: inline; padding: 5px 10px
 }
 .navbar-top {
-    margin-bottom: 10px;
-    width: 55%;
+    margin-bottom: 5px;
+    width: 100%;
     float: right;
+    margin-right: -15px;
+    margin-left: -20px;
 }
 .navbar-nav{
     margin: 0;
 }
 .navbar-top > li > a {
-    padding: 0px;  outline: none; border-radius: 0px; margin: 5px 0px 0px 5px; font-weight: 600; font-size: 9px; text-transform: uppercase; color: #a6a6a6;
+    padding: 0px;
+    outline: none;
+    border-radius: 0px;
+    margin: 0;
+    font-weight: 600;
+    font-size: 9px;
+    text-transform: uppercase;
+    color: #a6a6a6;
 }
 .navbar-top > li > a:hover {
     color: #FFFFFF;
@@ -383,7 +404,9 @@ ul.nav.nav-pills.navbar-footer {
     margin-left: 0
 }
 .navbar.navbar-main {
-    margin-bottom: 0; margin-top: 0; float: right; width: 80%;
+    margin-bottom: 3px;
+    margin-top: 0;
+    float: right;
 }
 .navbar-collapse {
     padding-right: 0px;
@@ -423,19 +446,21 @@ u .divider a {
 }
 .carousel-caption {
     bottom: 50%;
-    left: 0%;
     text-align: center;
 }
 .mini-signup-form-wrapper {
-    bottom: 15%;
-    left: 5%;
     position: absolute;
-    z-index: 9999;
+    bottom: 10px;
+    left: 50%;
+    z-index: 15;
+    width: 60%;
+    padding-left: 0;
+    margin-left: -30%;
+    text-align: center;
+    list-style: none;
+    bottom: 15%;
 }
 @media screen and (min-width: 768px) {
-    .mini-signup-form-wrapper {
-        position: absolute; display: block; z-index: 25; text-align: left; margin: 0; padding: 0;
-    }
     .mini-signup-form {
         display: inline-block;background: rgba(0,0,0, 0.2)/*rgba(66,139,202, 0.6) rgba(255, 255, 255, .4);*/; padding: 15px; border-radius: 3px;
         -moz-box-shadow: 0 0 3px #ccc; -webkit-box-shadow: 0 0 3px #ccc; box-shadow: 0 0 3px #ccc;
@@ -498,10 +523,10 @@ form .alert {
 #header_nav{
     background: #000000;
     margin: 0;
-    padding: 10px 0;
+    padding: 1px 0;
 }
 .navbar-header{
-    margin: -36px 0 0;
+    margin: 0;
 }
 .navbar-toggle{
     margin-bottom: 0;
@@ -512,6 +537,11 @@ form .alert {
 .navbar-collapse {
     margin-top: 8px;
 }
+#header_right{
+    margin: 0 0 0 -100px;
+    padding: 0;
+    float: right;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .carousel-caption h1 {
@@ -521,7 +551,6 @@ form .alert {
     }
     .carousel-caption {
         bottom: 40%;
-        left: 5%;
         text-align: left;
     }
     .carousel-caption p {
@@ -541,6 +570,16 @@ form .alert {
     .navbar-collapse .navbar-nav.navbar-right:last-child {
         margin-right: -10px;
     }
+    .carousel-inner > .item > img {
+        position: absolute;top: 0;left: 0; box-shadow: 0 0 3px #000 inset; width: 100%;
+    }
+    .carousel-inner>.item>img, .carousel-inner>.item>a>img{
+        max-width: none;
+    }
+    .navbar-top {
+        margin-right: 0;
+        margin-left: -150px;
+    }
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -552,7 +591,6 @@ form .alert {
     }
     .carousel-caption {
         bottom: 40%;
-        left: 5%;
         text-align: left;
     }
     .carousel-caption p {
@@ -568,6 +606,16 @@ form .alert {
     .navbar-top > li > a {
         margin: 5px 0px 0px 10px;
         font-size: 12px;
+    }
+    .carousel-inner > .item > img {
+        position: absolute;top: 0;left: 0; box-shadow: 0 0 3px #000 inset; width: 100%;
+    }
+    .carousel-inner>.item>img, .carousel-inner>.item>a>img{
+        max-width: none;
+    }
+    .navbar-top {
+        margin-right: 0;
+        margin-left: -150px;
     }
 }
 
@@ -580,7 +628,6 @@ form .alert {
     }
     .carousel-caption {
         bottom: 40%;
-        left: 5%;
         text-align: left;
     }
     .carousel-caption p {
@@ -596,5 +643,15 @@ form .alert {
     .navbar-top > li > a {
         margin: 5px 0px 0px 10px;
         font-size: 12px;
+    }
+    .carousel-inner > .item > img {
+        position: absolute;top: 0;left: 0; box-shadow: 0 0 3px #000 inset; width: 100%;
+    }
+    .carousel-inner>.item>img, .carousel-inner>.item>a>img{
+        max-width: none;
+    }
+    .navbar-top {
+        margin-right: 0;
+        margin-left: -150px;
     }
 }
