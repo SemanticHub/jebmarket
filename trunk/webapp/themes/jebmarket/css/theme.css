@@ -114,7 +114,7 @@ label {
     padding: 0 15px;
 }
 .carousel-caption h1 {
-    color: #FFFFFF;
+    color: #837EFF;
     font-size: 28px;
     font-weight: 400;
     line-height: 40px;
@@ -122,7 +122,7 @@ label {
     text-shadow: 0 1px 1px #000;
 }
 .slide-3 .carousel-caption h1, .slide-3 .carousel-caption p {
-    color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .carousel-caption p {
     color: #FFFFFF; font-weight: normal; font-size: 20px; line-height: 36px; font-style: italic; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
@@ -213,7 +213,7 @@ label {
     -moz-transition: background 0.5s;
     transition: background 0.5s;
     float: left;
-    margin: -6px 0 -12px -42px;
+    margin: -6px 0 -63px -42px;
     transform: scale(0.6);
     -webkit-transform: scale(0.6);
     -moz-transform: scale(0.6);
@@ -268,9 +268,13 @@ span.required {
     color: #ddd; font-size: 12px
 }
 .footer-logo {
-    display: block; width: 115px; height: 50px;  text-indent: -9999px; margin-top: -10px;
+    display: block; width: 115px; height: 50px;  text-indent: -9999px; margin: -20px;
     background: url(../images/footer-logo.png) no-repeat 0 -50px;
     -webkit-transition: background 0.5s; -moz-transition: background 0.5s; transition: background 0.5s;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    -0-transform: scale(0.6);
 }
 .footer-logo:hover {
     background-position: 0 0px
@@ -279,7 +283,7 @@ span.required {
     font-style: italic; margin-bottom: 0;
 }
 h1.page-title, .h1.page-title {
-    font-size: 3rem; color: #EC6030; border-bottom: 1px solid #eee; padding: 20px 0 20px; margin: 20px 0 20px; font-weight: 300; text-align: left;
+    font-size: 20px; color: #EC6030; border-bottom: 1px solid #eee; margin: 10px 0; padding: 10px 0; font-weight: 300; text-align: left;
 }
 .panel-body-wrapper {
     height: 150px; overflow-y: auto; border-bottom: 1px solid #eee;
@@ -345,7 +349,9 @@ h1.page-title, .h1.page-title {
     min-height: 0;
 }
 .navbar-nav > li > a {
-    padding: 5px 10px; font-weight: 600;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px;
 }
 .navbar-footer > li > a {
     display: inline; padding: 5px 10px
@@ -364,7 +370,7 @@ h1.page-title, .h1.page-title {
     padding: 0px;
     outline: none;
     border-radius: 0px;
-    margin: 0;
+    margin: 0 2px 0 3px;
     font-weight: 600;
     font-size: 9px;
     text-transform: uppercase;
@@ -383,15 +389,15 @@ h1.page-title, .h1.page-title {
     background: transparent; text-decoration: underline;
 }
 .navbar-top > li > a.facebook {
-    width: 16px; height: 16px; text-indent: -9999px;
+    width: 10px; height: 10px; text-indent: -9999px;margin-top: 2px;
     background: url(../icon/social/facebook-16.png) no-repeat center center
 }
 .navbar-top > li > a.twitter {
-    width: 16px; height: 16px; text-indent: -9999px;
+    width: 10px; height: 10px; text-indent: -9999px;margin-top: 2px;
     background: url(../icon/social/twitter-16.png) no-repeat center center
 }
 .navbar-top > li > a.google {
-    width: 16px; height: 16px; text-indent: -9999px;
+    width: 10px; height: 10px; text-indent: -9999px;margin-top: 2px;
     background: url(../icon/social/google-16.png) no-repeat center center
 }
 ul.nav.nav-pills.navbar-footer {
@@ -542,11 +548,17 @@ form .alert {
     padding: 0;
     float: right;
 }
+.bs-callout p:last-child{
+ font-size: 12px;
+}
+.bs-callout h4{
+    font-size: 15px;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .carousel-caption h1 {
         font-size: 40px;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 65px;
     }
     .carousel-caption {
@@ -557,11 +569,11 @@ form .alert {
         font-size: 25px;
     }
     .navbar-brand.logo {
-        margin: 0;
-        transform: scale(1);
-        -webkit-transform: scale(1);
-        -moz-transform: scale(1);
-        -0-transform: scale(1);
+        margin: -3px 0 0 -10px;
+        transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        -moz-transform: scale(0.9);
+        -0-transform: scale(0.9);
     }
     .navbar-top > li > a {
         margin: 5px 0px 0px 10px;
@@ -577,8 +589,39 @@ form .alert {
         max-width: none;
     }
     .navbar-top {
-        margin-right: 0;
+        margin-right: -7px;
         margin-left: -150px;
+    }
+    .navbar.navbar-main {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    .navbar-top > li > a.facebook {
+        width: 16px; height: 16px;margin: 5px 0 0 10px;
+    }
+    .navbar-top > li > a.twitter {
+        width: 16px; height: 16px;margin: 5px 0 0 10px;
+    }
+    .navbar-top > li > a.google {
+        width: 16px; height: 16px;margin: 5px 0 0 10px;
+    }
+    h1.page-title, .h1.page-title {
+        font-size: 30px;
+        margin: 20px 0; padding: 20px 0;
+    }
+    .bs-callout p:last-child{
+        font-size: 14px;
+    }
+    .bs-callout h4{
+        font-size: 18px;
+    }
+    .footer-logo {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -0-transform: scale(1);
+        margin-top: -10px;
+        margin-right: 0;
     }
 }
 
@@ -586,7 +629,7 @@ form .alert {
 @media (min-width: 992) {
     .carousel-caption h1 {
         font-size: 40px;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 65px;
     }
     .carousel-caption {
@@ -597,11 +640,11 @@ form .alert {
         font-size: 25px;
     }
     .navbar-brand.logo {
-        margin: 0;
-        transform: scale(1);
-        -webkit-transform: scale(1);
-        -moz-transform: scale(1);
-        -0-transform: scale(1);
+        margin: -3px 0 0 -10px;
+        transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        -moz-transform: scale(0.9);
+        -0-transform: scale(0.9);
     }
     .navbar-top > li > a {
         margin: 5px 0px 0px 10px;
@@ -614,8 +657,39 @@ form .alert {
         max-width: none;
     }
     .navbar-top {
-        margin-right: 0;
+        margin-right: -7px;
         margin-left: -150px;
+    }
+    .navbar.navbar-main {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    .navbar-top > li > a.facebook {
+        width: 16px; height: 16px;margin: 5px 0 0 10px;
+    }
+    .navbar-top > li > a.twitter {
+        width: 16px; height: 16px;margin: 5px 0 0 10px;
+    }
+    .navbar-top > li > a.google {
+        width: 16px; height: 16px;margin: 5px 0 0 10px;
+    }
+    h1.page-title, .h1.page-title {
+        font-size: 30px;
+        margin: 20px 0; padding: 20px 0;
+    }
+    .bs-callout p:last-child{
+        font-size: 14px;
+    }
+    .bs-callout h4{
+        font-size: 18px;
+    }
+    .footer-logo {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -0-transform: scale(1);
+        margin-top: -10px;
+        margin-right: 0;
     }
 }
 
@@ -623,7 +697,7 @@ form .alert {
 @media (min-width: 1200) {
     .carousel-caption h1 {
         font-size: 40px;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 65px;
     }
     .carousel-caption {
@@ -634,11 +708,11 @@ form .alert {
         font-size: 25px;
     }
     .navbar-brand.logo {
-        margin: 0;
-        transform: scale(1);
-        -webkit-transform: scale(1);
-        -moz-transform: scale(1);
-        -0-transform: scale(1);
+        margin: -3px 0 0 -10px;
+        transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        -moz-transform: scale(0.9);
+        -0-transform: scale(0.9);
     }
     .navbar-top > li > a {
         margin: 5px 0px 0px 10px;
@@ -651,7 +725,38 @@ form .alert {
         max-width: none;
     }
     .navbar-top {
-        margin-right: 0;
+        margin-right: -7px;
         margin-left: -150px;
+    }
+    .navbar.navbar-main {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    .navbar-top > li > a.facebook {
+        width: 16px; height: 16px;margin: 5px 0 0 10px;
+    }
+    .navbar-top > li > a.twitter {
+        width: 16px; height: 16px;margin: 5px 0 0 10px;
+    }
+    .navbar-top > li > a.google {
+        width: 16px; height: 16px;margin: 5px 0 0 10px;
+    }
+    h1.page-title, .h1.page-title {
+        font-size: 30px;
+        margin: 20px 0; padding: 20px 0;
+    }
+    .bs-callout p:last-child{
+        font-size: 14px;
+    }
+    .bs-callout h4{
+        font-size: 18px;
+    }
+    .footer-logo {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -0-transform: scale(1);
+        margin-top: -10px;
+        margin-right: 0;
     }
 }
