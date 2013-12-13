@@ -7,14 +7,18 @@ $this->pageTitle = Yii::app()->name . ' - Contact Us';
         <?php echo Yii::app()->user->getFlash('contact'); ?>
     </div>
 <?php else: ?>
-<div class="form-control-wrapper">
-    <div class="note bs-callout bs-callout-info">
-        <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us. Thank
-            you.<br/>
-            Fields with <span class="required">*</span> are required.
-        </p>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="note bs-callout bs-callout-info">
+            <p>
+                If you have business inquiries or other questions, please fill out the following form to contact us. Thank
+                you.<br/>
+                Fields with <span class="required">*</span> are required.
+            </p>
+        </div>
     </div>
+</div>
+<div class="form-control-wrapper" style="max-width: 450px; margin-bottom: 10px; padding-top: 10px">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'contact-form',
@@ -68,7 +72,7 @@ $this->pageTitle = Yii::app()->name . ' - Contact Us';
     <div class="form-group">
         <?php echo $form->labelEx($model, 'body', array('class' => 'control-label col-lg-3')); ?>
         <div class="col-lg-9">
-            <?php echo $form->textArea($model, 'body', array('form-groups' => 6, 'rows' => 3, 'cols' => 50, 'class' => 'form-control')); ?>
+            <?php echo $form->textArea($model, 'body', array('form-groups' => 6, 'rows' => 5, 'cols' => 50, 'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'body', array('class' => 'text-danger control-hint')); ?>
         </div>
     </div>
@@ -77,7 +81,7 @@ $this->pageTitle = Yii::app()->name . ' - Contact Us';
             <?php echo $form->labelEx($model, 'verifyCode', array('class' => 'control-label col-lg-3')); ?>
             <div class="col-lg-9">
                 <?php $this->widget('CCaptcha', array('buttonOptions' => array('class' => 'btn btn-default'))); ?>
-                <?php echo $form->textField($model, 'verifyCode', array('class' => 'form-control', 'style' => 'width:150px; margin-left: 10px; display:inline')); ?>
+                <?php echo $form->textField($model, 'verifyCode', array('class' => 'form-control', 'style' => 'width:150px; margin-left: 0; display:inline')); ?>
                 <p class="hint text-warning">Please enter the letters as they are shown in the image above. Letters are
                     not case-sensitive.</p>
                 <?php echo $form->error($model, 'verifyCode', array('class' => 'text-danger control-hint')); ?>
