@@ -61,6 +61,15 @@ class SiteController extends Controller {
                         "Content-Type: text/plain; charset=UTF-8";
 
                 mail(Yii::app()->params['adminEmail'], $subject, $model->body, $headers);
+
+                $respondmail = EmailTemplate::model()->findByAttributes(array('name' => 'contactus_confirmation_email'));
+                $adminemail = Yii::app()->params['adminEmail'];
+                $respondmailheader = "From: $name <{$adminemail}>\r\n" .
+                    "Reply-To: {$adminemail}\r\n" .
+                    "MIME-Version: 1.0\r\n" .
+                    "Content-Type: text/html; charset=UTF-8";
+                mail($model->email, $respondmail->subject, $respondmail->body, $respondmailheader);
+
                 Yii::app()->user->setFlash('contact', 'Thank you for contacting us. We will respond to you as soon as possible.');
                 $this->refresh();
             }
