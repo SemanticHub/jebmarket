@@ -26,8 +26,19 @@ $this->metaKeywords = $page->meta_keywords;
     </ol>
     <div class="carousel-inner">
         <?php $slideIndex = 0; foreach ($slider as $slide) {  ?>
-        <div class="item <?php echo $slide['class'] ?> <?php echo ($slideIndex == 0 )? 'active' : '' ?>">
-            <img src="<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['sliderImageUrl'].$slide['image'] ?>"  alt="<?php echo $slide['headline']; ?>">
+        <div class="item <?php echo $slide['class'] ?> <?php echo ($slideIndex == 0 )? 'active' : '' ?>"
+             style="
+                background: url(<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['sliderImageUrl'].$slide['image'] ?>) top center no-repeat;
+                height: 670px;
+                padding: 160px 0 0 0;
+                background-position: 0 30px;
+                border-bottom: 1px solid rgba(0,0,0,0.2);
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                margin: -110px 0 0;
+                 ">
             <div class="container">
                 <div class="row">
                     <div class="carousel-caption">
@@ -39,6 +50,8 @@ $this->metaKeywords = $page->meta_keywords;
         </div>
         <?php $slideIndex++; } ?>
     </div>
+    <?php $slideIndex = 0; foreach ($slider as $slide) {  ?>
+    <?php $slideIndex++; } ?>
     <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>-->
 </div>

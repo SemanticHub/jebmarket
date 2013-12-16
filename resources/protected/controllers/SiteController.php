@@ -62,6 +62,7 @@ class SiteController extends Controller {
 
                 mail(Yii::app()->params['adminEmail'], $subject, $model->body, $headers);
 
+                /* Respond email after send Contact form */
                 $respondmail = EmailTemplate::model()->findByAttributes(array('name' => 'contactus_confirmation_email'));
                 $adminemail = Yii::app()->params['adminEmail'];
                 $respondmailheader = "From: $name <{$adminemail}>\r\n" .
