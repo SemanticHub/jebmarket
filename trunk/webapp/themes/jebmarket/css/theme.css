@@ -110,16 +110,18 @@ label {
     right: auto;
     text-shadow: 0 0 0 none;
     width: 100%;
-    left: initial;
-    padding: 0 15px;
+    left: inherit;
+    padding: 0 10px;
 }
 .carousel-caption h1 {
     color: #837EFF;
     font-size: 28px;
     font-weight: 400;
-    line-height: 40px;
-    padding-bottom: 7px;
+    line-height: 35px;
+    padding-bottom: 0px;
     text-shadow: 0 1px 1px #000;
+    margin: 15px 0 0 0;
+    padding: 0;
 }
 .slide-3 .carousel-caption h1, .slide-3 .carousel-caption p {
     text-shadow: 0 1px 2px rgba(0,0,0,0.6);
@@ -205,22 +207,18 @@ label {
 }
 .navbar-brand.logo {
     display: block;
-    width: 161px;
-    height: 70px;
+    width: 94px;
+    height: 42px;
     text-indent: -9999px;
-    background: url(../images/jebmarket.png) no-repeat 0 0px;
+    background: url(../images/jebmarket-mobile-logo.png) no-repeat 0 0px;
     -webkit-transition: background 0.5s;
     -moz-transition: background 0.5s;
     transition: background 0.5s;
     float: left;
-    margin: -6px 0 -63px -42px;
-    transform: scale(0.6);
-    -webkit-transform: scale(0.6);
-    -moz-transform: scale(0.6);
-    -0-transform: scale(0.6);
+    margin: 7px 0 -63px -12px;
 }
 .navbar-brand.logo:hover {
-    background-position: 0 -70px;
+    background-position: 0 -41px;
 }
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
     background-color: #4090de;
@@ -451,7 +449,7 @@ u .divider a {
     background-color: #2755a5;
 }
 .carousel-caption {
-    bottom: 50%;
+    bottom: inherit;
     text-align: center;
 }
 .mini-signup-form-wrapper {
@@ -464,7 +462,20 @@ u .divider a {
     margin-left: -30%;
     text-align: center;
     list-style: none;
-    bottom: 15%;
+    bottom: 35%;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #101010;
+    position: absolute;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    right: -1px;
+    width: 162px;
+    overflow-x: hidden;
+}
+.navbar-nav .open .dropdown-menu>li>a, .navbar-nav .open .dropdown-menu .dropdown-header {
+    padding: 3px 15px 3px 18px;
 }
 @media screen and (min-width: 768px) {
     .mini-signup-form {
@@ -554,12 +565,17 @@ form .alert {
 .bs-callout h4{
     font-size: 15px;
 }
+.homepage{
+    text-align: center;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .carousel-caption h1 {
         font-size: 40px;
         font-weight: 600;
         line-height: 65px;
+        width: 500px;
+        left: 0;
     }
     .carousel-caption {
         bottom: 40%;
@@ -569,11 +585,19 @@ form .alert {
         font-size: 25px;
     }
     .navbar-brand.logo {
-        margin: -3px 0 0 -10px;
-        transform: scale(0.9);
-        -webkit-transform: scale(0.9);
-        -moz-transform: scale(0.9);
-        -0-transform: scale(0.9);
+        margin: 1px 0 0 -10px;
+        display: block;
+        width: 150px;
+        height: 65px;
+        text-indent: -9999px;
+        background: url(../images/jebmarket.png) no-repeat 0 0px;
+        -webkit-transition: background 0.5s;
+        -moz-transition: background 0.5s;
+        transition: background 0.5s;
+        float: left;
+    }
+    .navbar-brand.logo:hover {
+        background-position: 0 -64px;
     }
     .navbar-top > li > a {
         margin: 5px 0px 0px 10px;
@@ -623,6 +647,20 @@ form .alert {
         margin-top: -10px;
         margin-right: 0;
     }
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: #101010;
+        position: static;
+        background-color: #000;
+        margin: 8px 0 0 0;
+        padding: 0;
+        width: inherit;
+    }
+    .navbar-nav .open .dropdown-menu>li>a, .navbar-nav .open .dropdown-menu .dropdown-header {
+        padding: 5px 15px 5px 25px;
+    }
+    .mini-signup-form-wrapper {
+        bottom: 15%;
+    }
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -631,6 +669,7 @@ form .alert {
         font-size: 40px;
         font-weight: 600;
         line-height: 65px;
+        width: 500px;
     }
     .carousel-caption {
         bottom: 40%;
@@ -640,11 +679,19 @@ form .alert {
         font-size: 25px;
     }
     .navbar-brand.logo {
-        margin: -3px 0 0 -10px;
-        transform: scale(0.9);
-        -webkit-transform: scale(0.9);
-        -moz-transform: scale(0.9);
-        -0-transform: scale(0.9);
+        margin: 1px 0 0 -10px;
+        display: block;
+        width: 150px;
+        height: 65px;
+        text-indent: -9999px;
+        background: url(../images/jebmarket.png) no-repeat 0 0px;
+        -webkit-transition: background 0.5s;
+        -moz-transition: background 0.5s;
+        transition: background 0.5s;
+        float: left;
+    }
+    .navbar-brand.logo:hover {
+        background-position: 0 -64px;
     }
     .navbar-top > li > a {
         margin: 5px 0px 0px 10px;
@@ -690,6 +737,20 @@ form .alert {
         -0-transform: scale(1);
         margin-top: -10px;
         margin-right: 0;
+    }
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: #101010;
+        position: static;
+        background-color: #000;
+        margin: 8px 0 0 0;
+        padding: 0;
+        width: inherit;
+    }
+    .navbar-nav .open .dropdown-menu>li>a, .navbar-nav .open .dropdown-menu .dropdown-header {
+        padding: 5px 15px 5px 25px;
+    }
+    .mini-signup-form-wrapper {
+        bottom: 15%;
     }
 }
 
@@ -699,6 +760,7 @@ form .alert {
         font-size: 40px;
         font-weight: 600;
         line-height: 65px;
+        width: 500px;
     }
     .carousel-caption {
         bottom: 40%;
@@ -708,11 +770,19 @@ form .alert {
         font-size: 25px;
     }
     .navbar-brand.logo {
-        margin: -3px 0 0 -10px;
-        transform: scale(0.9);
-        -webkit-transform: scale(0.9);
-        -moz-transform: scale(0.9);
-        -0-transform: scale(0.9);
+        margin: 1px 0 0 -10px;
+        display: block;
+        width: 150px;
+        height: 65px;
+        text-indent: -9999px;
+        background: url(../images/jebmarket.png) no-repeat 0 0px;
+        -webkit-transition: background 0.5s;
+        -moz-transition: background 0.5s;
+        transition: background 0.5s;
+        float: left;
+    }
+    .navbar-brand.logo:hover {
+        background-position: 0 -64px;
     }
     .navbar-top > li > a {
         margin: 5px 0px 0px 10px;
@@ -758,5 +828,19 @@ form .alert {
         -0-transform: scale(1);
         margin-top: -10px;
         margin-right: 0;
+    }
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: #101010;
+        position: static;
+        background-color: #000;
+        margin: 8px 0 0 0;
+        padding: 0;
+        width: inherit;
+    }
+    .navbar-nav .open .dropdown-menu>li>a, .navbar-nav .open .dropdown-menu .dropdown-header {
+        padding: 5px 15px 5px 25px;
+    }
+    .mini-signup-form-wrapper {
+        bottom: 15%;
     }
 }

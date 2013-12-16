@@ -29,6 +29,7 @@ class Slider extends CActiveRecord {
     public function rules() {
         return array(
             array('headline, content', 'required'),
+            array('image', 'unique', 'message' => 'Image name already used, please change the image name.'),
             array('order', 'numerical', 'integerOnly' => true),
             array('headline', 'length', 'max' => 255),
             array('tag, class', 'length', 'max' => 45),
@@ -98,8 +99,8 @@ class Slider extends CActiveRecord {
         if (is_object($this->image)) {
             $this->image->saveAs($uploadPath . $this->image->name);
             if (!empty($this->oldSlideImage)) {
-                //$delete = Yii::app()->params['uploadPath'] . '/' . $this->oldSlideImage;
-                $delete = $uploadPath . $this->oldSlideImage;
+                $delete = Yii::app()->params['uploadPath'] . '/' . $this->oldSlideImage;
+                //$delete = $uploadPath . $this->oldSlideImage;
                 if (file_exists($delete))
                     unlink($delete);
             }
