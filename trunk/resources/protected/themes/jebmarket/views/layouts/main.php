@@ -69,7 +69,7 @@
                                     'activeCssClass' => 'active',
                                     'activateParents' => true,
                                     'encodeLabel' => false,
-                                    'items' => Menu::renderMenuItems("mainmenu"),
+                                    'items' => Menu::model()->renderMenuItems("mainmenu"),
                                 ));
                                 ?>
                             </div>
