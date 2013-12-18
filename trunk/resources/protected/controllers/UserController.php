@@ -34,7 +34,7 @@ class UserController extends Controller {
      * Actions those will always allow
      */
     public function allowedActions() {
-        return 'signup, captcha, activate, recoverpass, resetpass, sendemailverification';
+        return 'signup, captcha, activate, recoverpass, resetpass, sendemailverification, sendeverification';
     }
 
     /**
@@ -210,7 +210,6 @@ class UserController extends Controller {
                         Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
                     }
                     Yii::app()->user->setFlash('success', "Welcome to JebMarket! <b>".$model->username . "</b>. Your account successfully created, You can now login and explore. You need to verify your Email within next ". Yii::app()->params['emailVerificationLimit']. " days. Check your Email for details.");
-                    //Yii::app()->user->setFlash('success', "Thanks for registering with JebMarket. Your account is successfully created and a verification email has been sent to ".$model->email.", You need to verify your email within next ". Yii::app()->params['emailVerificationLimit']. " days to be able to login to your account.");
                     $this->redirect(array('site/login'));
                 }
             }
@@ -322,21 +321,29 @@ class UserController extends Controller {
             }
         }
     }
+    public function actionSendeverification(){
+        if(Yii::app()->user->id) {
+            $user = User::model()->findByPk(Yii::app()->user->id);
+            $mail = new JebMailer($user->id, Yii::app()->params['signupEmailTemplate']);
+            if (!$mail->send()) {
+                Yii::app()->user->setFlash('danger', 'Mailer Error: ' . $mail->ErrorInfo);
+                return false;
+            }
+            Yii::app()->user->setFlash('success', "Instructions has resent to your email account. Please check your email for details");
+        } else {
+            throw new CHttpException(503, 'The requested User does not exists in our system.');
+        }
+    }
 
     /**
      * Resend verification Email
      */
     public function actionSendemailverification($user){
-        if(Yii::app()->user->id) {
-            $user = User::model()->findByPk(Yii::app()->user->id);
-        } else {
-            $user = User::model()->findByAttributes(array('username' => $user));
-            if ($user === null) $user = User::model()->findByAttributes(array('email' => $user));
-        }
-
         if ($user === null) {
             throw new CHttpException(503, 'The requested User does not exists in our system.');
         } else {
+            $user = User::model()->findByAttributes(array('username' => $user));
+            if ($user === null) $user = User::model()->findByAttributes(array('email' => $user));
             $mail = new JebMailer($user->id, Yii::app()->params['signupEmailTemplate']);
             if (!$mail->send()) {
                 Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);

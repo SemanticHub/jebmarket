@@ -33,6 +33,9 @@ label {
 .glyphicon-has-success {
     color: #468847;
 }
+.popover-content {
+    padding: 0; transition: all 0.5s ease;
+}
 .btn-file {
     position: relative;overflow: hidden;vertical-align: middle;
 }
