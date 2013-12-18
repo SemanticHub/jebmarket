@@ -88,8 +88,10 @@ return array(
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
             'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => '1234',
+            //'username' => 'root',
+            //'password' => '1234',
+            'username' => 'jassifie_yiijeb',
+            'password' => '99.9%available',
             'charset' => 'utf8',
         ),
         # Authorization Manager
