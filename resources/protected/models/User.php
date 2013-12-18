@@ -156,4 +156,5 @@ class User extends CActiveRecord {
     public function generateSalt() {
         return uniqid('', true);
     }
+
 }

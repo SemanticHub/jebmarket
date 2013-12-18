@@ -29,9 +29,30 @@
                             'encodeLabel' => false,
                             'submenuHtmlOptions' => array('class' => 'dropdown-menu'),
                             'items' => Menu::model()->renderMenuItems("topmenu"),
-                            'htmlOptions' => array('class' => 'nav nav-pills navbar-top'),
+                            'htmlOptions' => array('class' => 'nav nav-pills navbar-top navbar-right clearfix'),
                         ));
                         ?>
+                        <?php if(Yii::app()->params['activationStatus']) { ?>
+                        <ul class="nav nav-pills navbar-top navbar-right clearfix">
+                            <li id="alert" class="label label-warning" style="padding: 3px 10px 6px 4px; text-shadow: 1px 1px 1px #999; cursor: pointer; text-transform: uppercase">
+                                <?php echo '<span class="label label-danger">'.Yii::app()->params['activationStatus']['count'].'</span>'. Yii::t('phrase', ' days left to verify your account'); ?>
+                            </li>
+                        </ul>
+                        <script type="text/javascript">
+                            $(function(){
+                                var alertPopover = $('#alert').popover({
+                                    html: true,
+                                    placement: 'bottom',
+                                    trigger: 'click',
+                                    content: '<div style="margin:0; text-align: center" class="alert alert-danger">' +
+                                             '<span class="glyphicon glyphicon-info-sign"></span> &#160; If you don\'t verify your email within next <span class="label label-danger">' +
+                                             <?php echo Yii::app()->params['activationStatus']['count'] ?> +
+                                             '</span> days, your account will be suspended.' +
+                                             '<br /><?php echo CHtml::ajaxLink("<span class=\"glyphicon glyphicon-send\"></span> &#160; Resend Verification Email Now", Yii::app()->createUrl("/user/sendeverification"), null, array("class" => "btn btn-xs btn-primary")) ?></div>'
+                                    });
+                            });
+                        </script>
+                        <?php } ?>
                         <div class="navbar navbar-inverse navbar-main">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,7 +69,7 @@
                                     'activeCssClass' => 'active',
                                     'activateParents' => true,
                                     'encodeLabel' => false,
-                                    'items' => Menu::model()->renderMenuItems("mainmenu"),
+                                    'items' => Menu::renderMenuItems("mainmenu"),
                                 ));
                                 ?>
                             </div>
