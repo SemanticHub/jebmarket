@@ -106,7 +106,7 @@
     </footer>
 </div>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
+<!--[if lt IE 7]>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/html5shiv.js"></script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
 <![endif]-->
