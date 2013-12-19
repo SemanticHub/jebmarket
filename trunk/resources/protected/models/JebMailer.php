@@ -50,31 +50,48 @@ class JebMailer extends PHPMailer{
         ),
     );
 
-    public function __construct($userId=null, $emailTemplateName=null, $guestemail=null, $guestname=null) {
-        // Get Email Template
-        $this->_emailTemplate = EmailTemplate::model()->findByAttributes(array('name' => $emailTemplateName));
-        // Override PHPMailer Default Vars
-        $this->From = Yii::app()->params['supportEmail'];
-        $this->FromName = "JebMarket";
-        $this->isHTML(true);
-        $this->initVars();
-        $this->Subject = $this->getMailSubject();
-        $this->Body = $this->getMailBody();
-        $this->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
+    public function __construct($userId=null, $emailTemplateName=null, $guestemail=null, $guestname=null, $guestsubject=null, $guestbody=null) {
+        parent::__construct();
         //Its for jebMarket user, who have account in jebMarket
         if($userId && $emailTemplateName) {
-            parent::__construct();
+            // Get Email Template
+            $this->_emailTemplate = EmailTemplate::model()->findByAttributes(array('name' => $emailTemplateName));
+            // Override PHPMailer Default Vars
+            $this->From = Yii::app()->params['supportEmail'];
+            $this->FromName = "JebMarket";
             // Get Associate User
             $this->_user = User::model()->findByPk($userId);
             $this->addAddress($this->_user->email, $this->_user->username);
+            $this->isHTML(true);
+            $this->initVars();
+            $this->Subject = $this->getMailSubject();
+            $this->Body = $this->getMailBody();
         }
-
-        //Its for guest user, who have no account in jebMarket
-        elseif(empty($userId) && !empty($guestemail)) {
-            parent::__construct();
+        //Its for guest user, who have no account in jebMarket (Respond email)
+        elseif(empty($userId) && !empty($guestemail) && empty($guestbody)) {
+            // Get Email Template
+            $this->_emailTemplate = EmailTemplate::model()->findByAttributes(array('name' => $emailTemplateName));
+            // Override PHPMailer Default Vars
+            $this->From = Yii::app()->params['supportEmail'];
+            $this->FromName = "JebMarket";
             $this->addAddress($guestemail, $guestname);
+            $this->isHTML(true);
+            $this->initVars();
+            $this->Subject = $this->getMailSubject();
+            $this->Body = $this->getMailBody();
         }
+        //Its for guest user, who have no account in jebMarket (Contact form email)
+        elseif(empty($userId) && !empty($guestbody)) {
+            // Override PHPMailer Default Vars
+            $this->From = $guestemail;
+            $this->FromName = $guestname;
+            $this->addAddress(Yii::app()->params['adminEmail'], "JebMarket");
+            $this->isHTML(true);
+            $this->initVars();
+            $this->Subject = $guestsubject;
+            $this->Body = $guestbody;
+        }
+        $this->AltBody = 'This is the body in plain text for non-HTML mail clients';
     }
 
     private function initVars() {
