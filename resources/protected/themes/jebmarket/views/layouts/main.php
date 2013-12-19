@@ -87,6 +87,17 @@
     ?>
 </div>
 <?php echo $content; ?>
+<?php
+//$tags = get_meta_tags('http://www.geobytes.com/IpLocator.htm?GetLocation&template=php3.txt&IpAddress=180.234.125.227');
+//print $tags['city'];  // city name
+//CVarDumper::dump($tags, 10, true);
+//echo "=======================";
+//Yii::import('ext.EGeoIP');
+//$geoIp = new EGeoIP();
+//$geoIp->locate(Yii::app()->request->userHost);
+//$geoIp->locate("180.234.125.227");
+//CVarDumper::dump($geoIp, 10, true);
+?>
 <div class="container">
     <footer class="footer">
         <p class="pull-right"><a class="footer-logo" href="#"><?php echo Yii::t('phrase', 'Back to top') ?></a></p>

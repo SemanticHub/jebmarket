@@ -41,6 +41,7 @@ class UserDetails extends CActiveRecord
 			array('f_name, l_name, organization, zip', 'length', 'max'=>100),
 			array('address1, address2, avater', 'length', 'max'=>255),
 			array('phone, fax', 'length', 'max'=>45),
+			array('phone, fax', 'numerical'),
 			array('location, zip, phone, fax, avater', 'safe'),
 			array('id, f_name, l_name, organization, address1, address2, location, zip, phone, fax, avater', 'safe', 'on'=>'search'),
 		);

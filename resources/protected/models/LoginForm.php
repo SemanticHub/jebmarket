@@ -22,7 +22,8 @@ class LoginForm extends CFormModel
     {
         return array(
             array('username, password', 'required'),
-            array('username', 'exist', 'className'=>'User'),
+            //array('username', 'exist', 'className'=>'User', 'criteria'=>array('condition'=>'username=:username || email=:username', 'params'=>array(':username'=>$this->username))),
+            array('username', 'validateUsername'),
             array('rememberMe', 'boolean'),
             array('password', 'authenticate'),
         );
@@ -37,6 +38,12 @@ class LoginForm extends CFormModel
             'username' => 'Username / Email',
             'rememberMe' => 'Remember me next time',
         );
+    }
+
+    public function validateUsername($attribute, $params){
+        $user = User::model()->findByAttributes(array('username' => $this->username));
+        if ($user === null) $user = User::model()->findByAttributes(array('email' => $this->username));
+        if ($user === null) $this->addError($attribute, 'user not exists');
     }
 
     /**

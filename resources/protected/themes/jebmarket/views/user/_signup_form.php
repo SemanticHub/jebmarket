@@ -14,15 +14,10 @@ $form = $this->beginWidget('CActiveForm', array(
         'errorCssClass' => 'has-error',
         'afterValidateAttribute' => new CJavaScriptExpression(
                 'function(form, attribute, data, hasError){
-                    if (console) console.log(form);
-                    if (console) console.log(attribute);
-                    if (console) console.log(data);
-                    if (console) console.log(hasError);
-                    $("#"+attribute.inputID).nextAll().remove();
-                    if(hasError) {
+                    $("#"+attribute.inputID).parent().find("span.glyphicon").remove();
+                    if(hasError == true) {
                         $("<span class=\"glyphicon glyphicon-remove glyphicon-has-error\"></span>").insertAfter($("#"+attribute.inputID));
                     } else {
-
                         $("<span class=\"glyphicon glyphicon-ok glyphicon-has-success\"></span>").insertAfter($("#"+attribute.inputID));
                     }
                 }'
