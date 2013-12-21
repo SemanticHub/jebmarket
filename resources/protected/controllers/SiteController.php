@@ -54,14 +54,20 @@ class SiteController extends Controller {
             $model->attributes = $_POST['ContactForm'];
             if ($model->validate()) {
 
-                /* Contact form email */
-                $contactmail = new JebMailer("","",$model->email, $model->name, $model->subject, $model->body);
+                // Contact form email
+                $contactmail = new JebMailer("",Yii::app()->params['contactusformemail']);
+                $contactmail->From = $model->email;
+                $contactmail->FromName = $model->name;
+                $contactmail->Subject = $model->subject.' '.$contactmail->Subject;
+                $contactmail->Body    = $model->body.'<br>'.$contactmail->Body;
+                $contactmail->addAddress(Yii::app()->params['adminEmail'], "JebMarket");
                 if (!$contactmail->send()) {
                     Yii::app()->user->setFlash('error', 'Mailer Error: ' . $contactmail->ErrorInfo);
                 }
 
-                /* Respond email after send Contact form */
-                $respondmail = new JebMailer("",Yii::app()->params['contactusconfirmationemail'],$model->email, $model->name);
+                // Respond email after send Contact form
+                $respondmail= new JebMailer("",Yii::app()->params['contactusconfirmationemail']);
+                $respondmail->addAddress($model->email, $model->name);
                 if (!$respondmail->send()) {
                     Yii::app()->user->setFlash('error', 'Mailer Error: ' . $respondmail->ErrorInfo);
                 }
