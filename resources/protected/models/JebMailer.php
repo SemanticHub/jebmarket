@@ -96,7 +96,7 @@ class JebMailer extends PHPMailer{
         $this->_vars['application_name']['value'] = Yii::app()->name;
         $this->_vars['date']['value'] = Yii::app()->dateFormatter->formatDateTime(date("Y-m-d H:i:s"), 'long', null);
         $this->_vars['date_time']['value'] = Yii::app()->dateFormatter->formatDateTime(date("Y-m-d H:i:s"), 'medium', 'short');
-        $this->_vars['logo']['value'] =  CHtml::image(Yii::app()->request->getBaseUrl(true).'/images/logo.png');
+        $this->_vars['logo']['value'] =  CHtml::image(Yii::app()->request->getBaseUrl(true).'/media/logo.png');
     }
 
     public function getVars(){
