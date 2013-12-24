@@ -51,21 +51,21 @@ $this->pageTitle = Yii::app()->name . ' - Contact Us';
     <div class="form-group">
         <?php echo $form->labelEx($model, 'name', array('class' => 'control-label col-lg-3')); ?>
         <div class="col-lg-9">
-            <?php echo $form->textField($model, 'name', array('class' => 'form-control')); ?>
+            <?php echo $form->textField($model, 'name', array('maxlength' => 80, 'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'name', array('class' => 'text-danger control-hint')); ?>
         </div>
     </div>
     <div class="form-group">
         <?php echo $form->labelEx($model, 'email', array('class' => 'control-label col-lg-3')); ?>
         <div class="col-lg-9">
-            <?php echo $form->textField($model, 'email', array('class' => 'form-control')); ?>
+            <?php echo $form->textField($model, 'email', array('maxlength' => 80, 'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'email', array('class' => 'text-danger control-hint')); ?>
         </div>
     </div>
     <div class="form-group">
         <?php echo $form->labelEx($model, 'subject', array('class' => 'control-label col-lg-3')); ?>
         <div class="col-lg-9">
-            <?php echo $form->textField($model, 'subject', array('size' => 60, 'maxlength' => 128, 'class' => 'form-control')); ?>
+            <?php echo $form->textField($model, 'subject', array('maxlength' => 255, 'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'subject', array('class' => 'text-danger control-hint')); ?>
         </div>
     </div>
