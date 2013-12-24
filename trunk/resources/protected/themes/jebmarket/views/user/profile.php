@@ -67,49 +67,34 @@ $this->menu['profile']['active'] = true;
     </div>
 
     <div class="col-md-4">
-        <div class="panel panel-info">
-            <div
-                class="panel-heading"><?php echo Yii::t('phrase', '<span class="glyphicon glyphicon-info-sign"></span> Quick Info.') ?></div>
+        <div class="panel panel-default" style="min-height: 153px;">
+            <div class="panel-heading"><?php echo Yii::t('phrase', 'Profile Image.') ?></div>
             <table class="table table-view">
                 <tr>
-                    <th>
-                        <?php echo $model->getAttributeLabel('activationstatus') ?>
-                    </th>
-                    <td>
-                        <?php echo ($model->activationstatus == 1) ? "<span class=\"glyphicon glyphicon-ok\"></span>" : "<span class=\"glyphicon glyphicon-remove\"></span>" ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <?php echo $model->getAttributeLabel('joined') ?>
-                    </th>
-                    <td>
-                        <?php echo Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($model->getAttribute('joined'), 'yyyy-MM-dd hh:mm:ss'), 'medium', 'medium'); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <?php echo $model->getAttributeLabel('last_login') ?>
-                    </th>
-                    <td>
-                        <?php echo Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($model->getAttribute('last_login'), 'yyyy-MM-dd hh:mm:ss'), 'medium', 'medium'); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <?php echo $model->getAttributeLabel('timezone') ?>
-                    </th>
-                    <td>
-                        <?php
-                        $this->widget('editable.EditableField', array(
-                            'type' => 'text',
-                            'model' => $model,
-                            'attribute' => 'timezone',
-                            'url' => $this->createUrl('user/edit'),
-                            'placement' => 'right',
+                    <img id='avater_image' src="<?php echo $userdetails->avater ? Yii::app()->baseUrl.'/'.Yii::app()->params['avateruploadPath'].'/'.$userdetails->avater : UserDetails::model()->gravatar($model->email,'110'); ?>" alt="" />
+                    <?php
+                    $this->widget('ext.JebUpload.JebUpload',
+                        array(
+                            'id'=>'uploadFile',
+                            'config'=>array(
+                                'action'=>Yii::app()->createUrl('userdetails/uploadavater/'.$model->user_details_id),
+                                'allowedExtensions'=>array("jpg", "jpeg", "gif", "png"),//array("jpg","jpeg","gif","exe","mov" and etc...
+                                'sizeLimit'=>1024*1024* 5,// maximum file size in 50MB
+                                'minSizeLimit'=>10*1024,// minimum file size in 10KB
+                                'onSubmit'=>"js:function(file, extension) {
+                                    $('div.preview').addClass('loading');
+                                  }",
+                                'onComplete'=>"js:function(file, response, responseJSON) {
+                                  $('#avater_image').load(function(){
+                                    $('div.preview').removeClass('loading');
+                                    $('#avater_image').unbind();
+                                    $('#Associazioni_logo').val(responseJSON['filename']);
+                                  });
+                                  $('#avater_image').attr('src', '".Yii::app()->baseUrl."/".Yii::app()->params['avateruploadPath']."'+responseJSON['filename']);
+                                }",
+                            )
                         ));
-                        ?>
-                    </td>
+                    ?>
                 </tr>
             </table>
         </div>
@@ -180,6 +165,55 @@ $this->menu['profile']['active'] = true;
                             'model' => $model,
                             'attribute' => 'userDetails.fax',
                             'url' => $this->createUrl('userDetails/edit'),
+                            'placement' => 'right',
+                        ));
+                        ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-info">
+            <div
+                class="panel-heading"><?php echo Yii::t('phrase', '<span class="glyphicon glyphicon-info-sign"></span> Quick Info.') ?></div>
+            <table class="table table-view">
+                <tr>
+                    <th>
+                        <?php echo $model->getAttributeLabel('activationstatus') ?>
+                    </th>
+                    <td>
+                        <?php echo ($model->activationstatus == 1) ? "<span class=\"glyphicon glyphicon-ok\"></span>" : "<span class=\"glyphicon glyphicon-remove\"></span>" ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <?php echo $model->getAttributeLabel('joined') ?>
+                    </th>
+                    <td>
+                        <?php echo Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($model->getAttribute('joined'), 'yyyy-MM-dd hh:mm:ss'), 'medium', 'medium'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <?php echo $model->getAttributeLabel('last_login') ?>
+                    </th>
+                    <td>
+                        <?php echo Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($model->getAttribute('last_login'), 'yyyy-MM-dd hh:mm:ss'), 'medium', 'medium'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <?php echo $model->getAttributeLabel('timezone') ?>
+                    </th>
+                    <td>
+                        <?php
+                        $this->widget('editable.EditableField', array(
+                            'type' => 'text',
+                            'model' => $model,
+                            'attribute' => 'timezone',
+                            'url' => $this->createUrl('user/edit'),
                             'placement' => 'right',
                         ));
                         ?>

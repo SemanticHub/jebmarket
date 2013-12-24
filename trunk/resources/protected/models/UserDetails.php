@@ -39,10 +39,17 @@ class UserDetails extends CActiveRecord
 	{
 		return array(
 			array('f_name, l_name, organization, zip', 'length', 'max'=>100),
-			array('address1, address2, avater', 'length', 'max'=>255),
+			array('address1, address2', 'length', 'max'=>255),
 			array('phone, fax', 'length', 'max'=>45),
 			array('phone, fax', 'numerical'),
 			array('location, zip, phone, fax, avater', 'safe'),
+            array('avater',
+                'file',
+                'allowEmpty' => true,
+                'types' => 'jpg, jpeg, gif, png',
+                'maxSize' => 1024 * 1024 * 5, // 50MB
+                'tooLarge' => 'The file was larger than 5MB. Please upload a smaller file.',
+            ),
 			array('id, f_name, l_name, organization, address1, address2, location, zip, phone, fax, avater', 'safe', 'on'=>'search'),
 		);
 	}
@@ -108,6 +115,29 @@ class UserDetails extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * Get either a Gravatar URL or complete image tag for a specified email address.
+     * string $email The email address
+     * string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+     * string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+     * string $r Maximum rating (inclusive) [ g | pg | r | x ]
+     * boole $img True to return a complete IMG tag False for just the URL
+     * array $atts Optional, additional key/value attributes to include in the IMG tag
+     * String containing either just a URL or a complete image tag
+     */
+    public function gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+        $url = 'http://www.gravatar.com/avatar/';
+        $url .= md5( strtolower( trim( $email ) ) );
+        $url .= "?s=$s&d=$d&r=$r";
+        if ( $img ) {
+            $url = '<img src="' . $url . '"';
+            foreach ( $atts as $key => $val )
+                $url .= ' ' . $key . '="' . $val . '"';
+            $url .= ' />';
+        }
+        return $url;
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.
