@@ -596,7 +596,7 @@ form .alert {
     text-align: center;
 }
 #avater_image{
-    width: 110px;
+    height: 110px;
     float: left;
 }
 #uploadFile{

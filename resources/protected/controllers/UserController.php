@@ -158,7 +158,8 @@ class UserController extends Controller {
      */
     public function actionProfile() {
         $model = User::model()->findByPk(Yii::app()->user->id);
-        $this->render('profile', array('model' => $model));
+        $userdetails = UserDetails::model()->findByPk($model->user_details_id);
+        $this->render('profile', array('model' => $model, 'userdetails' => $userdetails));
     }
 
     /**

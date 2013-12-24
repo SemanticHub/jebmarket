@@ -57,6 +57,23 @@ class UserDetailsController extends Controller
         $es->update();
     }
 
+    public function actionUploadavater($id)
+    {
+        $model=$this->loadModel($id);
+        Yii::import("ext.JebUpload.JebFileUploader");
+        $folder = Yii::app()->params['avateruploadPath'];// folder for uploaded files
+        $allowedExtensions = array("jpg", "jpeg", "gif", "png");//array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = 1024 * 1024 * 5;// maximum file size in 50MB
+        $uploader = new JebFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($folder);
+        $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        $fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
+        $fileName = $result['filename'];//GETTING FILE NAME
+        $model->avater = $fileName;
+        if($model->save())
+        echo $return;
+    }
+
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
