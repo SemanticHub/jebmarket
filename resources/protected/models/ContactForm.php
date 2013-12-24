@@ -16,7 +16,10 @@ class ContactForm extends CFormModel {
 	public function rules() {
 		return array(
 			array('name, email, subject, body', 'required'),
-			array('email', 'email'),
+			array('name', 'length', 'max' => 80),
+            array('subject', 'length', 'max' => 255),
+            array('email', 'email'),
+            array('email', 'length', 'max' => 80),
 			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
 		);
 	}
