@@ -77,7 +77,7 @@ $this->menu['profile']['active'] = true;
                         array(
                             'id'=>'uploadFile',
                             'config'=>array(
-                                'action'=>Yii::app()->createUrl('userdetails/uploadavater/'.$model->user_details_id),
+                                'action'=>Yii::app()->createUrl('UserDetails/Uploadavater/'.$model->user_details_id),
                                 'allowedExtensions'=>array("jpg", "jpeg", "gif", "png"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                 'sizeLimit'=>1024*1024* 5,// maximum file size in 50MB
                                 'minSizeLimit'=>10*1024,// minimum file size in 10KB
