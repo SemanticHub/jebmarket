@@ -28,20 +28,13 @@ class Slider extends CActiveRecord {
      */
     public function rules() {
         return array(
-            array('headline, content', 'required'),
+            array('headline, content, image', 'required'),
             array('image', 'unique', 'message' => 'Image name already used, please change the image name.'),
             array('order', 'numerical', 'integerOnly' => true),
             array('headline', 'length', 'max' => 255),
             array('tag, class', 'length', 'max' => 45),
             array('content', 'safe'),
             array('id, headline, content, tag, order, class', 'safe', 'on' => 'search'),
-            array('image',
-                  'file',
-                  'allowEmpty' => true,
-                  'types' => 'jpg, jpeg, gif, png',
-                  'maxSize' => 1024 * 1024 * 5, // 50MB
-                  'tooLarge' => 'The file was larger than 5MB. Please upload a smaller file.',
-            ),
         );
     }
 
@@ -92,33 +85,6 @@ class Slider extends CActiveRecord {
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
-    }
-
-    public function beforeSave() {
-        $uploadPath = Yii::getPathOfAlias('webroot') .DIRECTORY_SEPARATOR . Yii::app()->params['sliderImageUrl'];
-        if (is_object($this->image)) {
-            $this->image->saveAs($uploadPath . $this->image->name);
-            if (!empty($this->oldSlideImage)) {
-                $delete = Yii::app()->params['uploadPath'] . '/' . $this->oldSlideImage;
-                //$delete = $uploadPath . $this->oldSlideImage;
-                if (file_exists($delete))
-                    unlink($delete);
-            }
-        }
-        if (empty($this->image) && !empty($this->oldSlideImage))
-            $this->image = $this->oldSlideImage;
-        return parent::beforeSave();
-    }
-
-    public function afterDelete() {
-        $this->deleteImage();
-        return parent::afterDelete();
-    }
-
-    public function deleteImage() {
-        $image = $this->image;
-        $uploadPath = Yii::app()->params['sliderImageUrl'];
-        return unlink($uploadPath . $image);
     }
 
     /**

@@ -65,7 +65,7 @@ class UserDetailsController extends Controller
         $allowedExtensions = array("jpg", "jpeg", "gif", "png");//array("jpg","jpeg","gif","exe","mov" and etc...
         $sizeLimit = 1024 * 1024 * 5;// maximum file size in 50MB
         $uploader = new JebFileUploader($allowedExtensions, $sizeLimit);
-        $result = $uploader->handleUpload($folder);
+        $result = $uploader->handleUpload($folder, $replaceOldFile = TRUE, $newfilename = TRUE );
         $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
         $fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
         $fileName = $result['filename'];//GETTING FILE NAME

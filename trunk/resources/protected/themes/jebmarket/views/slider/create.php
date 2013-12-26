@@ -6,4 +6,4 @@ $this->menu=array(
 );
 ?>
 <h1 class="page-title">Create a Slider Slide</h1>
-<?php $this->renderPartial('_form', array('model'=>$model, 'upload'=> $upload)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model)); ?>
