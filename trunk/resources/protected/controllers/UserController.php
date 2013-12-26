@@ -204,12 +204,11 @@ class UserController extends Controller {
 
             Yii::import('ext.JebGeo');
             $geo = new JebGeo();
-            $geo->setIp('180.234.241.160'); // optional if not set use user ip
+            //$geo->setIp('180.234.241.160'); // optional if not set use user ip
             $data = $geo->fetch();
             if(!empty($data['timezoneId']))
                 $model->timezone = $data['timezoneId'];
-            //CVarDumper::dump($model, 10, true); echo $model->validate();
-            //CVarDumper::dump($model->validate(), 10, true);  exit();
+
             if (!$model->validate()) $model->password = "";
 
             if ($model->userDetails->save()) {
