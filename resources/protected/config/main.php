@@ -3,12 +3,16 @@
 Yii::setPathOfAlias('editable', dirname(__FILE__).'/../extensions/x-editable');
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'JebMarket',
+    'charset' => 'UTF-8',
+    'id' => 'com.jebmarket.webapp',
+    'language' => 'en_gb',
     'sourceLanguage'=>'en_us',
-    'language' => 'en',
+    'name' => 'JebMarket',
+    'timeZone'=>'UTC', # for PHP
     'theme' => 'jebmarket',
-    //'preload' => array('log'),
+    # 'preload' => array('log'),
     # autoloading model and component classes
+    # ---------------------------------------
     'import' => array(
         'application.models.*',
         'application.components.*',
@@ -18,12 +22,14 @@ return array(
      ),
     'modules' => array(
         # Gii tool
+        # -----------
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'mustbedisableonproduction',
             'ipFilters' => array('*', '::1'),
         ),
         # Authorization Rights
+        # --------------------
         'rights'=>array(
             'superuserName' => 'JebAdmin',
             'authenticatedName' => 'Registered',
@@ -36,22 +42,28 @@ return array(
             'enableBizRule'=>false,
             'enableBizRuleData'=>false,
             'debug'=>false,
-            // For Installer
-            //'install'=> true,
-            //'superUsers'=>array(
-            // 40=>'jebadmin',
-            // ),
+            # For Installer
+            # 'install'=> true,
+            # 'superUsers'=>array(
+            # 40=>'jebadmin',
+            # ),
         )
     ),
     'components' => array(
+        # Theme
+        # ------------------
         'themeManager' => array(
             'basePath' => dirname(__FILE__) . '/../themes',
         ),
+        # jQuery
+        # ---------------------
         'clientScript' => array(
             'scriptMap' => array(
                 'jquery.min.js' => 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
             ),
         ),
+        # In-place Edit
+        # ---------------
         'editable' => array(
             'class'     => 'editable.EditableConfig',
             'form'      => 'plain',
@@ -60,15 +72,19 @@ return array(
                 'emptytext' => 'Click to Add'
             )
         ),
+        # User
+        # --------
         'user' => array(
             'allowAutoLogin' => true,
             'class' => 'RWebUser',
             'guestName' => 'Guest',
         ),
+        # Hit Counter for dashboard, can be removed or replaces with pwik
         'counter' => array(
             'class' => 'UserCounter',
         ),
         # SEF URL
+        # ----------
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,
@@ -85,16 +101,19 @@ return array(
             ),
         ),
         # Database Access
+        # ---------------
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
             'emulatePrepare' => true,
-            //'username' => 'root',
-            //'password' => '1234',
+            #'username' => 'root',
+            #'password' => '1234',
             'username' => 'jassifie_yiijeb',
             'password' => '99.9%available',
             'charset' => 'utf8',
+            'initSQLs'=>array("set time_zone='+00:00';"),
         ),
         # Authorization Manager
+        # ------------------------
         'authManager' => array(
             'class' => 'RDbAuthManager',
             'connectionID' => 'db',
@@ -104,11 +123,13 @@ return array(
             'rightsTable' => 'jebapp_rights',
             'defaultRoles' => array('Guest'),
         ),
-        # Default Error Handler
+        # Default Error Handler (controller/action)
+        # ------------------------
         'errorHandler' => array(
             'errorAction' => 'site/error',
         ),
         # Application Log
+        # -----------------
         'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
@@ -124,6 +145,7 @@ return array(
         ),
     ),
     # Application-level parameters, Yii::app()->params['paramName']
+    # -------------------------------------------------------------
     'params' => array(
         'sitemenu' => array(
             'site/contact' => 'Contact',
@@ -161,7 +183,8 @@ return array(
             'userTwitter'=> array('name' => 'userTwitter', 'title' => 'Twitter ', 'sticky' => false),
             'userFacebook'=> array('name' => 'userFacebook', 'title' => 'Facebook', 'sticky' => false),
         ),
-        // ISO 639-1 Language Codes
+        # ISO 639-1 Language Codes
+        # -------------------------
         'lang' => array(
             'aa' => 'Afar',
             'ab' => 'Abkhaz',

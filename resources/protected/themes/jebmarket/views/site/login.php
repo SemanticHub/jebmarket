@@ -28,7 +28,7 @@ $this->pageTitle = Yii::app()->name . ' - Login';
                 'errorCssClass' => 'has-error',
                 'afterValidateAttribute' => new CJavaScriptExpression(
                         'function(form, attribute, data, hasError){
-                            $("#"+attribute.inputID).parent().find("span.required").nextAll().remove(););
+                            $("#"+attribute.inputID).parent().find("span.required").nextAll().remove();
                             if(hasError == true) {
                                 $("<span class=\"glyphicon glyphicon-remove\"></span>").insertAfter($("#"+attribute.inputID).parent().find("span.required"));
                             } else {

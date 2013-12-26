@@ -170,7 +170,6 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
                 url: "<?php echo $this->createUrl('location/levels'); ?>",
                 data: { location_id: $(this).val() }
             }).done(function (data) {
-                    //if(console) console.log(data);
                     $('#location-level-view').empty();
                     var wrapper = $('<div/>').attr('class', 'col-xs-4');
                     $(data).appendTo(wrapper);
@@ -189,10 +188,8 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
                         $(data).appendTo(wrapper);
                         $(wrapper).appendTo($('#location-level-view'));
                     } else {
-                        // alert('that was last');
                         $('#location-level-view select').last().attr('name', 'UserDetails[location]');
                     }
-                    //if(console) console.log(data);
                 });
         });
     });
