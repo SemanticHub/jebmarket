@@ -28,6 +28,11 @@
         <li class="list-group-item"><label><?php echo Yii::t('phrase', $user->getAttributeLabel('status'));  ?>: </label>
             <span class="badge"><?php echo Yii::t('phrase', ($user->status == 1) ? "<span class=\"glyphicon glyphicon-ok\"></span>" : "<span class=\"glyphicon glyphicon-remove\"></span>"); ?></span>
         </li>
+        <?php if($user->timezone) { ?>
+        <li class="list-group-item"><label><?php echo Yii::t('phrase', 'Local time');  ?>: </label>
+            <span class="badge"><?php date_default_timezone_set($user->timezone);  echo date("Y-m-d h:iA"); ?></span>
+        </li>
+        <?php } ?>
     </ul>
 </div>
 </div>

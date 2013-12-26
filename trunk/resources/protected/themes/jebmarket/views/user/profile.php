@@ -67,8 +67,8 @@ $this->menu['profile']['active'] = true;
     </div>
 
     <div class="col-md-4">
-        <div class="panel panel-default" style="min-height: 153px;">
-            <div class="panel-heading"><?php echo Yii::t('phrase', 'Profile Image.') ?></div>
+        <div class="panel panel-info" style="min-height: 153px;">
+            <div class="panel-heading"><?php echo Yii::t('phrase', '<span class="glyphicon glyphicon-picture"></span> Profile Image.') ?></div>
             <table class="table table-view">
                 <tr>
                     <img id='avater_image' src="<?php echo $userdetails->avater ? Yii::app()->baseUrl.'/'.Yii::app()->params['avateruploadPath'].'/'.$userdetails->avater : UserDetails::model()->gravatar($model->email,'110'); ?>" alt="" />
@@ -209,12 +209,18 @@ $this->menu['profile']['active'] = true;
                     </th>
                     <td>
                         <?php
+                        Yii::import('ext.JebHelper');
                         $this->widget('editable.EditableField', array(
-                            'type' => 'text',
+                            'type' => 'select2',
+                            'mode' => 'popup',
                             'model' => $model,
                             'attribute' => 'timezone',
                             'url' => $this->createUrl('user/edit'),
-                            'placement' => 'right',
+                            'source' => Editable::source(JebHelper::listTimezone()),
+                            'placement' => 'left',
+                            'select2'   => array(
+                                'width' => '250px'
+                            )
                         ));
                         ?>
                     </td>

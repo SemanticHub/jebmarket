@@ -201,7 +201,17 @@ class UserController extends Controller {
             $model->activationstatus = '0';
             $model->status = '1';
             $model->activationcode = $model->generateActivationCode($model->email, $model->salt);
+
+            Yii::import('ext.JebGeo');
+            $geo = new JebGeo();
+            $geo->setIp('180.234.241.160'); // optional if not set use user ip
+            $data = $geo->fetch();
+            if(!empty($data['timezoneId']))
+                $model->timezone = $data['timezoneId'];
+            //CVarDumper::dump($model, 10, true); echo $model->validate();
+            //CVarDumper::dump($model->validate(), 10, true);  exit();
             if (!$model->validate()) $model->password = "";
+
             if ($model->userDetails->save()) {
                 $model->user_details_id = $model->userDetails->id;
                 if ($model->save()) {

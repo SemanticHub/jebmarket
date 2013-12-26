@@ -66,15 +66,23 @@ class JebGeo
 
     protected $_service_geoplugin = 'http://www.geoplugin.net/php.gp?ip={IP}&base_currency={CURRENCY}';
 
+    protected $_service_geonames = 'http://api.geonames.org/timezoneJSON?lat={LAT}&lng={LNG}&username=jebzone';
+
     protected $_ip;
 
     protected $_data_geobytes;
 
     protected $_data_geoplugin;
 
+    protected $_data_geonames;
+
     protected $_data;
 
     protected $_base_currency = 'USD';
+
+    /*
+     *
+     */
 
     function __construct()
     {
@@ -82,21 +90,35 @@ class JebGeo
 
     }
 
+    /*
+     *
+     */
     public function fetch()
     {
-        $this->_data_geobytes = $this->fetchGeoBytesData();
         $this->_data_geoplugin = $this->fetchGeoPluginData();
-        $this->_data = array_merge($this->_data_geobytes, $this->_data_geoplugin);
+
+        if(!empty($this->_data_geoplugin['latitude']) && !empty($this->_data_geoplugin['longitude'])) {
+            $this->_data_geonames = $this->fetchGeoNameData($this->_data_geoplugin['latitude'],$this->_data_geoplugin['longitude'] );
+        }
+
+        $this->_data = array_merge($this->_data_geoplugin, $this->_data_geonames);
+        return $this->_data;
     }
 
-    protected function fetchGeoBytesData()
+    /*
+     *
+     */
+    public function fetchGeoBytesData()
     {
         $this->_service_geobytes = str_replace('{IP}',$this->_ip, $this->_service_geobytes);
         $tags = get_meta_tags($this->_service_geobytes);
         return $tags;
     }
 
-    protected function fetchGeoPluginData(){
+    /*
+     *
+     */
+    public function fetchGeoPluginData(){
         $tags = array();
         $this->_service_geoplugin = str_replace('{IP}',$this->_ip, $this->_service_geoplugin);
         $this->_service_geoplugin = str_replace('{CURRENCY}', $this->_base_currency, $this->_service_geoplugin);
@@ -106,6 +128,19 @@ class JebGeo
             $tags[str_replace('geoplugin_', '', $k)] = $v;
         }
         return $tags;
+    }
+
+    /*
+     * @return mixed
+     */
+    protected function fetchGeoNameData($lat, $lng) {
+        $this->_service_geonames = str_replace('{LAT}',$lat, $this->_service_geonames);
+        $this->_service_geonames = str_replace('{LNG}',$lng, $this->_service_geonames);
+        if($tz = file_get_contents($this->_service_geonames)) {
+            return json_decode(utf8_encode($tz), true);
+        } else {
+            return false;
+        }
     }
 
 
@@ -150,25 +185,4 @@ class JebGeo
     {
         return $this->_base_currency;
     }
-
-
-    /**
-     * @return mixed
-     */
-    public function getDataGeobytes()
-    {
-        return $this->_data_geobytes;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getDataGeoplugin()
-    {
-        return $this->_data_geoplugin;
-    }
-
-
-
 }
