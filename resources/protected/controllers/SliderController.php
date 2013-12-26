@@ -34,17 +34,34 @@ class SliderController extends Controller {
         $model = new Slider;
         if (isset($_POST['Slider'])) {
             $model->attributes = $_POST['Slider'];
-            
-            $model->image = CUploadedFile::getInstance($model,'image');
-            
             if ($model->validate()) {
                 if ($model->save()) {
+                    $uploadPath = Yii::getPathOfAlias('webroot') .DIRECTORY_SEPARATOR . Yii::app()->params['sliderImageUrl'];
+                    if (file_exists($uploadPath.'tmp/'.$model->image)){
+                        copy($uploadPath.'tmp/'.$model->image,$uploadPath.$model->image);
+                        unlink($uploadPath.'tmp/'.$model->image);
+                    }
+
                     Yii::app()->user->setFlash('success', 'New Slide Saved Successfully.');
                     $this->redirect(array('view', 'id' => $model->id));
                 }
             }
         }
         $this->render('create', array('model' => $model,));
+    }
+
+    public function actionUploadslider()
+    {
+        Yii::import("ext.JebUpload.JebFileUploader");
+        $folder = Yii::app()->params['sliderImageUrl']."tmp/";// folder for uploaded files
+        $allowedExtensions = array("jpg", "jpeg", "gif", "png");//array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = 1024 * 1024 * 5;// maximum file size in 50MB
+        $uploader = new JebFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($folder, $replaceOldFile = TRUE, $newfilename = FALSE );
+        $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        $fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
+        $fileName = $result['filename'];//GETTING FILE NAME
+        echo $return;
     }
 
     /**
@@ -54,19 +71,27 @@ class SliderController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-        if($model->image) $model->oldSlideImage = $model->image;
-        $model->image = CUploadedFile::getInstance($model,'image');
+        $model->oldSlideImage = $model->image;
 
         if (isset($_POST['Slider'])) {
             $model->attributes = $_POST['Slider'];
-            if($model->image) {
-               $model->image = CUploadedFile::getInstance($model,'image'); 
-            } else {
-                unset($model->image);
-                $model->oldSlideImage = null;
-            }
-            
+
             if ($model->save())
+                $uploadPath = Yii::getPathOfAlias('webroot') .DIRECTORY_SEPARATOR . Yii::app()->params['sliderImageUrl'];
+                if($model->image != $model->oldSlideImage) {
+                    if (file_exists($uploadPath.$model->oldSlideImage)){
+                        unlink($uploadPath.$model->oldSlideImage);
+                    }
+                    if (file_exists($uploadPath.'tmp/'.$model->image)){
+                        copy($uploadPath.'tmp/'.$model->image,$uploadPath.$model->image);
+                        unlink($uploadPath.'tmp/'.$model->image);
+                    }
+                }else{
+                    if (file_exists($uploadPath.'tmp/'.$model->image)){
+                        copy($uploadPath.'tmp/'.$model->image,$uploadPath.$model->image);
+                        unlink($uploadPath.'tmp/'.$model->image);
+                    }
+                }
                 $this->redirect(array('view', 'id' => $model->id));
         }
         

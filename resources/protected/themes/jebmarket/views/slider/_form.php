@@ -36,21 +36,35 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->labelEx($model, 'image', array('class' => 'control-label col-lg-3')); ?>
         <div class="col-lg-9">
             <div class="fileupload fileupload-new" data-provides="fileupload">
-                <div>
-                <span class="btn btn-warning btn-file">
-                    <span class="fileupload-new">Select image</span>
-                    <span class="fileupload-exists">Change</span>
-                    <?php echo $form->FileField($model, 'image'); ?>
-                </span>
-                    <a href="#" class="btn btn-warning fileupload-exists" data-dismiss="fileupload">Remove</a>
+                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px; float: left;">
+                    <img id="slider_image_img" src="<?php echo ($model->image)?Yii::app()->baseUrl.'/' . Yii::app()->params['sliderImageUrl'].$model->image:'http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image' ?>"/>
                 </div>
-                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                    <img src="<?php echo ($model->oldSlideImage)?Yii::app()->baseUrl.'/' . Yii::app()->params['sliderImageUrl'].$model->oldSlideImage:'http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image' ?>"/>
-                </div>
-                <div class="fileupload-preview fileupload-exists thumbnail"
-                     style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                <?php
+                $this->widget('ext.JebUpload.JebUpload',
+                    array(
+                        'id'=>'uploadFile',
+                        'config'=>array(
+                            'action'=>Yii::app()->createUrl('slider/Uploadslider'),
+                            'allowedExtensions'=>array("jpg", "jpeg", "gif", "png"),//array("jpg","jpeg","gif","exe","mov" and etc...
+                            'sizeLimit'=>1024*1024* 5,// maximum file size in 50MB
+                            'minSizeLimit'=>10*1024,// minimum file size in 10KB
+                            'onSubmit'=>"js:function(file, extension) {
+                                    $('div.preview').addClass('loading');
+                                  }",
+                            'onComplete'=>"js:function(file, response, responseJSON) {
+                                  $('#slider_image_img').load(function(){
+                                    $('div.preview').removeClass('loading');
+                                    $('#slider_image_img').unbind();
+                                    $('#Slider_image').val(responseJSON['filename']);
+                                    $('#Associazioni_logo').val(responseJSON['filename']);
+                                  });
+                                  $('#slider_image_img').attr('src', '".Yii::app()->baseUrl."/".Yii::app()->params['sliderImageUrl']."tmp/'+responseJSON['filename']);
+                                }",
+                        )
+                    ));
+                ?>
             </div>
-            <?php echo $form->error($model, 'image', array('class' => 'text-danger control-hint')); ?>
+            <?php echo $form->textField($model, 'image', array('style'=>'display: none;')); ?>
         </div>
     </div>
 
@@ -87,5 +101,3 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <?php $this->endWidget(); ?>
 </div>
-
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/app.js"></script>

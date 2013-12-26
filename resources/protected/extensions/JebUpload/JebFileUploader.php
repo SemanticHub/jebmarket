@@ -104,7 +104,7 @@ class JebFileUploader {
     /**
      * Returns array('success'=>true) or array('error'=>'error message')
      */
-    function handleUpload($uploadDirectory, $replaceOldFile = FALSE){
+    function handleUpload($uploadDirectory, $replaceOldFile = FALSE, $newfilename = TRUE){
         if (!is_writable($uploadDirectory)){
             return array('error' => "Server error. Upload directory isn't writable.");
         }
@@ -124,8 +124,14 @@ class JebFileUploader {
         }
 
         $pathinfo = pathinfo($this->file->getName());
-        $filename = Yii::app()->user->name;
+        //$filename = $pathinfo['filename'];
+        //$filename = Yii::app()->user->name;
         //$filename = md5(uniqid());
+        if($newfilename){
+            $filename = Yii::app()->user->name;
+        }else{
+            $filename = $pathinfo['filename'];
+        }
         $ext = $pathinfo['extension'];
 
         if($this->allowedExtensions && !in_array(strtolower($ext), $this->allowedExtensions)){
@@ -133,12 +139,12 @@ class JebFileUploader {
             return array('error' => 'File has an invalid extension, it should be one of '. $these . '.');
         }
 
-        /*if(!$replaceOldFile){
+        if(!$replaceOldFile){
             /// don't overwrite previous files that were uploaded
             while (file_exists($uploadDirectory . $filename . '.' . $ext)) {
                 $filename .= rand(10, 99);
             }
-        }*/
+        }
 
         if ($this->file->save($uploadDirectory . $filename . '.' . $ext)){
             return array('success'=>true,'filename'=>$filename.'.'.$ext);
