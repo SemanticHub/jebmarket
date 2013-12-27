@@ -9,6 +9,7 @@ $form = $this->beginWidget('CActiveForm', array(
         'role' => 'form'
     ),
     'clientOptions' => array(
+        'validateOnSubmit'=>true,
         'inputContainer' => 'div.form-group',
         'successCssClass' => 'has-success',
         'errorCssClass' => 'has-error',
