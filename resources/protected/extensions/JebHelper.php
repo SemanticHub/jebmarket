@@ -27,11 +27,12 @@ class JebHelper {
         }
 
         // Sort the array by offset,identifier ascending
-        usort($tempTimezones, function($a, $b) {
+        /*usort($tempTimezones, function($a, $b) {
             return ($a['offset'] == $b['offset'])
                 ? strcmp($a['identifier'], $b['identifier'])
                 : $a['offset'] - $b['offset'];
-        });
+        });*/
+        usort($tempTimezones, array("JebHelper", "sortByIdentifier"));
 
         $timezoneList = array();
         foreach ($tempTimezones as $tz) {
@@ -42,6 +43,10 @@ class JebHelper {
         }
 
         return $timezoneList;
+    }
+
+    public static function sortByIdentifier($a, $b){
+        return ($a['offset'] == $b['offset']) ? strcmp($a['identifier'], $b['identifier']) : $a['offset'] - $b['offset'];
     }
 
     /*
@@ -63,7 +68,6 @@ class JebHelper {
             {
                 foreach ($abbr as $city)
                 {
-                    CVarDumper::dump($city, 10, true);
                     if ((bool)$city['dst'] === (bool)$isDst &&
                         strlen($city['timezone_id']) > 0    &&
                         $city['offset'] == $offset)
