@@ -101,7 +101,7 @@ class JebGeo
             $this->_data_geonames = $this->fetchGeoNameData($this->_data_geoplugin['latitude'],$this->_data_geoplugin['longitude'] );
         }
 
-        $this->_data = array_merge($this->_data_geoplugin, $this->_data_geonames);
+        $this->_data = array_merge(is_array($this->_data_geoplugin) ? $this->_data_geoplugin: array(), is_array($this->_data_geonames) ? $this->_data_geonames : array());
         return $this->_data;
     }
 
@@ -122,7 +122,9 @@ class JebGeo
         $tags = array();
         $this->_service_geoplugin = str_replace('{IP}',$this->_ip, $this->_service_geoplugin);
         $this->_service_geoplugin = str_replace('{CURRENCY}', $this->_base_currency, $this->_service_geoplugin);
-        $gTags = unserialize(file_get_contents($this->_service_geoplugin, 'r'));
+        if( $d = file_get_contents($this->_service_geoplugin, 'r')) {
+            $gTags = unserialize($d);
+        }
 
         foreach ($gTags as $k => $v) {
             $tags[str_replace('geoplugin_', '', $k)] = $v;

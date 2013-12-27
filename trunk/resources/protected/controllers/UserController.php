@@ -209,19 +209,21 @@ class UserController extends Controller {
             if(!empty($data['timezoneId']))
                 $model->timezone = $data['timezoneId'];
 
-            if (!$model->validate()) $model->password = "";
-
-            if ($model->userDetails->save()) {
-                $model->user_details_id = $model->userDetails->id;
-                if ($model->save()) {
-                    Rights::assign(Rights::module()->authenticatedName, $model->id);
-                    $mail = new JebMailer($model->id, Yii::app()->params['signupEmailTemplate']);
-                    if (!$mail->send()) {
-                        Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
+            if ($model->validate()) {
+                if ($model->userDetails->save()) {
+                    $model->user_details_id = $model->userDetails->id;
+                    if ($model->save()) {
+                        Rights::assign(Rights::module()->authenticatedName, $model->id);
+                        $mail = new JebMailer($model->id, Yii::app()->params['signupEmailTemplate']);
+                        if (!$mail->send()) {
+                            Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
+                        }
+                        Yii::app()->user->setFlash('success', "Welcome to JebMarket! <b>".$model->username . "</b>. Your account successfully created, You can now login and explore. You need to verify your Email within next ". Yii::app()->params['emailVerificationLimit']. " days. Check your Email for details.");
+                        $this->redirect(array('site/login'));
                     }
-                    Yii::app()->user->setFlash('success', "Welcome to JebMarket! <b>".$model->username . "</b>. Your account successfully created, You can now login and explore. You need to verify your Email within next ". Yii::app()->params['emailVerificationLimit']. " days. Check your Email for details.");
-                    $this->redirect(array('site/login'));
                 }
+            } else {
+                $model->password = "";
             }
         }
         $this->render('signup', array('model' => $model));
