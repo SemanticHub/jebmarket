@@ -55,7 +55,7 @@ class SliderController extends Controller {
         Yii::import("ext.JebUpload.JebFileUploader");
         $folder = Yii::app()->params['sliderImageUrl']."tmp/";// folder for uploaded files
         $allowedExtensions = array("jpg", "jpeg", "gif", "png");//array("jpg","jpeg","gif","exe","mov" and etc...
-        $sizeLimit = 1024 * 1024 * 5;// maximum file size in 50MB
+        $sizeLimit = Yii::app()->params['sliderfilesizemax'];
         $uploader = new JebFileUploader($allowedExtensions, $sizeLimit);
         $result = $uploader->handleUpload($folder, $replaceOldFile = TRUE, $newfilename = FALSE );
         $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
