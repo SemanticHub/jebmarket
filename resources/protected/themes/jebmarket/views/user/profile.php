@@ -9,7 +9,7 @@ $this->menu['profile']['active'] = true;
 <h1 class="page-title">User '<?php echo $model->username; ?>'</h1>
 <div class="row">
     <div class="col-md-6">
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="min-height: 159px;">
             <div class="panel-heading"><?php echo Yii::t('phrase', 'Basic Info.') ?></div>
             <table class="table table-view">
                 <tr>
@@ -67,7 +67,7 @@ $this->menu['profile']['active'] = true;
     </div>
 
     <div class="col-md-4">
-        <div class="panel panel-info" style="min-height: 153px;">
+        <div class="panel panel-info" style="min-height: 159px;">
             <div class="panel-heading"><?php echo Yii::t('phrase', '<span class="glyphicon glyphicon-picture"></span> Profile Image.') ?></div>
             <table class="table table-view">
                 <tr>

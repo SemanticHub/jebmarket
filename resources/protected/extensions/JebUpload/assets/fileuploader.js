@@ -564,13 +564,13 @@ qq.extend(qq.FileUploader.prototype, {
                 qq.removeClass(dropArea, self._classes.dropActive);
             },
             onDrop: function(e){
-                dropArea.style.display = 'none';
+                dropArea.style.display = 'block';
                 qq.removeClass(dropArea, self._classes.dropActive);
                 self._uploadFileList(e.dataTransfer.files);
             }
         });
 
-        dropArea.style.display = 'none';
+        dropArea.style.display = 'block';
 
         qq.attach(document, 'dragenter', function(e){
             if (!dz._isValidFileDrag(e)) return;
@@ -583,7 +583,7 @@ qq.extend(qq.FileUploader.prototype, {
             var relatedTarget = document.elementFromPoint(e.clientX, e.clientY);
             // only fire when leaving document out
             if ( ! relatedTarget || relatedTarget.nodeName == "HTML"){
-                dropArea.style.display = 'none';
+                dropArea.style.display = 'block';
             }
         });
     },
@@ -1083,7 +1083,7 @@ qq.extend(qq.UploadHandlerForm.prototype, {
 
         iframe.setAttribute('id', id);
 
-        iframe.style.display = 'none';
+        iframe.style.display = 'block';
         document.body.appendChild(iframe);
 
         return iframe;
@@ -1103,7 +1103,7 @@ qq.extend(qq.UploadHandlerForm.prototype, {
 
         form.setAttribute('action', queryString);
         form.setAttribute('target', iframe.name);
-        form.style.display = 'none';
+        form.style.display = 'block';
         document.body.appendChild(form);
 
         return form;
