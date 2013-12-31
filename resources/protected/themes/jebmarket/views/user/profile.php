@@ -230,11 +230,13 @@ $this->menu['profile']['active'] = true;
                     <td>
                         <?php
                         $userTimezone = $model->getAttribute('timezone');
-                        Yii::app()->setTimeZone($userTimezone);
-                        $localTime = new DateTime();
-                        $localTime->setTimezone(new DateTimeZone($userTimezone));
-                        echo '<label class="label label-info">'.Yii::app()->dateFormatter->formatDateTime($localTime->format('Y-m-d H:i:s'), 'medium', 'medium').'</label>';
+                        if(!empty($userTimezone)) {
+                            Yii::app()->setTimeZone($userTimezone);
+                            $localTime = new DateTime();
+                            $localTime->setTimezone(new DateTimeZone($userTimezone));
+                            echo '<label class="label label-info">'.Yii::app()->dateFormatter->formatDateTime($localTime->format('Y-m-d H:i:s'), 'medium', 'medium').'</label>';
                         //echo $localTime->format('Y-m-d H:i:s');
+                        }
                         ?>
                     </td>
                 </tr>
