@@ -230,6 +230,7 @@ $this->menu['profile']['active'] = true;
                     <td>
                         <?php
                         $userTimezone = $model->getAttribute('timezone');
+                        CVarDumper::dump($userTimezone);
                         if(!empty($userTimezone)) {
                             Yii::app()->setTimeZone($userTimezone);
                             $localTime = new DateTime();
