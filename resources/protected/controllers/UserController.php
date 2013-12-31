@@ -14,8 +14,8 @@ class UserController extends Controller {
         return array(
             'captcha' => array(
                 'class' => 'CCaptchaAction',
-                'backColor' => 0xFFFFFF,
-                //'testLimit' => 1
+                'backColor' => 0xFCFCFC,
+                'testLimit' => 2
             )
         );
     }
@@ -188,7 +188,11 @@ class UserController extends Controller {
     public function actionSignup($shopName = '') {
         $this->layout = "column1";
         $model = new User;
-        $model->setScenario('signup');
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'user-form') {
+            $model->setScenario('ajax');
+        } else {
+            $model->setScenario('signup');
+        }
         $model->userDetails = new UserDetails;
         $this->performAjaxValidation($model);
 
@@ -216,7 +220,7 @@ class UserController extends Controller {
                         Rights::assign(Rights::module()->authenticatedName, $model->id);
                         $mail = new JebMailer($model->id, Yii::app()->params['signupEmailTemplate']);
                         if (!$mail->send()) {
-                            Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
+                            Yii::app()->user->setFlash('danger', 'Mailer Error: ' . $mail->ErrorInfo);
                         }
                         Yii::app()->user->setFlash('success', "Welcome to JebMarket! <b>".$model->username . "</b>. Your account successfully created, You can now login and explore. You need to verify your Email within next ". Yii::app()->params['emailVerificationLimit']. " days. Check your Email for details.");
                         $this->redirect(array('site/login'));
@@ -358,7 +362,7 @@ class UserController extends Controller {
             if ($user === null) $user = User::model()->findByAttributes(array('email' => $user));
             $mail = new JebMailer($user->id, Yii::app()->params['signupEmailTemplate']);
             if (!$mail->send()) {
-                Yii::app()->user->setFlash('error', 'Mailer Error: ' . $mail->ErrorInfo);
+                Yii::app()->user->setFlash('danger', 'Mailer Error: ' . $mail->ErrorInfo);
                 return false;
             }
             Yii::app()->user->setFlash('success', "Instructions has resent to your email account. Please check your email for details");

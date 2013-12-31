@@ -31,21 +31,21 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
 <div class="form-group">
     <?php echo $form->labelEx($model, 'username', array('class' => 'control-label col-lg-3')); ?>
     <div class="col-lg-9">
-        <?php echo $form->textField($model, 'username', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control')); ?>
+        <?php echo $form->textField($model, 'username', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control input-sm')); ?>
         <?php echo $form->error($model, 'username', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
 <div class="form-group">
     <?php echo $form->labelEx($model, 'email', array('class' => 'control-label col-lg-3')); ?>
     <div class="col-lg-9">
-        <?php echo $form->textField($model, 'email', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control')); ?>
+        <?php echo $form->textField($model, 'email', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control input-sm')); ?>
         <?php echo $form->error($model, 'email', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
 <div class="form-group">
     <?php echo $form->labelEx($model, 'password', array('class' => 'control-label col-lg-3')); ?>
     <div class="col-lg-9">
-        <?php echo $form->passwordField($model, 'password', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
+        <?php echo $form->passwordField($model, 'password', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control input-sm')); ?>
         <?php echo $form->error($model, 'password', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
@@ -53,8 +53,8 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
     <div class="form-group">
         <?php echo $form->labelEx($model, 'verifyCode', array('class' => 'control-label col-lg-3')); ?>
         <div class="col-lg-9">
-            <?php $this->widget('CCaptcha', array('buttonOptions' => array('class' => 'btn btn-info'))); ?>
-            <?php echo $form->textField($model, 'verifyCode', array('class' => 'form-control', 'style' => 'width:150px; margin-left: 0; display:inline')); ?>
+            <?php $this->widget('CCaptcha', array('buttonOptions' => array('class' => 'btn btn-info btn-sm'))); ?>
+            <?php echo $form->textField($model, 'verifyCode', array('class' => 'form-control input-sm', 'style' => 'max-width:150px; margin-left: 0; display:inline')); ?>
             <p class="control-hint text-warning">Please enter the letters as they are shown in the image above.
                 Letters are not case-sensitive.
                 <?php echo $form->error($model, 'verifyCode', array('class' => 'text-danger control-hint')); ?>
@@ -72,32 +72,32 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
             </label>
         </div>
         <div id="collapseOne" class="panel-collapse collapse" style="background: #F7F5FA">
-            <div class="panel-body">
+            <div class="panel-body" style="padding-right: 25px">
                 <div class="form-group">
                     <?php echo $form->labelEx($model->userDetails, 'organization', array('class' => 'control-label col-lg-3')); ?>
                     <div class="col-lg-9">
-                        <?php echo $form->textField($model->userDetails, 'organization', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
+                        <?php echo $form->textField($model->userDetails, 'organization', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control input-sm')); ?>
                         <?php echo $form->error($model->userDetails, 'organization', array('class' => 'text-danger control-hint')); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <?php echo $form->labelEx($model->userDetails, 'f_name', array('class' => 'control-label col-lg-3')); ?>
                     <div class="col-lg-9">
-                        <?php echo $form->textField($model->userDetails, 'f_name', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
+                        <?php echo $form->textField($model->userDetails, 'f_name', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control input-sm')); ?>
                         <?php echo $form->error($model->userDetails, 'f_name', array('class' => 'text-danger control-hint')); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <?php echo $form->labelEx($model->userDetails, 'l_name', array('class' => 'control-label col-lg-3')); ?>
                     <div class="col-lg-9">
-                        <?php echo $form->textField($model->userDetails, 'l_name', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
+                        <?php echo $form->textField($model->userDetails, 'l_name', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control input-sm')); ?>
                         <?php echo $form->error($model->userDetails, 'l_name', array('class' => 'text-danger control-hint')); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <?php echo $form->labelEx($model->userDetails, 'location', array('class' => 'control-label col-lg-3')); ?>
                     <div class="col-lg-9">
-                            <?php //echo $form->textField($model->userDetails, 'location', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
+                            <?php //echo $form->textField($model->userDetails, 'location', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control input-sm')); ?>
                                 <?php
                                 $listData = Location::model()->findAll(array('condition' => 'parent_id IS NULL', 'order' => 'name'));
                                 echo CHtml::dropDownList(
@@ -110,10 +110,11 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
                                     ),
                                     array(
                                         'empty' => 'SELECT A COUNTRY',
-                                        'class' => 'form-control',
+                                        'class' => 'form-control input-sm',
                                     )
                                 );
                                 ?>
+                                <span id="location-level-view"></span>
                     </div>
                     <?php echo $form->error($model->userDetails, 'location', array('class' => 'text-danger control-hint')); ?>
 
@@ -121,21 +122,21 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
                 <div class="form-group">
                     <?php echo $form->labelEx($model->userDetails, 'address1', array('class' => 'control-label col-lg-3')); ?>
                     <div class="col-lg-9">
-                        <?php echo $form->textField($model->userDetails, 'address1', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
+                        <?php echo $form->textField($model->userDetails, 'address1', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control input-sm')); ?>
                         <?php echo $form->error($model->userDetails, 'address1', array('class' => 'text-danger control-hint')); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <?php echo $form->labelEx($model->userDetails, 'phone', array('class' => 'control-label col-lg-3')); ?>
                     <div class="col-lg-9">
-                        <?php echo $form->textField($model->userDetails, 'phone', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control')); ?>
+                        <?php echo $form->textField($model->userDetails, 'phone', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control input-sm')); ?>
                         <?php echo $form->error($model->userDetails, 'phone', array('class' => 'text-danger control-hint')); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <?php echo $form->labelEx($model->userDetails, 'fax', array('class' => 'control-label col-lg-3')); ?>
                     <div class="col-lg-9">
-                        <?php echo $form->textField($model->userDetails, 'fax', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control')); ?>
+                        <?php echo $form->textField($model->userDetails, 'fax', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control input-sm')); ?>
                         <?php echo $form->error($model->userDetails, 'fax', array('class' => 'text-danger control-hint')); ?>
                     </div>
                 </div>
@@ -172,7 +173,8 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
                 data: { location_id: $(this).val() }
             }).done(function (data) {
                     $('#location-level-view').empty();
-                    var wrapper = $('<div/>').attr('class', 'col-xs-4');
+                    //var wrapper = $('<div/>').attr('class', 'col-xs-4');
+                    var wrapper = $('<div/>').attr('class', '');
                     $(data).appendTo(wrapper);
                     $(wrapper).appendTo($('#location-level-view'));
                 });
@@ -184,14 +186,23 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
                 url: "<?php echo $this->createUrl('location/levels'); ?>",
                 data: { location_id: $(this).val() }
             }).done(function (data) {
-                    if (data) {
-                        var wrapper = $('<div/>').attr('class', 'col-xs-4');
-                        $(data).appendTo(wrapper);
-                        $(wrapper).appendTo($('#location-level-view'));
-                    } else {
-                        $('#location-level-view select').last().attr('name', 'UserDetails[location]');
-                    }
-                });
+                if (data) {
+                    //var wrapper = $('<div/>').attr('class', 'col-xs-4');
+                    var wrapper = $('<div/>').attr('class', '');
+                    $(data).appendTo(wrapper);
+                    $(wrapper).appendTo($('#location-level-view'));
+                } else {
+                    $('#location-level-view select').last().attr('name', 'UserDetails[location]');
+                }
+            });
         });
     });
 </script>
+<?php
+/*if (!Yii::app()->request->isPostRequest)
+    Yii::app()->clientScript->registerScript(
+        'initCaptcha',
+        '$("#yw0_button").trigger("click");',
+        CClientScript::POS_READY
+    );*/
+?>

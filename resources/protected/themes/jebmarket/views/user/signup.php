@@ -11,15 +11,7 @@
     </div>
 </div>
 <div class="col-md-12">
-    <div class="form-control-wrapper" style="max-width: 450px; margin-bottom: 10px; padding-top: 10px">
+    <div class="form-control-wrapper" style="max-width: 570px; margin-bottom: 10px; padding-top: 10px; padding-right: 25px; border-left: 5px solid #ddd">
         <?php $this->renderPartial('_signup_form', array('model' => $model)); ?>
-        <?php
-       // if (!Yii::app()->request->isPostRequest)
-            Yii::app()->clientScript->registerScript(
-                'initCaptcha',
-                '$("#yw0_button").trigger("click");',
-                CClientScript::POS_READY
-            );
-        ?>
     </div>
 </div>

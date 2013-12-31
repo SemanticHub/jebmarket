@@ -10,6 +10,7 @@ label {
 }
 .form-control-wrapper {
     max-width: 600px; margin: auto; border: 1px solid #eee; padding: 0 15px; border-radius: 3px; box-shadow: 0px 0px 1px #eee;
+    background: #fcfcfc;
 }
 /* FILE UPLOAD */
 .carousel-indicators .active {
