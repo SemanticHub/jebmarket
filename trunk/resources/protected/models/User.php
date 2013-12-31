@@ -47,7 +47,7 @@ class User extends CActiveRecord {
             array('f_name, l_name, full_name, last_login, location, timezone', 'safe'),
             array('id, username, email, joined, activationstatus, status, last_login, status', 'safe', 'on' => 'search'),
             array('verifyCode', 'required', 'on'=>'signup'),
-            array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>'signup, insert'),
+            array('verifyCode', 'captcha', 'on'=>'signup, insert', 'skipOnError'=>true, 'enableClientValidation'=>true, 'except'=>array('ajax' => 'ajax')),
         );
     }
 
