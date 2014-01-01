@@ -81,6 +81,7 @@ $this->menu['profile']['active'] = true;
                                 'allowedExtensions'=>array("jpg", "jpeg", "gif", "png"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                 'sizeLimit'=>Yii::app()->params['profileimagesizemax'],
                                 'minSizeLimit'=>Yii::app()->params['profileimagesizemin'],
+                                'multiple'=>false,
                                 'onSubmit'=>"js:function(file, extension) {
                                     $('div.preview').addClass('loading');
                                   }",
@@ -89,6 +90,7 @@ $this->menu['profile']['active'] = true;
                                     $('div.preview').removeClass('loading');
                                     $('#avater_image').unbind();
                                     $('#Associazioni_logo').val(responseJSON['filename']);
+                                    $('.qq-uploader .alert-success').alert('close');
                                   });
                                   $('#avater_image').attr('src', '".Yii::app()->baseUrl."/".Yii::app()->params['avateruploadPath']."'+responseJSON['filename']);
                                 }",

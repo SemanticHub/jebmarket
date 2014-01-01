@@ -48,6 +48,7 @@ $form = $this->beginWidget('CActiveForm', array(
                             'allowedExtensions'=>array("jpg", "jpeg", "gif", "png"),//array("jpg","jpeg","gif","exe","mov" and etc...
                             'sizeLimit'=>Yii::app()->params['sliderfilesizemax'],
                             'minSizeLimit'=>Yii::app()->params['sliderfilesizemin'],
+                            'multiple'=>false,
                             'onSubmit'=>"js:function(file, extension) {
                                     $('div.preview').addClass('loading');
                                   }",
@@ -57,6 +58,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     $('#slider_image_img').unbind();
                                     $('#Slider_image').val(responseJSON['filename']);
                                     $('#Associazioni_logo').val(responseJSON['filename']);
+                                    $('.qq-uploader .alert-success').alert('close');
                                   });
                                   $('#slider_image_img').attr('src', '".Yii::app()->baseUrl."/".Yii::app()->params['sliderImageUrl']."tmp/'+responseJSON['filename']);
                                 }",
