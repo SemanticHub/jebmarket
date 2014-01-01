@@ -45,23 +45,28 @@ class JebUpload extends CWidget
         public $postParams=array();
         public $config=array();
         public $css=null;
-        
+
         public function run()
         {
-		if(empty($this->config['action']))
-		{
-		      throw new CException('JebUpload: param "action" cannot be empty.');
-                }
+            if(empty($this->config['action']))
+            {
+                throw new CException('JebUpload: param "action" cannot be empty.');
+            }
 
-		if(empty($this->config['allowedExtensions']))
-		{
-		      throw new CException('JebUpload: param "allowedExtensions" cannot be empty.');
-                }
+            if(empty($this->config['allowedExtensions']))
+            {
+                $this->config['allowedExtensions'] = array("jpg", "jpeg", "gif", "png");
+            }
 
-		if(empty($this->config['sizeLimit']))
-		{
-		      throw new CException('JebUpload: param "sizeLimit" cannot be empty.');
-                }
+            if(empty($this->config['sizeLimit']))
+            {
+                $this->config['sizeLimit'] = 10485760;
+            }
+
+            if(empty($this->config['minSizeLimit']))
+            {
+                $this->config['minSizeLimit'] = 10240;
+            }
 
                 unset($this->config['element']);
 

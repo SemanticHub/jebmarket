@@ -105,6 +105,10 @@ class JebFileUploader {
      * Returns array('success'=>true) or array('error'=>'error message')
      */
     function handleUpload($uploadDirectory, $replaceOldFile = FALSE, $newfilename = TRUE){
+        if(empty($uploadDirectory))
+        {
+            $uploadDirectory = 'media/';
+        }
         if (!is_writable($uploadDirectory)){
             return array('error' => "Server error. Upload directory isn't writable.");
         }
