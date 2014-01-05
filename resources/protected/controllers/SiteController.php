@@ -93,8 +93,14 @@ class SiteController extends Controller {
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             // validate user input and redirect to the previous page if valid
-            if ($model->validate() && $model->login())
+            if ($model->validate() && $model->login()) {
+                $userTimezone = User::model()->findByPk(Yii::app()->user->id)->timezone;
+                if($userTimezone) {
+                    Yii::app()->user->setState('timezone', $userTimezone);
+                    Yii::app()->setTimeZone($userTimezone); // TODO: can be a filter of base controller to set across the entire application
+                }
                 $this->redirect(Yii::app()->user->returnUrl);
+            }
         }
         // display the login form
         $this->render('login', array('model' => $model));
