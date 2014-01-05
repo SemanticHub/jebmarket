@@ -129,14 +129,36 @@ echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'))
                 <div class="form-group">
                     <?php echo $form->labelEx($model->userDetails, 'phone', array('class' => 'control-label col-lg-3')); ?>
                     <div class="col-lg-9">
-                        <?php echo $form->textField($model->userDetails, 'phone', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control input-sm')); ?>
+                        <?php
+                        $this->widget('ext.JebTelinput.JebTelinput', array(
+                            'model'=>$model->userDetails,
+                            'attribute'=>'phone',
+                            'htmlOptions'=>array(
+                                'id' => 'UserDetails_phone',
+                                'size' => 45,
+                                'maxlength' => 45,
+                                'class' => 'form-control input-sm'
+                            )
+                        ));
+                        ?>
                         <?php echo $form->error($model->userDetails, 'phone', array('class' => 'text-danger control-hint')); ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <?php echo $form->labelEx($model->userDetails, 'fax', array('class' => 'control-label col-lg-3')); ?>
                     <div class="col-lg-9">
-                        <?php echo $form->textField($model->userDetails, 'fax', array('size' => 45, 'maxlength' => 45, 'class' => 'form-control input-sm')); ?>
+                        <?php
+                        $this->widget('ext.JebTelinput.JebTelinput', array(
+                            'model'=>$model->userDetails,
+                            'attribute'=>'fax',
+                            'htmlOptions'=>array(
+                                'id' => 'UserDetails_fax',
+                                'size' => 45,
+                                'maxlength' => 45,
+                                'class' => 'form-control input-sm'
+                            )
+                        ));
+                        ?>
                         <?php echo $form->error($model->userDetails, 'fax', array('class' => 'text-danger control-hint')); ?>
                     </div>
                 </div>

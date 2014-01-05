@@ -636,6 +636,9 @@ form .alert {
 .qq-upload-button {
     margin: 0 0 0 20px;
 }
+.panel-group .panel{
+    overflow: visible;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .carousel-caption h1 {
