@@ -47,7 +47,12 @@ return array(
             # 'superUsers'=>array(
             # 40=>'jebadmin',
             # ),
-        )
+        ),
+        # Shop
+        # -----
+        #'shop' => array(
+        #    'debug' => 'true'
+        #)
     ),
     'components' => array(
         # Theme
