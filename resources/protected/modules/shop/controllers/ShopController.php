@@ -6,6 +6,12 @@ class ShopController extends Controller
 	public $menu;
 	public $_model;
 
+    public function filters() {
+        return array(
+            'rights'
+        );
+    }
+
 	public function actionInstall() 
 	{
 		if($this->module->debug) 
@@ -26,12 +32,12 @@ class ShopController extends Controller
 		}
 	}
 
-	public function filters()
+/*	public function filters()
 	{
 		return array(
 			'accessControl',
 		);
-	}	
+	}*/
 
 	public function accessRules() {
 		return array(

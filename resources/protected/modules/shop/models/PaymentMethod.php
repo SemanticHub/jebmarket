@@ -26,7 +26,8 @@ class PaymentMethod extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'shop_payment_method';
+		//return 'shop_payment_method';
+        return Shop::module()->paymentMethodTable;
 	}
 
 	/**

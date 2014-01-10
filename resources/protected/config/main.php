@@ -50,9 +50,9 @@ return array(
         ),
         # Shop
         # -----
-        #'shop' => array(
-        #    'debug' => 'true'
-        #)
+        'shop' => array(
+            'debug' => 'true'
+        )
     ),
     'components' => array(
         # Theme
@@ -95,10 +95,12 @@ return array(
             'showScriptName' => false,
             'rules' => array(
                 'gii' => 'gii',
-                'gii/<controller:\w+>' => 'gii/<controller>',
-                'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
-                'rights/<controller:\w+>' => 'rights/<controller>',
-                'rights/<controller:\w+>/<action:\w+>' => 'rights/<controller>/<action>',
+                #'gii/<controller:\w+>' => 'gii/<controller>',
+                #'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
+                #'rights/<controller:\w+>' => 'rights/<controller>',
+                #'rights/<controller:\w+>/<action:\w+>' => 'rights/<controller>/<action>',
+                '<module:\w+>/<controller:\w+>' => '<module>/<controller>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/<view:\w+>' => '<controller>/<action>',

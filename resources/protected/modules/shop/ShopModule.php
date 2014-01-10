@@ -15,18 +15,18 @@ class ShopModule extends CWebModule
 	public $useWithYum = false;
 
 	// Names of the tables
-	public $categoryTable = 'shop_category';
-	public $productsTable = 'shop_products';
-	public $orderTable = 'shop_order';
-	public $orderPositionTable = 'shop_order_position';
-	public $customerTable = 'shop_customer';
-	public $addressTable = 'shop_address';
-	public $imageTable = 'shop_image';
-	public $shippingMethodTable = 'shop_shipping_method';
-	public $paymentMethodTable = 'shop_payment_method';
-	public $taxTable = 'shop_tax';
-	public $productSpecificationTable = 'shop_product_specification';
-	public $productVariationTable = 'shop_product_variation';
+	public $categoryTable = 'jebapp_shop_category';
+	public $productsTable = 'jebapp_shop_products';
+	public $orderTable = 'jebapp_shop_order';
+	public $orderPositionTable = 'jebapp_shop_order_position';
+	public $customerTable = 'jebapp_shop_customer';
+	public $addressTable = 'jebapp_shop_address';
+	public $imageTable = 'jebapp_shop_image';
+	public $shippingMethodTable = 'jebapp_shop_shipping_method';
+	public $paymentMethodTable = 'jebapp_shop_payment_method';
+	public $taxTable = 'jebapp_shop_tax';
+	public $productSpecificationTable = 'jebapp_shop_product_specification';
+	public $productVariationTable = 'jebapp_shop_product_variation';
 	public $currencySymbol = '$';
 
 	public $logoPath = 'logo.jpg';
@@ -50,7 +50,10 @@ class ShopModule extends CWebModule
 	// Where the uploaded product images are stored:
 	public $productImagesFolder = 'productimages'; // Approot/...
 
-	public $layout = 'application.modules.shop.views.layouts.shop';
+   public $appLayout = 'application.views.layouts.main';
+
+    //public $layout = 'application.modules.shop.views.layouts.shop';
+    public $layout = 'shop.views.layouts.main';
 
 	public function init()
 	{

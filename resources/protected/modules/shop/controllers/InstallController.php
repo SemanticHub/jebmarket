@@ -48,7 +48,7 @@ class InstallController extends Controller
 							`is_user_input` tinyint(1),
 							`required` tinyint(1),
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+								) ENGINE=InnoDB";
 						$db->createCommand($sql)->execute();
 
 						$sql = "CREATE TABLE IF NOT EXISTS `".$variationTable."` (
@@ -59,7 +59,7 @@ class InstallController extends Controller
 							`title` varchar(255) NOT NULL,
 							`price_adjustion` float NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+								) ENGINE=InnoDB    ";
 
 						$db->createCommand($sql)->execute();
 
@@ -68,10 +68,10 @@ class InstallController extends Controller
 							`title` varchar(255) NOT NULL,
 							`percent` int(11) NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
+								) ENGINE=InnoDB ";
 
 						$db->createCommand($sql)->execute();
-						$sql = "INSERT INTO `shop_tax` (`id`, `title`, `percent`) VALUES
+						$sql = "INSERT INTO `".$taxTable."` (`id`, `title`, `percent`) VALUES
 							(1, '19%', 19),
 							(2, '7%', 7);";
 
@@ -84,10 +84,10 @@ class InstallController extends Controller
 							`tax_id` int(11) NOT NULL,
 							`price` double NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+								) ENGINE=InnoDB  ";
 
 						$db->createCommand($sql)->execute();
-						$sql = "INSERT INTO `shop_shipping_method` (`id`, `title`, `description`, `tax_id`, `price`) VALUES
+						$sql = "INSERT INTO `".$shippingMethodTable."` (`id`, `title`, `description`, `tax_id`, `price`) VALUES
 							(1, 'Delivery by postal Service', 'We deliver by Postal Service. 2.99 units of money are charged for that', 1, 2.99);";
 
 						$db->createCommand($sql)->execute();
@@ -99,11 +99,11 @@ class InstallController extends Controller
 							`tax_id` int(11) NOT NULL,
 							`price` double NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+								) ENGINE=InnoDB  ";
 
 						$db->createCommand($sql)->execute();
 
-						$sql = "INSERT INTO `shop_payment_method` (`id`, `title`, `description`, `tax_id`, `price`) VALUES
+						$sql = "INSERT INTO `".$paymentMethodTable."` (`id`, `title`, `description`, `tax_id`, `price`) VALUES
 							(1, 'cash', 'You pay cash', 1, 0),
 							(2, 'advance Payment', 'You pay in advance, we deliver', 1, 0),
 							(3, 'cash on delivery', 'You pay when we deliver', 1, 0),
@@ -124,7 +124,7 @@ class InstallController extends Controller
 							`description` TEXT NULL ,
 							`language` VARCHAR(45) NULL ,
 							PRIMARY KEY (`category_id`) )
-								ENGINE = InnoDB; ";
+								ENGINE = InnoDB ";
 
 						$db->createCommand($sql)->execute();
 
@@ -145,7 +145,7 @@ class InstallController extends Controller
 								REFERENCES  `".$categoryTable."` (`category_id` )
 								ON DELETE NO ACTION
 								ON UPDATE NO ACTION)
-								ENGINE = InnoDB;";
+								ENGINE = InnoDB ";
 
 
 						$db->createCommand($sql)->execute();
@@ -160,7 +160,7 @@ class InstallController extends Controller
 							`billing_address_id` INT NOT NULL ,
 							`email` VARCHAR(45) NOT NULL ,
 							PRIMARY KEY (`customer_id`) )
-								ENGINE = InnoDB;";
+								ENGINE = InnoDB";
 
 						$db->createCommand($sql)->execute();
 
@@ -185,7 +185,7 @@ class InstallController extends Controller
 								REFERENCES `".$customerTable."` (`customer_id` )
 								ON DELETE NO ACTION
 								ON UPDATE NO ACTION)
-								ENGINE = InnoDB; ";
+								ENGINE = InnoDB ";
 
 						$db->createCommand($sql)->execute();
 
@@ -196,7 +196,7 @@ class InstallController extends Controller
 							`amount` int(11) NOT NULL,
 							`specifications` text NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+								) ENGINE=InnoDB  ";
 
 						$db->createCommand($sql)->execute();
 
@@ -209,7 +209,7 @@ class InstallController extends Controller
 							`city` varchar(255) NOT NULL,
 							`country` varchar(255) NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+								) ENGINE=InnoDB ";
 
 						$db->createCommand($sql)->execute();
 
@@ -234,7 +234,7 @@ class InstallController extends Controller
 								REFERENCES `".$productsTable."` (`product_id` )
 								ON DELETE NO ACTION
 								ON UPDATE NO ACTION)
-								ENGINE = InnoDB; ";
+								ENGINE = InnoDB ";
 
 						$db->createCommand($sql)->execute();
 
@@ -250,7 +250,7 @@ class InstallController extends Controller
 								REFERENCES `".$productsTable."` (`product_id` )
 								ON DELETE NO ACTION
 								ON UPDATE NO ACTION)
-								ENGINE = InnoDB;";
+								ENGINE = InnoDB ";
 
 
 						$db->createCommand($sql)->execute();
@@ -275,7 +275,7 @@ class InstallController extends Controller
 
 							$db->createCommand($sql)->execute();
 							$sql = "
-								INSERT INTO `shop_product_variation` (`id`, `product_id`, `specification_id`, `title`, `price_adjustion`, `position`) VALUES
+								INSERT INTO `".$variationTable."` (`id`, `product_id`, `specification_id`, `title`, `price_adjustion`, `position`) VALUES
 								(1, 1, 1, 'variation1', 3, 2),
 								(2, 1, 1, 'variation2', 6, 3),
 								(3, 1, 2, 'variation3', 9, 4),
@@ -283,7 +283,7 @@ class InstallController extends Controller
 							";
 							$db->createCommand($sql)->execute();
 							$sql = "
-								INSERT INTO `shop_product_specification` (`id`, `title`, `is_user_input`, `required`) VALUES
+								INSERT INTO `".$specificationTable."` (`id`, `title`, `is_user_input`, `required`) VALUES
 								(1, 'Size', 0, 1),
 								(2, 'Color', 0, 0),
 								(3, 'Some random attribute', 0, 0),

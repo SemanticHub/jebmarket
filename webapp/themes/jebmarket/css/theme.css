@@ -276,7 +276,7 @@ span.required {
     transform: scale(0.8);
     -webkit-transform: scale(0.6);
     -moz-transform: scale(0.6);
-    -0-transform: scale(0.6);
+   /* -0-transform: scale(0.6);*/
 }
 .footer-logo:hover {
     background-position: 0 0px
@@ -714,7 +714,7 @@ form .alert {
         transform: scale(1);
         -webkit-transform: scale(1);
         -moz-transform: scale(1);
-        -0-transform: scale(1);
+        /*-0-transform: scale(1);*/
         margin-top: -10px;
         margin-right: 0;
     }
@@ -816,7 +816,7 @@ form .alert {
         transform: scale(1);
         -webkit-transform: scale(1);
         -moz-transform: scale(1);
-        -0-transform: scale(1);
+/*        -0-transform: scale(1);*/
         margin-top: -10px;
         margin-right: 0;
     }
@@ -918,7 +918,7 @@ form .alert {
         transform: scale(1);
         -webkit-transform: scale(1);
         -moz-transform: scale(1);
-        -0-transform: scale(1);
+/*        -0-transform: scale(1);*/
         margin-top: -10px;
         margin-right: 0;
     }

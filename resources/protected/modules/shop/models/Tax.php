@@ -24,7 +24,8 @@ class Tax extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'shop_tax';
+		//return 'shop_tax';
+        return Shop::module()->taxTable;
 	}
 
 	/**
