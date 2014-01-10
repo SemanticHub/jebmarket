@@ -25,7 +25,8 @@ class ShippingMethod extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'shop_shipping_method';
+		//return 'shop_shipping_method';
+        return Shop::module()->shippingMethodTable;
 	}
 
 	/**

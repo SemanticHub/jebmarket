@@ -27,7 +27,8 @@ class ProductSpecification extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'shop_product_specification';
+		//return 'shop_product_specification';
+        return Shop::module()->productSpecificationTable;
 	}
 
 	/**

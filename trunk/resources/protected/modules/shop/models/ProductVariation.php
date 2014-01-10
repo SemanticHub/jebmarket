@@ -45,7 +45,8 @@ class ProductVariation extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'shop_product_variation';
+		//return 'shop_product_variation';
+        return Shop::module()->productVariationTable;
 	}
 
 	/**

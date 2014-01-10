@@ -34,7 +34,8 @@ class Address extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'shop_address';
+		//return 'shop_address';
+        return Shop::module()->addressTable;
 	}
 
 	public function rules()
