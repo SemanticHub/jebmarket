@@ -32,7 +32,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name'=> 'parent_id',
-            'value'=> 'Menu::model()->findByPk($data->parent_id)->label'
+            'value'=> '($data->parent_id) ? Menu::model()->findByPk($data->parent_id)->label : ""'
         ),
         'tag',
         array(

@@ -50,7 +50,7 @@ $('.search-form form').submit(function(){
         'next_level_name',
         array(
             'name' => 'parent_id',
-            'value' => 'Location::model()->findByPk($data->parent_id)->name'
+            'value' => '($data->parent_id) ? Location::model()->findByPk($data->parent_id)->name : ""'
         ),
         'code',
         'dial_code',
