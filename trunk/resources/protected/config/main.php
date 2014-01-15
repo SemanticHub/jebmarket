@@ -18,7 +18,9 @@ return array(
         'application.components.*',
         'application.modules.rights.*',
         'application.modules.rights.components.*',
-        'editable.*'
+        'editable.*',
+        'application.modules.reports.*',
+        'application.modules.reports.components.*',
      ),
     'modules' => array(
         # Gii tool
@@ -48,6 +50,7 @@ return array(
             # 40=>'jebadmin',
             # ),
         ),
+        'reports',
         # Shop
         # -----
         'shop' => array(
@@ -169,6 +172,7 @@ return array(
             'store' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
             'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('products')),
             'orders' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Orders', 'url' => array('orders')),
+            'reports' => array('label' => '<span class="glyphicon glyphicon-stats"></span> Reports', 'url' => array('/reports')),
         ),
         'adminmenu' => array(
             array('label' => 'Sliders', 'url' => array('/slider/admin'), 'itemOptions'=>array('class'=>'slider') ),

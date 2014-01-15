@@ -4,6 +4,12 @@
 $this->menu=Yii::app()->params['usermenu'];
 $this->menu['dashboard']['active']=true;
 ?>
+<?php if(Yii::app()->user->hasFlash('message')){ ?>
+    <div class="alert alert-info">
+        <?php echo Yii::app()->user->getFlash('message'); ?>
+    </div>
+<?php } ?>
+
 <h1 class="page-title"><?php echo Yii::t('phrase', 'Dashboard') ?></h1>
 <div class="row">
 <?php
