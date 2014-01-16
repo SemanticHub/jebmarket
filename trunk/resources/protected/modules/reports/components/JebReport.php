@@ -1,6 +1,6 @@
 <?php
 
-require '/vendor/Piwik.php';
+require Yii::app()->basePath.'/modules/reports/vendor/Piwik.php';
 
 /**
  * Class JebReports

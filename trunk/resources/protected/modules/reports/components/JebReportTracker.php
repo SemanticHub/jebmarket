@@ -1,6 +1,6 @@
 <?php
 
-require '/vendor/PiwikTracker.php';
+require Yii::app()->basePath.'/modules/reports/vendor/PiwikTracker.php';
 
 /**
  * Class JebTracker
