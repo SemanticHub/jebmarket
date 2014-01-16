@@ -10,7 +10,7 @@ class JebReportWidget extends CPortlet {
     public $actionName = '';
     public function	renderContent() {
 
-        $report_connect = new JebReport('http://analytics.jebmarket.com/', 'e93eb7277967921a38ecdd53898e3d72');
+        $report_connect = new JebReport('http://analytics.jebmarket.com/', '4954041b073a96a2fb58f5ec70d19a95');
         if ($report_connect->hasError()) {
             echo "Invalid request";
         }else {
