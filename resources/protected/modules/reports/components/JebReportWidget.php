@@ -3,14 +3,16 @@
 Yii::import('zii.widgets.CPortlet');
 
 class JebReportWidget extends CPortlet {
-    public $api_url = 'http://analytics.jebmarket.com/';
+    public $api_url = '';
     public $token_auth = '';
     public $siteID = '';
     public $moduleName = '';
     public $actionName = '';
     public function	renderContent() {
-
-        $report_connect = new JebReport('http://analytics.jebmarket.com/', '4954041b073a96a2fb58f5ec70d19a95');
+        if (empty($api_url)) {
+            $this->api_url = Yii::app()->params['piwikURL'];
+        }
+        $report_connect = new JebReport( Yii::app()->params['piwikURL'], Yii::app()->params['piwikSuperAdminToken']);
         if ($report_connect->hasError()) {
             echo "Invalid request";
         }else {

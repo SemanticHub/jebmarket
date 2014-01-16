@@ -54,15 +54,20 @@ class Piwik {
 	 * @param string $rangeStart
 	 * @param string $rangeEnd
 	 */
-	function __construct($site, $token, $siteId = null, $format = self::FORMAT_JSON, $period = self::PERIOD_DAY, $date = self::DATE_YESTERDAY, $rangeStart = '', $rangeEnd = null) {
-		$this->_site = $site;
-		$this->_token = $token;
+	function __construct($site = '', $token = '', $siteId = null, $format = self::FORMAT_JSON, $period = self::PERIOD_DAY, $date = self::DATE_YESTERDAY, $rangeStart = '', $rangeEnd = null) {
 		$this->_siteId = $siteId;
 		$this->_format = $format;
 		$this->_period = self::PERIOD_DAY;
 		$this->_rangeStart = $rangeStart;
 		$this->_rangeEnd = $rangeEnd;
-
+        if (empty($site)) {
+            $site = 'http://analytics.jebmarket.com/';
+        }
+        if (empty($token)) {
+            $token = '4954041b073a96a2fb58f5ec70d19a95';
+        }
+        $this->_site = $site;
+        $this->_token = $token;
 		if (!empty($rangeStart))
 			$this->setRange($rangeStart, $rangeEnd);
 		else

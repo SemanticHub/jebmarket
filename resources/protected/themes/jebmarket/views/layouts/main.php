@@ -113,7 +113,7 @@
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <?php
 //Its under testing
-$t = new JebReportTracker( $idSite = 3, 'http://analytics.jebmarket.com/');
+$t = new JebReportTracker( $idSite = 3, Yii::app()->params['piwikURL']);
 $t->doTrackPageView('yii.jebmarket.com');
 ?>
 </body>
