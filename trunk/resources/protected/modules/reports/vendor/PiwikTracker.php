@@ -181,6 +181,9 @@ class PiwikTracker
         $this->ip = !empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : false;
         $this->acceptLanguage = !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : false;
         $this->userAgent = !empty($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : false;
+        if (empty($apiUrl)) {
+            $apiUrl = 'http://analytics.jebmarket.com/';
+        }
         if (!empty($apiUrl)) {
             self::$URL = $apiUrl;
         }

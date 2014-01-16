@@ -9,7 +9,7 @@ class DefaultController extends Controller
 
 	public function actionIndex()
 	{
-        $report_connect = new JebReport('http://analytics.jebmarket.com/', '4954041b073a96a2fb58f5ec70d19a95');
+        $report_connect = new JebReport( Yii::app()->params['piwikURL'], Yii::app()->params['piwikSuperAdminToken']);
         $get_userinfo = $report_connect->userExists(Yii::app()->user->name);
         if(empty($get_userinfo)){
             Yii::app()->user->setFlash('message', 'Your account have no access for report.');
