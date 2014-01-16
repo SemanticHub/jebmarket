@@ -111,6 +111,9 @@
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
 <![endif]-->
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<?php $t = new JebReportTracker( $idSite = 2, 'http://analytics.jebmarket.com/'); ?>
+<?php
+$t = new JebReportTracker( $idSite = 2, 'http://analytics.jebmarket.com/');
+$t->doTrackPageView('yii.jebmarket.com');
+?>
 </body>
 </html>
