@@ -62,7 +62,7 @@ class RAuthItemBehavior extends CBehavior
 		$markup = CHtml::link($this->owner->name .' '. $this->childCount(), array(
 			'authItem/update',
 			'name'=>urlencode($this->owner->name)),
-            array('class'=>'btn btn-info btn-xs', 'style'=>'white-space: nowrap')
+            array('class'=>'', 'style'=>'white-space: nowrap')
 		);
 
 		//$markup .= $this->childCount();
@@ -80,7 +80,7 @@ class RAuthItemBehavior extends CBehavior
 		if( $this->childCount===null )
 			$this->childCount = count($this->owner->getChildren());
 
-		return $this->childCount>0 ? ' <span class="child-count badge" style="background:#fff; color: #999; margin: 2px 2px 0px">'.$this->childCount.'</span>' : '';
+		return $this->childCount>0 ? ' <span class="child-count label label-info">'.$this->childCount.'</span>' : '';
 	}
 
 	/**
@@ -181,7 +181,7 @@ class RAuthItemBehavior extends CBehavior
 	{
 		return CHtml::linkButton(Rights::t('core', 'Revoke'), array(
 			'submit'=>array('assignment/revoke', 'id'=>$this->userId, 'name'=>urlencode($this->owner->name)),
-			'class'=>'revoke-link',
+			'class'=>'revoke-link btn btn-xs btn-danger',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
 		));
 	}

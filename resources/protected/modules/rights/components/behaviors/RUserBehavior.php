@@ -51,7 +51,7 @@ class RUserBehavior extends CModelBehavior
 	*/
 	public function getAssignmentNameLink()
 	{
-		return CHtml::link($this->getName(), array('assignment/user', 'id'=>$this->getId()), array('class'=>'btn btn-info btn-xs'));
+		return CHtml::link($this->getName(), array('assignment/user', 'id'=>$this->getId()), array('class'=>''));
 	}
 	
 	/**
@@ -71,7 +71,7 @@ class RUserBehavior extends CModelBehavior
 			foreach( $items as $itemname=>$item )
 				$names[] = $item->getNameText();
 			
-			return implode('<br />', $names);
+			return implode(', ', $names);
 		}
 	}
 

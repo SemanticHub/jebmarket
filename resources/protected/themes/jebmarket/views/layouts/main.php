@@ -32,7 +32,7 @@
                             'htmlOptions' => array('class' => 'nav nav-pills navbar-top navbar-right clearfix'),
                         ));
                         ?>
-                        <?php if(Yii::app()->params['activationStatus']) { ?>
+                        <?php if(Yii::app()->params['activationStatus']) {  ?>
                         <ul class="nav nav-pills navbar-top navbar-right clearfix">
                             <li id="alert" class="label label-warning" style="padding: 3px 10px 6px 4px; text-shadow: 1px 1px 1px #999; cursor: pointer; text-transform: uppercase">
                                 <?php echo '<span class="label label-danger">'.Yii::app()->params['activationStatus']['count'].'</span>'. Yii::t('phrase', ' days left to verify your account'); ?>
@@ -48,7 +48,7 @@
                                              '<span class="glyphicon glyphicon-info-sign"></span> &#160; If you don\'t verify your email within next <span class="label label-danger">' +
                                              <?php echo Yii::app()->params['activationStatus']['count'] ?> +
                                              '</span> days, your account will be suspended.' +
-                                             '<br /><?php echo CHtml::ajaxLink("<span class=\"glyphicon glyphicon-send\"></span> &#160; Resend Verification Email Now", Yii::app()->createUrl("/user/sendeverification"), null, array("class" => "btn btn-xs btn-primary")) ?></div>'
+                                             '<br /><?php echo CHtml::ajaxLink("<span class=\"glyphicon glyphicon-send\"></span> &#160; Resend Verification Email Now", Yii::app()->createUrl("/user/sendajaxverification"), array('data' => '', 'update' => '#flashMessages'), array("class" => "btn btn-xs btn-primary")) ?></div>'
                                     });
                             });
                         </script>
@@ -80,11 +80,7 @@
     </div>
 </div>
 <div class="container">
-    <?php
-    foreach (Yii::app()->user->getFlashes() as $key => $message) {
-        echo '<div class="alert alert-dismissable alert-' . $key . '"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $message . "</div>\n";
-    }
-    ?>
+    <div id="flashMessages"><?php $this->renderPartial('/site/_flash_messages');?></div>
 </div>
 <?php echo $content; ?>
 <div class="container">

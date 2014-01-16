@@ -36,15 +36,11 @@ class Controller extends RController {
     public function init() {
         parent::init();
         Yii::app()->params = CMap::mergeArray(Yii::app()->params, Settings::model()->getParams());
+        $this->verifiedUser();
     }
 
-    public function filters(){
-        return array(
-            'verifiedUser'
-        );
-    }
 
-    public function filterVerifiedUser($filterChain){
+    public function verifiedUser(){
         // if user is logged in or try for a login
         if( Yii::app()->user->id) {
             $user = User::model()->findByPk(Yii::app()->user->id);
@@ -68,7 +64,6 @@ class Controller extends RController {
                     }
             }
         }
-        $filterChain->run();
     }
 
 }

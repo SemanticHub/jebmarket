@@ -110,7 +110,6 @@ class MenuController extends Controller {
         $model = new Menu('search');
         $model->unsetAttributes();
         if (isset($_GET['Menu'])) $model->attributes = $_GET['Menu'];
-
         $this->render('admin', array(
             'model' => $model,
         ));
