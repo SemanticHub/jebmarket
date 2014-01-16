@@ -80,7 +80,7 @@
     </div>
 </div>
 <div class="container">
-    <div id="flashMessages"><?php $this->renderPartial('/site/_flash_messages');?></div>
+    <div id="flashMessages"><?php $this->renderPartial('//site/_flash_messages');?></div>
 </div>
 <?php echo $content; ?>
 <div class="container">
