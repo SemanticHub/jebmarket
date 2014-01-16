@@ -2,13 +2,14 @@
         ':username' => $model->getName()
     )); ?></h1>
 
-<div class="assignments span-12 first">
+<div class="assignments col-md-6 first">
     <?php $this->widget('zii.widgets.grid.CGridView', array(
         'dataProvider' => $dataProvider,
         'template' => '{items}',
         'hideHeader' => true,
         'emptyText' => Rights::t('core', 'This user has not been assigned any items.'),
-        'htmlOptions' => array('class' => 'grid-view user-assignment-table mini'),
+        'htmlOptions' => array('class' => 'grid-view user-assignment-table mini table-responsive'),
+        'itemsCssClass' => 'table table-striped table-bordered table-hover',
         'columns' => array(
             array(
                 'name' => 'name',
@@ -35,9 +36,9 @@
 
 </div>
 
-<div class="add-assignment span-11 last">
+<div class="add-assignment col-md-6 last">
 
-    <h3><?php echo Rights::t('core', 'Assign item'); ?></h3>
+    <h4><?php echo Rights::t('core', 'Assign item'); ?></h4>
 
     <?php if ($formModel !== null): ?>
 

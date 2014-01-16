@@ -8,7 +8,7 @@ $this->widget('zii.widgets.CMenu', array(
 			'label'=>Rights::t('core', 'Assignments'),
 			'url'=>array('assignment/view'),
 			'itemOptions'=>array('class'=>'item-assignments'),
-            'active'=>Yii::app()->controller->action->id=='view',
+            'active'=>Yii::app()->controller->action->id=='user' || Yii::app()->controller->action->id=='view',
 		),
 		array(
 			'label'=>Rights::t('core', 'Permissions'),

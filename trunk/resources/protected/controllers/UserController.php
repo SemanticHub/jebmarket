@@ -34,7 +34,7 @@ class UserController extends Controller {
      * Actions those will always allow
      */
     public function allowedActions() {
-        return 'signup, captcha, activate, recoverpass, resetpass, sendemailverification, sendeverification';
+        return 'signup, captcha, activate, recoverpass, resetpass, sendemailverification, sendajaxverification';
     }
 
     /**
@@ -337,17 +337,19 @@ class UserController extends Controller {
             }
         }
     }
-    public function actionSendeverification(){
+    public function actionSendajaxverification(){
         if(Yii::app()->user->id) {
             $user = User::model()->findByPk(Yii::app()->user->id);
             $mail = new JebMailer($user->id, Yii::app()->params['signupEmailTemplate']);
             if (!$mail->send()) {
                 Yii::app()->user->setFlash('danger', 'Mailer Error: ' . $mail->ErrorInfo);
-                return false;
+                $this->renderPartial('/site/_flash_messages');
+                //return false;
+                Yii::app()->end();
+            } else {
+                Yii::app()->user->setFlash('success', "Instructions has resent to your email account. Please check your email for details");
+                $this->renderPartial('/site/_flash_messages');
             }
-            Yii::app()->user->setFlash('success', "Instructions has resent to your email account. Please check your email for details");
-        } else {
-            throw new CHttpException(503, 'The requested User does not exists in our system.');
         }
     }
 

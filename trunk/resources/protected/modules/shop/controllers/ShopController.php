@@ -6,11 +6,11 @@ class ShopController extends Controller
 	public $menu;
 	public $_model;
 
-    public function filters() {
+/*    public function filters() {
         return array(
             'rights'
         );
-    }
+    }*/
 
 	public function actionInstall() 
 	{
@@ -32,28 +32,6 @@ class ShopController extends Controller
 		}
 	}
 
-/*	public function filters()
-	{
-		return array(
-			'accessControl',
-		);
-	}*/
-
-	public function accessRules() {
-		return array(
-				array('allow',
-					'actions'=>array('install', 'index'),
-					'users' => array('*'),
-					),
-				array('allow',
-					'actions'=>array('admin'),
-					'users' => array('admin'),
-					),
-				array('deny',  // deny all other users
-						'users'=>array('*'),
-						),
-				);
-	}
 
 	public function actionAdmin()
 	{

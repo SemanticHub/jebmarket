@@ -110,8 +110,12 @@ class Menu extends CActiveRecord
         }
     }
 
-    protected static function getAdminMenuItemVisibility($item){
+    protected static function getAdminMenuItemVisibility($item, $url){
+        $urlPart = explode('/', $url );
+        $actionName = end($urlPart);
         if(Yii::app()->user->checkAccess(Rights::module()->superuserName)){
+            return true;
+        } else if (Yii::app()->user->checkAccess($item.'.'.$actionName)){
             return true;
         } else if (Yii::app()->user->checkAccess('AdminMenu.'. strtolower(preg_replace("/[^a-zA-Z]+/", "", $item)))) {
             return true;
@@ -161,7 +165,7 @@ class Menu extends CActiveRecord
             array_push($adminSubMenuItems, array(
                 'label' => $adminSubMenuItem['label'],
                 'url' => $adminSubMenuItem['url'],
-                'visible' => Menu::getAdminMenuItemVisibility($adminSubMenuItem['label']),
+                'visible' => Menu::getAdminMenuItemVisibility($adminSubMenuItem['label'], $adminSubMenuItem['url'][0]),
                 //'itemOptions' => ($adminSubMenuItem['itemOptions'])
             ));
         }
@@ -172,7 +176,7 @@ class Menu extends CActiveRecord
                 'label' => Yii::t('phrase', '<span class="glyphicon glyphicon-cog"></span> Admin <b class="caret"></b>'),
                 'url' => array('#'),
                 'linkOptions' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
-                'visible' => Menu::getAdminMenuItemVisibility('Admin'),
+                'visible' => Menu::getAdminMenuItemVisibility('Admin','#'),
                 //'items' => Yii::app()->params['adminmenu']
                 'items' => $adminSubMenuItems
             ),

@@ -1,4 +1,4 @@
-<?php $this->beginContent(Rights::module()->appLayout); ?>
+<?php $this->beginContent(); ?>
 
     <div id="rights" class="container">
 

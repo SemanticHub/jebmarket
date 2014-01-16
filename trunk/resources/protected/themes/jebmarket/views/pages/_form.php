@@ -3,7 +3,12 @@
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'pages-form',
         'enableAjaxValidation' => true,
-        'htmlOptions' => array('class' => 'form-horizontal', 'role' => 'form')
+        'enableClientValidation' => true,
+        'focus' => 'input[type="text"]:first',
+        'htmlOptions' => array(
+            'class' => 'form-horizontal',
+            'role' => 'form'
+        )
     ));
     ?>
     <div class="note bs-callout bs-callout-info">
