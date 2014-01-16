@@ -9,7 +9,7 @@ class DefaultController extends Controller
 
 	public function actionIndex()
 	{
-        $report_connect = new JebReport('http://analytics.jebmarket.com/', 'e93eb7277967921a38ecdd53898e3d72');
+        $report_connect = new JebReport('http://analytics.jebmarket.com/', '4954041b073a96a2fb58f5ec70d19a95');
         $get_userinfo = $report_connect->userExists(Yii::app()->user->name);
         if(empty($get_userinfo)){
             Yii::app()->user->setFlash('message', 'Your account have no access for report.');
