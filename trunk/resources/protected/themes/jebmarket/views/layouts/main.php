@@ -79,8 +79,12 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div id="flashMessages"><?php $this->renderPartial('//site/_flash_messages');?></div>
+<div class="container" style="margin-top: -1px;">
+    <div class="col-md-12">
+        <div id="flashMessages" style="position: absolute; z-index: 10; width: 98%">
+            <?php $this->renderPartial('//site/_flash_messages');?>
+        </div>
+    </div>
 </div>
 <?php echo $content; ?>
 <div class="container">
