@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Shop Module installer.
+ *
+ * @author Syed Ekram Uddin Emon <ekram.syed@gmail.com>
+ * @copyright Copyright &copy; 2014 jebmarket.com
+ * @version 1.0.0
+ */
 class InstallController extends Controller
 {
 	public function actionInstall() 
@@ -12,8 +18,9 @@ class InstallController extends Controller
 						$transaction = $db->beginTransaction();
 
 						// Assing table names
+						$shopTable = $_POST['shopTable'];
 						$categoryTable = $_POST['categoryTable'];
-						$productsTable = $_POST['productsTable'];
+						$productTable = $_POST['productTable'];
 						$orderTable = $_POST['orderTable'];
 						$orderPositionTable = $_POST['orderPositionTable'];
 						$customerTable = $_POST['customerTable'];
@@ -27,11 +34,13 @@ class InstallController extends Controller
 
 						// Clean up existing Installation
 						$sql = "SET FOREIGN_KEY_CHECKS=0;";
+
 						$db->createCommand($sql)->execute();
 
 						$db->createCommand(sprintf('drop table if exists %s, %s, %s, %s, %s, %s, %s, `%s`, %s, %s',
-									$categoryTable, 
-									$productsTable, 
+									$shopTable,
+                                    $categoryTable,
+									$productTable,
 									$orderTable,
 									$customerTable,
 									$imageTable,

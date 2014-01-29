@@ -52,9 +52,11 @@ return array(
         ),
         'reports',
         # Shop
-        # -----
-        'shop' => array(
-            'debug' => 'true'
+        # --------------------------------
+        'store' => array(
+            'debug' => true,
+            'authorizationFilter' => 'rights',
+            'install' => true
         )
     ),
     'components' => array(
