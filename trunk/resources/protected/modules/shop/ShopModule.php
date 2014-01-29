@@ -18,6 +18,7 @@
  *         'flashErrorKey'=>'error',
  *     ),
  * ),
+ * @deprecated
  */
 
 class ShopModule extends CWebModule
@@ -31,8 +32,9 @@ class ShopModule extends CWebModule
     //public $useWithYum = false;
 
     // Names of the tables
-    public $categoryTable             = 'jebapp_shop_category';
-    public $productsTable             = 'jebapp_shop_products';
+    public $shopTable                = 'jebapp_shop';
+    public $categoryTable            = 'jebapp_shop_category';
+    public $productTable             = 'jebapp_shop_product';
     public $orderTable                = 'jebapp_shop_order';
     public $orderPositionTable        = 'jebapp_shop_order_position';
     public $customerTable             = 'jebapp_shop_customer';
