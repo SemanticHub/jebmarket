@@ -34,22 +34,35 @@ class MediaController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Media;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Media']))
-		{
-			$model->attributes=$_POST['Media'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create');
 	}
+
+    public function actionUploadmedia()
+    {
+        $model=new Media;
+        Yii::import("ext.JebUpload.JebFileUploader");
+        $dir_media = Yii::app()->params['uploadPath'].Yii::app()->user->name;
+        if(!is_dir($dir_media)){
+            mkdir($dir_media, 0777);
+        }
+
+        $folder = Yii::app()->params['uploadPath'].Yii::app()->user->name.'/';// folder for uploaded files
+        $allowedExtensions = array("jpg", "jpeg", "gif", "png");//array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = Yii::app()->params['sliderfilesizemax'];
+        $uploader = new JebFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($folder, $replaceOldFile = FALSE, $newfilename = FALSE );
+        $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        $fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
+        $fileName = $result['filename'];//GETTING FILE NAME
+        $model->caption = $fileName;
+        $model->alternative_text = $fileName;
+        $model->description = $fileName;
+        $model->url = Yii::app()->getBaseUrl(true).'/'.$folder.$fileName;
+        $model->upload_date = date("Y-m-d H:i:s");
+        $model->modified_date = date("Y-m-d H:i:s");
+        $model->save();
+        echo $return;
+    }
 
 	/**
 	 * Updates a particular model.

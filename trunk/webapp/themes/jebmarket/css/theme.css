@@ -673,6 +673,33 @@ form .alert {
 .checkbox_category .add_new_cat{
     float: right;
 }
+.media_upload #uploadFile{
+    width: 100%;
+    float: left;
+}
+.media_upload #uploadFile .qq-uploader .qq-upload-drop-area{
+    width: 100%;
+    float: left;
+    border: 4px dashed #bbb;
+    height: 200px;
+    background: #f1f1f1;
+}
+.media_upload #uploadFile .qq-uploader .qq-upload-button{
+    border-radius: 4px;
+    margin: 0;
+    left: 44%;
+    top: 90px;
+}
+.media_upload #uploadFile .qq-uploader .qq-upload-drop-area span {
+    top: 60px;
+    margin: 0;
+    font-size: 20px;
+    color: #aaa;
+}
+.media_upload #uploadFile .qq-uploader .qq-upload-list {
+    margin: 160px 0 0 0;
+    width: 100%;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .carousel-caption h1 {

@@ -16,4 +16,31 @@ $this->menu['media']['active'] = true;
             </div>
         </div>
     </div>
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="media_upload">
+    <?php
+    $this->widget('ext.JebUpload.JebUpload',
+        array(
+            'id'=>'uploadFile',
+            'config'=>array(
+                'action'=>Yii::app()->createUrl('blog/media/uploadmedia'),
+                'allowedExtensions'=>array("jpg", "jpeg", "gif", "png"),//array("jpg","jpeg","gif","exe","mov" and etc...
+                'sizeLimit'=>Yii::app()->params['sliderfilesizemax'],
+                'minSizeLimit'=>Yii::app()->params['sliderfilesizemin'],
+                'multiple'=>false,
+                'onSubmit'=>"js:function(file, extension) {
+                                    $('div.preview').addClass('loading');
+                                  }",
+                'onComplete'=>"js:function(file, response, responseJSON) {
+                                  $('#slider_image_img').load(function(){
+                                    $('div.preview').removeClass('loading');
+                                    $('#slider_image_img').unbind();
+                                    $('#Slider_image').val(responseJSON['filename']);
+                                    $('#Associazioni_logo').val(responseJSON['filename']);
+                                    $('.qq-uploader .alert-success').alert('close');
+                                  });
+                                  $('#slider_image_img').attr('src', '".Yii::app()->baseUrl."/".Yii::app()->params['sliderImageUrl']."tmp/'+responseJSON['filename']);
+                                }",
+            )
+        ));
+    ?>
+</div>
