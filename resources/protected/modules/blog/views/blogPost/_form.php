@@ -58,14 +58,14 @@
             <div class="list-group checkbox_category">
                 <p class="list-group-item active" style="margin: 0 0 5px 0;">Category</p>
                 <?php echo $form->checkBoxList($term, 'term_id', CHtml::listData(BlogTerms::model()->findAll(array('condition' => "taxonomy = 'category' AND jebapp_user_id =".Yii::app()->user->id)), 'term_id', 'name'), array('class' => 'category_input')); ?>
-                <p><?php echo CHtml::link('Add New Category',array('/blog/blogterms/createcategory'), array('class'=>'btn btn-success btn-xs add_new_cat')); ?></p>
+                <p><?php echo CHtml::link('Add New Category',array('/blog/blogTerms/createcategory'), array('class'=>'btn btn-success btn-xs add_new_cat')); ?></p>
             </div>
         </div>
         <div class="thumbnail">
             <div class="list-group checkbox_category">
                 <p class="list-group-item active">Tags</p>
                 <?php echo $form->checkBoxList($term, 'term_id', CHtml::listData(BlogTerms::model()->findAll(array('condition' => "taxonomy = 'tag' AND jebapp_user_id =".Yii::app()->user->id)), 'term_id', 'name'), array('class' => 'category_input')); ?>
-                <p><?php echo CHtml::link('Add New Tag',array('/blog/blogterms/createtag'), array('class'=>'btn btn-success btn-xs add_new_cat')); ?></p>
+                <p><?php echo CHtml::link('Add New Tag',array('/blog/blogTerms/createtag'), array('class'=>'btn btn-success btn-xs add_new_cat')); ?></p>
             </div>
         </div>
     </div>
