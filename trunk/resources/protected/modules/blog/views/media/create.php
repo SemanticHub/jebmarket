@@ -26,7 +26,7 @@ $this->menu['media']['active'] = true;
                 'allowedExtensions'=>array("jpg", "jpeg", "gif", "png"),//array("jpg","jpeg","gif","exe","mov" and etc...
                 'sizeLimit'=>Yii::app()->params['sliderfilesizemax'],
                 'minSizeLimit'=>Yii::app()->params['sliderfilesizemin'],
-                'multiple'=>false,
+                'multiple'=>true,
                 'onSubmit'=>"js:function(file, extension) {
                                     $('div.preview').addClass('loading');
                                   }",
