@@ -98,12 +98,20 @@ class Media extends CActiveRecord
 		$criteria->compare('url',$this->url,true);
 		$criteria->compare('upload_date',$this->upload_date,true);
 		$criteria->compare('modified_date',$this->modified_date,true);
-		$criteria->compare('jebapp_user_id',$this->jebapp_user_id);
+		$criteria->compare('jebapp_user_id',$this->jebapp_user_id = Yii::app()->user->id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * @return bool
+     */
+    public function beforeSave() {
+        $this->jebapp_user_id = Yii::app()->user->id;
+        return parent::beforeSave();
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.
