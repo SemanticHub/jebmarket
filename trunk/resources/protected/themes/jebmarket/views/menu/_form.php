@@ -62,7 +62,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="form-group">
     <?php echo $form->labelEx($model, 'parent_id', array('class' => 'control-label col-lg-3')); ?>
     <div class="col-lg-9">
-        <?php echo $form->dropDownList($model,'parent_id', CHtml::listData(Menu::model()->findAll(), 'id', 'label'), array('empty'=>'--SELECT--', 'class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model,'parent_id', CHtml::listData(Menu::model()->findAll(array('condition' => "jebapp_user_id =".Yii::app()->user->id)), 'id', 'label'), array('empty'=>'--SELECT--', 'class' => 'form-control')); ?>
         <?php echo $form->error($model, 'parent_id', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
