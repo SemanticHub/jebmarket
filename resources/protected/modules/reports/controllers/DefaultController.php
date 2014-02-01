@@ -7,6 +7,15 @@ class DefaultController extends Controller
      */
     public $layout = '//layouts/column2';
 
+    /**
+     * @return array action filters
+     */
+    public function filters() {
+        return array(
+            'rights'
+        );
+    }
+
 	public function actionIndex()
 	{
         $report_connect = new JebReport( Yii::app()->params['piwikURL'], Yii::app()->params['piwikSuperAdminToken']);
