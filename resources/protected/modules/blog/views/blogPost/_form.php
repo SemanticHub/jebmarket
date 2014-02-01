@@ -56,7 +56,7 @@
         </div>
         <div class="thumbnail">
             <div class="list-group checkbox_category">
-                <p class="list-group-item active" style="margin: 0 0 5px 0;">Category</p>
+                <p class="list-group-item active">Category</p>
                 <?php echo $form->checkBoxList($term, 'term_id', CHtml::listData(BlogTerms::model()->findAll(array('condition' => "taxonomy = 'category' AND jebapp_user_id =".Yii::app()->user->id)), 'term_id', 'name'), array('class' => 'category_input')); ?>
                 <p><?php echo CHtml::link('Add New Category',array('/blog/blogTerms/createcategory'), array('class'=>'btn btn-success btn-xs add_new_cat')); ?></p>
             </div>
