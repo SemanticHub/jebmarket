@@ -11,6 +11,7 @@
  * @property string $slug
  * @property string $meta_desc
  * @property string $meta_keywords
+ * @property mixed jebapp_user_id
  */
 class Pages extends CActiveRecord {
 
@@ -33,7 +34,7 @@ class Pages extends CActiveRecord {
             array('active', 'length', 'max' => 1),
             array('title, slug', 'length', 'max' => 255),
             array('content, meta_desc, meta_keywords', 'safe'),
-            array('id, active, title, content, slug, meta_desc, meta_keywords', 'safe', 'on' => 'search'),
+            array('id, jebapp_user_id, active, title, content, slug, meta_desc, meta_keywords', 'safe', 'on' => 'search'),
         );
     }
 
@@ -57,6 +58,7 @@ class Pages extends CActiveRecord {
             'slug' => 'Friendly URL',
             'meta_desc' => 'Meta Desc',
             'meta_keywords' => 'Meta Keywords',
+            'jebapp_user_id' => 'User ID',
         );
     }
 
@@ -76,10 +78,19 @@ class Pages extends CActiveRecord {
         $criteria->compare('slug', $this->slug, true);
         $criteria->compare('meta_desc', $this->meta_desc, true);
         $criteria->compare('meta_keywords', $this->meta_keywords, true);
+        $criteria->compare('jebapp_user_id', $this->jebapp_user_id = Yii::app()->user->id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
+    }
+
+    /**
+     * @return bool
+     */
+    public function beforeSave() {
+        $this->jebapp_user_id = Yii::app()->user->id;
+        return parent::beforeSave();
     }
 
     /**

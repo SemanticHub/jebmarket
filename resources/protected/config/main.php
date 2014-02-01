@@ -51,6 +51,7 @@ return array(
             # ),
         ),
         'reports',
+        'blog',
         # Shop
         # --------------------------------
         'store' => array(
@@ -175,6 +176,10 @@ return array(
             'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('products')),
             'orders' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Orders', 'url' => array('orders')),
             'reports' => array('label' => '<span class="glyphicon glyphicon-stats"></span> Reports', 'url' => array('/reports')),
+            'blog' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Blog', 'url' => array('/blog')),
+            'pages' => array('label' => '<span class="glyphicon glyphicon-edit"></span> Pages', 'url' => array('/pages/admin')),
+            'menus' => array('label' => '<span class="glyphicon glyphicon-link"></span> Menus', 'url' => array('/menu/admin')),
+            'media' => array('label' => '<span class="glyphicon glyphicon-expand"></span> Media', 'url' => array('/blog/media/admin')),
         ),
         'adminmenu' => array(
             array('label' => 'Sliders', 'url' => array('/slider/admin'), 'itemOptions'=>array('class'=>'slider') ),
