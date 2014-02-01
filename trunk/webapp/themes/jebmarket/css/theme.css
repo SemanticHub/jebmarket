@@ -306,7 +306,7 @@ h1.page-title, .h1.page-title {
     width: 100%;
 }
 .list-view .label, .table-responsive .label.pull-right {
-    margin-top: -50px;
+    margin-top: -21px;
 }
 .table-responsive .label.pull-right.top-21 {
     margin-top: -21px;
@@ -638,6 +638,40 @@ form .alert {
 }
 .panel-group .panel{
     overflow: visible;
+}
+.right_top_menu{
+    width: 100%;
+    float: right;
+}
+.right_top_menu .list-inline{
+    float: right;
+    margin: 30px 0 0 0;
+}
+.right_top_menu .list-inline>li{
+    padding-right: 0;
+    padding-left: 5px;
+}
+#dashboard .thumbnail{
+    margin-bottom: 20px;
+}
+.blog_form .form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+}
+.blog_form .thumbnail {
+    margin-bottom: 15px;
+}
+.checkbox_category label{
+    margin: -2px 0 0 2px;
+    padding: 0;
+    font-weight: bold;
+}
+.checkbox_category .category_input{
+    margin: 0 0 0 16px;
+    padding: 0;
+}
+.checkbox_category .add_new_cat{
+    float: right;
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

@@ -1,9 +1,21 @@
 <?php
-$this->menu = array(
-    array('label' => 'Create Menu Item', 'url' => array('create')),
-);
+$this->menu = Yii::app()->params['usermenu'];
+$this->menu['menus']['active'] = true;
 ?>
-<h1 class="page-title">Menus</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="page-title">Manage Menus</h1>
+        </div>
+        <div class="col-md-6">
+            <div class="right_top_menu">
+                <ul class="list-inline">
+                    <li>
+                        <?php echo CHtml::link('Create Menu Item',array('create'), array('class'=>'btn btn-success')); ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'menu-grid',
