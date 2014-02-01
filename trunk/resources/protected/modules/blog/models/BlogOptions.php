@@ -89,12 +89,20 @@ class BlogOptions extends CActiveRecord
 		$criteria->compare('option_name',$this->option_name,true);
 		$criteria->compare('option_value',$this->option_value,true);
 		$criteria->compare('autoload',$this->autoload,true);
-		$criteria->compare('jebapp_user_id',$this->jebapp_user_id);
+		$criteria->compare('jebapp_user_id',$this->jebapp_user_id = Yii::app()->user->id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * @return bool
+     */
+    public function beforeSave() {
+        $this->jebapp_user_id = Yii::app()->user->id;
+        return parent::beforeSave();
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.

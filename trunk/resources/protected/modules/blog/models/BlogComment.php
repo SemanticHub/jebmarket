@@ -115,12 +115,20 @@ class BlogComment extends CActiveRecord
 		$criteria->compare('comment_date',$this->comment_date,true);
 		$criteria->compare('comment_date_gmt',$this->comment_date_gmt,true);
 		$criteria->compare('user_id',$this->user_id,true);
-		$criteria->compare('jebapp_blog_post_id',$this->jebapp_blog_post_id,true);
+		$criteria->compare('jebapp_blog_post_id',$this->jebapp_blog_post_id = Yii::app()->user->id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * @return bool
+     */
+    public function beforeSave() {
+        $this->jebapp_user_id = Yii::app()->user->id;
+        return parent::beforeSave();
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.
