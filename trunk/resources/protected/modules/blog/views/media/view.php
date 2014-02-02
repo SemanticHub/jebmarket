@@ -35,7 +35,7 @@ $this->menu['media']['active'] = true;
         array(
             'name'=>'url',
             'type'=>'html',
-            'value'=> '<img width="400px" src="'.$model->url.'" />'
+            'value'=> '<img width="400px" src="'.Yii::app()->getBaseUrl(true).'/'.Yii::app()->params["uploadPath"].Yii::app()->user->name.'/'.$model->url.'" />'
         ),
 	),
 )); ?>

@@ -57,7 +57,7 @@ class MediaController extends Controller
         $model->caption = $fileName;
         $model->alternative_text = $fileName;
         $model->description = $fileName;
-        $model->url = Yii::app()->getBaseUrl(true).'/'.$folder.$fileName;
+        $model->url = $fileName;
         $model->upload_date = date("Y-m-d H:i:s");
         $model->modified_date = date("Y-m-d H:i:s");
         $model->save();
@@ -96,8 +96,12 @@ class MediaController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
-
+        $model = $this->loadModel($id);
+        $uploadPath = Yii::getPathOfAlias('webroot') .DIRECTORY_SEPARATOR . Yii::app()->params['uploadPath'];
+        if (file_exists($uploadPath.Yii::app()->user->name.'/'.$model->url)){
+            unlink($uploadPath.Yii::app()->user->name.'/'.$model->url);
+        }
+        $model->delete();
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
