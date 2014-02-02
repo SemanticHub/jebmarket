@@ -35,7 +35,7 @@
             <?php echo $form->error($model, 'description', array('class' => 'text-danger control-hint')); ?>
         </div>
 
-        <img width="400px" src="<?php echo $model->url; ?>" />
+        <img width="400px" src="<?php echo Yii::app()->getBaseUrl(true).'/'.Yii::app()->params["uploadPath"].Yii::app()->user->name.'/'.$model->url; ?>" />
 
         <div class="form-group buttons">
             <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-success')); ?>
