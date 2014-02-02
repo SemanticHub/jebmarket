@@ -700,6 +700,13 @@ form .alert {
     margin: 160px 0 0 0;
     width: 100%;
 }
+.alert-success img{
+    padding: 5px 5px 5px 0;
+    height: 50px;
+}
+.alert-success .qq-upload-file, .alert-success .qq-upload-size, .alert-success .qq-upload-failed-text{
+    font-size: 15px;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .carousel-caption h1 {
