@@ -1,21 +1,23 @@
 <?php
-/* @var $this MediaController */
-/* @var $model Media */
-
-$this->breadcrumbs=array(
-	'Medias'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List Media', 'url'=>array('index')),
-	array('label'=>'Create Media', 'url'=>array('create')),
-	array('label'=>'View Media', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Media', 'url'=>array('admin')),
-);
+$this->menu = Yii::app()->params['usermenu'];
+$this->menu['media']['active'] = true;
 ?>
-
-<h1>Update Media <?php echo $model->id; ?></h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="page-title">Update Media</h1>
+        </div>
+        <div class="col-md-6">
+            <div class="right_top_menu">
+                <ul class="list-inline">
+                    <li>
+                        <?php echo CHtml::link('Create Media',array('create'), array('class'=>'btn btn-success')); ?>
+                    </li>
+                    <li>
+                        <?php echo CHtml::link('Manage Media',array('admin'), array('class'=>'btn btn-success')); ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
