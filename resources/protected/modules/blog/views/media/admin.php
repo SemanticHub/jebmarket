@@ -26,9 +26,13 @@ $this->menu['media']['active'] = true;
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
+        array(
+            'name'=>'url',
+            'type'=>'html',
+            'value'=>'(!empty($data->url))?CHtml::image($data->url,"",array("style"=>"height:40px;")):"no image"',
+        ),
 		'caption',
 		'alternative_text',
-        'url',
 		'description',
         array(
             'class' => 'CButtonColumn',

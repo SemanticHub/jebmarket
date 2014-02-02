@@ -31,14 +31,7 @@ $this->menu['media']['active'] = true;
                                     $('div.preview').addClass('loading');
                                   }",
                 'onComplete'=>"js:function(file, response, responseJSON) {
-                                  $('#slider_image_img').load(function(){
-                                    $('div.preview').removeClass('loading');
-                                    $('#slider_image_img').unbind();
-                                    $('#Slider_image').val(responseJSON['filename']);
-                                    $('#Associazioni_logo').val(responseJSON['filename']);
-                                    $('.qq-uploader .alert-success').alert('close');
-                                  });
-                                  $('#slider_image_img').attr('src', '".Yii::app()->baseUrl."/".Yii::app()->params['sliderImageUrl']."tmp/'+responseJSON['filename']);
+                                    $('.alert-success:last').prepend('<img style=margin:0; src=".Yii::app()->getBaseUrl(true)."/".Yii::app()->params['uploadPath'].Yii::app()->user->name."/'+responseJSON['filename']+'>');
                                 }",
             )
         ));

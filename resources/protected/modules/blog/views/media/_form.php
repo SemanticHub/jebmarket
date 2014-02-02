@@ -4,49 +4,43 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-
+<div class="row blog_form">
+    <div class="col-md-6">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'media-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
+    'htmlOptions' => array(
+        'class' => 'form-horizontal',
+        'role' => 'form'
+    )
 )); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'caption'); ?>
-		<?php echo $form->textArea($model,'caption',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'caption'); ?>
-	</div>
+        <div class="form-group">
+            <?php echo $form->labelEx($model, 'caption', array('class' => 'control-label')); ?>
+            <?php echo $form->textField($model, 'caption', array('class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'caption', array('class' => 'text-danger control-hint')); ?>
+        </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'alternative_text'); ?>
-		<?php echo $form->textArea($model,'alternative_text',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'alternative_text'); ?>
-	</div>
+        <div class="form-group">
+            <?php echo $form->labelEx($model, 'alternative_text', array('class' => 'control-label')); ?>
+            <?php echo $form->textField($model, 'alternative_text', array('class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'alternative_text', array('class' => 'text-danger control-hint')); ?>
+        </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'description'); ?>
-	</div>
+        <div class="form-group">
+            <?php echo $form->labelEx($model, 'description', array('class' => 'control-label')); ?>
+            <?php echo $form->textArea($model, 'description', array('rows'=>6, 'cols'=>50, 'class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'description', array('class' => 'text-danger control-hint')); ?>
+        </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'url'); ?>
-		<?php echo $form->textField($model,'url',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'url'); ?>
-	</div>
+        <img width="400px" src="<?php echo $model->url; ?>" />
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
+        <div class="form-group buttons">
+            <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-success')); ?>
+        </div>
 
 <?php $this->endWidget(); ?>
-
+    </div>
 </div><!-- form -->
