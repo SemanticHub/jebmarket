@@ -28,7 +28,8 @@ $this->menu['blog']['active'] = true;
 	'columns'=>array(
 		'post_title',
 		'post_name',
-        'post_content',
+        'post_status',
+        'comment_status',
 		'comment_count',
         array(
             'class' => 'CButtonColumn',

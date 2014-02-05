@@ -35,7 +35,6 @@ class BlogPostController extends Controller
 	public function actionCreate()
 	{
 		$model=new BlogPost;
-        $term=new BlogTermRelationships;
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
@@ -43,22 +42,22 @@ class BlogPostController extends Controller
 		if(isset($_POST['BlogPost']))
 		{
 			$model->attributes=$_POST['BlogPost'];
-            //$term->attributes=$_POST['BlogTermRelationships'];
 
-            if (empty($model->slug)) {
-                $model->post_name  = $model->post_title;
-            }
+            $model->post_name = str_replace(' ', '-', $model->post_title);
             $model->post_date = date("Y-m-d H:i:s");
             $model->post_modified = date("Y-m-d H:i:s");
-            //$term->post_id = $model->id;
-            //$term->term_id = implode(',', $term->term_id);
+            if (!empty($model->tag)) {
+                $model->tag = implode(",",$model->tag);
+            }
+            if (!empty($model->category)) {
+                $model->category = implode(",",$model->category);
+            }
             if($model->save())
                 $this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-            'term'=>$term,
 		));
 	}
 
@@ -70,7 +69,6 @@ class BlogPostController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-        $term=new BlogTermRelationships;
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
@@ -78,21 +76,21 @@ class BlogPostController extends Controller
 		if(isset($_POST['BlogPost']))
 		{
 			$model->attributes=$_POST['BlogPost'];
-            //$term->attributes=$_POST['BlogTermRelationships'];
 
-            if (empty($model->slug)) {
-                $model->post_name  = $model->post_title;
-            }
+            $model->post_name = str_replace(' ', '-', $model->post_title);
             $model->post_modified = date("Y-m-d H:i:s");
-            //$term->term_id = implode(',', $term->term_id);
-
+            if (!empty($model->tag)) {
+                $model->tag = implode(",",$model->tag);
+            }
+            if (!empty($model->category)) {
+                $model->category = implode(",",$model->category);
+            }
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-        //$term->term_id = explode(',', $term->term_id);
+        $model->tag = explode(",",$model->tag);
 		$this->render('update',array(
 			'model'=>$model,
-            'term'=>$term,
 		));
 	}
 
