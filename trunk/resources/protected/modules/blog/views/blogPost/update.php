@@ -19,4 +19,4 @@ $this->menu['blog']['active'] = true;
             </div>
         </div>
     </div>
-<?php $this->renderPartial('_form', array('model'=>$model, 'term'=>$term)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model)); ?>

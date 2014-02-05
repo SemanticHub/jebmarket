@@ -18,7 +18,6 @@
     <div class="col-md-8">
         <?php
             echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'));
-            echo $form->errorSummary($term, '', '', array('class' => 'alert alert-danger'));
         ?>
 
         <div class="form-group">
@@ -57,14 +56,14 @@
         <div class="thumbnail">
             <div class="list-group checkbox_category">
                 <p class="list-group-item active">Category</p>
-                <?php echo $form->checkBoxList($term, 'term_id', CHtml::listData(BlogTerms::model()->findAll(array('condition' => "taxonomy = 'category' AND jebapp_user_id =".Yii::app()->user->id)), 'term_id', 'name'), array('class' => 'category_input')); ?>
+                <?php echo $form->checkBoxList($model, 'category', CHtml::listData(BlogTerms::model()->findAll(array('condition' => "taxonomy = 'category' AND jebapp_user_id =".Yii::app()->user->id)), 'term_id', 'name'), array('class' => 'category_input')); ?>
                 <p><?php echo CHtml::link('Add New Category',array('/blog/blogTerms/createcategory'), array('class'=>'btn btn-success btn-xs add_new_cat')); ?></p>
             </div>
         </div>
         <div class="thumbnail">
             <div class="list-group checkbox_category">
                 <p class="list-group-item active">Tags</p>
-                <?php echo $form->checkBoxList($term, 'term_id', CHtml::listData(BlogTerms::model()->findAll(array('condition' => "taxonomy = 'tag' AND jebapp_user_id =".Yii::app()->user->id)), 'term_id', 'name'), array('class' => 'category_input')); ?>
+                <?php echo $form->checkBoxList($model, 'tag', CHtml::listData(BlogTerms::model()->findAll(array('condition' => "taxonomy = 'tag' AND jebapp_user_id =".Yii::app()->user->id)), 'term_id', 'name'), array('class' => 'category_input')); ?>
                 <p><?php echo CHtml::link('Add New Tag',array('/blog/blogTerms/createtag'), array('class'=>'btn btn-success btn-xs add_new_cat')); ?></p>
             </div>
         </div>

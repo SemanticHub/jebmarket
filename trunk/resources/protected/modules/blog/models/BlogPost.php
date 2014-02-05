@@ -19,6 +19,8 @@
  * The followings are the available model relations:
  * @property BlogComment[] $blogComments
  * @property User $jebappUser
+ * @property mixed tag
+ * @property mixed category
  */
 class BlogPost extends CActiveRecord
 {
@@ -42,10 +44,10 @@ class BlogPost extends CActiveRecord
 			array('jebapp_user_id', 'numerical', 'integerOnly'=>true),
 			array('post_name', 'length', 'max'=>200),
 			array('post_status, comment_status, post_parent, comment_count', 'length', 'max'=>20),
-			array('post_date, post_modified', 'safe'),
+			array('post_date, post_modified, tag, category', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, post_content, post_title, post_name, post_status, comment_status, post_date, post_modified, post_parent, comment_count, jebapp_user_id', 'safe', 'on'=>'search'),
+			array('id, post_content, tag, category, post_title, post_name, post_status, comment_status, post_date, post_modified, post_parent, comment_count, jebapp_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,13 +73,15 @@ class BlogPost extends CActiveRecord
 			'id' => 'ID',
 			'post_content' => 'Post Content',
 			'post_title' => 'Post Title',
-			'post_name' => 'Post Name',
+			'post_name' => 'Friendly URL',
 			'post_status' => 'Post Status',
 			'comment_status' => 'Comment Status',
 			'post_date' => 'Post Date',
 			'post_modified' => 'Post Modified',
 			'post_parent' => 'Post Parent',
 			'comment_count' => 'Comment Count',
+            'tag' => 'Tag',
+            'category' => 'Category',
 			'jebapp_user_id' => 'Jebapp User',
 		);
 	}
@@ -110,6 +114,8 @@ class BlogPost extends CActiveRecord
 		$criteria->compare('post_modified',$this->post_modified,true);
 		$criteria->compare('post_parent',$this->post_parent,true);
 		$criteria->compare('comment_count',$this->comment_count,true);
+        $criteria->compare('tag',$this->tag,true);
+        $criteria->compare('category',$this->category,true);
 		$criteria->compare('jebapp_user_id',$this->jebapp_user_id = Yii::app()->user->id);
 
 		return new CActiveDataProvider($this, array(

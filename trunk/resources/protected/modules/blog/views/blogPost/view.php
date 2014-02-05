@@ -30,12 +30,15 @@ $this->menu['blog']['active'] = true;
 	'data'=>$model,
 	'attributes'=>array(
         'post_title',
-		'post_content',
 		'post_name',
 		'post_status',
 		'comment_status',
 		'post_date',
 		'post_modified',
 		'comment_count',
+        array(
+            'name'=>'post_content',
+            'type'=>'html',
+        ),
 	),
 )); ?>
