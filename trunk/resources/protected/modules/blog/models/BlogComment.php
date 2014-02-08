@@ -39,9 +39,10 @@ class BlogComment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('comment_id, comment_author, comment_content, jebapp_blog_post_id', 'required'),
+			array('comment_author, comment_content, comment_author_email, jebapp_blog_post_id', 'required'),
 			array('comment_id, comment_status, comment_parent, user_id, jebapp_blog_post_id', 'length', 'max'=>20),
 			array('comment_author_email, comment_author_IP', 'length', 'max'=>100),
+            array('comment_author_email', 'email'),
 			array('comment_author_url', 'length', 'max'=>200),
 			array('comment_agent', 'length', 'max'=>255),
 			array('comment_date, comment_date_gmt', 'safe'),
@@ -115,20 +116,12 @@ class BlogComment extends CActiveRecord
 		$criteria->compare('comment_date',$this->comment_date,true);
 		$criteria->compare('comment_date_gmt',$this->comment_date_gmt,true);
 		$criteria->compare('user_id',$this->user_id,true);
-		$criteria->compare('jebapp_blog_post_id',$this->jebapp_blog_post_id = Yii::app()->user->id,true);
+		$criteria->compare('jebapp_blog_post_id',$this->jebapp_blog_post_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-
-    /**
-     * @return bool
-     */
-    public function beforeSave() {
-        $this->jebapp_user_id = Yii::app()->user->id;
-        return parent::beforeSave();
-    }
 
 	/**
 	 * Returns the static model of the specified AR class.
