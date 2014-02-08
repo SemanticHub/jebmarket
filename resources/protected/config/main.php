@@ -105,6 +105,7 @@ return array(
                 #'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
                 #'rights/<controller:\w+>' => 'rights/<controller>',
                 #'rights/<controller:\w+>/<action:\w+>' => 'rights/<controller>/<action>',
+                'blog/admin' => 'blog/default/admin',
                 '<module:\w+>/<controller:\w+>' => '<module>/<controller>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
@@ -165,7 +166,8 @@ return array(
             'site/login' => 'Login',
             'site/logout' => 'Logout',
             'faq' => 'FAQ',
-            'user/profile' => 'User Profile'
+            'user/profile' => 'User Profile',
+            'blog' => 'Blog'
         ),
         'usermenu' => array(
             'account' => array('label' => 'User', 'linkOptions' => array('class' => 'list-group-title')),
@@ -176,7 +178,7 @@ return array(
             'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('products')),
             'orders' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Orders', 'url' => array('orders')),
             'reports' => array('label' => '<span class="glyphicon glyphicon-stats"></span> Reports', 'url' => array('/reports')),
-            'blog' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Blog', 'url' => array('/blog')),
+            'blog' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Blog', 'url' => array('/blog/admin')),
             'pages' => array('label' => '<span class="glyphicon glyphicon-edit"></span> Pages', 'url' => array('/pages/admin')),
             'menus' => array('label' => '<span class="glyphicon glyphicon-link"></span> Menus', 'url' => array('/menu/admin')),
             'media' => array('label' => '<span class="glyphicon glyphicon-expand"></span> Media', 'url' => array('/blog/media/admin')),
