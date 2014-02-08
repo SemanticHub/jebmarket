@@ -719,6 +719,13 @@ form .alert {
     float: left;
     font-size: 11px;
 }
+.comment_pagedate{
+    font-size: 11px;
+    margin-top: 0;
+}
+.comment_pagename{
+    margin-bottom: 0;
+}
 .blog #date_post a, .blog #comments_post a{
     color: #767676;
 }

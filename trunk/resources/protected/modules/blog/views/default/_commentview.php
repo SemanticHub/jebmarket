@@ -3,27 +3,14 @@
 /* @var $data BlogComment */
 ?>
 
-<div class="view">
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('comment_author')); ?>:</b>
-	<?php echo CHtml::encode($data->comment_author); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('comment_author_email')); ?>:</b>
-	<?php echo CHtml::encode($data->comment_author_email); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('comment_author_url')); ?>:</b>
-	<?php echo CHtml::encode($data->comment_author_url); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('comment_content')); ?>:</b>
-	<?php echo CHtml::encode($data->comment_content); ?>
-	<br />
-
-    <b><?php echo CHtml::encode($data->getAttributeLabel('comment_date_gmt')); ?>:</b>
-    <?php echo CHtml::encode($data->comment_date_gmt); ?>
-    <br />
-
+<div class="row">
+    <div class="col-md-2">
+        <img id='avater_image' src="<?php echo UserDetails::model()->gravatar($data->comment_author_email); ?>" alt="" />
+    </div>
+    <div class="col-md-10">
+        <p class="comment_pagename"><b><?php echo CHtml::encode($data->comment_author); ?></b></p>
+        <p class="comment_pagedate"><?php echo CHtml::encode($data->comment_date_gmt); ?></p>
+        <p><?php echo CHtml::encode($data->comment_content); ?></p>
+    </div>
 </div>
 <hr />
