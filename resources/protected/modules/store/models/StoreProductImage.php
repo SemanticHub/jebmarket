@@ -6,9 +6,10 @@
  * The followings are the available columns in table 'jebapp_store_product_image':
  * @property integer $id
  * @property integer $product_id
- * @property string $image
- * @property integer $image_order
- * @property string $image_title
+ * @property string $image_file
+ * @property string $alt_text
+ * @property string $title_txt
+ * @property integer $order
  * @property integer $is_default
  * @property string $tag
  *
@@ -33,13 +34,12 @@ class StoreProductImage extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('product_id', 'required'),
-			array('product_id, image_order, is_default', 'numerical', 'integerOnly'=>true),
-			array('image, tag', 'length', 'max'=>255),
-			array('image_title', 'length', 'max'=>140),
+			array('product_id, image_file', 'required'),
+			array('product_id, order, is_default', 'numerical', 'integerOnly'=>true),
+			array('image_file, alt_text, title_txt, tag', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, product_id, image, image_order, image_title, is_default, tag', 'safe', 'on'=>'search'),
+			array('id, product_id, image_file, alt_text, title_txt, order, is_default, tag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,9 +63,10 @@ class StoreProductImage extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'product_id' => 'Product',
-			'image' => 'Image',
-			'image_order' => 'Image Order',
-			'image_title' => 'Image Title',
+			'image_file' => 'Image File',
+			'alt_text' => 'Alt Text',
+			'title_txt' => 'Title Txt',
+			'order' => 'Order',
 			'is_default' => 'Is Default',
 			'tag' => 'Tag',
 		);
@@ -91,9 +92,10 @@ class StoreProductImage extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('product_id',$this->product_id);
-		$criteria->compare('image',$this->image,true);
-		$criteria->compare('image_order',$this->image_order);
-		$criteria->compare('image_title',$this->image_title,true);
+		$criteria->compare('image_file',$this->image_file,true);
+		$criteria->compare('alt_text',$this->alt_text,true);
+		$criteria->compare('title_txt',$this->title_txt,true);
+		$criteria->compare('order',$this->order);
 		$criteria->compare('is_default',$this->is_default);
 		$criteria->compare('tag',$this->tag,true);
 

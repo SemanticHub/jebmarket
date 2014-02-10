@@ -17,6 +17,8 @@
  * @property string $lon
  * @property string $timetable
  * @property string $tag
+ * @property string $keyword
+ * @property string $description
  *
  * The followings are the available model relations:
  * @property Store $store
@@ -41,14 +43,13 @@ class StoreDetail extends CActiveRecord
 		return array(
 			array('store_id', 'required'),
 			array('store_id, location_id', 'numerical', 'integerOnly'=>true),
-			array('city', 'length', 'max'=>64),
-			array('address, phone, fax, timetable', 'length', 'max'=>255),
-			array('zip', 'length', 'max'=>12),
-			array('email, lon, tag', 'length', 'max'=>45),
-			array('lat', 'length', 'max'=>18),
+			array('city, phone, fax, email, lat, lon', 'length', 'max'=>45),
+			array('address', 'length', 'max'=>140),
+			array('zip', 'length', 'max'=>10),
+			array('timetable, tag, keyword, description', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, store_id, location_id, city, address, zip, phone, fax, email, lat, lon, timetable, tag', 'safe', 'on'=>'search'),
+			array('id, store_id, location_id, city, address, zip, phone, fax, email, lat, lon, timetable, tag, keyword, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -83,6 +84,8 @@ class StoreDetail extends CActiveRecord
 			'lon' => 'Lon',
 			'timetable' => 'Timetable',
 			'tag' => 'Tag',
+			'keyword' => 'Keyword',
+			'description' => 'Description',
 		);
 	}
 
@@ -117,6 +120,8 @@ class StoreDetail extends CActiveRecord
 		$criteria->compare('lon',$this->lon,true);
 		$criteria->compare('timetable',$this->timetable,true);
 		$criteria->compare('tag',$this->tag,true);
+		$criteria->compare('keyword',$this->keyword,true);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
