@@ -6,19 +6,18 @@
  * The followings are the available columns in table 'jebapp_store':
  * @property integer $id
  * @property integer $user_id
+ * @property integer $plan_id
  * @property string $name
  * @property integer $status
+ * @property integer $visibility
+ * @property string $timezone
  * @property string $created
  * @property string $updated
  * @property string $expire
- * @property string $timezone
- * @property integer $visibility
- * @property integer $plan_id
  *
  * The followings are the available model relations:
  * @property StorePlan $plan
  * @property StoreDetail[] $storeDetails
- * @property StoreProduct[] $jebappStoreProducts
  */
 class Store extends CActiveRecord
 {
@@ -38,14 +37,13 @@ class Store extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, created', 'required'),
-			array('user_id, status, visibility, plan_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>45),
-			array('timezone', 'length', 'max'=>100),
+			array('user_id, plan_id, name, created', 'required'),
+			array('user_id, plan_id, status, visibility', 'numerical', 'integerOnly'=>true),
+			array('name, timezone', 'length', 'max'=>45),
 			array('updated, expire', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, name, status, created, updated, expire, timezone, visibility, plan_id', 'safe', 'on'=>'search'),
+			array('id, user_id, plan_id, name, status, visibility, timezone, created, updated, expire', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,8 +56,7 @@ class Store extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'plan' => array(self::BELONGS_TO, 'StorePlan', 'plan_id'),
-			'details' => array(self::HAS_ONE, 'StoreDetail', 'store_id'),
-			'products' => array(self::MANY_MANY, 'StoreProduct', 'jebapp_store_to_product(store_id, product_id)'),
+			'storeDetails' => array(self::HAS_MANY, 'StoreDetail', 'store_id'),
 		);
 	}
 
@@ -71,14 +68,14 @@ class Store extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'user_id' => 'User',
+			'plan_id' => 'Plan',
 			'name' => 'Name',
 			'status' => 'Status',
+			'visibility' => 'Visibility',
+			'timezone' => 'Timezone',
 			'created' => 'Created',
 			'updated' => 'Updated',
 			'expire' => 'Expire',
-			'timezone' => 'Timezone',
-			'visibility' => 'Visibility',
-			'plan_id' => 'Plan',
 		);
 	}
 
@@ -102,14 +99,14 @@ class Store extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('plan_id',$this->plan_id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('visibility',$this->visibility);
+		$criteria->compare('timezone',$this->timezone,true);
 		$criteria->compare('created',$this->created,true);
 		$criteria->compare('updated',$this->updated,true);
 		$criteria->compare('expire',$this->expire,true);
-		$criteria->compare('timezone',$this->timezone,true);
-		$criteria->compare('visibility',$this->visibility);
-		$criteria->compare('plan_id',$this->plan_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'jebapp_store_product_category':
  * @property integer $id
  * @property integer $parent_id
- * @property integer $top
+ * @property integer $is_root
  * @property string $name
  * @property string $description
  * @property string $meta_description
@@ -15,9 +15,6 @@
  * @property integer $shop_default
  * @property integer $status
  * @property integer $visibility
- *
- * The followings are the available model relations:
- * @property StoreProduct[] $storeProducts
  */
 class StoreProductCategory extends CActiveRecord
 {
@@ -37,12 +34,13 @@ class StoreProductCategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('parent_id, top, shop_default, status, visibility', 'numerical', 'integerOnly'=>true),
-			array('name, meta_description, meta_keyword, image', 'length', 'max'=>255),
-			array('description', 'safe'),
+			array('name', 'required'),
+			array('parent_id, is_root, shop_default, status, visibility', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>45),
+			array('description, meta_description, meta_keyword, image', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, parent_id, top, name, description, meta_description, meta_keyword, image, shop_default, status, visibility', 'safe', 'on'=>'search'),
+			array('id, parent_id, is_root, name, description, meta_description, meta_keyword, image, shop_default, status, visibility', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +52,6 @@ class StoreProductCategory extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'storeProducts' => array(self::HAS_MANY, 'StoreProduct', 'category_id'),
 		);
 	}
 
@@ -66,7 +63,7 @@ class StoreProductCategory extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'parent_id' => 'Parent',
-			'top' => 'Top',
+			'is_root' => 'Is Root',
 			'name' => 'Name',
 			'description' => 'Description',
 			'meta_description' => 'Meta Description',
@@ -98,7 +95,7 @@ class StoreProductCategory extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('parent_id',$this->parent_id);
-		$criteria->compare('top',$this->top);
+		$criteria->compare('is_root',$this->is_root);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('meta_description',$this->meta_description,true);

@@ -6,12 +6,10 @@
  * The followings are the available columns in table 'jebapp_store_product_manufacture':
  * @property integer $id
  * @property string $name
+ * @property string $description
  * @property string $logo
  * @property string $website
  * @property string $tag
- *
- * The followings are the available model relations:
- * @property StoreProduct[] $storeProducts
  */
 class StoreProductManufacture extends CActiveRecord
 {
@@ -33,10 +31,10 @@ class StoreProductManufacture extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('name, logo, website', 'length', 'max'=>45),
-			array('tag', 'length', 'max'=>255),
+			array('description, tag', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, logo, website, tag', 'safe', 'on'=>'search'),
+			array('id, name, description, logo, website, tag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,7 +46,6 @@ class StoreProductManufacture extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'storeProducts' => array(self::HAS_MANY, 'StoreProduct', 'manufacture_id'),
 		);
 	}
 
@@ -60,6 +57,7 @@ class StoreProductManufacture extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'description' => 'Description',
 			'logo' => 'Logo',
 			'website' => 'Website',
 			'tag' => 'Tag',
@@ -86,6 +84,7 @@ class StoreProductManufacture extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('description',$this->description,true);
 		$criteria->compare('logo',$this->logo,true);
 		$criteria->compare('website',$this->website,true);
 		$criteria->compare('tag',$this->tag,true);

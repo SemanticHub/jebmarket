@@ -7,16 +7,17 @@
  * @property integer $id
  * @property string $name
  * @property integer $is_default
- * @property string $desc
+ * @property string $description
  * @property string $thumb_width_height
  * @property string $image_width_height
  * @property string $image_max_size
  * @property integer $image_per_product
- * @property string $max_disk_space
- * @property string $max_bandwidth
+ * @property integer $max_disk_space
+ * @property integer $max_bandwidth
  * @property integer $product_per_store
  * @property string $transaction_fee
  * @property integer $transaction_period
+ * @property integer $transaction_fee_type
  *
  * The followings are the available model relations:
  * @property Store[] $stores
@@ -40,16 +41,15 @@ class StorePlan extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('is_default, image_per_product, product_per_store, transaction_period', 'numerical', 'integerOnly'=>true),
+			array('is_default, image_per_product, max_disk_space, max_bandwidth, product_per_store, transaction_period, transaction_fee_type', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>45),
-			array('desc', 'length', 'max'=>255),
-			array('thumb_width_height, image_width_height', 'length', 'max'=>12),
-			array('image_max_size', 'length', 'max'=>10),
-			array('max_disk_space, max_bandwidth', 'length', 'max'=>15),
-			array('transaction_fee', 'length', 'max'=>3),
+			array('description', 'length', 'max'=>255),
+			array('thumb_width_height, image_width_height', 'length', 'max'=>10),
+			array('image_max_size', 'length', 'max'=>3),
+			array('transaction_fee', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, is_default, desc, thumb_width_height, image_width_height, image_max_size, image_per_product, max_disk_space, max_bandwidth, product_per_store, transaction_fee, transaction_period', 'safe', 'on'=>'search'),
+			array('id, name, is_default, description, thumb_width_height, image_width_height, image_max_size, image_per_product, max_disk_space, max_bandwidth, product_per_store, transaction_fee, transaction_period, transaction_fee_type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,7 +74,7 @@ class StorePlan extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'is_default' => 'Is Default',
-			'desc' => 'Desc',
+			'description' => 'Description',
 			'thumb_width_height' => 'Thumb Width Height',
 			'image_width_height' => 'Image Width Height',
 			'image_max_size' => 'Image Max Size',
@@ -84,6 +84,7 @@ class StorePlan extends CActiveRecord
 			'product_per_store' => 'Product Per Store',
 			'transaction_fee' => 'Transaction Fee',
 			'transaction_period' => 'Transaction Period',
+			'transaction_fee_type' => 'Transaction Fee Type',
 		);
 	}
 
@@ -108,16 +109,17 @@ class StorePlan extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('is_default',$this->is_default);
-		$criteria->compare('desc',$this->desc,true);
+		$criteria->compare('description',$this->description,true);
 		$criteria->compare('thumb_width_height',$this->thumb_width_height,true);
 		$criteria->compare('image_width_height',$this->image_width_height,true);
 		$criteria->compare('image_max_size',$this->image_max_size,true);
 		$criteria->compare('image_per_product',$this->image_per_product);
-		$criteria->compare('max_disk_space',$this->max_disk_space,true);
-		$criteria->compare('max_bandwidth',$this->max_bandwidth,true);
+		$criteria->compare('max_disk_space',$this->max_disk_space);
+		$criteria->compare('max_bandwidth',$this->max_bandwidth);
 		$criteria->compare('product_per_store',$this->product_per_store);
 		$criteria->compare('transaction_fee',$this->transaction_fee,true);
 		$criteria->compare('transaction_period',$this->transaction_period);
+		$criteria->compare('transaction_fee_type',$this->transaction_fee_type);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
