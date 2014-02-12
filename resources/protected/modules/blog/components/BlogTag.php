@@ -9,7 +9,7 @@ class BlogTag extends CPortlet {
         if(!empty($user_id_url)){
             $this->tag = BlogTerms::model()->findAll(array('condition' => "taxonomy = 'tag' AND jebapp_user_id=$user_id_url"));
         }else{
-            $this->tag = BlogTerms::model()->findAll(array('condition' => "taxonomy = 'tag' AND jebapp_user_id=76"));
+            $this->tag = BlogTerms::model()->findAll(array('condition' => "taxonomy = 'tag' AND jebapp_user_id=40"));
         }
         $this->render('_tagswidget');
     }
