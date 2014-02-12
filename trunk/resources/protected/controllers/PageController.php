@@ -22,8 +22,13 @@ class PageController extends Controller {
      */
     public function actionView($view) {
         if (isset($view)) {
+            $user_id_url = Yii::app()->request->getParam('user_id');
             $criteria = new CDbCriteria();
-            $criteria->condition = "slug ='".trim($view)."'";
+            if(!empty($user_id_url)){
+                $criteria->condition = "slug ='".trim($view)."' AND jebapp_user_id ='".$user_id_url."'";
+            }else{
+                $criteria->condition = "slug ='".trim($view)."'";
+            }
             $page = Pages::model()->find($criteria);
             if($page) $this->render('page', array('model' => $page));
         } 

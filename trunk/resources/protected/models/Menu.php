@@ -14,6 +14,7 @@
  * @property integer $odr
  * @property string $type
  * @property mixed jebapp_user_id
+ * @property mixed class
  */
 class Menu extends CActiveRecord
 {
@@ -34,8 +35,9 @@ class Menu extends CActiveRecord
             array('parent_id, odr', 'numerical', 'integerOnly' => true),
             array('visibility, tag, type', 'length', 'max' => 45),
             array('url', 'length', 'max' => 255),
+            array('class', 'length', 'max' => 24),
             array('active', 'length', 'max' => 1),
-            array('id, jebapp_user_id, odr, type, label, url, visibility, active, parent_id, tag', 'safe', 'on' => 'search'),
+            array('id, jebapp_user_id, class, odr, type, label, url, visibility, active, parent_id, tag', 'safe', 'on' => 'search'),
         );
     }
 
@@ -54,6 +56,7 @@ class Menu extends CActiveRecord
             'id' => 'ID',
             'label' => 'Label',
             'url' => 'URL',
+            'class' => 'Class',
             'visibility' => 'Visibility',
             'active' => 'Is Active?',
             'parent_id' => 'Parent Item',
@@ -82,6 +85,7 @@ class Menu extends CActiveRecord
         $criteria->compare('tag', $this->tag, true);
         $criteria->compare('odr', $this->odr, true);
         $criteria->compare('type', $this->type, true);
+        $criteria->compare('class', $this->class, true);
         $criteria->compare('jebapp_user_id', $this->jebapp_user_id = Yii::app()->user->id);
 
         return new CActiveDataProvider($this, array(
