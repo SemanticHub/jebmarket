@@ -73,6 +73,13 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'odr', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'class', array('class' => 'control-label col-lg-3')); ?>
+        <div class="col-lg-9">
+            <?php echo $form->textField($model, 'class', array('class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'class', array('class' => 'text-danger control-hint')); ?>
+        </div>
+    </div>
 <div class="form-group">
     <?php echo $form->labelEx($model, 'tag', array('class' => 'control-label col-lg-3')); ?>
     <div class="col-lg-9">

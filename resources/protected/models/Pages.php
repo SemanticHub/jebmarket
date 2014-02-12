@@ -28,7 +28,7 @@ class Pages extends CActiveRecord {
     public function rules() {
         return array(
             array('title, slug', 'required'),
-            array('slug', 'unique'),
+            array('slug', 'isSlugValid'),
             array('slug', 'match', 'not' => true, 'pattern' => '/[^a-z0-9_]/', 'message' => 'Invalid characters in friendly URL.'),
             //array('meta_keywords', 'numerical', 'integerOnly' => true),
             array('active', 'length', 'max' => 1),
@@ -36,6 +36,22 @@ class Pages extends CActiveRecord {
             array('content, meta_desc, meta_keywords', 'safe'),
             array('id, jebapp_user_id, active, title, content, slug, meta_desc, meta_keywords', 'safe', 'on' => 'search'),
         );
+    }
+
+    /**
+     * @param $attribute
+     * @param $params
+     */
+    public function isSlugValid($attribute, $params)
+    {
+        if(!empty($this->slug))
+        {
+            $record = Pages::model()->findByAttributes(array('slug' => $this->slug, 'jebapp_user_id' => Yii::app()->user->id));
+            if(!empty($record->slug))
+            {
+                $this->addError($attribute, 'URL has already been taken.');
+            }
+        }
     }
 
     /**
