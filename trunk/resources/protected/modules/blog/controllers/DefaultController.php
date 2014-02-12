@@ -37,7 +37,7 @@ class DefaultController extends Controller
         }else{
             $dataProvider=new CActiveDataProvider('BlogPost', array(
                 'criteria'=>array(
-                    'condition'=>"jebapp_user_id=76",
+                    'condition'=>"jebapp_user_id=40",
                     'order'=>'id DESC',
                 ),
                 'pagination'=>array(
