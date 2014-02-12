@@ -158,14 +158,19 @@ class Menu extends CActiveRecord
     }
 
     public static function renderMenuItems($menuType) {
+        $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND jebapp_user_id=40 AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
         $user_id_url = Yii::app()->request->getParam('user_id');
         $user_id_login = Yii::app()->user->id;
         if(!empty($user_id_url)){
             $menuItems = Menu::model()->findAll(array('condition' => "tag=:tag AND jebapp_user_id=$user_id_url AND parent_id IS NULL", 'order' => 'odr', 'params' => array(':tag' => $menuType)));
+            if(empty($menuItems)){
+                $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND jebapp_user_id=40 AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
+            }
         }elseif(!empty($user_id_login)){
             $menuItems = Menu::model()->findAll(array('condition' => "tag=:tag AND jebapp_user_id=$user_id_login AND parent_id IS NULL", 'order' => 'odr', 'params' => array(':tag' => $menuType)));
-        }else{
-            $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND jebapp_user_id=40 AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
+            if(empty($menuItems)){
+                $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND jebapp_user_id=40 AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
+            }
         }
         foreach ($menuItems as $item) {
             $subItems = array();
