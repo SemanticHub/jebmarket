@@ -23,14 +23,27 @@ class DefaultController extends Controller
 	public function actionIndex()
 	{
         $this->layout = 'blog.views.layouts.blog';
-        $dataProvider=new CActiveDataProvider('BlogPost', array(
-            'criteria'=>array(
-                'order'=>'id DESC',
-            ),
-            'pagination'=>array(
-                'pageSize'=>10,
-            ),
-        ));
+        $user_id_url = Yii::app()->request->getParam('user_id');
+        if(!empty($user_id_url)){
+            $dataProvider=new CActiveDataProvider('BlogPost', array(
+                'criteria'=>array(
+                    'condition'=>"jebapp_user_id=$user_id_url",
+                    'order'=>'id DESC',
+                ),
+                'pagination'=>array(
+                    'pageSize'=>10,
+                ),
+            ));
+        }else{
+            $dataProvider=new CActiveDataProvider('BlogPost', array(
+                'criteria'=>array(
+                    'order'=>'id DESC',
+                ),
+                'pagination'=>array(
+                    'pageSize'=>10,
+                ),
+            ));
+        }
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
         ));

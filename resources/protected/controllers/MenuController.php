@@ -19,7 +19,8 @@ class MenuController extends Controller {
     public function actionMenuItemOptions() {
         switch ($_POST['type']) {
             case 'page':
-                echo CHtml::dropDownList("Menu[url]", $_POST['url'], CHtml::listData(Pages::model()->findAll(array('condition' => 'slug != :slug', 'params' => array(':slug' => 'home-page-view'))), 'slug', 'title'), array('class' => 'form-control'));
+                $userid = Yii::app()->user->id;
+                echo CHtml::dropDownList("Menu[url]", $_POST['url'], CHtml::listData(Pages::model()->findAll(array('condition' => "slug != :slug AND jebapp_user_id = $userid", 'params' => array(':slug' => 'home-page-view'))), 'slug', 'title'), array('class' => 'form-control'));
                 break;
             case 'module':
                 echo CHtml::dropDownList("Menu[url]", $_POST['url'], Yii::app()->params['sitemenu'], array('class' => 'form-control'));
