@@ -9,7 +9,7 @@ class BlogComments extends CPortlet {
         if(!empty($user_id_url)){
             $this->category = BlogTerms::model()->findAll(array('condition' => "taxonomy = 'category' AND jebapp_user_id=$user_id_url"));
         }else{
-            $this->category = BlogTerms::model()->findAll(array('condition' => "taxonomy = 'category'"));
+            $this->category = BlogTerms::model()->findAll(array('condition' => "taxonomy = 'category' AND jebapp_user_id=76"));
         }
         $this->render('_commentswidget');
     }
