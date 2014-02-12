@@ -41,6 +41,11 @@ class ProfileUrlRule extends CBaseUrlRule
                     }
                     return $route;
                 }
+                elseif($path[1] == 'blog')
+                {
+                    $route = $path_t;
+                    return $route;
+                }
             }
         }
         return false;

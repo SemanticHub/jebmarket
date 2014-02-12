@@ -73,7 +73,13 @@ class DefaultController extends Controller
             if($comments->save()){
                 $model->comment_count = $model->comment_count + 1;
                 $model->update(array('comment_count'));
-                $this->redirect(array('view','id'=>$id));
+                $user_id_url = Yii::app()->request->getParam('user_id');
+                $userurl = null;
+                if(!empty($user_id_url)){
+                    $user = User::model()->findByAttributes(array('id'=>$user_id_url));
+                    $userurl = '/'.$user->username.'/blog/';
+                }
+                $this->redirect(array($userurl.'default/view','id'=>$id));
             }
         }
 
