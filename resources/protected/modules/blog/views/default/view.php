@@ -17,9 +17,14 @@
                         foreach($model->category as $tsqt){
                             $category = BlogTerms::model()->findAll(array('condition' => "taxonomy = 'category' AND term_id = '$tsqt'"));
                             foreach($category as $tst){
-                                ?>
-                                <li><a href="#" class="label label-primary"><kbd><?php echo $tst->name; ?></kbd></a></li>
-                            <?php }} ?>
+                                if(!empty($user)){
+                                    echo '<li><a href="'.Yii::app()->baseURL.'/'.$user->username.'/blog/category/view/name/'.$tst->slug.'" class="label label-primary"><kbd>'.$tst->name.'</kbd></a></li>';
+                                }else{
+                                    echo '<li><a href="'.Yii::app()->baseURL.'/blog/category/view/name/'.$tst->slug.'" class="label label-primary"><kbd>'.$tst->name.'</kbd></a></li>';
+                                }
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
                 <?php echo $model->post_content; ?>
@@ -30,9 +35,14 @@
                         foreach($model->tag as $tsst){
                             $tags = BlogTerms::model()->findAll(array('condition' => "taxonomy = 'tag' AND term_id = '$tsst'"));
                             foreach($tags as $ts){
-                                ?>
-                                <li><a href="#" class="badge"><kbd><?php echo $ts->name; ?></kbd></a></li>
-                            <?php }} ?>
+                                if(!empty($user)){
+                                    echo '<li><a href="'.Yii::app()->baseURL.'/'.$user->username.'/blog/tag/view/name/'.$ts->slug.'" class="badge"><kbd>'.$ts->name.'</kbd></a></li>';
+                                }else{
+                                    echo '<li><a href="'.Yii::app()->baseURL.'/blog/tag/view/name/'.$ts->slug.'" class="badge"><kbd>'.$ts->name.'</kbd></a></li>';
+                                }
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>

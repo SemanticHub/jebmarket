@@ -54,6 +54,8 @@ class DefaultController extends Controller
     public function actionView($id)
     {
         $this->layout = 'blog.views.layouts.blog';
+        $user_id_url = Yii::app()->request->getParam('user_id');
+        $user = User::model()->findByPk($user_id_url);
         $model = $this->loadModel($id);
         $comments = new BlogComment;
         $listcomment = new CActiveDataProvider('BlogComment', array(
@@ -89,6 +91,7 @@ class DefaultController extends Controller
             'model'=>$model,
             'comments'=>$comments,
             'listcomment'=>$listcomment,
+            'user'=>$user,
         ));
     }
     public function loadModel($id)
