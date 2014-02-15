@@ -2,7 +2,6 @@
 /* @var $this BlogPostController */
 /* @var $data BlogPost */
 ?>
-
 <div class="view">
     <h4 class="post_header">
         <?php

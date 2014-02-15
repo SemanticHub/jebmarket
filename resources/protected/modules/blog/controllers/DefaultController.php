@@ -24,6 +24,7 @@ class DefaultController extends Controller
 	{
         $this->layout = 'blog.views.layouts.blog';
         $user_id_url = Yii::app()->request->getParam('user_id');
+        $user = User::model()->findByPk($user_id_url);
         if(!empty($user_id_url)){
             $dataProvider=new CActiveDataProvider('BlogPost', array(
                 'criteria'=>array(
@@ -47,6 +48,7 @@ class DefaultController extends Controller
         }
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
+            'user'=>$user,
         ));
 	}
     public function actionView($id)
