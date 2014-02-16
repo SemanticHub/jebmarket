@@ -25,9 +25,19 @@ class CategoryController extends Controller
         $criteria = new CDbCriteria();
         $criteria->select = array('category', 'id');
         if(!empty($user_id_url)){
-            $criteria->condition = "jebapp_user_id=$user_id_url";
+            if(Yii::app()->user->isGuest){
+                $criteria->condition = "jebapp_user_id=$user_id_url AND post_status='public'";
+            }else{
+                $criteria->condition = "jebapp_user_id=$user_id_url";
+                $criteria->addInCondition('post_status',array('public','private'));
+            }
         }else{
-            $criteria->condition = 'jebapp_user_id=40';
+            if(Yii::app()->user->isGuest){
+                $criteria->condition = "jebapp_user_id=40 AND post_status='public'";
+            }else{
+                $criteria->condition = "jebapp_user_id=40";
+                $criteria->addInCondition('post_status',array('public','private'));
+            }
         }
         $tagpostid = BlogPost::model()->findAll($criteria);
         $postids = array();
@@ -39,6 +49,7 @@ class CategoryController extends Controller
         }
         $criteria=new CDbCriteria;
         $criteria->addInCondition('id',$postids);
+        $criteria->order = 'id DESC';
         $dataProvider=new CActiveDataProvider('BlogPost', array(
             'criteria'=>$criteria,
             'pagination'=>array(

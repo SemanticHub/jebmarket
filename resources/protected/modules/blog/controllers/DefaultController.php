@@ -25,27 +25,29 @@ class DefaultController extends Controller
         $this->layout = 'blog.views.layouts.blog';
         $user_id_url = Yii::app()->request->getParam('user_id');
         $user = User::model()->findByPk($user_id_url);
+        $criteria = new CDbCriteria();
         if(!empty($user_id_url)){
-            $dataProvider=new CActiveDataProvider('BlogPost', array(
-                'criteria'=>array(
-                    'condition'=>"jebapp_user_id=$user_id_url",
-                    'order'=>'id DESC',
-                ),
-                'pagination'=>array(
-                    'pageSize'=>10,
-                ),
-            ));
+            if(Yii::app()->user->isGuest){
+                $criteria->condition = "jebapp_user_id=$user_id_url AND post_status='public'";
+            }else{
+                $criteria->condition = "jebapp_user_id=$user_id_url";
+                $criteria->addInCondition('post_status',array('public','private'));
+            }
         }else{
-            $dataProvider=new CActiveDataProvider('BlogPost', array(
-                'criteria'=>array(
-                    'condition'=>"jebapp_user_id=40",
-                    'order'=>'id DESC',
-                ),
-                'pagination'=>array(
-                    'pageSize'=>10,
-                ),
-            ));
+            if(Yii::app()->user->isGuest){
+                $criteria->condition = "jebapp_user_id=40 AND post_status='public'";
+            }else{
+                $criteria->condition = "jebapp_user_id=40";
+                $criteria->addInCondition('post_status',array('public','private'));
+            }
         }
+        $criteria->order = 'id DESC';
+        $dataProvider=new CActiveDataProvider('BlogPost', array(
+            'criteria'=>$criteria,
+            'pagination'=>array(
+                'pageSize'=>10,
+            ),
+        ));
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
             'user'=>$user,
@@ -58,10 +60,11 @@ class DefaultController extends Controller
         $user = User::model()->findByPk($user_id_url);
         $model = $this->loadModel($id);
         $comments = new BlogComment;
+        $criteria = new CDbCriteria();
+        $criteria->condition = "jebapp_blog_post_id=$id";
+        $criteria->order = 'comment_id ASC';
         $listcomment = new CActiveDataProvider('BlogComment', array(
-            'criteria'=>array(
-                'order'=>'comment_id ASC',
-            ),
+            'criteria'=>$criteria,
             'pagination'=>array(
                 'pageSize'=>10,
             ),
