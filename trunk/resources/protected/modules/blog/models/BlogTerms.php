@@ -37,6 +37,8 @@ class BlogTerms extends CActiveRecord
 			array('description, name', 'required'),
 			array('jebapp_user_id', 'numerical', 'integerOnly'=>true),
 			array('name, slug', 'length', 'max'=>200),
+            array('slug', 'isSlugValid'),
+            array('slug', 'match', 'not' => true, 'pattern' => '/[^a-z0-9_]/', 'message' => 'Invalid characters in friendly URL.'),
 			array('taxonomy', 'length', 'max'=>32),
 			array('parent, count', 'length', 'max'=>20),
 			// The following rule is used by search().
@@ -44,6 +46,22 @@ class BlogTerms extends CActiveRecord
 			array('term_id, name, slug, taxonomy, description, parent, count, jebapp_user_id', 'safe', 'on'=>'search'),
 		);
 	}
+
+    /**
+     * @param $attribute
+     * @param $params
+     */
+    public function isSlugValid($attribute, $params)
+    {
+        if(!empty($this->slug))
+        {
+            $record = BlogTerms::model()->findByAttributes(array('taxonomy' => $this->taxonomy, 'slug' => $this->slug, 'jebapp_user_id' => Yii::app()->user->id));
+            if(!empty($record->slug))
+            {
+                $this->addError($attribute, 'URL has already been taken.');
+            }
+        }
+    }
 
 	/**
 	 * @return array relational rules.

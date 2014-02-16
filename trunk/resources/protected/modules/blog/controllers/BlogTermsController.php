@@ -50,7 +50,7 @@ class BlogTermsController extends Controller
 		{
 			$model->attributes=$_POST['BlogTerms'];
             if (empty($model->slug)) {
-             			    $model->slug = $model->name;
+                $model->slug = str_replace(' ', '_', $model->name);
                          }
             $model->taxonomy = 'tag';
 			if($model->save())
@@ -77,7 +77,7 @@ class BlogTermsController extends Controller
 		{
 			$model->attributes=$_POST['BlogTerms'];
             if (empty($model->slug)) {
-			    $model->slug = $model->name;
+                $model->slug = str_replace(' ', '_', $model->name);
             }
             $model->taxonomy = 'category';
 			if($model->save())
@@ -105,7 +105,7 @@ class BlogTermsController extends Controller
 		{
 			$model->attributes=$_POST['BlogTerms'];
             if (empty($model->slug)) {
-			    $model->slug = $model->name;
+                $model->slug = str_replace(' ', '_', $model->name);
             }
             $model->taxonomy = 'category';
 			if($model->save())
@@ -128,7 +128,7 @@ class BlogTermsController extends Controller
 		{
 			$model->attributes=$_POST['BlogTerms'];
             if (empty($model->slug)) {
-			    $model->slug = $model->name;
+                $model->slug = str_replace(' ', '_', $model->name);
             }
             $model->taxonomy = 'tag';
 			if($model->save())

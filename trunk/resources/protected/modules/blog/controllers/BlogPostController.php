@@ -77,7 +77,7 @@ class BlogPostController extends Controller
 		{
 			$model->attributes=$_POST['BlogPost'];
 
-            $model->post_name = str_replace(' ', '-', $model->post_title);
+            $model->post_name = str_replace(' ', '_', $model->post_title);
             $model->post_modified = date("Y-m-d H:i:s");
             if (!empty($model->tag)) {
                 $model->tag = implode(",",$model->tag);
