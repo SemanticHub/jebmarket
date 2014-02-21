@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label required" for="BlogPost_post_content">Post Content <span class="required">*</span> <a class="btn btn-success btn-xs" data-toggle="modal" href="http://127.0.0.1/jebmarketonyii/trunk/webapp/blog/media/index" data-target="#myModal"><strong class="glyphicon glyphicon-picture"></strong> Add Media</a></a> </label>
+            <label class="control-label required" for="BlogPost_post_content">Post Content <span class="required">*</span> <a class="btn btn-success btn-xs" data-toggle="modal" href="<?php echo Yii::app()->getBaseUrl(true)."/blog/media/index";?>" data-target="#myModal"><strong class="glyphicon glyphicon-picture"></strong> Add Media</a></a> </label>
             <?php echo $form->textArea($model, 'post_content', array('rows'=>6, 'cols'=>50, 'class' => 'ckeditor form-control')); ?>
             <?php echo $form->error($model, 'post_content', array('class' => 'text-danger control-hint')); ?>
         </div>
