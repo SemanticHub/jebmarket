@@ -113,7 +113,15 @@ class MediaController extends Controller
 	public function actionIndex()
 	{
         $this->layout = false;
-		$dataProvider=new CActiveDataProvider('Media');
+        $user_id_login = Yii::app()->user->id;
+        $criteria = new CDbCriteria();
+        $criteria->condition = "jebapp_user_id=$user_id_login";
+        $dataProvider=new CActiveDataProvider('Media', array(
+            'criteria'=>$criteria,
+            'pagination'=>array(
+                'pageSize'=>10,
+            ),
+        ));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
