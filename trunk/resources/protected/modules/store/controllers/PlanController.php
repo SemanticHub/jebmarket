@@ -1,19 +1,12 @@
 <?php
 
-class StoreProductCategoryController extends Controller
+class PlanController extends StoreBaseController
 {
-	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='//layouts/column2';
 
-	/**
-	 * @return array action filters
-	 */
 	public function filters()
 	{
 		return array(
+            'storeRights', // rights module impl for store
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
@@ -62,14 +55,14 @@ class StoreProductCategoryController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new StoreProductCategory;
+		$model=new StorePlan;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['StoreProductCategory']))
+		if(isset($_POST['StorePlan']))
 		{
-			$model->attributes=$_POST['StoreProductCategory'];
+			$model->attributes=$_POST['StorePlan'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +84,9 @@ class StoreProductCategoryController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['StoreProductCategory']))
+		if(isset($_POST['StorePlan']))
 		{
-			$model->attributes=$_POST['StoreProductCategory'];
+			$model->attributes=$_POST['StorePlan'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +115,7 @@ class StoreProductCategoryController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('StoreProductCategory');
+		$dataProvider=new CActiveDataProvider('StorePlan');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +126,10 @@ class StoreProductCategoryController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new StoreProductCategory('search');
+		$model=new StorePlan('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['StoreProductCategory']))
-			$model->attributes=$_GET['StoreProductCategory'];
+		if(isset($_GET['StorePlan']))
+			$model->attributes=$_GET['StorePlan'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +140,12 @@ class StoreProductCategoryController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return StoreProductCategory the loaded model
+	 * @return StorePlan the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=StoreProductCategory::model()->findByPk($id);
+		$model=StorePlan::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +153,11 @@ class StoreProductCategoryController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param StoreProductCategory $model the model to be validated
+	 * @param StorePlan $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='store-product-category-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='store-plan-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
