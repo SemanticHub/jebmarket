@@ -1,19 +1,11 @@
 <?php
 
-class StorePlanController extends Controller
+class StoreDetailController extends StoreBaseController
 {
-	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='//layouts/column2';
-
-	/**
-	 * @return array action filters
-	 */
 	public function filters()
 	{
 		return array(
+            'storeRights', // rights module impl for store
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
@@ -62,14 +54,14 @@ class StorePlanController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new StorePlan;
+		$model=new StoreDetail;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['StorePlan']))
+		if(isset($_POST['StoreDetail']))
 		{
-			$model->attributes=$_POST['StorePlan'];
+			$model->attributes=$_POST['StoreDetail'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +83,9 @@ class StorePlanController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['StorePlan']))
+		if(isset($_POST['StoreDetail']))
 		{
-			$model->attributes=$_POST['StorePlan'];
+			$model->attributes=$_POST['StoreDetail'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +114,7 @@ class StorePlanController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('StorePlan');
+		$dataProvider=new CActiveDataProvider('StoreDetail');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +125,10 @@ class StorePlanController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new StorePlan('search');
+		$model=new StoreDetail('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['StorePlan']))
-			$model->attributes=$_GET['StorePlan'];
+		if(isset($_GET['StoreDetail']))
+			$model->attributes=$_GET['StoreDetail'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +139,12 @@ class StorePlanController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return StorePlan the loaded model
+	 * @return StoreDetail the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=StorePlan::model()->findByPk($id);
+		$model=StoreDetail::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +152,11 @@ class StorePlanController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param StorePlan $model the model to be validated
+	 * @param StoreDetail $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='store-plan-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='store-detail-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

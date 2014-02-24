@@ -13,25 +13,17 @@
  *
  * 'modules'=>array(
  *     'store'=>array(
- *         'userNameColumn'=>'name',
- *         'flashSuccessKey'=>'success',
- *         'flashErrorKey'=>'error',
+ *         'debug' => 'true',
+ *         'install'   => 'true',
  *     ),
  * ),
  *
- * Please note that some store module common settings will be create at the time of module installation.
- * Data will be saved into application settings table (jebapp_settings). Options are
- * array(
- *     'allowMultiStorePerUser' => false,
- *     'productImageThumbWidthHeight' => '228:228',
- *     'productImageWidthHeight' => '',
- * )
  */
-class StoreModule extends CWebModule
-{
+class StoreModule extends CWebModule {
+
     public $version = '0.1';
 
-    public $description = 'Add online store capability to any Yii application';
+    public $description = 'Yii Module that adds online store capability to any Yii application';
 
     public $layout = 'store.views.layouts.main';
 
@@ -39,29 +31,35 @@ class StoreModule extends CWebModule
 
     public $install = false;
 
-    public $authorizationFilters = array();
 
-	public function init()
-	{
-		// this method is called when the module is being created
-		// you may place code here to customize the module or the application
-
-		// import the module-level models and components
-		$this->setImport(array(
+	public function init() {
+        $this->setImport(array(
 			'store.models.*',
 			'store.components.*',
 		));
+
+
+        if(!Yii::app()->getModule('rights')) {
+            //TODO: flash warning to superuser to use store module along with rights module to maximum security
+        }
+
+        $this->defaultController = 'store';
 	}
 
-	public function beforeControllerAction($controller, $action)
-	{
-		if(parent::beforeControllerAction($controller, $action))
-		{
-			// this method is called before any module controller action is performed
-			// you may place customized code here
-			return true;
+	public function beforeControllerAction($controller, $action) {
+		if(parent::beforeControllerAction($controller, $action)) {
+            return true;
 		}
-		else
+		else {
 			return false;
+        }
 	}
+
+    /**
+     * @override
+     * @return string|void
+     */
+    public function getDescription() {
+        return $this->description;
+    }
 }

@@ -1,12 +1,7 @@
 <?php
 
-class SetupController extends Controller
+class SetupController extends StoreBaseController
 {
-    public function filters() {
-        return array(
-            //'rights'
-        );
-    }
 
 	public function actionIndex()
 	{
