@@ -1,6 +1,5 @@
 <?php
 $this->menu=array(
-	array('label'=>'List Store Plan', 'url'=>array('index')),
 	array('label'=>'Manage Store Plans', 'url'=>array('admin')),
 );
 ?>

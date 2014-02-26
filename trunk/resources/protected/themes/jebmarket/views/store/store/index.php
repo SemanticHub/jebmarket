@@ -2,14 +2,11 @@
 /* @var $this StoreController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Store',
-);
-
 $this->menu=array(
-	array('label'=>'Create Store', 'url'=>array('create')),
+	array('label'=>'View Stores', 'url'=>array('view')),
     array('label' => 'Manage', 'linkOptions' => array('class' => 'list-group-title')),
-	array('label'=>'Manage Store', 'url'=>array('admin')),
+	array('label'=>'Manage Stores', 'url'=>array('admin')),
+	array('label'=>'Manage Store Plans', 'url'=>array('/store/plan/admin')),
 );
 ?>
 
