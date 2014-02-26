@@ -2,13 +2,11 @@
 /* @var $this StorePlanController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Store Plans',
-);
-
 $this->menu=array(
-	array('label'=>'Create StorePlan', 'url'=>array('create')),
-	array('label'=>'Manage StorePlan', 'url'=>array('admin')),
+	array('label'=>'Create Store Plan', 'url'=>array('create')),
+    array('label' => 'Manage', 'linkOptions' => array('class' => 'list-group-title')),
+    array('label'=>'Manage Stores', 'url'=>array('admin')),
+    array('label'=>'Manage Store Plans', 'url'=>array('/store/plan/admin')),
 );
 ?>
 

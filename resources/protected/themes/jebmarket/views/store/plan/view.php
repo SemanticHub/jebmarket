@@ -2,17 +2,11 @@
 /* @var $this StorePlanController */
 /* @var $model StorePlan */
 
-$this->breadcrumbs=array(
-	'Store Plans'=>array('index'),
-	$model->name,
-);
-
 $this->menu=array(
-	array('label'=>'List StorePlan', 'url'=>array('index')),
-	array('label'=>'Create StorePlan', 'url'=>array('create')),
-	array('label'=>'Update StorePlan', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete StorePlan', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage StorePlan', 'url'=>array('admin')),
+	array('label'=>'Create Store Plan', 'url'=>array('create')),
+	array('label'=>'Update Store Plan', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Delete Store Plan', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage Store Plans', 'url'=>array('admin')),
 );
 ?>
 
