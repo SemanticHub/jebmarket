@@ -56,8 +56,12 @@ return array(
         # --------------------------------
         'store' => array(
             'debug' => true,
-            //'authorizationFilter' => 'rights',
-            'install' => true
+            'install' => true,
+            'transactionType' => array(
+                '1' => 'Free',
+                '2' => 'Percentage Share',
+                '3' => 'Fixed'
+            )
         )
     ),
     'components' => array(
