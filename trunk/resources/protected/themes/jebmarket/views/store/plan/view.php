@@ -16,12 +16,13 @@ $this->menu=array(
 );
 ?>
 
-<h1>View StorePlan #<?php echo $model->id; ?></h1>
+<h1 class="page-title">View Store Plan <?php echo $model->name; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
+    'htmlOptions' => array('class' => 'table table-view'),
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		//'id',
 		'name',
 		'is_default',
 		'description',
