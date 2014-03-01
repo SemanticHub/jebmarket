@@ -26,7 +26,7 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
         $criteria = new CDbCriteria();
-        $criteria->condition = "slug ='home-page-view'";
+        $criteria->condition = "slug ='homepageview'";
         $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => array(':tag' => 'home-slider')));
         $page = Pages::model()->find($criteria);
         $this->render('index', array('page' => $page, 'slider'=>$slider));
