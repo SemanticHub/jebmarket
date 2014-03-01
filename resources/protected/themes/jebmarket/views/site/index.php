@@ -8,15 +8,16 @@ $this->metaKeywords = $page->meta_keywords;
 <div id="myCarousel" class="carousel slide">
             <div class="mini-signup-form-wrapper">
                 <div class="mini-signup-form">
-                    <form class="form-inline" method="post" action="<?php echo Yii::app()->baseUrl.'/site/newstore' ?>" role="form">
-                        <div class="form-group">
-                            <label class="sr-only" for="store-name">Shop Name</label>
-                            <input name="store-name" type="text" class="form-control" id="store-name" placeholder="Shop Name">
-                        </div>
-                        <button type="button" id="mini-signup-button" class="btn btn-danger">Create Shop Now!</button>
-                        <button name="new-user" value="true" style="display: none" type="submit" id="mini-signup-new-user" class="btn btn-warning">New User ?</button>
-                        <button name="existing-user" value="true" style="display: none" type="submit" id="mini-signup-existing-user" class="btn btn-info">Existing User</button>
-                    </form>
+                    <a href="#business-plans" class="btn btn-lg btn-success"> Start Your Online Business Now </a>
+<!--                    <form class="form-inline" method="post" action="--><?php //echo Yii::app()->baseUrl.'/site/newstore' ?><!--" role="form">-->
+<!--                        <div class="form-group">-->
+<!--                            <label class="sr-only" for="store-name">Shop Name</label>-->
+<!--                            <input name="store-name" type="text" class="form-control" id="store-name" placeholder="Shop Name">-->
+<!--                        </div>-->
+<!--                        <button type="button" id="mini-signup-button" class="btn btn-danger">Create Shop Now!</button>-->
+<!--                        <button name="new-user" value="true" style="display: none" type="submit" id="mini-signup-new-user" class="btn btn-warning">New User ?</button>-->
+<!--                        <button name="existing-user" value="true" style="display: none" type="submit" id="mini-signup-existing-user" class="btn btn-info">Existing User</button>-->
+<!--                    </form>-->
                 </div>
             </div>
     <ol class="carousel-indicators">
@@ -32,7 +33,7 @@ $this->metaKeywords = $page->meta_keywords;
                 height: 670px;
                 padding: 160px 0 0 0;
                 background-position: 0 30px;
-                border-bottom: 1px solid rgba(0,0,0,0.2);
+                /*border-bottom: 1px solid rgba(0,0,0,0.2);*/
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
@@ -55,8 +56,10 @@ $this->metaKeywords = $page->meta_keywords;
     <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>-->
 </div>
-<div class="container marketing">    
+<div style="background: #F2F6F7" id="business-plans">
+<div class="container marketing">
     <?php echo $page->content ?>
+</div>
 </div>
 <script type="text/javascript">
 $(document).ready(function(){

@@ -8,21 +8,18 @@
     <?php if (isset($this->metaKeywords)) { ?>
         <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
     <link rel="shortcut icon" href="<?php echo Yii::app()->theme->baseUrl; ?>/icon/favicon.png">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet'
-          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css">
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
-    <?php
-    ?>
 </head>
 <body>
 <div class="navbar-wrapper" id="header_nav">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a class="navbar-brand logo" href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
+                <a class="navbar-brand logo" href="<?php echo Yii::app()->HomeUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
                 <div id="header_right">
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
@@ -87,6 +84,7 @@
     </div>
 </div>
 <?php echo $content; ?>
+
 <div class="container">
     <footer class="footer">
         <p class="pull-right"><a class="footer-logo" href="#"><?php echo Yii::t('phrase', 'Back to top') ?></a></p>
@@ -105,6 +103,7 @@
             </span>
     </footer>
 </div>
+
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 7]>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/html5shiv.js"></script>

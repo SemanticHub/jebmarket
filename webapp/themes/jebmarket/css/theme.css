@@ -107,7 +107,7 @@ label {
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 .carousel {
-    margin-bottom: 40px; display: block; clear: both;
+    /*margin-bottom: 40px;*/ display: block; clear: both;
 }
 .carousel-caption {
     z-index: 10;
@@ -180,7 +180,7 @@ label {
 @media (min-width: 768px) {
     /* Remove the edge padding needed for mobile */
     .marketing {
-/*        padding-left: 0; padding-right: 0;*/
+        padding-top: 40px;
     }
     /* Navbar positioning foo */
     .navbar-wrapper {
@@ -261,7 +261,7 @@ span.required {
     color: red; font-weight: normal; vertical-align: middle; font-size: 1.4em;
 }
 .footer {
-    border-top: 1px solid #eee; margin: 10px auto 10px; padding: 20px 0
+    margin: 0px auto 10px; padding: 20px 0
 }
 .footer-menu a {
     font-size: 12px; text-transform: uppercase;
@@ -507,8 +507,8 @@ u .divider a {
 }
 @media screen and (min-width: 768px) {
     .mini-signup-form {
-        display: inline-block;background: rgba(0,0,0, 0.2)/*rgba(66,139,202, 0.6) rgba(255, 255, 255, .4);*/; padding: 15px; border-radius: 3px;
-        -moz-box-shadow: 0 0 3px #ccc; -webkit-box-shadow: 0 0 3px #ccc; box-shadow: 0 0 3px #ccc;
+        /*display: inline-block;background: rgba(0,0,0, 0.2)*//*rgba(66,139,202, 0.6) rgba(255, 255, 255, .4);*//*; padding: 15px; border-radius: 3px;*/
+        /*-moz-box-shadow: 0 0 3px #ccc; -webkit-box-shadow: 0 0 3px #ccc; box-shadow: 0 0 3px #ccc;*/
     }
 }
 .container {
