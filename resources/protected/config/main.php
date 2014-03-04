@@ -178,18 +178,23 @@ return array(
             'blog' => 'Blog'
         ),
         'usermenu' => array(
-            'account' => array('label' => 'User', 'linkOptions' => array('class' => 'list-group-title')),
+            'userBlock' => array('label' => 'User', 'linkOptions' => array('class' => 'list-group-title')),
             'dashboard' => array('label' => '<span class="glyphicon glyphicon-th"></span> Dashboard', 'url' => array('/dashboard')),
             'profile' => array('label' => '<span class="glyphicon glyphicon-user"></span> Profile', 'url' => array('/user/profile')),
             'password' => array('label' => '<span class="glyphicon glyphicon-lock"></span> Change Password', 'url' => array('/user/changepass')),
-            'store' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
-            'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('products')),
-            'orders' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Orders', 'url' => array('orders')),
-            'reports' => array('label' => '<span class="glyphicon glyphicon-stats"></span> Reports', 'url' => array('/reports')),
+
+            'websiteBlock' => array('label' => 'WebSite', 'linkOptions' => array('class' => 'list-group-title')),
             'blog' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Blog', 'url' => array('/blog/admin')),
             'pages' => array('label' => '<span class="glyphicon glyphicon-edit"></span> Pages', 'url' => array('/pages/admin')),
             'menus' => array('label' => '<span class="glyphicon glyphicon-link"></span> Menus', 'url' => array('/menu/admin')),
             'media' => array('label' => '<span class="glyphicon glyphicon-expand"></span> Media', 'url' => array('/blog/media/admin')),
+
+            'storeBlock' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
+            'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('products')),
+            'orders' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Orders', 'url' => array('orders')),
+
+            'reportBlock' => array('label' => 'Reports', 'linkOptions' => array('class' => 'list-group-title')),
+            'reports' => array('label' => '<span class="glyphicon glyphicon-stats"></span> Reports', 'url' => array('/reports')),
         ),
         'adminmenu' => array(
             array('label' => 'Sliders', 'url' => array('/slider/admin'), 'itemOptions'=>array('class'=>'slider') ),
