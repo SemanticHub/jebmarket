@@ -20,13 +20,13 @@ class MenuController extends Controller {
         switch ($_POST['type']) {
             case 'page':
                 $userid = Yii::app()->user->id;
-                echo CHtml::dropDownList("Menu[url]", $_POST['url'], CHtml::listData(Pages::model()->findAll(array('condition' => "slug != :slug AND jebapp_user_id = $userid", 'params' => array(':slug' => 'home-page-view'))), 'slug', 'title'), array('class' => 'form-control'));
+                echo CHtml::dropDownList("Menu[url]", $_POST['type'], CHtml::listData(Pages::model()->findAll(array('condition' => "slug != :slug AND jebapp_user_id = $userid", 'params' => array(':slug' => 'home-page-view'))), 'slug', 'title'), array('class' => 'form-control'));
                 break;
             case 'module':
-                echo CHtml::dropDownList("Menu[url]", $_POST['url'], Yii::app()->params['sitemenu'], array('class' => 'form-control'));
+                echo CHtml::dropDownList("Menu[url]", $_POST['type'], Yii::app()->params['sitemenu'], array('class' => 'form-control'));
                 break;
             case 'custom':
-                 echo CHtml::textField('Menu[url]', $_POST['url'], array('class' => 'form-control'));
+                 echo CHtml::textField('Menu[url]', $_POST['type'], array('class' => 'form-control'));
                 break;
             default:
                 echo '<div class="alert alert-info" style="margin-bottom: 0">Select a \'Menu Item Type\' from above to \'URL\' see options</div>';
