@@ -39,14 +39,14 @@ class User extends CActiveRecord {
         return array(
             array('username, email', 'required'),
             array('password', 'required', 'except'=>'update'),
-            array('username', 'match', 'not' => true, 'pattern' => '/[^a-z0-9_]/', 'message' => 'Invalid characters in username.'),
-            array('email', 'email'),
+            //array('username', 'match', 'not' => true, 'pattern' => '/[^a-z0-9_]/', 'message' => 'Invalid characters in username.'),
+            array('email, username', 'email'),
             array('email, username', 'unique'),
             array('username, email', 'length', 'max' => 45),
             array('password', 'length', 'max' => 255),
             array('f_name, l_name, full_name, last_login, location, timezone', 'safe'),
             array('id, username, email, joined, activationstatus, status, last_login, status', 'safe', 'on' => 'search'),
-            array('verifyCode', 'required', 'on'=>'signup'),
+            array('verifyCode', 'required', 'on'=>'signup', 'except'=>array('ajax' => 'ajax')),
             array('verifyCode', 'captcha', 'on'=>'signup, insert', 'skipOnError'=>true, 'enableClientValidation'=>true, 'except'=>array('ajax' => 'ajax')),
         );
     }

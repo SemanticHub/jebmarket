@@ -763,6 +763,166 @@ form .alert {
     float: left;
     width: 100%;
 }
+#member_plan .modal-body{
+    padding: 40px 20px 20px 20px;
+}
+#member_plan .modal-title{
+    color: #7E7777;
+}
+.price_box1{
+    margin: 0;
+    background: #ecf2f6;
+    border: 1px solid #d9dee1;
+    border-radius: 2px;
+    padding: 25px 30px;
+    border-right: none;
+    -o-transition: all 0.1s ease-in-out 0s;
+    -webkit-transition: all 0.1s ease-in-out 0s;
+    -moz-transition: all 0.1s ease-in-out 0s;
+}
+.price_box2{
+    margin: 0;
+    background: #ecf2f6;
+    border: 1px solid #d9dee1;
+    border-radius: 2px;
+    padding: 25px 30px;
+    border-left: none;
+    -o-transition: all 0.1s ease-in-out 0s;
+    -webkit-transition: all 0.1s ease-in-out 0s;
+    -moz-transition: all 0.1s ease-in-out 0s;
+}
+.price_box3{
+    background: #fff;
+    margin-top: -20px;
+    padding: 20px 30px 45px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    border: 1px solid #d9dee1;
+    border-radius: 2px;
+}
+.price_box_left{
+    padding-right: 0;
+}
+.price_box_right{
+    padding-left: 0;
+}
+.price_box_middle{
+    padding-right: 0;
+    padding-left: 0;
+    z-index: 99;
+}
+.price_box3 p{
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #bacdd6;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.price_box1 h4, .price_box2 h4, .price_box3 h4{
+    font-size: 60px;
+    color: #479ccf;
+    text-align: center;
+    width: 100%;
+    font-weight: normal;
+}
+.price_box1 h5, .price_box2 h5, .price_box3 h5{
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #000;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.price_box1 h4 span, .price_box2 h4 span, .price_box3 h4 span{
+    font-size: 14px;
+}
+.price_box1 h4 sup, .price_box2 h4 sup, .price_box3 h4 sup{
+    font-size: 30px;
+    vertical-align: top;
+    top: 25px;
+}
+.price_box1 h6, .price_box2 h6, .price_box3 h6{
+    margin: 0 0 0 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.price_box1 ul, .price_box2 ul, .price_box3 ul{
+     margin: 0;
+     padding: 0;
+     text-align: center;
+ }
+.price_box1 ul li, .price_box2 ul li, .price_box3 ul li{
+    font-size: 14px;
+    line-height: 28px;
+    color: #526066;
+    display: block;
+}
+.signup_step {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.signup_step li {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.signup_step .step_name{
+    margin: 0;
+    padding: 0;
+    color: #D4CACA;
+}
+.signup_step li p.glyphicon {
+    color: #B2A5A5;
+}
+.signup_step li.active p.glyphicon {
+    color: #FFFFFF;
+}
+.signup_step .active .step_name{
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.signup_step_head{
+    background: #2D2D2D;
+    border-bottom: 3px solid #8D00FF;
+}
+#signup_box.fade, #signup_box2.fade, #signup_box3.fade {
+    left: 200%;
+    -webkit-transition: opacity 0.7s linear, left 0.7s ease-out;
+    -moz-transition: opacity 0.7s linear, left 0.7s ease-out;
+    -o-transition: opacity 0.7s linear, left 0.7s ease-out;
+    transition: opacity 0.7s linear, left 0.7s ease-out;
+}
+#signup_box.fade.in, #signup_box2.fade.in {
+    left: 0%;
+    padding-top: 5%;
+}
+#signup_box3.fade.in {
+    left: 0%;
+    padding-top: 0;
+}
+#member_plan.modal, #signup_box.modal, #signup_box2.modal, #signup_box3.modal {
+    background: #000;
+    background: -webkit-gradient(radial,50% 25%,0,50% 25%,800,from(rgba(0,0,0,.85)),to(#000)) transparent;
+    background: -moz-radial-gradient(center 45deg,circle cover,rgba(0,0,0,.85) 0%,#000 100%) transparent;
+}
+#signup_box.modal .modal-content, #signup_box2.modal .modal-content, #signup_box3.modal .modal-content, #signup_box.modal .modal-header, #signup_box2.modal .modal-header, #signup_box3.modal .modal-header, #signup_box.modal .form-control-wrapper, #signup_box2.modal .form-control-wrapper, #signup_box3.modal .form-control-wrapper, #signup_box.modal .panel, #signup_box2.modal .panel, #signup_box3.modal .panel {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+#signup_box.modal .control-label, #signup_box2.modal .control-label, #signup_box3.modal .control-label {
+    color: #ffffff;
+}
+#signup_box.modal .panel-default>.panel-heading, #signup_box2.modal .panel-default>.panel-heading, #signup_box3.modal .panel-default>.panel-heading{
+    color: #C1B7B7;
+    border: 1px #C1B7B7 solid;
+    border-radius: 3px;
+    background: none;
+}
+#signup_box2.modal .buttons .btn {
+    margin: 16px 0 0 40px;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .carousel-caption h1 {

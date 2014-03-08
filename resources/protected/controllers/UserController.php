@@ -233,6 +233,80 @@ class UserController extends Controller {
         $this->render('signup', array('model' => $model));
     }
 
+    public function actionStep1() {
+        $this->layout = false;
+        Yii::app()->clientScript->scriptMap=array('jquery.js'=>false);
+        $model = new User;
+        $model->setScenario('ajax');
+        $model->userDetails = new UserDetails;
+        $this->performAjaxValidation($model);
+        if (isset($_POST['User'])) {
+            $model->attributes = $_POST['User'];
+            $model->userDetails->attributes = $_POST['UserDetails'];
+            $login = new LoginForm;
+            $login->username = $model->email;
+            $login->password = $model->password;
+            $model->salt = $model->generateSalt();
+            $model->password = $model->hashPassword($model->password, $model->salt);
+            $model->joined = date("Y-m-d H:i:s");
+            $model->activationstatus = '0';
+            $model->status = '1';
+            $model->username = $model->email;
+            $model->activationcode = $model->generateActivationCode($model->email, $model->salt);
+
+            Yii::import('ext.JebGeo');
+            $geo = new JebGeo();
+            //$geo->setIp('180.234.241.160'); // optional if not set use user ip
+            $data = $geo->fetch();
+            if(!empty($data['timezoneId']))
+                $model->timezone = $data['timezoneId'];
+
+            if ($model->validate()) {
+                if ($model->userDetails->save()) {
+                    $model->user_details_id = $model->userDetails->id;
+                    if ($model->save()) {
+                        Rights::assign(Rights::module()->authenticatedName, $model->id);
+                        Rights::assign(Yii::app()->request->getParam('name'), $model->id);
+                        $mail = new JebMailer($model->id, Yii::app()->params['signupEmailTemplate']);
+                        if (!$mail->send()) {
+                            Yii::app()->user->setFlash('danger', 'Mailer Error: ' . $mail->ErrorInfo);
+                        }
+                        $login->login();
+                        echo 'hide';
+                    }
+                }
+            } else {
+                $model->password = "";
+            }
+        }else{
+            $this->render('step1', array('model' => $model));
+        }
+    }
+
+    public function actionStep2() {
+        $this->layout = false;
+        Yii::app()->clientScript->scriptMap=array('jquery.js'=>false, 'jquery.yiiactiveform.js'=>false);
+        $model = new Website;
+        $this->performAjaxValidation($model);
+        if (isset($_POST['Website'])) {
+            $model->attributes=$_POST['Website'];
+            $model->jebapp_user_id = Yii::app()->user->id;
+            if ($model->validate()) {
+                if ($model->save()) {
+                    echo 'hide';
+                }
+            }
+        }else{
+            $this->render('step2', array('model' => $model));
+        }
+    }
+
+    public function actionStep3() {
+        $this->layout = false;
+        Yii::app()->clientScript->scriptMap=array('jquery.js'=>false);
+        $this->render('step3');
+    }
+
     /**
      * Creates a new User.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -411,6 +485,9 @@ class UserController extends Controller {
      */
     protected function performAjaxValidation($model) {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'user-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        } elseif (isset($_POST['ajax']) && $_POST['ajax'] === 'user-form-2') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
