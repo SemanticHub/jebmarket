@@ -544,6 +544,9 @@ u .divider a {
 .list-group-item.active a, .list-group-item.active:hover a, .list-group-item.active:focus a{
     color: #fff;
 }
+.sidebar-left .list-group-item.active a{
+    color: #000;
+}
 .form-group {
     margin-bottom: 10px;
 }
@@ -923,8 +926,18 @@ form .alert {
 #signup_box2.modal .buttons .btn {
     margin: 16px 0 0 40px;
 }
+.logo_img{
+    margin: 0;
+    padding: 0;
+}
+.logo_img img{
+    height: 50px;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+    .logo_img img{
+        height: 65px;
+    }
     .carousel-caption h1 {
         font-size: 40px;
         font-weight: 600;

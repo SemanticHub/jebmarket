@@ -34,10 +34,10 @@ class Website extends CActiveRecord
             array('domain', 'match', 'not' => true, 'pattern' => '/[^a-z0-9_-]/', 'message' => 'Invalid characters in domain name.'),
 			array('jebapp_user_id', 'numerical', 'integerOnly'=>true),
             array('domain', 'unique'),
-			array('name, domain', 'length', 'max'=>200),
+			array('name, domain, logo', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, domain, jebapp_user_id', 'safe', 'on'=>'search'),
+			array('id, name, domain, logo, jebapp_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +62,7 @@ class Website extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Business Name',
 			'domain' => 'Domain Name',
+            'logo' => 'Logo',
 			'jebapp_user_id' => 'Jebapp User',
 		);
 	}
@@ -87,12 +88,47 @@ class Website extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('domain',$this->domain,true);
+        $criteria->compare('logo',$this->logo,true);
 		$criteria->compare('jebapp_user_id',$this->jebapp_user_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * @return array|mixed|null
+     */
+    public function domainName()
+    {
+        $rawPathInfo = Yii::app()->request->getPathInfo();
+        $path = explode("/",$rawPathInfo);
+        $domainname = $this->findByAttributes(array('domain'=>$path[0]));
+        if(!empty($domainname->domain)){
+            return $domainname->domain;
+        }
+    }
+
+    /**
+     * @return array|mixed|null
+     */
+    public function logoName()
+    {
+        $domainname = $this->domainName();
+        if(!empty($domainname) || !empty(Yii::app()->user->id)){
+            if(isset($domainname)){
+                $logo = $this->findByAttributes(array('domain'=>$domainname));
+                if(!empty($logo->logo)){
+                    return $logo->logo;
+                }
+            }elseif(isset(Yii::app()->user->id)){
+                $logo = Website::findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+                if(!empty($logo->logo)){
+                    return $logo->logo;
+                }
+            }
+        }
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.

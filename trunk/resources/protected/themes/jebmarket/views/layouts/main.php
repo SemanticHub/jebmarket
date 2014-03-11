@@ -19,7 +19,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <?php $logonames = Website::model()->logoName(); if(empty($logonames)){ ?>
                 <a class="navbar-brand logo" href="<?php echo Yii::app()->HomeUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
+                <?php }else{ ?>
+                <a class="navbar-brand logo_img" href="<?php echo Yii::app()->baseUrl.'/'.Website::model()->domainName(); ?>">
+                    <img src="<?php echo Yii::app()->baseUrl.'/media/upload/'.Website::model()->logoName(); ?>">
+                </a>
+                <?php } ?>
                 <div id="header_right">
                         <?php
                         $this->widget('zii.widgets.CMenu', array(
