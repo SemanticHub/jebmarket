@@ -4,6 +4,14 @@
     <div class="row">
         <div class="col-md-2 sidebar sidebar-left">
             <?php
+            if(!empty(Yii::app()->user->id)){
+                $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+                if(!empty($domainName->domain)){
+                    echo CHtml::link('View Your WebSite',array("/$domainName->domain"),array('class'=>"btn btn-success btn-block btn-xs"));
+                }
+            }
+            ?>
+            <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
                 'title' => '<span class="glyphicon glyphicon-list"></span> Navigate To',
                 'decorationCssClass' => 'panel-heading',

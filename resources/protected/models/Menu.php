@@ -140,14 +140,23 @@ class Menu extends CActiveRecord
     }
 
     protected static function getURL($type, $urlString) {
-        $user = User::model()->findByPk(Yii::app()->request->getParam('user_id'));
-        if(!empty($user)){
+        $domainname = Website::model()->domainName();
+        $domainlogin = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+        if(!empty($domainname)){
             if($type == 'page') {
-                $url = Yii::app()->createUrl($user->username.'/page/view', array('view' => $urlString));
+                $url = Yii::app()->createUrl($domainname.'/page/view', array('view' => $urlString));
             } else if ($type == 'custom') {
                 $url = $urlString;
             } else {
-                $url = Yii::app()->createUrl($user->username.'/'.$urlString);
+                $url = Yii::app()->createUrl($domainname.'/'.$urlString);
+            }
+        }elseif(!empty($domainlogin->domain)){
+            if($type == 'page') {
+                $url = Yii::app()->createUrl($domainlogin->domain.'/page/view', array('view' => $urlString));
+            } else if ($type == 'custom') {
+                $url = $urlString;
+            } else {
+                $url = Yii::app()->createUrl($domainlogin->domain.'/'.$urlString);
             }
         }else{
             if($type == 'page') {

@@ -60,7 +60,14 @@ class SiteController extends Controller {
                 $contactmail->FromName = $model->name;
                 $contactmail->Subject = $model->subject.' '.$contactmail->Subject;
                 $contactmail->Body    = $model->body.'<br>'.$contactmail->Body;
-                $contactmail->addAddress(Yii::app()->params['adminEmail'], "JebMarket");
+                $domainname = Website::model()->domainName();
+                if(empty($domainname)){
+                    $contactmail->addAddress(Yii::app()->params['adminEmail'], "JebMarket");
+                }else{
+                    $domain_name = Website::model()->findByAttributes(array('domain'=>$domainname));
+                    $user_email = User::model()->findByPk($domain_name->jebapp_user_id);
+                    $contactmail->addAddress($user_email->email, "JebMarket");
+                }
                 if (!$contactmail->send()) {
                     Yii::app()->user->setFlash('error', 'Mailer Error: ' . $contactmail->ErrorInfo);
                 }

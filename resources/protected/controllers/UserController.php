@@ -291,8 +291,56 @@ class UserController extends Controller {
         if (isset($_POST['Website'])) {
             $model->attributes=$_POST['Website'];
             $model->jebapp_user_id = Yii::app()->user->id;
+            $model->logo = 'jebmarket_logo.png';
             if ($model->validate()) {
                 if ($model->save()) {
+                    $homecontent = <<<EOF
+<p><img alt="30.png" class="thumb-image loaded" data-image="http://static.squarespace.com/static/4f6798afe4b097349e410d49/t/527d3a50e4b04d1c0c14e385/1383938643085/30.png" data-image-dimensions="465x465" data-image-focal-point="0.5,0.5" data-image-id="527d3a50e4b04d1c0c14e385" data-image-resolution="500w" data-load="false" data-src="http://static.squarespace.com/static/4f6798afe4b097349e410d49/t/527d3a50e4b04d1c0c14e385/1383938643085/30.png" data-type="image" id="yui_3_10_1_1_1394392957326_912" src="https://static.squarespace.com/static/4f6798afe4b097349e410d49/t/527d3a50e4b04d1c0c14e385/1383938643085/30.png?format=500w" style="" /></p>
+<h3><strong>There once was a man from down under...</strong></h3>
+<p>Pixel the rule of thirds jakob nielsen. Splash screen dribbble usability testing oblique complementary affordance jakob nielsen. Brainstorm modal delightful prototype navigation mockup script. Leading design thinking rounded corners type mental model. Bevel urbanized paper prototype heuristic photoshop usability. Helvetica color theory classical conditioning storyboard mockup abstraction coach marks fireworks delightful. Hover state usability testing balance sitemap golden ratio. Gradient cognitive dissonance modular scale sidebar jony ive hero message. Bauhaus focus group the user interface sidebar. Aspect ratio user-centered coach marks classical conditioning brainstorm. Palette steve jobs italic constraints icon braindump simplicity. Italic icon usability testing grouping figure-ground jony ive urbanized IDEO. Abstraction storyboard footer.</p>
+<p style="margin: 0px 0px 20px; line-height: 23px; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px;">The&nbsp;<span style="font-weight: 700;">About Us</span>&nbsp;page of your shop is vital because it&rsquo;s where users go when first trying to determine a level of trust. Since trust is such an important part of selling online, it&rsquo;s a good idea to give people a fair amount information about yourself and your shop. Here are a few things you should touch on:</p>
+<ul style="margin: 0px 0px 20px 20px; padding-right: 0px; padding-left: 0px; list-style-position: outside; list-style-image: none; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 21.75px;">
+	<li style="margin-bottom: 5px;">Who you are</li>
+	<li style="margin-bottom: 5px;">Why you sell the items you sell</li>
+	<li style="margin-bottom: 5px;">Where you are located</li>
+	<li style="margin-bottom: 5px;">How long you have been in business</li>
+	<li style="margin-bottom: 5px;">How long you have been running your online shop</li>
+	<li style="margin-bottom: 5px;">Who are the people on your team</li>
+</ul>
+<p style="margin: 0px 0px 20px; line-height: 23px; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px;">To edit this information you can go to the&nbsp;<a href="https://sdgsdgdsg.myshopify.com/admin/pages" style="color: rgb(244, 91, 79); text-decoration: none; outline: none;">Pages section</a>&nbsp;of the administration menu.</p>
+EOF;
+                    $aboutcontent = <<<EOF
+<p style="margin: 0px 0px 20px; line-height: 23px; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px;">The&nbsp;<span style="font-weight: 700;">About Us</span>&nbsp;page of your shop is vital because it&rsquo;s where users go when first trying to determine a level of trust. Since trust is such an important part of selling online, it&rsquo;s a good idea to give people a fair amount information about yourself and your shop. Here are a few things you should touch on:</p>
+<ul style="margin: 0px 0px 20px 20px; padding-right: 0px; padding-left: 0px; list-style-position: outside; list-style-image: none; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 21.75px;">
+	<li style="margin-bottom: 5px;">Who you are</li>
+	<li style="margin-bottom: 5px;">Why you sell the items you sell</li>
+	<li style="margin-bottom: 5px;">Where you are located</li>
+	<li style="margin-bottom: 5px;">How long you have been in business</li>
+	<li style="margin-bottom: 5px;">How long you have been running your online shop</li>
+	<li style="margin-bottom: 5px;">Who are the people on your team</li>
+</ul>
+<p style="margin: 0px 0px 20px; line-height: 23px; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px;">To edit this information you can go to the&nbsp;<a href="https://sdgsdgdsg.myshopify.com/admin/pages" style="color: rgb(244, 91, 79); text-decoration: none; outline: none;">Pages section</a>&nbsp;of the administration menu.</p>
+EOF;
+                    $builder=Yii::app()->db->schema->commandBuilder;
+                    $createpage=$builder->createMultipleInsertCommand('jebapp_pages', array(
+                        array('title' => 'About Us', 'content' => $aboutcontent, 'slug' => 'about', 'active' => '1', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('title' => 'Home', 'content' => $homecontent, 'slug' => 'home', 'active' => '1', 'jebapp_user_id' => Yii::app()->user->id),
+                    ));
+                    $createmenu=$builder->createMultipleInsertCommand('jebapp_menu', array(
+                        array('label' => 'Home', 'url' => 'home', 'visibility' => 'auto', 'active' => '1', 'tag' => 'mainmenu', 'odr' => '1', 'type' => 'page', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => 'About Us', 'url' => 'about', 'visibility' => 'auto', 'active' => '1', 'tag' => 'mainmenu', 'odr' => '2', 'type' => 'page', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => 'Blog', 'url' => 'blog', 'visibility' => 'auto', 'active' => '1', 'tag' => 'mainmenu', 'odr' => '3', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => 'Contact', 'url' => 'site/contact', 'visibility' => 'auto', 'active' => '1', 'tag' => 'mainmenu', 'odr' => '4', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => 'About Us', 'url' => 'about', 'visibility' => 'auto', 'active' => '1', 'tag' => 'footermenu', 'odr' => '2', 'type' => 'page', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => 'Facebook', 'url' => '#', 'visibility' => 'auto', 'active' => '1', 'tag' => 'topmenu', 'odr' => '1', 'type' => 'custom', 'class' => 'facebook', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => 'Twitter', 'url' => '#', 'visibility' => 'auto', 'active' => '1', 'tag' => 'topmenu', 'odr' => '2', 'type' => 'custom', 'class' => 'twitter', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => 'Google Plus', 'url' => '#', 'visibility' => 'auto', 'active' => '1', 'tag' => 'topmenu', 'odr' => '3', 'type' => 'custom', 'class' => 'google', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => '<span class="glyphicon glyphicon-user"></span> Login / Register', 'url' => 'site/login', 'visibility' => 'public', 'active' => '1', 'tag' => 'topmenu', 'odr' => '4', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => '<span class="glyphicon glyphicon-log-out"></span> Logout', 'url' => 'site/logout', 'visibility' => 'private', 'active' => '1', 'tag' => 'topmenu', 'odr' => '5', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                        array('label' => '<span class="glyphicon glyphicon-edit"></span> My Account', 'url' => 'user/profile', 'visibility' => 'private', 'active' => '1', 'tag' => 'topmenu', 'odr' => '6', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                    ));
+                    $createmenu->execute();
+                    $createpage->execute();
                     echo 'hide';
                 }
             }
