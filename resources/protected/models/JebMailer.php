@@ -82,7 +82,10 @@ class JebMailer extends PHPMailer{
             $this->From = Yii::app()->params['supportEmail'];
             $this->FromName = "JebMarket";
             $this->isHTML(true);
-            $this->initVars();
+            $this->_vars['application_name']['value'] = Yii::app()->name;
+            $this->_vars['date']['value'] = Yii::app()->dateFormatter->formatDateTime(date("Y-m-d H:i:s"), 'long', null);
+            $this->_vars['date_time']['value'] = Yii::app()->dateFormatter->formatDateTime(date("Y-m-d H:i:s"), 'medium', 'short');
+            $this->_vars['logo']['value'] =  CHtml::image(Yii::app()->request->getBaseUrl(true).'/media/logo.png');
             $this->Subject = $this->getMailSubject();
             $this->Body = $this->getMailBody();
             $this->AltBody = 'This is the body in plain text for non-HTML mail clients';
