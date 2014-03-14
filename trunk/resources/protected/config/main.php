@@ -188,6 +188,8 @@ return array(
             'pages' => array('label' => '<span class="glyphicon glyphicon-edit"></span> Pages', 'url' => array('/pages/admin')),
             'menus' => array('label' => '<span class="glyphicon glyphicon-link"></span> Menus', 'url' => array('/menu/admin')),
             'media' => array('label' => '<span class="glyphicon glyphicon-expand"></span> Media', 'url' => array('/blog/media/admin')),
+            'logo' => array('label' => '<span class="glyphicon glyphicon-picture"></span> Logo', 'url' => array('/website/logo')),
+            'settings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Settings', 'url' => array('/website/admin')),
 
             'storeBlock' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
             'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('products')),

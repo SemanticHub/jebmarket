@@ -291,7 +291,6 @@ class UserController extends Controller {
         if (isset($_POST['Website'])) {
             $model->attributes=$_POST['Website'];
             $model->jebapp_user_id = Yii::app()->user->id;
-            $model->logo = 'jebmarket_logo.png';
             if ($model->validate()) {
                 if ($model->save()) {
                     $homecontent = <<<EOF

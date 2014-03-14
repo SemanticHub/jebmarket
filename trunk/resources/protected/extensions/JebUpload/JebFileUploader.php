@@ -132,7 +132,15 @@ class JebFileUploader {
         //$filename = Yii::app()->user->name;
         //$filename = md5(uniqid());
         if($newfilename){
-            $filename = Yii::app()->user->name;
+            if(Yii::app()->controller->action->id == 'Uploadlogo'){
+                $filename = 'logo';
+            }elseif(Yii::app()->controller->action->id == 'UploadFavicon'){
+                $filename = 'favicon';
+            }elseif(Yii::app()->controller->action->id == 'Uploadavater'){
+                $filename = 'avater';
+            }else{
+                $filename = Yii::app()->user->name;
+            }
         }else{
             $filename = $pathinfo['filename'];
         }

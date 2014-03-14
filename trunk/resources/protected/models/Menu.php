@@ -141,22 +141,25 @@ class Menu extends CActiveRecord
 
     protected static function getURL($type, $urlString) {
         $domainname = Website::model()->domainName();
-        $domainlogin = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
         if(!empty($domainname)){
             if($type == 'page') {
                 $url = Yii::app()->createUrl($domainname.'/page/view', array('view' => $urlString));
             } else if ($type == 'custom') {
                 $url = $urlString;
             } else {
-                $url = Yii::app()->createUrl($domainname.'/'.$urlString);
-            }
-        }elseif(!empty($domainlogin->domain)){
-            if($type == 'page') {
-                $url = Yii::app()->createUrl($domainlogin->domain.'/page/view', array('view' => $urlString));
-            } else if ($type == 'custom') {
-                $url = $urlString;
-            } else {
-                $url = Yii::app()->createUrl($domainlogin->domain.'/'.$urlString);
+                switch ($urlString) {
+                    case 'user/profile':
+                        $url = Yii::app()->createUrl($urlString);
+                        break;
+                    case 'site/logout':
+                        $url = Yii::app()->createUrl($urlString);
+                        break;
+                    case 'site/login':
+                        $url = Yii::app()->createUrl($urlString);
+                        break;
+                    default:
+                        $url = Yii::app()->createUrl($domainname.'/'.$urlString);
+                }
             }
         }else{
             if($type == 'page') {
@@ -171,19 +174,11 @@ class Menu extends CActiveRecord
     }
 
     public static function renderMenuItems($menuType) {
-        $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND jebapp_user_id=40 AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
         $user_id_url = Yii::app()->request->getParam('user_id');
-        $user_id_login = Yii::app()->user->id;
         if(!empty($user_id_url)){
             $menuItems = Menu::model()->findAll(array('condition' => "tag=:tag AND jebapp_user_id=$user_id_url AND parent_id IS NULL", 'order' => 'odr', 'params' => array(':tag' => $menuType)));
-            if(empty($menuItems)){
-                $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND jebapp_user_id=40 AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
-            }
-        }elseif(!empty($user_id_login)){
-            $menuItems = Menu::model()->findAll(array('condition' => "tag=:tag AND jebapp_user_id=$user_id_login AND parent_id IS NULL", 'order' => 'odr', 'params' => array(':tag' => $menuType)));
-            if(empty($menuItems)){
-                $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND jebapp_user_id=40 AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
-            }
+        }else{
+            $menuItems = Menu::model()->findAll(array('condition' => 'tag=:tag AND jebapp_user_id=40 AND parent_id IS NULL', 'order' => 'odr', 'params' => array(':tag' => $menuType)));
         }
         foreach ($menuItems as $item) {
             $subItems = array();

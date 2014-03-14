@@ -71,13 +71,13 @@ $this->menu['profile']['active'] = true;
             <div class="panel-heading"><?php echo Yii::t('phrase', '<span class="glyphicon glyphicon-picture"></span> Profile Image.') ?></div>
             <table class="table table-view">
                 <tr>
-                    <img id='avater_image' src="<?php echo $userdetails->avater ? Yii::app()->baseUrl.'/'.Yii::app()->params['avateruploadPath'].'/'.$userdetails->avater : UserDetails::model()->gravatar($model->email,'110'); ?>" alt="" />
+                    <img id='avater_image' src="<?php echo $userdetails->avater ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Yii::app()->user->id.'/logo/'.$userdetails->avater : UserDetails::model()->gravatar($model->email,'110'); ?>" alt="" />
                     <?php
                     $this->widget('ext.JebUpload.JebUpload',
                         array(
                             'id'=>'uploadFile',
                             'config'=>array(
-                                'action'=>Yii::app()->createUrl('UserDetails/Uploadavater/'.$model->user_details_id),
+                                'action'=>Yii::app()->createUrl('UserDetails/Uploadavater/'),
                                 'allowedExtensions'=>array("jpg", "jpeg", "gif", "png"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                 'sizeLimit'=>Yii::app()->params['profileimagesizemax'],
                                 'minSizeLimit'=>Yii::app()->params['profileimagesizemin'],
@@ -92,7 +92,7 @@ $this->menu['profile']['active'] = true;
                                     $('#Associazioni_logo').val(responseJSON['filename']);
                                     $('.qq-uploader .alert-success').alert('close');
                                   });
-                                  $('#avater_image').attr('src', '".Yii::app()->baseUrl."/".Yii::app()->params['avateruploadPath']."'+responseJSON['filename']);
+                                  $('#avater_image').attr('src', '".Yii::app()->baseUrl."/".Yii::app()->params['uploadPath'].Yii::app()->user->id."/logo/'+responseJSON['filename']);
                                 }",
                             )
                         ));

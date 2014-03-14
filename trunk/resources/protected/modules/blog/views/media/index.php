@@ -53,7 +53,7 @@ Yii::app()->clientScript->scriptMap=array(
 <script>
     $(document).ready(function() {
         $(".postinsert").click(function(){
-            CKEDITOR.instances.BlogPost_post_content.insertHtml("<img src=<?php echo Yii::app()->getBaseUrl(true)."/".Yii::app()->params["uploadPath"].Yii::app()->user->name."/"; ?>"+$('input[name=mediaviewradio]:radio:checked').val()+">");
+            CKEDITOR.instances.BlogPost_post_content.insertHtml("<img src=<?php echo Yii::app()->baseUrl."/".Yii::app()->params["uploadPath"].Yii::app()->user->id."/media/"; ?>"+$('input[name=mediaviewradio]:radio:checked').val()+">");
             $('#myModal').modal('hide');
         });
         $("input[name=mediaviewradio]").attr('checked','checked');

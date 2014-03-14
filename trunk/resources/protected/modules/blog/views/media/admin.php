@@ -29,7 +29,7 @@ $this->menu['media']['active'] = true;
         array(
             'name'=>'url',
             'type'=>'html',
-            'value'=>'(!empty($data->url))?CHtml::image(Yii::app()->getBaseUrl(true)."/".Yii::app()->params["uploadPath"].Yii::app()->user->name."/".$data->url,"",array("style"=>"height:40px;")):"no image"',
+            'value'=>'(!empty($data->url))?CHtml::image(Yii::app()->baseUrl."/".Yii::app()->params["uploadPath"].Yii::app()->user->id."/media/".$data->url,"",array("style"=>"height:40px;")):"no image"',
         ),
 		'caption',
 		'alternative_text',
