@@ -57,11 +57,21 @@ class UserDetailsController extends Controller
         $es->update();
     }
 
-    public function actionUploadavater($id)
+    public function actionUploadavater()
     {
-        $model=$this->loadModel($id);
+        $this->layout = false;
+        $id = User::model()->findByPk(Yii::app()->user->id);
+        $model=$this->loadModel($id->user_details_id);
         Yii::import("ext.JebUpload.JebFileUploader");
-        $folder = Yii::app()->params['avateruploadPath'];// folder for uploaded files
+        $dir_media = Yii::app()->params['uploadPath'].Yii::app()->user->id;
+        if(!is_dir($dir_media)){
+            mkdir($dir_media, 0777);
+        }
+        $dir_media = $dir_media.'/logo/';
+        if(!is_dir($dir_media)){
+            mkdir($dir_media, 0777);
+        }
+        $folder = $dir_media;// folder for uploaded files
         $allowedExtensions = array("jpg", "jpeg", "gif", "png");//array("jpg","jpeg","gif","exe","mov" and etc...
         $sizeLimit = Yii::app()->params['profileimagesizemax'];
         $uploader = new JebFileUploader($allowedExtensions, $sizeLimit);

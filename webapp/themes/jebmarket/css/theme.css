@@ -599,17 +599,20 @@ form .alert {
 .homepage{
     text-align: center;
 }
-#avater_image{
+#avater_image, #website_favicon{
     max-height: 110px;
     float: left;
     max-width: 145px;
     margin: 3px 0 0 0;
 }
-#uploadFile{
+.avater_image #avater_image{
+    max-width: 310px;
+}
+#uploadFile, #uploadFavicon{
     float: right;
     margin: 3px 0 0 0;
 }
-#uploadFile .qq-uploader .qq-upload-drop-area {
+#uploadFile .qq-uploader .qq-upload-drop-area, #uploadFavicon .qq-uploader .qq-upload-drop-area {
     position: absolute;
     top: 0;
     left: 0;
@@ -676,30 +679,30 @@ form .alert {
 .checkbox_category .add_new_cat{
     float: right;
 }
-.media_upload #uploadFile{
+.media_upload #uploadFile, .media_upload #uploadFavicon{
     width: 100%;
     float: left;
 }
-.media_upload #uploadFile .qq-uploader .qq-upload-drop-area{
+.media_upload #uploadFile .qq-uploader .qq-upload-drop-area, .media_upload #uploadFavicon .qq-uploader .qq-upload-drop-area{
     width: 100%;
     float: left;
     border: 4px dashed #bbb;
     height: 200px;
     background: #f1f1f1;
 }
-.media_upload #uploadFile .qq-uploader .qq-upload-button{
+.media_upload #uploadFile .qq-uploader .qq-upload-button, .media_upload #uploadFavicon .qq-uploader .qq-upload-button{
     border-radius: 4px;
     margin: 0;
     left: 44%;
     top: 90px;
 }
-.media_upload #uploadFile .qq-uploader .qq-upload-drop-area span {
+.media_upload #uploadFile .qq-uploader .qq-upload-drop-area span, .media_upload #uploadFavicon .qq-uploader .qq-upload-drop-area span {
     top: 60px;
     margin: 0;
     font-size: 20px;
     color: #aaa;
 }
-.media_upload #uploadFile .qq-uploader .qq-upload-list {
+.media_upload #uploadFile .qq-uploader .qq-upload-list, .media_upload #uploadFavicon .qq-uploader .qq-upload-list  {
     margin: 160px 0 0 0;
     width: 100%;
 }
@@ -932,6 +935,14 @@ form .alert {
 }
 .logo_img img{
     height: 50px;
+}
+.website_settings .form-horizontal .control-label{
+    text-align: left;
+}
+.add_media{
+    background: none;
+    box-shadow: none;
+    border: none;
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

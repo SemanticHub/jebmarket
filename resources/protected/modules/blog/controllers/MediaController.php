@@ -39,14 +39,18 @@ class MediaController extends Controller
 
     public function actionUploadmedia()
     {
+        $this->layout = false;
         $model=new Media;
         Yii::import("ext.JebUpload.JebFileUploader");
-        $dir_media = Yii::app()->params['uploadPath'].Yii::app()->user->name;
+        $dir_media = Yii::app()->params['uploadPath'].Yii::app()->user->id;
         if(!is_dir($dir_media)){
             mkdir($dir_media, 0777);
         }
-
-        $folder = Yii::app()->params['uploadPath'].Yii::app()->user->name.'/';// folder for uploaded files
+        $dir_media = $dir_media.'/media/';
+        if(!is_dir($dir_media)){
+            mkdir($dir_media, 0777);
+        }
+        $folder = $dir_media;// folder for uploaded files
         $allowedExtensions = array("jpg", "jpeg", "gif", "png");//array("jpg","jpeg","gif","exe","mov" and etc...
         $sizeLimit = Yii::app()->params['sliderfilesizemax'];
         $uploader = new JebFileUploader($allowedExtensions, $sizeLimit);
@@ -60,7 +64,7 @@ class MediaController extends Controller
         $model->url = $fileName;
         $model->upload_date = date("Y-m-d H:i:s");
         $model->modified_date = date("Y-m-d H:i:s");
-        $model->save();
+        if($model->save())
         echo $return;
     }
 

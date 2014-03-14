@@ -31,7 +31,7 @@ $this->menu['media']['active'] = true;
                                     $('div.preview').addClass('loading');
                                   }",
                 'onComplete'=>"js:function(file, response, responseJSON) {
-                                    $('.alert-success:last').prepend('<img style=margin:0; src=".Yii::app()->getBaseUrl(true)."/".Yii::app()->params['uploadPath'].Yii::app()->user->name."/'+responseJSON['filename']+'>');
+                                    $('.alert-success:last').prepend('<img style=margin:0; src=".Yii::app()->baseUrl."/".Yii::app()->params['uploadPath'].Yii::app()->user->id."/media/'+responseJSON['filename']+'>');
                                 }",
             )
         ));

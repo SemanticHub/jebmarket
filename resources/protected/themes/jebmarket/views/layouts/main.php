@@ -6,8 +6,12 @@
     <?php if (isset($this->metaDescription)) { ?>
         <meta name="description" content="<?php echo $this->metaDescription ?>"><?php } ?>
     <?php if (isset($this->metaKeywords)) { ?>
-        <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
-    <link rel="shortcut icon" href="<?php echo Yii::app()->theme->baseUrl; ?>/icon/favicon.png">
+    <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
+    <?php $domainname = Website::model()->domainName(); if(empty($domainname)){ ?>
+    <link rel="shortcut icon" href="<?php echo Yii::app()->baseUrl; ?>/favicon.ico">
+    <?php }else{?>
+        <link rel="shortcut icon" href="<?php echo Website::model()->logoName('favicon') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('favicon') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'favicon.ico'; ?>">
+    <?php } ?>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css">
@@ -19,11 +23,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <?php $logonames = Website::model()->logoName(); if(empty($logonames)){ ?>
+                <?php if(empty($domainname)){ ?>
                 <a class="navbar-brand logo" href="<?php echo Yii::app()->HomeUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
-                <?php }else{ ?>
+                <?php }else{?>
                 <a class="navbar-brand logo_img" href="<?php echo Yii::app()->baseUrl.'/'.Website::model()->domainName(); ?>">
-                    <img src="<?php echo Yii::app()->baseUrl.'/media/upload/'.Website::model()->logoName(); ?>">
+                    <img src="<?php echo Website::model()->logoName('logo') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('logo') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'jebmarket_logo.png'; ?>" alt="" />
                 </a>
                 <?php } ?>
                 <div id="header_right">

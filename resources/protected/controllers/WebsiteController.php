@@ -8,42 +8,14 @@ class WebsiteController extends Controller
 	 */
 	public $layout='//layouts/column2';
 
-	/**
-	 * @return array action filters
-	 */
-	public function filters()
-	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-		);
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
+    /**
+     * @return array action filters
+     */
+    public function filters() {
+        return array(
+            'rights'
+        );
+    }
 
 	/**
 	 * Displays a particular model.
@@ -133,15 +105,87 @@ class WebsiteController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Website('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Website']))
-			$model->attributes=$_GET['Website'];
-
+        $id = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+        $model=$this->loadModel($id->id);
+        $this->performAjaxValidation($model);
+        if(isset($_POST['Website']))
+        {
+            $model->attributes=$_POST['Website'];
+            if($model->save()){
+                Yii::app()->user->setFlash('success', 'Website Settings Saved Successfully.');
+                $this->redirect(array('website/admin'));
+            }
+        }
 		$this->render('admin',array(
 			'model'=>$model,
 		));
 	}
+
+    /**
+     * Manages all models.
+     */
+    public function actionLogo()
+    {
+        $id = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+        $model=$this->loadModel($id->id);
+        $this->render('logo',array(
+            'model'=>$model,
+        ));
+    }
+
+    public function actionUploadlogo()
+    {
+        $this->layout = false;
+        $id = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+        $model=$this->loadModel($id->id);
+        Yii::import("ext.JebUpload.JebFileUploader");
+        $dir_media = Yii::app()->params['uploadPath'].Yii::app()->user->id;
+        if(!is_dir($dir_media)){
+            mkdir($dir_media, 0777);
+        }
+        $dir_media = $dir_media.'/logo';
+        if(!is_dir($dir_media)){
+            mkdir($dir_media, 0777);
+        }
+        $folder = $dir_media.'/';// folder for uploaded files
+        $allowedExtensions = array("jpg", "jpeg", "gif", "png");//array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = Yii::app()->params['profileimagesizemax'];
+        $uploader = new JebFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($folder, $replaceOldFile = true, $newfilename = true );
+        $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        $fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
+        $fileName = $result['filename'];//GETTING FILE NAME
+        $model->logo = $fileName;
+        if($model->save())
+        echo $return;
+    }
+
+    public function actionUploadFavicon()
+    {
+        $this->layout = false;
+        $id = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+        $model=$this->loadModel($id->id);
+        Yii::import("ext.JebUpload.JebFileUploader");
+        $dir_media = Yii::app()->params['uploadPath'].Yii::app()->user->id;
+        if(!is_dir($dir_media)){
+            mkdir($dir_media, 0777);
+        }
+        $dir_media = $dir_media.'/logo';
+        if(!is_dir($dir_media)){
+            mkdir($dir_media, 0777);
+        }
+        $folder = $dir_media.'/';// folder for uploaded files
+        $allowedExtensions = array("ico");//array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = Yii::app()->params['profileimagesizemax'];
+        $uploader = new JebFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($folder, $replaceOldFile = true, $newfilename = true );
+        $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        $fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
+        $fileName = $result['filename'];//GETTING FILE NAME
+        $model->favicon = $fileName;
+        if($model->save())
+        echo $return;
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

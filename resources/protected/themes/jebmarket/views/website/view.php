@@ -24,6 +24,13 @@ $this->menu=array(
 		'id',
 		'name',
 		'domain',
+		'description',
+		'email',
+		'logo',
+		'favicon',
+		'meta_title',
+		'meta_desc',
+		'meta_keywords',
 		'jebapp_user_id',
 	),
 )); ?>
