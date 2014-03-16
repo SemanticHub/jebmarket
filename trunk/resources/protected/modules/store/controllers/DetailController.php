@@ -1,6 +1,6 @@
 <?php
 
-class StoreDetailController extends StoreBaseController
+class DetailController extends StoreBaseController
 {
 	public function filters()
 	{
@@ -20,7 +20,7 @@ class StoreDetailController extends StoreBaseController
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'location'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -162,4 +162,12 @@ class StoreDetailController extends StoreBaseController
 			Yii::app()->end();
 		}
 	}
+
+    public function actionLocation($ref) {
+        //$user = User::model()->findByPk(Yii::app()->user->id);
+        //$userDetails = UserDetails::model()->findByPk($user->user_details_id);
+        //$userDetails->location = $_POST['location_id'];
+        //if($userDetails->update())
+        $this->renderPartial('_location_info', array('ref'=>$ref), false, true);
+    }
 }

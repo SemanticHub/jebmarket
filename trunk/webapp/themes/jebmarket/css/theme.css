@@ -324,7 +324,12 @@ h1.page-title, .h1.page-title {
     cursor: pointer;
 }
 .list-group-title {
-    text-transform: uppercase; color: #ccc; font-weight: 300; display: block; border-bottom: 1px solid #eee;
+    text-transform: uppercase;
+    color: #777;
+    font-weight: 400;
+    display: block;
+    border-bottom: 1px solid #eee;
+    text-shadow: 1px 1px 0px #fff;
 }
 .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
     border-top: none; /*border-bottom: 1px dotted #ddd;*/
@@ -546,6 +551,9 @@ u .divider a {
 }
 .sidebar-left .list-group-item.active a{
     color: #000;
+}
+.sidebar-left .list-group-item.active {
+    background: #f0f7fd;
 }
 .form-group {
     margin-bottom: 10px;
@@ -943,6 +951,9 @@ form .alert {
     background: none;
     box-shadow: none;
     border: none;
+}
+.help-block {
+    font-size: 0.9em; font-style: italic;
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

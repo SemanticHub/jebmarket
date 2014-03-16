@@ -17,7 +17,7 @@
  *
  * The followings are the available model relations:
  * @property StorePlan $plan
- * @property StoreDetail[] $storeDetails
+ * @property StoreDetail[] $storeDetail
  */
 class Store extends CActiveRecord
 {
@@ -56,7 +56,7 @@ class Store extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'plan' => array(self::BELONGS_TO, 'StorePlan', 'plan_id'),
-			'storeDetails' => array(self::HAS_MANY, 'StoreDetail', 'store_id'),
+			'storeDetail' => array(self::HAS_MANY, 'StoreDetail', 'store_id'),
 		);
 	}
 

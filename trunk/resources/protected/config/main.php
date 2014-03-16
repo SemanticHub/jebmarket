@@ -5,7 +5,7 @@ return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'charset' => 'UTF-8',
     'id' => 'com.jebmarket.webapp',
-    'language' => 'en_gb',
+    'language' => 'en',
     'sourceLanguage'=>'en_us',
     'name' => 'JebMarket',
     'timeZone'=>'UTC', # for PHP
@@ -61,7 +61,11 @@ return array(
                 '1' => 'Free',
                 '2' => 'Percentage Share',
                 '3' => 'Fixed'
-            )
+            ),
+            'successFlashKey'=>'success',
+            'warningFlashKey'=>'warning',
+            'errorFlashKey'=>'danger',
+            'infoFlashKey'=>'info'
         )
     ),
     'components' => array(
@@ -192,11 +196,16 @@ return array(
             'settings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Settings', 'url' => array('/website/admin')),
 
             'storeBlock' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
-            'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('products')),
-            'orders' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Orders', 'url' => array('orders')),
+            'myStore' => array('label' => '<span class="glyphicon glyphicon-th"></span> My Store', 'url' => array('/store')),
+            'storeProducts' => array('label' => '<span class="glyphicon glyphicon-barcode"></span> Products', 'url' => array('/store/product')),
+            'storeCategories' => array('label' => '<span class="glyphicon glyphicon-th-list></span> Categories', 'url' => array('/store/category')),
+            'storeSettings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Categories', 'url' => array('/store/setting')),
+            'storeCustomers' => array('label' => '<span class="glyphicon glyphicon-user"></span> Customers', 'url' => array('/store/customer')),
+            'storeOrders' => array('label' => '<span class="glyphicon glyphicon-inbox"></span> Orders', 'url' => array('/store/order')),
 
             'reportBlock' => array('label' => 'Reports', 'linkOptions' => array('class' => 'list-group-title')),
             'reports' => array('label' => '<span class="glyphicon glyphicon-stats"></span> Reports', 'url' => array('/reports')),
+
         ),
         'adminmenu' => array(
             array('label' => 'Sliders', 'url' => array('/slider/admin'), 'itemOptions'=>array('class'=>'slider') ),

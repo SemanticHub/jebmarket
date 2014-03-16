@@ -17,6 +17,7 @@ class MenuController extends Controller {
     }
 
     public function actionMenuItemOptions() {
+        if(isset($_POST['type'])) {
         switch ($_POST['type']) {
             case 'page':
                 $userid = Yii::app()->user->id;
@@ -30,6 +31,7 @@ class MenuController extends Controller {
                 break;
             default:
                 echo '<div class="alert alert-info" style="margin-bottom: 0">Select a \'Menu Item Type\' from above to \'URL\' see options</div>';
+        }
         }
     }
     

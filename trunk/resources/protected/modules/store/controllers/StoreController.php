@@ -10,23 +10,18 @@ class StoreController extends StoreBaseController {
 		);
 	}
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
 	public function accessRules() {
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				//'actions'=>array('index','view'),
+				//'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				//'actions'=>array('create','update'),
+				//'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete', 'settings'),
 				'users'=>array('admin', 'JebAdmin'),
 			),
 			array('deny',  // deny all users
@@ -35,32 +30,41 @@ class StoreController extends StoreBaseController {
 		);
 	}
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
-
-	/**
-	 * Creates a new model.
-	 */
 	public function actionCreate()
 	{
 		$model=new Store;
+        $model->storeDetail = new StoreDetail;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+        // Default Data
+        $model->status = 1;
+        $model->visibility = 0;
+
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Store']))
 		{
 			$model->attributes=$_POST['Store'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+            $model->storeDetail->attributes=$_POST['StoreDetail'];
+
+        //CVarDumper::dump($model, 10, true);
+           // CVarDumper::dump($model->storeDetail->description, 10, true);
+            //Yii::app()->end();
+            $model->created = date("Y-m-d H:i:s");
+            $model->user_id = Yii::app()->user->id;
+            $model->plan_id = Yii::app()->controller->module->unlimitedStorePlanId;
+			//if($model->save())
+			//	$this->redirect(array('view','id'=>$model->id));
+
+            if ($model->validate()) {
+                if ($model->save()) {
+                    $model->storeDetail->store_id = $model->id;
+                    if ($model->storeDetail->save()) {
+                        Yii::app()->user->setFlash('success', "Store successfully created.");
+                        $this->redirect(array('/store'));
+                    }
+                }
+            }
+
 		}
 
 		$this->render('create',array(
@@ -73,48 +77,76 @@ class StoreController extends StoreBaseController {
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+	public function actionSettings($id)
 	{
 		$model=$this->loadModel($id);
 
+        $storeDetail = StoreDetail::model()->find(array(
+            'condition'=> 'store_id=:store_id',
+            'params'=> array(':store_id'=> $model->id),
+        ));
+
+        CVarDumper::dump($storeDetail, 10, true);
+        Yii::app()->end();
+
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		/*$this->performAjaxValidation($model);
 
 		if(isset($_POST['Store']))
 		{
 			$model->attributes=$_POST['Store'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
-		}
+		}*/
 
 		$this->render('update',array(
 			'model'=>$model,
 		));
 	}
 
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 */
-	public function actionDelete($id)
-	{
-		$this->loadModel($id)->delete();
-
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-	}
 
 	/**
 	 * Lists all models.
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Store');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+
+        $userStore = Store::model()->find(array(
+            'condition'=> 'user_id=:user_id AND status=:status',
+            'params'=> array(':user_id'=>Yii::app()->user->id, ':status'=>'1'),
+        ));
+
+        $storeAction = 1;
+
+        if($userStore) {
+            $storeAction = 1;
+            $model = array();
+
+            $storeDetail = StoreDetail::model()->find(array(
+                'condition'=> 'store_id=:store_id',
+                'params'=> array(':store_id'=>$userStore->id),
+            ));
+
+            $userStore->storeDetail = $storeDetail;
+
+            $model['store'] = $userStore;
+            //$this->redirect($this->actionSettings($userStore->id));
+            ///$this->redirect('store/settings', $userStore->id);
+        } else {
+            if(Yii::app()->user->isSuperuser) {
+                $storeAction = 0;
+                //Yii::app()->user->setFlash($this->module->warningFlashKey, "Ultimate Super Store has not been setup yet.");
+                //Yii::app()->user->setFlash($this->module->infoFlashKey, "As a super user you can setup the ultimate super store with all the power and features.");
+
+            } else {
+                $storeAction = 2;
+                //Yii::app()->user->setFlash($this->module->successFlashKey, "You are not allowed to use Store module of JebMarket, Please Update your membership from dashboard.");
+            }
+        }
+        if(!empty($model))
+            $this->render('index',array('action'=>$storeAction, 'model' => $model));
+        else
+            $this->render('index',array('action'=>$storeAction));
 	}
 
 	/**
