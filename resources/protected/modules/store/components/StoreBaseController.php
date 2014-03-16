@@ -11,6 +11,11 @@ class StoreBaseController extends CController {
 
     public $breadcrumbs=array();
 
+    public function init() {
+        parent::init();
+        // TODO make it dynamic and accessbased
+        $this->menu = Yii::app()->params['usermenu'];
+    }
 
     public function filterStoreRights($filterChain) {
         if(Yii::app()->getModule('rights')) {

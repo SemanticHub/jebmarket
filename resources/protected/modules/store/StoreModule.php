@@ -35,6 +35,18 @@ class StoreModule extends CWebModule {
 
     public $transactionPeriod = array();
 
+    public static $messageTranslationCategory = 'storemodule';
+
+    public $successFlashKey = 'success';
+
+    public $errorFlashKey = 'error';
+
+    public $warningFlashKey = 'warning';
+
+    public $infoFlashKey = 'info';
+
+    public $unlimitedStorePlanId = '2';
+
 
 	public function init() {
         $this->setImport(array(
@@ -47,8 +59,11 @@ class StoreModule extends CWebModule {
         if( empty($this->transactionPeriod) ) $this->transactionPeriod = $this->getStoreTransactionPeriod();
 
         if(!Yii::app()->getModule('rights')) {
-            //TODO: flash warning to superuser to use store module along with rights module to maximum security
+            throw new CException(Yii::t($this::$messageTranslationCategory, 'Store Module has dependency on Yii-Rights Module'));
+            Yii::app()->end();
         }
+
+        $this->setStoreMenu();
 
         $this->defaultController = 'store';
 	}
@@ -80,10 +95,25 @@ class StoreModule extends CWebModule {
         );
     }
 
-    /**
-     * @override
-     * @return string|void
-     */
+    public function setStoreMenu($pos=null){
+        /*$storeMenu = array(
+            'storeBlock' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
+            'myStore' => array('label' => '<span class="glyphicon glyphicon-home"></span> My Store', 'url' => array('/store')),
+            'products' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Products', 'url' => array('/store/product')),
+            'categories' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Categories', 'url' => array('/store/category')),
+            'settings' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Categories', 'url' => array('/store/setting')),
+            'customers' => array('label' => '<span class="glyphicon glyphicon-gift"></span> Customers', 'url' => array('/store/customer')),
+            'orders' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Orders', 'url' => array('/store/order')),
+        );
+        if($pos) {
+            $elementAfterPos = array_slice(Yii::app()->params['usermenu'], $pos);
+            // TODO set menu items into a particular position.
+        } else {
+            array_push(Yii::app()->params['usermenu'], $storeMenu);
+        }*/
+    }
+
+
     public function getDescription() {
         return $this->description;
     }
