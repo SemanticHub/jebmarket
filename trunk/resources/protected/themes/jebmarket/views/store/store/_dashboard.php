@@ -1,17 +1,14 @@
 <?php
-/**
- * @var $this UserController
- * @var $model User
- */
 //$this->menu = Yii::app()->params['usermenu'];
 $this->menu['myStore']['active'] = true;
 ?>
 <div class="row">
     <div class="col-md-8">
+
         <div class="col-md-3">
-            <div class="panel panel-info">
+            <div class="panel panel-warning">
                 <div class="panel-heading">
-                    <b class=""><span class="glyphicon glyphicon-barcode"></span> Products</b>
+                    <b class=""><span class="glyphicon glyphicon-calendar"></span> Today</b>
                 </div>
                 <div class="panel-body">
                     <span class="badge">0</span>
@@ -19,6 +16,58 @@ $this->menu['myStore']['active'] = true;
             </div>
         </div>
         <div class="col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <b class=""><span class="glyphicon glyphicon-calendar"></span> This Week</b>
+                </div>
+                <div class="panel-body">
+                    <span class="badge">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <b class=""><span class="glyphicon glyphicon-calendar"></span> This Month</b>
+                </div>
+                <div class="panel-body">
+                    <span class="badge">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <b class=""><span class="glyphicon glyphicon-calendar"></span> So Far</b>
+                </div>
+                <div class="panel-body">
+                    <span class="badge">0</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <b class=""><span class="glyphicon glyphicon-barcode"></span> Products</b>
+                </div>
+                <div class="panel-body">
+                    <label class="label label-default" style="padding: 5px 10px">Total: <span class="badge badge-inverse">
+                        <?php
+                        echo Product::model()->count();
+                        ?>
+                    </span></label>
+                      |
+                    <label class="label label-success"  style="padding: 5px 10px">Active: <span class="badge badge-inverse">
+                        <?php
+                        echo Product::model()->count('status=1');
+                        ?>
+                    </span></label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <b class=""><span class="glyphicon glyphicon-th-list"></span> Categories</b>
@@ -28,7 +77,7 @@ $this->menu['myStore']['active'] = true;
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <b class=""><span class="glyphicon glyphicon-user"></span> Customers</b>
@@ -38,7 +87,7 @@ $this->menu['myStore']['active'] = true;
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <b class=""><span class="glyphicon glyphicon-inbox"></span> Orders</b>

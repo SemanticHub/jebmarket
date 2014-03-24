@@ -1,6 +1,6 @@
 <?php
 
-class ProductCategoryController extends StoreBaseController
+class CategoryController extends StoreBaseController
 {
 
 	public function filters()
@@ -115,7 +115,7 @@ class ProductCategoryController extends StoreBaseController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('StoreProductCategory');
+		$dataProvider=new CActiveDataProvider('ProductCategory');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
