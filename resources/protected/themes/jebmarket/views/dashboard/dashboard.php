@@ -1,6 +1,4 @@
 <?php
-/* @var $this UserController */
-/* @var $model User */
 $this->menu=Yii::app()->params['usermenu'];
 $this->menu['dashboard']['active']=true;
 ?>

@@ -63,7 +63,7 @@ class StoreModule extends CWebModule {
             Yii::app()->end();
         }
 
-        $this->setStoreMenu();
+        //$this->setStoreMenu();
 
         $this->defaultController = 'store';
 	}

@@ -1267,3 +1267,6 @@ form .alert {
         font-size: 12px;
     }
 }
+.badge-inverse {
+    background: #fff; color: #555;
+}

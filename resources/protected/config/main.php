@@ -198,8 +198,8 @@ return array(
             'storeBlock' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
             'myStore' => array('label' => '<span class="glyphicon glyphicon-th"></span> My Store', 'url' => array('/store')),
             'storeProducts' => array('label' => '<span class="glyphicon glyphicon-barcode"></span> Products', 'url' => array('/store/product')),
-            'storeCategories' => array('label' => '<span class="glyphicon glyphicon-th-list></span> Categories', 'url' => array('/store/category')),
-            'storeSettings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Categories', 'url' => array('/store/setting')),
+            'storeCategories' => array('label' => '<span class="glyphicon glyphicon-th-list"></span> Categories', 'url' => array('/store/category')),
+            'storeSettings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Settings', 'url' => array('/store/setting')),
             'storeCustomers' => array('label' => '<span class="glyphicon glyphicon-user"></span> Customers', 'url' => array('/store/customer')),
             'storeOrders' => array('label' => '<span class="glyphicon glyphicon-inbox"></span> Orders', 'url' => array('/store/order')),
 

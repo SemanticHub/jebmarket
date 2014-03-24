@@ -1,29 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "jebapp_store_product_category".
+ * This is the model class for table "jebapp_store_product_detail".
  *
- * The followings are the available columns in table 'jebapp_store_product_category':
+ * The followings are the available columns in table 'jebapp_store_product_detail':
  * @property integer $id
- * @property integer $parent_id
- * @property integer $is_root
- * @property string $name
+ * @property integer $product_id
  * @property string $description
+ * @property string $keyword
  * @property string $meta_description
- * @property string $meta_keyword
- * @property string $image
- * @property integer $shop_default
- * @property integer $status
- * @property integer $visibility
+ * @property string $buy_price
+ *
+ * The followings are the available model relations:
+ * @property Product $product
  */
-class StoreProductCategory extends CActiveRecord
+class ProductDetail extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'jebapp_store_product_category';
+		return 'jebapp_store_product_detail';
 	}
 
 	/**
@@ -34,13 +32,14 @@ class StoreProductCategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('parent_id, is_root, shop_default, status, visibility', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>45),
-			array('description, meta_description, meta_keyword, image', 'length', 'max'=>255),
+			array('product_id', 'required'),
+			array('product_id', 'numerical', 'integerOnly'=>true),
+			array('keyword, meta_description', 'length', 'max'=>255),
+			array('buy_price', 'length', 'max'=>20),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, parent_id, is_root, name, description, meta_description, meta_keyword, image, shop_default, status, visibility', 'safe', 'on'=>'search'),
+			array('id, product_id, description, keyword, meta_description, buy_price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,6 +51,7 @@ class StoreProductCategory extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'product' => array(self::BELONGS_TO, 'Product', 'product_id'),
 		);
 	}
 
@@ -62,16 +62,11 @@ class StoreProductCategory extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'parent_id' => 'Parent',
-			'is_root' => 'Is Root',
-			'name' => 'Name',
+			'product_id' => 'Product',
 			'description' => 'Description',
+			'keyword' => 'Keyword',
 			'meta_description' => 'Meta Description',
-			'meta_keyword' => 'Meta Keyword',
-			'image' => 'Image',
-			'shop_default' => 'Shop Default',
-			'status' => 'Status',
-			'visibility' => 'Visibility',
+			'buy_price' => 'Buy Price',
 		);
 	}
 
@@ -94,16 +89,11 @@ class StoreProductCategory extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('parent_id',$this->parent_id);
-		$criteria->compare('is_root',$this->is_root);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('keyword',$this->keyword,true);
 		$criteria->compare('meta_description',$this->meta_description,true);
-		$criteria->compare('meta_keyword',$this->meta_keyword,true);
-		$criteria->compare('image',$this->image,true);
-		$criteria->compare('shop_default',$this->shop_default);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('visibility',$this->visibility);
+		$criteria->compare('buy_price',$this->buy_price,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -114,7 +104,7 @@ class StoreProductCategory extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return StoreProductCategory the static model class
+	 * @return ProductDetail the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

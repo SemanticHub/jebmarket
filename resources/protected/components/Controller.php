@@ -66,4 +66,12 @@ class Controller extends RController {
         }
     }
 
+
+    public function userMenu(){
+        $userMenu = array();
+        foreach (Yii::app()->params['usermenu'] as $userMenuItems) {
+            // TODO: We need to find a way to implement user menu rights
+        }
+    }
+
 }
