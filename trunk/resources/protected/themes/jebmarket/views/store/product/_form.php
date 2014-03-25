@@ -1,4 +1,11 @@
-<p class="note">Fields with <span class="required">*</span> are required.</p>
+<link href="<?php echo Yii::app()->theme->baseUrl; ?>/comp/switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+<p class="note">
+    <label class="label label-success">
+        <?php echo $product->getAttributeLabel('status'); ?>
+    </label> &#160;
+    <input id="status" type="checkbox" name="status" <?php echo $product->getAttribute('status') == 1 ? 'checked' : '' ; ?> >
+    <input id="ppk" type="hidden" value="<?php echo $product->getAttribute('id'); ?>" >
+</p>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
@@ -11,11 +18,11 @@
 <div class="tab-content">
     <div class="tab-pane active" id="general">
         <br />
-        <table class="table clearfix">
+        <table class="table table-view">
             <tr>
-                <th>
+                <td class="label-field">
                     <?php echo $product->getAttributeLabel('sku') ?>
-                </th>
+                </td>
                 <td>
                     <?php
                     $this->widget('editable.EditableField', array(
@@ -26,9 +33,9 @@
                     ));
                     ?>
                 </td>
-                <th>
+                <td class="label-field">
                     <?php echo $product->getAttributeLabel('barcode_type') ?>
-                </th>
+                </td>
                 <td>
                     <?php
                     $this->widget('editable.EditableField', array(
@@ -39,9 +46,9 @@
                     ));
                     ?>
                 </td>
-                <th>
+                <td class="label-field">
                     <?php echo $product->getAttributeLabel('barcode_value') ?>
-                </th>
+                </td>
                 <td>
                     <?php
                     $this->widget('editable.EditableField', array(
@@ -54,9 +61,9 @@
                 </td>
             </tr>
             <tr>
-                <th>
+                <td class="label-field">
                     <?php echo $product->getAttributeLabel('title') ?>
-                </th>
+                </td>
                 <td colspan="5">
                     <?php
                     $this->widget('editable.EditableField', array(
@@ -69,9 +76,9 @@
                 </td>
             </tr>
             <tr>
-                <th>
+                <td class="label-field">
                     <?php echo $product->getAttributeLabel('short_details') ?>
-                </th>
+                </td>
                 <td colspan="5">
                     <?php
                     $this->widget('editable.EditableField', array(
@@ -84,9 +91,9 @@
                 </td>
             </tr>
             <tr>
-                <th>
+                <td class="label-field">
                     <?php echo $productDetail->getAttributeLabel('description') ?>
-                </th>
+                </td>
                 <td colspan="5">
                     <?php
                     $this->widget('editable.EditableField', array(
@@ -107,3 +114,29 @@
     <div class="tab-pane fade" id="seo">...</div>
 
 </div>
+<script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/switch/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript">
+    $("#status").bootstrapSwitch({
+        'size':'small'
+    }).on('switchChange.bootstrapSwitch', function(event, state) {
+        var status;
+        var pk = $('#ppk').val();
+        if(state) {
+            status = 1;
+        } else {
+            status = 0;
+        }
+        $.ajax({
+            type: "POST",
+            url: 'update',
+            data: {'name':'status', 'value': status, 'pk' : pk  },
+            success: function() {
+                console.log(state);
+            }
+        });
+
+    });
+    // name:sku
+    //value:222222
+    //pk:5
+</script>

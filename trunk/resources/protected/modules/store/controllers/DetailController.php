@@ -76,7 +76,7 @@ class DetailController extends StoreBaseController
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+	/*public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
 
@@ -93,7 +93,7 @@ class DetailController extends StoreBaseController
 		$this->render('update',array(
 			'model'=>$model,
 		));
-	}
+	}*/
 
 	/**
 	 * Deletes a particular model.
@@ -169,5 +169,10 @@ class DetailController extends StoreBaseController
         //$userDetails->location = $_POST['location_id'];
         //if($userDetails->update())
         $this->renderPartial('_location_info', array('ref'=>$ref), false, true);
+    }
+
+    public function actionUpdate() {
+        $es = new EditableSaver('StoreDetail');
+        $es->update();
     }
 }

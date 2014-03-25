@@ -72,12 +72,21 @@ class StoreController extends StoreBaseController {
 		));
 	}
 
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
-	public function actionSettings($id)
+    public function actionSettings() {
+        $store = Store::model()->find(array(
+            'condition'=> 'user_id=:user_id', 'params'=> array(':user_id'=>Yii::app()->user->id),
+        ));
+
+        $storeDetail = StoreDetail::model()->find(array(
+            'condition'=> 'store_id=:store_id', 'params'=> array(':store_id'=>$store->id),
+        ));
+
+        //$model = Store::model()->findByPk(Yii::app()->user->id);
+        //$userdetails = UserDetails::model()->findByPk($model->user_details_id);
+        $this->render('settings', array('store' => $store, 'storeDetail' => $storeDetail));
+    }
+
+    /*public function actionSettings($id)
 	{
 		$model=$this->loadModel($id);
 
@@ -98,11 +107,11 @@ class StoreController extends StoreBaseController {
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}*/
-
+/*
 		$this->render('update',array(
 			'model'=>$model,
 		));
-	}
+	}*/
 
 
 	/**
@@ -191,4 +200,9 @@ class StoreController extends StoreBaseController {
 			Yii::app()->end();
 		}
 	}
+
+    public function actionUpdate() {
+        $es = new EditableSaver('Store');
+        $es->update();
+    }
 }
