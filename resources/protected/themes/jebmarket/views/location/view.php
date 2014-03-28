@@ -3,13 +3,7 @@
 /* @var $model Location */
 
 
-$this->menu=array(
-	array('label' => Yii::t('phrase', 'Create Location'), 'url'=>array('create')),
-	array('label' => Yii::t('phrase', 'Update Location'), 'url'=>array('update', 'id'=>$model->id)),
-	array('label' => Yii::t('phrase', 'Delete Location'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-    array('label' => Yii::t('phrase', 'Manage'), 'linkOptions' => array('class' => 'list-group-title')),
-	array('label' => Yii::t('phrase', 'Locations'), 'url'=>array('admin')),
-);
+$this->menu = Yii::app()->params['usermenu'];
 ?>
 
 <h1 class="page-title">View Location '<?php echo $model->name; ?>'</h1>

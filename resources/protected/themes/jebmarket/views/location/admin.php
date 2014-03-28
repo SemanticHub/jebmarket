@@ -1,9 +1,5 @@
 <?php
-$this->menu = array(
-    array('label' => Yii::t('phrase', 'Create A Location'), 'url' => array('create')),
-    array('label' => 'Manage', 'linkOptions' => array('class' => 'list-group-title')),
-    array('label' => Yii::t('phrase', 'Locations'), 'url' => array('/location/admin')),
-);
+$this->menu = Yii::app()->params['usermenu'];
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){

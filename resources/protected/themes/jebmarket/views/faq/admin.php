@@ -1,8 +1,6 @@
 <?php
 //$this->layout = 'column1';
-$this->menu = array(
-    array('label' => 'Create FAQ', 'url' => array('create')),
-);
+$this->menu = Yii::app()->params['usermenu'];
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();

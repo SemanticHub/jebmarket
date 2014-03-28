@@ -1,21 +1,22 @@
 <?php
-/* @var $this BlogCommentController */
-/* @var $model BlogComment */
-
-$this->breadcrumbs=array(
-	'Blog Comments'=>array('index'),
-	$model->comment_id=>array('view','id'=>$model->comment_id),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List BlogComment', 'url'=>array('index')),
-	array('label'=>'Create BlogComment', 'url'=>array('create')),
-	array('label'=>'View BlogComment', 'url'=>array('view', 'id'=>$model->comment_id)),
-	array('label'=>'Manage BlogComment', 'url'=>array('admin')),
-);
+$this->menu = Yii::app()->params['usermenu'];
+$this->menu['blog']['active'] = true;
 ?>
-
-<h1>Update BlogComment <?php echo $model->comment_id; ?></h1>
-
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="page-title">Update Blog Comment</h1>
+        </div>
+        <div class="col-md-6">
+            <div class="right_top_menu">
+                <ul class="list-inline">
+                    <li>
+                        <?php echo CHtml::link('Create Blog Comment',array('create'), array('class'=>'btn btn-success')); ?>
+                    </li>
+                    <li>
+                        <?php echo CHtml::link('Manage Blog Comment',array('admin'), array('class'=>'btn btn-success')); ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

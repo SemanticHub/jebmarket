@@ -116,7 +116,7 @@ class SiteController extends Controller
                         Yii::app()->user->setState('timezone', $userTimezone);
                         Yii::app()->setTimeZone($userTimezone); // TODO: can be a filter of base controller to set across the entire application
                     }
-                    $this->redirect(array('dashboard/index'));
+                    $this->redirect(array('user/profile'));
                 }
             }
             // display the login form

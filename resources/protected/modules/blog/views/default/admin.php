@@ -4,7 +4,9 @@ $this->menu = Yii::app()->params['usermenu'];
 $this->menu['blog']['active'] = true;
 ?>
 <div class="row" id="dashboard">
-    <h1 class="page-title">Blog</h1>
+    <div class="col-md-12">
+        <h1 class="page-title">Blog</h1>
+    </div>
     <div class="col-sm-6 col-md-3">
         <a href="<?php echo $this->createUrl('/blog/blogPost/admin'); ?>" class="thumbnail">
             <p class="caption" style="text-align: center;">Manage Posts</p>

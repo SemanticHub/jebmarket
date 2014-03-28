@@ -4,9 +4,7 @@
  * @var $dataProvider CActiveDataProvider
  **/
 
-$this->menu = array(
-    array('label' => 'Manage Settings', 'url' => array('admin')),
-);
+$this->menu = Yii::app()->params['usermenu'];
 ?>
 <h1 class="page-title"><?php echo Yii::t('phrase', 'Settings'); ?></h1>
 

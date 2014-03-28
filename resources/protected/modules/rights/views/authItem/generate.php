@@ -1,7 +1,6 @@
-<?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
-	Rights::t('core', 'Generate items'),
-); ?>
+<?php
+$this->menu = Yii::app()->params['usermenu'];
+?>
 
 <div id="generator">
 

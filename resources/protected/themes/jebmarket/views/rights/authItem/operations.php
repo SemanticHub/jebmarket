@@ -1,3 +1,6 @@
+<?php
+$this->menu = Yii::app()->params['usermenu'];
+?>
 <div id="operations">
     <h1 class="page-title"><?php echo Rights::t('core', 'Operations'); ?></h1>
 
