@@ -1,3 +1,6 @@
+<?php
+$this->menu = Yii::app()->params['usermenu'];
+?>
 <div id="permissions">
     <h1 class="page-title"><?php echo Rights::t('core', 'Permissions'); ?></h1>
     <div class="note bs-callout bs-callout-info">

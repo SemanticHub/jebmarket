@@ -1,4 +1,7 @@
- .<div id="roles">
+<?php
+$this->menu = Yii::app()->params['usermenu'];
+?>
+ <div id="roles">
     <h1 class="page-title"><?php echo Rights::t('core', 'Roles'); ?></h1>
     <div class="note bs-callout bs-callout-info">
         <p>

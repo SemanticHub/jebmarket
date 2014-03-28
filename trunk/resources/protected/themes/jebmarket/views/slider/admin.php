@@ -1,9 +1,7 @@
 <?php
 /* @var $this SliderController */
 /* @var $model Slider */
-$this->menu = array(
-    array('label' => 'Create Slide', 'url' => array('create')),
-);
+$this->menu = Yii::app()->params['usermenu'];
 ?>
 <h1 class="page-title">Manage Sliders</h1>
 <?php $this->widget('zii.widgets.grid.CGridView', array(

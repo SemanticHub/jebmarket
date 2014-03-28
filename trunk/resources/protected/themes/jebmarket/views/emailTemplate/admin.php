@@ -4,9 +4,7 @@
  * @var $model EmailTemplate
  */
 
-$this->menu=array(
-	array('label'=>'Create Email Template', 'url'=>array('create')),
-);
+$this->menu = Yii::app()->params['usermenu'];
 ?>
 
 <h1 class="page-title">Manage Email Templates</h1>

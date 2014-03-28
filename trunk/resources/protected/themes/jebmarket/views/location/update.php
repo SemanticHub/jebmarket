@@ -3,10 +3,7 @@
 /* @var $model Location */
 
 
-$this->menu=array(
-	array('label'=>'Create Location', 'url'=>array('create')),
-	array('label'=>'Locations', 'url'=>array('admin')),
-);
+$this->menu = Yii::app()->params['usermenu'];
 ?>
 <h1 class="page-title">Update Location '<?php echo $model->name; ?>'</h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

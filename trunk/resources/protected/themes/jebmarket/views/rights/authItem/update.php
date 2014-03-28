@@ -1,3 +1,6 @@
+<?php
+$this->menu = Yii::app()->params['usermenu'];
+?>
 <div id="updatedAuthItem">
 	<h1 class="page-title"><?php echo Rights::t('core', 'Edit :name', array(
 		':name'=>Rights::getAuthItemTypeName($model->type),

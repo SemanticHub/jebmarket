@@ -28,8 +28,8 @@ class Pages extends CActiveRecord {
     public function rules() {
         return array(
             array('title, slug', 'required'),
-            array('slug', 'isSlugValid'),
-            array('slug', 'match', 'not' => true, 'pattern' => '/[^a-z0-9_]/', 'message' => 'Invalid characters in friendly URL.'),
+            //array('slug', 'isSlugValid'),
+            array('slug', 'match', 'not' => true, 'pattern' => '/[^a-z0-9_-]/', 'message' => 'Invalid characters in friendly URL.'),
             //array('meta_keywords', 'numerical', 'integerOnly' => true),
             array('active', 'length', 'max' => 1),
             array('title, slug', 'length', 'max' => 255),

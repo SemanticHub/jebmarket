@@ -32,21 +32,33 @@ class PagesController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
+    public function actionCreate($type='page', $tag='mainmenu') {
+        $this->layout = false;
+        $user_id=Yii::app()->user->id;
         $model = new Pages;
-
-        // if AJAX validation is needed
-        $this->performAjaxValidation($model);
-
-        if (isset($_POST['Pages'])) {
-            $model->attributes = $_POST['Pages'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+        $menu = new Menu;
+        $modelData = Pages::model()->findAll("jebapp_user_id=$user_id");
+        $stack = array('0');
+        foreach($modelData as $slug){
+            $lastNum = substr($slug->slug, -1);
+            $first_ch = substr($slug->slug, 0, -1);
+            if(is_numeric($lastNum) && $first_ch='new-page-'){
+                array_push($stack, $lastNum);
+            }
         }
-
-        $this->render('create', array(
-            'model' => $model,
-        ));
+        $page_num = max($stack) + 1;
+        if (!isset($_GET['ajax'])) {
+            $model->slug = 'new-page-'.$page_num;
+            $model->title = 'New Page '.$page_num;
+            if ($model->save()){
+                $menu->pages_id = $model->id;
+                $menu->label = $model->title;
+                $menu->type = $type;
+                $menu->tag = $tag;
+                if ($menu->save())
+                    echo "hide";
+            }
+        }
     }
 
     /**
@@ -55,15 +67,15 @@ class PagesController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
+        $this->layout = false;
+        Yii::app()->clientScript->scriptMap=array('jquery.js'=>false, 'jquery.yiiactiveform.js'=>false);
         $model = $this->loadModel($id);
-
         // AJAX validation is needed
         $this->performAjaxValidation($model);
-
         if (isset($_POST['Pages'])) {
             $model->attributes = $_POST['Pages'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                Yii::app()->user->setFlash('PageMenu', 'Page Saved Successfully.');
         }
 
         $this->render('update', array(
@@ -98,13 +110,38 @@ class PagesController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Pages('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Pages']))
-            $model->attributes = $_GET['Pages'];
-
+        $user_id = Yii::app()->user->id;
+        $topMenu = new CDbCriteria();
+        $topMenu->condition = "jebapp_user_id=$user_id AND tag='topmenu'";
+        $topMenu->order = 'odr ASC';
+        $topMenuData=new CActiveDataProvider('Menu', array(
+            'criteria'=>$topMenu,
+            'pagination'=>array(
+                'pageSize'=>200,
+            ),
+        ));
+        $mainMenu = new CDbCriteria();
+        $mainMenu->condition = "jebapp_user_id=$user_id AND tag='mainmenu'";
+        $mainMenu->order = 'odr ASC';
+        $mainMenuData=new CActiveDataProvider('Menu', array(
+            'criteria'=>$mainMenu,
+            'pagination'=>array(
+                'pageSize'=>200,
+            ),
+        ));
+        $footerMenu = new CDbCriteria();
+        $footerMenu->condition = "jebapp_user_id=$user_id AND tag='footermenu'";
+        $footerMenu->order = 'odr ASC';
+        $footerMenuData=new CActiveDataProvider('Menu', array(
+            'criteria'=>$footerMenu,
+            'pagination'=>array(
+                'pageSize'=>200,
+            ),
+        ));
         $this->render('admin', array(
-            'model' => $model,
+            'topMenuData' => $topMenuData,
+            'mainMenuData' => $mainMenuData,
+            'footerMenuData' => $footerMenuData,
         ));
     }
 
