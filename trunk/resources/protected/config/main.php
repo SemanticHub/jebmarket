@@ -65,7 +65,7 @@ return array(
             'successFlashKey'=>'success',
             'warningFlashKey'=>'warning',
             'errorFlashKey'=>'danger',
-            'infoFlashKey'=>'info'
+            'infoFlashKey'=>'info',
         )
     ),
     'components' => array(
@@ -131,8 +131,8 @@ return array(
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
             'emulatePrepare' => true,
-            #'username' => 'root',
-            #'password' => '1234',
+            //'username' => 'root',
+            //'password' => '1234',
             'username' => 'jassifie_yiijeb',
             'password' => '99.9%available',
             'charset' => 'utf8',
@@ -197,7 +197,7 @@ return array(
             'myStore' => array('label' => '<span class="glyphicon glyphicon-th"></span> My Store', 'url' => array('/store')),
             'storeProducts' => array('label' => '<span class="glyphicon glyphicon-barcode"></span> Products', 'url' => array('/store/product')),
             'storeCategories' => array('label' => '<span class="glyphicon glyphicon-th-list"></span> Categories', 'url' => array('/store/category')),
-            'storeSettings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Settings', 'url' => array('/store/setting')),
+            'storeSettings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Settings', 'url' => array('/store/store/settings')),
             'storeCustomers' => array('label' => '<span class="glyphicon glyphicon-user"></span> Customers', 'url' => array('/store/customer')),
             'storeOrders' => array('label' => '<span class="glyphicon glyphicon-inbox"></span> Orders', 'url' => array('/store/order')),
 
@@ -213,6 +213,8 @@ return array(
             array('label' => 'User Access', 'url' => array('/rights'), 'itemOptions'=>array('class'=>'useraccess')),
             array('label' => 'Locations', 'url' => array('/location/admin'), 'itemOptions'=>array('class'=>'locations')),
             array('label' => 'Settings', 'url' => array('/settings/index'), 'itemOptions'=>array('class'=>'settings')),
+            array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
+            array('label' => 'Store', 'url' => array('/store/store/admin'), 'itemOptions'=>array('class'=>'store')),
         ),
         'portlets' => array(
             'userStatistics'=> array('name' => 'userStatistics', 'title' => 'Users Statistics', 'sticky' => false,),

@@ -212,7 +212,7 @@ class Menu extends CActiveRecord
                 'label' => $adminSubMenuItem['label'],
                 'url' => $adminSubMenuItem['url'],
                 'visible' => Menu::getAdminMenuItemVisibility($adminSubMenuItem['label'], $adminSubMenuItem['url'][0]),
-                //'itemOptions' => ($adminSubMenuItem['itemOptions'])
+                'itemOptions' => ($adminSubMenuItem['itemOptions'])
             ));
         }
 

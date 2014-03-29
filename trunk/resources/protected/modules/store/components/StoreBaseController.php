@@ -7,14 +7,20 @@
 
 class StoreBaseController extends CController {
 
+
+    public $storeMenu=array();
+
+    public $storeLinks=array();
+
     public $menu=array();
 
     public $breadcrumbs=array();
 
+    public $storeBreadcrumbs=array();
+
     public function init() {
         parent::init();
-        // TODO make it dynamic and accessbased
-        $this->menu = Yii::app()->params['usermenu'];
+        $this->menu = $this->module->menu;
     }
 
     public function filterStoreRights($filterChain) {
