@@ -47,6 +47,8 @@ class StoreModule extends CWebModule {
 
     public $unlimitedStorePlanId = '2';
 
+    public $menu;
+
 
 	public function init() {
         $this->setImport(array(
@@ -63,7 +65,7 @@ class StoreModule extends CWebModule {
             Yii::app()->end();
         }
 
-        //$this->setStoreMenu();
+        $this->menu = Yii::app()->params['usermenu'];
 
         $this->defaultController = 'store';
 	}

@@ -11,7 +11,7 @@
 $this->menu['myStore']['active'] = true;
 ?>
 
-<h1 class="page-title">My Store</h1>
+<h1 class="page-title">Store Dashboard</h1>
 
 <?php if ($action == 0) { ?>
     <div class="note bs-callout bs-callout-warning"><p> Ultimate Super Store has not been setup yet.</p></div>

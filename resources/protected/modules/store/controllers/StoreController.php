@@ -12,13 +12,13 @@ class StoreController extends StoreBaseController {
 
 	public function accessRules() {
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
+			//array('allow',  // allow all users to perform 'index' and 'view' actions
 				//'actions'=>array('index','view'),
 				//'users'=>array('*'),
-			),
+			//),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				//'actions'=>array('create','update'),
-				//'users'=>array('@'),
+				'actions'=>array('index','create','view'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete', 'settings'),
@@ -29,6 +29,13 @@ class StoreController extends StoreBaseController {
 			),
 		);
 	}
+
+    public function actionView($id)
+    {
+        $this->render('view',array(
+            'model'=>$this->loadModel($id),
+        ));
+    }
 
 	public function actionCreate()
 	{
