@@ -11,7 +11,7 @@
  * @property string $website
  * @property string $tag
  */
-class StoreProductManufacture extends CActiveRecord
+class ProductManufacture extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -26,14 +26,11 @@ class StoreProductManufacture extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('name', 'required'),
+			array('name', 'unique'),
 			array('name, logo, website', 'length', 'max'=>45),
 			array('description, tag', 'length', 'max'=>255),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, name, description, logo, website, tag', 'safe', 'on'=>'search'),
 		);
 	}
@@ -43,15 +40,10 @@ class StoreProductManufacture extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
 	public function attributeLabels()
 	{
 		return array(
@@ -64,22 +56,9 @@ class StoreProductManufacture extends CActiveRecord
 		);
 	}
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
+
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
@@ -94,12 +73,6 @@ class StoreProductManufacture extends CActiveRecord
 		));
 	}
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return StoreProductManufacture the static model class
-	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);

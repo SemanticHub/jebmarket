@@ -1,16 +1,14 @@
 <?php
-/* @var $this StoreController */
-/* @var $dataProvider CActiveDataProvider */
+$this->storeLinks=array(
+    array('label'=>'Add Product', 'url'=>array('/store/product/create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+);
+$this->storeMenu=array(
+    array('label'=>'Store Settings', 'url'=>array('/store/store/settings')),
+    array('label'=>'Manage Products', 'url'=>array('/store/product/admin')),
+);
 
-/*$this->menu=array(
-	array('label'=>'View Stores', 'url'=>array('view')),
-    array('label' => 'Manage', 'linkOptions' => array('class' => 'list-group-title')),
-	array('label'=>'Manage Stores', 'url'=>array('admin')),
-	array('label'=>'Manage Store Plans', 'url'=>array('/store/plan/admin')),
-);*/
 $this->menu['myStore']['active'] = true;
 ?>
-
 <h1 class="page-title">Store Dashboard</h1>
 
 <?php if ($action == 0) { ?>
