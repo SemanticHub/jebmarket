@@ -10,6 +10,7 @@
  * @property string $keyword
  * @property string $meta_description
  * @property string $buy_price
+ * @property string $page_title
  *
  * The followings are the available model relations:
  * @property Product $product
@@ -39,7 +40,7 @@ class ProductDetail extends CActiveRecord
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, product_id, description, keyword, meta_description, buy_price', 'safe', 'on'=>'search'),
+			array('id, product_id, description, keyword, meta_description, buy_price, page_title', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +68,7 @@ class ProductDetail extends CActiveRecord
 			'keyword' => 'Keyword',
 			'meta_description' => 'Meta Description',
 			'buy_price' => 'Buy Price',
+			'page_title' => 'Page Title',
 		);
 	}
 
@@ -94,6 +96,7 @@ class ProductDetail extends CActiveRecord
 		$criteria->compare('keyword',$this->keyword,true);
 		$criteria->compare('meta_description',$this->meta_description,true);
 		$criteria->compare('buy_price',$this->buy_price,true);
+		$criteria->compare('page_title',$this->page_title,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

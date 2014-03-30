@@ -131,8 +131,8 @@ return array(
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
             'emulatePrepare' => true,
-            //'username' => 'root',
-            //'password' => '1234',
+            #'username' => 'root',
+            #'password' => '1234',
             'username' => 'jassifie_yiijeb',
             'password' => '99.9%available',
             'charset' => 'utf8',
@@ -213,8 +213,7 @@ return array(
             array('label' => 'User Access', 'url' => array('/rights'), 'itemOptions'=>array('class'=>'useraccess')),
             array('label' => 'Locations', 'url' => array('/location/admin'), 'itemOptions'=>array('class'=>'locations')),
             array('label' => 'Settings', 'url' => array('/settings/index'), 'itemOptions'=>array('class'=>'settings')),
-            array('label' => '', 'url' => array('#'), 'itemOptions'=>array('class'=>'divider')),
-            array('label' => 'Store', 'url' => array('/store/store/admin'), 'itemOptions'=>array('class'=>'store')),
+            array('label' => 'Store Module', 'url' => array('/store/store/admin'), 'itemOptions'=>array('class'=>'store')),
         ),
         'portlets' => array(
             'userStatistics'=> array('name' => 'userStatistics', 'title' => 'Users Statistics', 'sticky' => false,),

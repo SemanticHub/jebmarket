@@ -1,6 +1,13 @@
 <?php
+$this->storeLinks=array(
+    array('label'=>'Add Product', 'url'=>array('/store/product/create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+);
+$this->storeMenu=array(
+    array('label'=>'Store Settings', 'url'=>array('/store/store/settings')),
+    //array('label'=>'Manage Products', 'url'=>array('/store/product/admin')),
+);
 $this->menu['storeProducts']['active'] = true;
-Yii::app()->clientScript->registerScript('search', "
+/*Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
 	return false;
@@ -11,16 +18,10 @@ $('.search-form form').submit(function(){
 	});
 	return false;
 });
-");
+");*/
 ?>
 
 <h1 class="page-title">Manage Products</h1>
-
-<ul class="list-inline">
-    <li>
-        <a class="btn btn-success" href="<?php echo Yii::app()->createUrl('//store/product/create'); ?>">Add New Product</a>
-    </li>
-</ul>
 
 <!--<p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

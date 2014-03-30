@@ -1472,7 +1472,7 @@ form .alert {
     background: #fff; color: #555;
 }
 .label-field {
-    font-weight: 600; background: #fcfcfc; text-transform: uppercase; font-size: 0.9em;
+    font-weight: 600; background: #f6f6f6; text-transform: uppercase; font-size: 0.9em; text-align: right; max-width: 60px;
 }
 .modal-body {
     max-height: 450px; overflow-y: auto;

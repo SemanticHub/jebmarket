@@ -5,6 +5,7 @@
     </label> &#160;
     <input id="status" type="checkbox" name="status" <?php echo $product->getAttribute('status') == 1 ? 'checked' : '' ; ?> >
     <input id="ppk" type="hidden" value="<?php echo $product->getAttribute('id'); ?>" >
+    <small>Switch on to make the product available for client.</small>
 </p>
 
 <!-- Nav tabs -->
@@ -64,13 +65,35 @@
                 <td class="label-field">
                     <?php echo $product->getAttributeLabel('title') ?>
                 </td>
-                <td colspan="5">
+                <td colspan="3">
                     <?php
                     $this->widget('editable.EditableField', array(
                         'type' => 'text',
                         'model' => $product,
                         'attribute' => 'title',
                         'url' => $this->createUrl('product/update'),
+                    ));
+                    ?>
+                </td>
+                <td class="label-field">
+                    <?php echo $product->getAttributeLabel('manufacture_id') ?>
+                </td>
+                <td>
+                    <?php
+                    $this->widget('editable.EditableField', array(
+                        'type' => 'select2',
+                        'mode' => 'popup',
+                        'model' => $product,
+                        'attribute' => 'manufacture_id',
+                        'url' => $this->createUrl('manufacture/setAdd'),
+                        'source' => Editable::source(ProductManufacture::model()->findAll(), 'id', 'name'),
+                        'select2'   => array(
+                            'placeholder'=> "Select / Add Vendor",
+                            'width'=>'300px',
+                            'formatNoMatches'=> 'js:function(term) {
+                                return "<a href=\"#\" onclick=\"return addNewManufacture()\" alt=\""+term+"\" id=\"addNewManufacture\" class=\"btn btn-sm btn-primary\">Add</a>"
+                            }',
+                        ),
                     ));
                     ?>
                 </td>
@@ -111,7 +134,56 @@
 
     <div class="tab-pane fade" id="image">...</div>
 
-    <div class="tab-pane fade" id="seo">...</div>
+    <div class="tab-pane fade" id="seo">
+        <table class="table table-view">
+            <tr>
+                <td class="label-field">
+                    <?php echo $productDetail->getAttributeLabel('keyword') ?>
+                </td>
+                <td>
+                    <?php
+                    $this->widget('editable.EditableField', array(
+                        'type' => 'text',
+                        'id'=> 'keyword',
+                        'model' => $productDetail,
+                        'attribute' => 'keyword',
+                        'url' => $this->createUrl('productDetail/update'),
+                    ));
+                    ?>
+                </td>
+                <td class="label-field">
+                    <?php echo $productDetail->getAttributeLabel('page_title') ?>
+                </td>
+                <td>
+                    <?php
+                    $this->widget('editable.EditableField', array(
+                        'type' => 'text',
+                        'id'=> 'page_title',
+                        'model' => $productDetail,
+                        'attribute' => 'page_title',
+                        'url' => $this->createUrl('productDetail/update'),
+                    ));
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="label-field">
+                    <?php echo $productDetail->getAttributeLabel('meta_description') ?>
+                </td>
+                <td colspan="3">
+                    <?php
+                    $this->widget('editable.EditableField', array(
+                        'type' => 'textarea',
+                        'id'=> 'meta_description',
+                        'model' => $productDetail,
+                        'attribute' => 'meta_description',
+                        'url' => $this->createUrl('productDetail/update'),
+                    ));
+                    ?>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </div>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/switch/js/bootstrap-switch.min.js"></script>
@@ -136,6 +208,17 @@
         });
 
     });
+    function addNewManufacture(){
+        $.ajax({
+            type: "POST",
+            url: "../manufacture/addNew",
+            data: {name: $('#addNewManufacture').attr('alt') },
+            success: function(data){
+                if(console) console.log(data);
+            },
+            dataType: "json"
+        });
+    }
     // name:sku
     //value:222222
     //pk:5

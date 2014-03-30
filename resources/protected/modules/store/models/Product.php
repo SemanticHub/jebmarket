@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'jebapp_store_product':
  * @property integer $id
  * @property integer $store_id
+ * @property integer $manufacture_id
  * @property integer $status
  * @property string $title
  * @property string $sku
@@ -22,6 +23,7 @@
  * The followings are the available model relations:
  * @property ProductDetail[] $productDetail
  * @property ProductImage[] $productImages
+ * @property ProductManufacture $productManufacture
  */
 class Product extends CActiveRecord
 {
@@ -47,7 +49,7 @@ class Product extends CActiveRecord
 			array('sku, barcode_value', 'length', 'max'=>64),
 			array('short_details, default_image', 'length', 'max'=>255),
 			array('price', 'length', 'max'=>20),
-			array('modified, published', 'safe'),
+			array('modified, published, manufacture_id', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, store_id, status, title, sku, barcode_type, barcode_value, short_details, added, modified, published, price, quantity, default_image', 'safe', 'on'=>'search'),
@@ -64,6 +66,7 @@ class Product extends CActiveRecord
 		return array(
 			'productDetail' => array(self::HAS_MANY, 'ProductDetail', 'product_id'),
 			'productImages' => array(self::HAS_MANY, 'ProductImage', 'product_id'),
+            'productManufacture'=>array(self::HAS_ONE, 'manufacture', 'manufacture_id'),
 		);
 	}
 
@@ -75,6 +78,7 @@ class Product extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'store_id' => 'Store',
+			'manufacture_id' => 'Manufacture',
 			'status' => 'Status',
 			'title' => 'Title',
 			'sku' => 'Sku',

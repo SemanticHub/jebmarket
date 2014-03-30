@@ -55,7 +55,7 @@
         <div class="col-lg-8">
             <?php // echo $form->textField($model, 'expire', array('class' => 'form-control')); ?>
             <?php
-            $this->widget('ext.EJuiDateTimePicker.EJuiDateTimePicker',array(
+            $this->widget('ext.timepicker.EJuiDateTimePicker',array(
                 'model'=>$model,
                 'attribute'=>'expire',
                 'options'=>array(
