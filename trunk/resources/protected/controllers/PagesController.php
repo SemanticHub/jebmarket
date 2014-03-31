@@ -142,7 +142,7 @@ class PagesController extends Controller {
         $user_id = Yii::app()->user->id;
         $topMenu = new CDbCriteria();
         $topMenu->condition = "jebapp_user_id=$user_id AND tag='topmenu'";
-        $topMenu->order = 'odr DESC';
+        $topMenu->order = 'odr ASC';
         $topMenuData=new CActiveDataProvider('Menu', array(
             'criteria'=>$topMenu,
             'pagination'=>array(
@@ -151,7 +151,7 @@ class PagesController extends Controller {
         ));
         $mainMenu = new CDbCriteria();
         $mainMenu->condition = "jebapp_user_id=$user_id AND tag='mainmenu'";
-        $mainMenu->order = 'odr DESC';
+        $mainMenu->order = 'odr ASC';
         $mainMenuData=new CActiveDataProvider('Menu', array(
             'criteria'=>$mainMenu,
             'pagination'=>array(
@@ -160,7 +160,7 @@ class PagesController extends Controller {
         ));
         $footerMenu = new CDbCriteria();
         $footerMenu->condition = "jebapp_user_id=$user_id AND tag='footermenu'";
-        $footerMenu->order = 'odr DESC';
+        $footerMenu->order = 'odr ASC';
         $footerMenuData=new CActiveDataProvider('Menu', array(
             'criteria'=>$footerMenu,
             'pagination'=>array(
