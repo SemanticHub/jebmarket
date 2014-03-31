@@ -1,6 +1,12 @@
 <?php
 /* @var $this DefaultController */
 $this->pageHeader = "Blog";
+$this->menuLinks=array(
+    array('label'=>'Create Blog Post', 'url'=>array('/blog/blogPost/create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+    array('label'=>'Create Blog Comment', 'url'=>array('/blog/blogComment/create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+    array('label'=>'Create Blog Category', 'url'=>array('/blog/blogTerms/createcategory'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+    array('label'=>'Create Blog Tag', 'url'=>array('/blog/blogTerms/createtag'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+);
 ?>
 <div class="row" id="dashboard">
     <div class="col-sm-6 col-md-3">

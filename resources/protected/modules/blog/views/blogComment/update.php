@@ -1,22 +1,12 @@
 <?php
-$this->menu = Yii::app()->params['usermenu'];
-$this->menu['blog']['active'] = true;
+$this->menu=array(
+    array('label'=>'Create Blog Comment', 'url'=>array('create')),
+    array('label'=>'View Blog Comment', 'url'=>array('view', 'id'=>$model->comment_id)),
+);
+$this->pageHeader = "Update Blog Comment";
+$this->menuLinks=array(
+    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
+    array('label'=>'Manage Blog Comment', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
+);
 ?>
-    <div class="row">
-        <div class="col-md-6">
-            <h1 class="page-title">Update Blog Comment</h1>
-        </div>
-        <div class="col-md-6">
-            <div class="right_top_menu">
-                <ul class="list-inline">
-                    <li>
-                        <?php echo CHtml::link('Create Blog Comment',array('create'), array('class'=>'btn btn-success')); ?>
-                    </li>
-                    <li>
-                        <?php echo CHtml::link('Manage Blog Comment',array('admin'), array('class'=>'btn btn-success')); ?>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
