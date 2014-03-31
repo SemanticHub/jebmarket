@@ -3,13 +3,10 @@
 /* @var $model Password */
 /* @var $form CActiveForm */
 $this->pageTitle = Yii::app()->name . ' - Change Password';
-$this->menu = Yii::app()->params['usermenu'];
-$this->menu['password']['active'] = true;
+$this->pageHeader = "Change Current Password";
 ?>
 <div class="row">
     <div class="col-md-12">
-        <h1 class="page-title">Change Current Password</h1>
-
         <div class="form-control-wrapper" style="max-width: 400px">
             <?php
             $form = $this->beginWidget('CActiveForm', array(

@@ -69,18 +69,19 @@ class MenuController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
+        $this->layout = false;
+        Yii::app()->clientScript->scriptMap=array('jquery.js'=>false, 'jquery.yiiactiveform.js'=>false);
         $model = $this->loadModel($id);
 
         if (isset($_POST['Menu'])) {
             $model->attributes = $_POST['Menu'];
             if($model->url == "") unset ($model->url);
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+            $model->save();
+        }else{
+            $this->render('update', array(
+                'model' => $model,
+            ));
         }
-
-        $this->render('update', array(
-            'model' => $model,
-        ));
     }
 
     /**

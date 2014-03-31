@@ -1,9 +1,11 @@
 <?php
 /* @var $this SliderController */
 /* @var $model Slider */
-$this->menu = Yii::app()->params['usermenu'];
+$this->pageHeader = "Manage Sliders";
+$this->menuLinks=array(
+    array('label'=>'Create Slider', 'url'=>array('create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+);
 ?>
-<h1 class="page-title">Manage Sliders</h1>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'slider-grid',
     'itemsCssClass' => 'table table-striped table-hover',

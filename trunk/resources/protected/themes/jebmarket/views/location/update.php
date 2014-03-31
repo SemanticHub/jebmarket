@@ -1,9 +1,13 @@
 <?php
 /* @var $this LocationController */
 /* @var $model Location */
-
-
-$this->menu = Yii::app()->params['usermenu'];
+$this->menu=array(
+    array('label'=>'Create Location', 'url'=>array('create')),
+    array('label'=>'View Location', 'url'=>array('view', 'id'=>$model->id)),
+);
+$this->pageHeader = "Update Location '$model->name'";
+$this->menuLinks=array(
+    array('label'=>'Manage Location', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
+);
 ?>
-<h1 class="page-title">Update Location '<?php echo $model->name; ?>'</h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

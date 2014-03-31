@@ -1,0 +1,1 @@
+<h4>Some Instruction about Blog, Product, Contact Us page Settings</h4>

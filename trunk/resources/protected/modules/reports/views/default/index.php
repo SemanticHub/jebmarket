@@ -1,11 +1,9 @@
 <?php
 /* @var $this DefaultController */
 
-$this->menu = Yii::app()->params['usermenu'];
-$this->menu['reports']['active'] = true;
+$this->pageHeader = "Reports";
 ?>
 <div class="row">
-    <h1 class="page-title">Reports</h1>
     <div class="col-sm-6 col-md-3">
         <a href="<?php echo $this->createUrl('visitor/visitssummary'); ?>" class="thumbnail">
             <p class="caption" style="text-align: center;">Visits Summary</p>

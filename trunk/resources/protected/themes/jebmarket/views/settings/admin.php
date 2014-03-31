@@ -1,7 +1,10 @@
 <?php
 $this->menu = array(
-    array('label' => 'Create Settings', 'url' => array('create')),
     array('label'=> Yii::t('phrase','Settings'), 'url'=>array('index')),
+);
+$this->pageHeader = "Manage Settings";
+$this->menuLinks=array(
+    array('label'=>'Create Settings', 'url'=>array('create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
 );
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -16,7 +19,6 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-<h1 class="page-title">Manage Settings</h1>
 <?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
     <?php $this->renderPartial('_search', array(

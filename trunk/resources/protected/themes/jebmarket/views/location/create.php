@@ -1,8 +1,9 @@
 <?php
 /* @var $this LocationController */
 /* @var $model Location */
-
-$this->menu = Yii::app()->params['usermenu'];
+$this->pageHeader = "Create Location";
+$this->menuLinks=array(
+    array('label'=>'Manage Location', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
+);
 ?>
-<h1 class="page-title">Create Location</h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

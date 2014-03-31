@@ -3,12 +3,11 @@
  * @var $this EmailTemplateController
  * @var $model EmailTemplate
  */
-
-$this->menu = Yii::app()->params['usermenu'];
+$this->pageHeader = "Manage Email Templates";
+$this->menuLinks=array(
+    array('label'=>'Create Email Template', 'url'=>array('create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+);
 ?>
-
-<h1 class="page-title">Manage Email Templates</h1>
-
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'email-template-grid',
     'itemsCssClass' => 'table table-striped table-hover',

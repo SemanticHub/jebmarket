@@ -1,7 +1,9 @@
 <?php
 /* @var $this EmailTemplateController */
 /* @var $model EmailTemplate */
-$this->menu = Yii::app()->params['usermenu'];
+$this->pageHeader = "Create Email Template";
+$this->menuLinks=array(
+    array('label'=>'Manage Email Template', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
+);
 ?>
-<h1 class="page-title">Create Email Template</h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

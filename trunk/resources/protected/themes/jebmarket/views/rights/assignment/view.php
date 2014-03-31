@@ -1,6 +1,3 @@
-<?php
-$this->menu = Yii::app()->params['usermenu'];
-?>
 	<h1 class="page-title"><?php echo Rights::t('core', 'Assignments'); ?></h1>
     <div class="note bs-callout bs-callout-info">
 	<p>
