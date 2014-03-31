@@ -30,6 +30,16 @@ class Controller extends RController {
      */
     public $metaKeywords = null;
 
+    /**
+     * @var string the page header for the admin panel
+     */
+    public $pageHeader = null;
+
+    /**
+     * @var array the visible menu link for top bar
+     */
+    public $menuLinks=array();
+
     /*
      * Set all Application Settings from database to Yii::app()->params so that we can still use Yii::app()->params['paramName']
      */

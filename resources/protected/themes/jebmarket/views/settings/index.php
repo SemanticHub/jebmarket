@@ -3,11 +3,11 @@
  * @var $this SettingsController
  * @var $dataProvider CActiveDataProvider
  **/
-
-$this->menu = Yii::app()->params['usermenu'];
+$this->pageHeader = "Settings";
+$this->menuLinks=array(
+    array('label'=>'Manage Settings', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
+);
 ?>
-<h1 class="page-title"><?php echo Yii::t('phrase', 'Settings'); ?></h1>
-
 <div class="panel-group" id="accordion">
     <?php foreach ($data as $tag => $param) { ?>
     <div class="panel panel-default">

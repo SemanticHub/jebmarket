@@ -1,12 +1,9 @@
 <?php
 /* @var $this UserController */
 /* @var $model User */
-
-$this->menu=array(
-	array('label'=>'Manage Users', 'url'=>array('admin')),
+$this->pageHeader = "Create a new User";
+$this->menuLinks=array(
+    array('label'=>'Manage User', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
 );
 ?>
-
-<h1 class="page-title">Create a new User</h1>
-
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

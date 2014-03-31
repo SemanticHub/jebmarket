@@ -1,6 +1,5 @@
 <?php
-$this->menu=Yii::app()->params['usermenu'];
-$this->menu['dashboard']['active']=true;
+$this->pageHeader = "Dashboard";
 ?>
 <?php if(Yii::app()->user->hasFlash('message')){ ?>
     <div class="alert alert-info">
@@ -8,7 +7,6 @@ $this->menu['dashboard']['active']=true;
     </div>
 <?php } ?>
 
-<h1 class="page-title"><?php echo Yii::t('phrase', 'Dashboard') ?></h1>
 <div class="row">
 <?php
 /*$this->widget('zii.widgets.jui.CJuiSortable',array(

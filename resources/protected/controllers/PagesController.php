@@ -28,15 +28,23 @@ class PagesController extends Controller {
         ));
     }
 
+    public function actionPageins() {
+        $this->layout = false;
+        $this->render('pageins');
+    }
+
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($type='page', $tag='mainmenu') {
+    public function actionCreate() {
         $this->layout = false;
-        $user_id=Yii::app()->user->id;
-        $model = new Pages;
+        $user_id = Yii::app()->user->id;
+        $type = Yii::app()->request->getParam('type');
+        $tag = Yii::app()->request->getParam('tag');
+        $mName = Yii::app()->request->getParam('mName');
         $menu = new Menu;
+        $model = new Pages;
         $modelData = Pages::model()->findAll("jebapp_user_id=$user_id");
         $stack = array('0');
         foreach($modelData as $slug){
@@ -47,13 +55,34 @@ class PagesController extends Controller {
             }
         }
         $page_num = max($stack) + 1;
-        if (!isset($_GET['ajax'])) {
-            $model->slug = 'new-page-'.$page_num;
-            $model->title = 'New Page '.$page_num;
-            if ($model->save()){
-                $menu->pages_id = $model->id;
-                $menu->label = $model->title;
+        if($type == 'page'){
+            if (!isset($_GET['ajax'])) {
+                $model->slug = 'new-page-'.$page_num;
+                $model->title = 'New Page '.$page_num;
+                if ($model->save()){
+                    $menu->pages_id = $model->id;
+                    $menu->label = $model->title;
+                    $menu->type = $type;
+                    $menu->tag = $tag;
+                    $menu->url = $model->slug;
+                    if ($menu->save())
+                        echo "hide";
+                }
+            }
+        }elseif($type == 'module'){
+            if (!isset($_GET['ajax'])) {
+                $menu->label = 'New Page '.$page_num;
                 $menu->type = $type;
+                $menu->url = $mName;
+                $menu->tag = $tag;
+                if ($menu->save())
+                    echo "hide";
+            }
+        }elseif($type == 'custom'){
+            if (!isset($_GET['ajax'])) {
+                $menu->label = 'New Page '.$page_num;
+                $menu->type = $type;
+                $menu->url = 'http://www.demo.com';
                 $menu->tag = $tag;
                 if ($menu->save())
                     echo "hide";
@@ -113,7 +142,7 @@ class PagesController extends Controller {
         $user_id = Yii::app()->user->id;
         $topMenu = new CDbCriteria();
         $topMenu->condition = "jebapp_user_id=$user_id AND tag='topmenu'";
-        $topMenu->order = 'odr ASC';
+        $topMenu->order = 'odr DESC';
         $topMenuData=new CActiveDataProvider('Menu', array(
             'criteria'=>$topMenu,
             'pagination'=>array(
@@ -122,7 +151,7 @@ class PagesController extends Controller {
         ));
         $mainMenu = new CDbCriteria();
         $mainMenu->condition = "jebapp_user_id=$user_id AND tag='mainmenu'";
-        $mainMenu->order = 'odr ASC';
+        $mainMenu->order = 'odr DESC';
         $mainMenuData=new CActiveDataProvider('Menu', array(
             'criteria'=>$mainMenu,
             'pagination'=>array(
@@ -131,7 +160,7 @@ class PagesController extends Controller {
         ));
         $footerMenu = new CDbCriteria();
         $footerMenu->condition = "jebapp_user_id=$user_id AND tag='footermenu'";
-        $footerMenu->order = 'odr ASC';
+        $footerMenu->order = 'odr DESC';
         $footerMenuData=new CActiveDataProvider('Menu', array(
             'criteria'=>$footerMenu,
             'pagination'=>array(

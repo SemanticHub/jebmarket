@@ -20,7 +20,61 @@
 </head>
 <body>
 <div class="container-fluid">
-    <?php echo $content; ?>
+    <div class="row dashboard">
+        <div class="col-md-2 sidebar sidebar-left">
+            <?php
+            if(!empty(Yii::app()->user->id)){
+                $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+                if(!empty($domainName->name)){
+                    $name = $domainName->name;
+                }else{
+                    $name = Yii::app()->user->name;
+                }
+            }
+            ?>
+            <div class="dashboard_top_left">
+                <?php
+                $this->beginWidget('zii.widgets.CPortlet', array(
+                    'title' => '<span class="dashboard_icon"></span><span class="deshboard_dropname">'.$name.'</span>',
+                    'decorationCssClass' => 'panel-heading',
+                    'htmlOptions' => array('class' => 'panel panel-default')
+                ));
+                echo CHtml::link('Log Out',array("/site/logout"));
+                if(!empty($domainName->domain)){
+                    echo CHtml::link('View Your WebSite',array("/$domainName->domain"), array('target'=>'_blank'));
+                }
+                ?>
+            </div>
+            <?php
+            $this->widget('zii.widgets.CMenu', array(
+                'items' => Yii::app()->params['usermenu'],
+                'encodeLabel'=>false,
+                'itemCssClass' => 'list-group-item',
+                'htmlOptions' => array('class' => 'list-group'),
+                'activateItems' => true,
+                'activateParents' => true,
+                'activeCssClass' => 'active'
+            ));
+            if(Yii::app()->user->id==40){ ?>
+                <ul class="list-group" id="yw1">
+                    <li class="list-group-item"><span class="list-group-title">Admin</span></li>
+                </ul>
+                <?php
+                $this->widget('zii.widgets.CMenu', array(
+                    'items' => Yii::app()->params['adminmenu'],
+                    'encodeLabel'=>false,
+                    'itemCssClass' => 'list-group-item',
+                    'htmlOptions' => array('class' => 'list-group'),
+                    'activateItems' => true,
+                    'activateParents' => true,
+                    'activeCssClass' => 'active'
+                ));
+            }
+            $this->endWidget();
+            ?>
+        </div>
+        <?php echo $content; ?>
+    </div>
 </div>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 7]>

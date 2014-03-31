@@ -5,25 +5,11 @@ $this->menu = Yii::app()->params['usermenu'];
 $this->menu['pages']['active'] = true;
 ?>
 <div class="row">
-    <div class="col-md-6">
-        <?php if (Yii::app()->user->hasFlash('PageMenu')){ ?>
-            <div class="alert alert-success">
-                <?php echo Yii::app()->user->getFlash('PageMenu'); ?>
-            </div>
-        <?php } ?>
-    </div>
-    <div class="col-md-6">
-        <div class="right_top_menu">
-            <ul class="list-inline">
-                <li>
-                    <?php echo CHtml::link('View Page',array('#',), array('class'=>'btn btn-success btn-xs')); ?>
-                </li>
-                <li>
-                    <?php echo CHtml::link('Page Settings',array('#'), array('class'=>'btn btn-success btn-xs')); ?>
-                </li>
-            </ul>
+    <?php if (Yii::app()->user->hasFlash('PageMenu')){ ?>
+        <div class="alert alert-success" style="padding: 5px 10px;margin: 5px 0 5px 0;font-size: 15px;">
+            <?php echo Yii::app()->user->getFlash('PageMenu'); ?>
         </div>
-    </div>
+    <?php } ?>
     <div class="col-md-12">
         <?php $this->renderPartial('_form', array('model'=>$model)); ?>
     </div>

@@ -3,10 +3,8 @@
  * @var $this UserController
  * @var $model User
  */
-$this->menu = Yii::app()->params['usermenu'];
-$this->menu['profile']['active'] = true;
+$this->pageHeader = "User '".$model->username."'";
 ?>
-<h1 class="page-title">User '<?php echo $model->username; ?>'</h1>
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default" style="min-height: 159px;">
@@ -66,7 +64,7 @@ $this->menu['profile']['active'] = true;
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="panel panel-info" style="min-height: 159px;">
             <div class="panel-heading"><?php echo Yii::t('phrase', '<span class="glyphicon glyphicon-picture"></span> Profile Image.') ?></div>
             <table class="table table-view">
@@ -176,7 +174,7 @@ $this->menu['profile']['active'] = true;
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="panel panel-info">
             <div
                 class="panel-heading"><?php echo Yii::t('phrase', '<span class="glyphicon glyphicon-info-sign"></span> Quick Info.') ?></div>

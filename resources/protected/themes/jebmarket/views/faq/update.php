@@ -1,7 +1,13 @@
 <?php
 /* @var $this FaqController */
 /* @var $model Faq */
-$this->menu = Yii::app()->params['usermenu'];
+$this->menu=array(
+    array('label'=>'Create FAQs', 'url'=>array('create')),
+    array('label'=>'View FAQs', 'url'=>array('view', 'id'=>$model->id)),
+);
+$this->pageHeader = "Update FAQs '$model->id'";
+$this->menuLinks=array(
+    array('label'=>'Manage FAQs', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
+);
 ?>
-<h1 class="page-title">Update FAQ <?php echo $model->id; ?></h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

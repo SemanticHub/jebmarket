@@ -183,14 +183,13 @@ return array(
         ),
         'usermenu' => array(
             'userBlock' => array('label' => 'User', 'linkOptions' => array('class' => 'list-group-title')),
+            'dashboard' => array('label' => '<span class="glyphicon glyphicon-th"></span> Dashboard', 'url' => array('/dashboard')),
             'profile' => array('label' => '<span class="glyphicon glyphicon-user"></span> Profile', 'url' => array('/user/profile')),
             'password' => array('label' => '<span class="glyphicon glyphicon-lock"></span> Change Password', 'url' => array('/user/changepass')),
 
             'websiteBlock' => array('label' => 'WebSite', 'linkOptions' => array('class' => 'list-group-title')),
             'blog' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Blog', 'url' => array('/blog/admin')),
             'pages' => array('label' => '<span class="glyphicon glyphicon-edit"></span> Pages', 'url' => array('/pages/admin')),
-            'media' => array('label' => '<span class="glyphicon glyphicon-expand"></span> Media', 'url' => array('/blog/media/admin')),
-            'logo' => array('label' => '<span class="glyphicon glyphicon-picture"></span> Logo', 'url' => array('/website/logo')),
             'settings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Settings', 'url' => array('/website/admin')),
 
             'storeBlock' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),

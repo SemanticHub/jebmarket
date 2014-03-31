@@ -1,6 +1,5 @@
 <?php
-$this->menu = Yii::app()->params['usermenu'];
-$this->menu['pages']['active'] = true;
+$this->pageHeader = "Pages";
 ?>
 <div class="row admin_pages">
     <div class="col-md-3 admin_pages_left">
@@ -23,7 +22,7 @@ $this->menu['pages']['active'] = true;
                         array(
                             'name'=>'label',
                             'header'=>'Top Navigation',
-                            'value' => '$data->pages_id ? CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/update",array("id"=>$data->pages_id)),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink")) : $data->label',
+                            'value' => '$data->pages_id ? CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/update",array("id"=>$data->pages_id)),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink")) : CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/pageins"),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink"))',
                             'type'  => 'raw',
                         ),
                         array(
@@ -33,7 +32,8 @@ $this->menu['pages']['active'] = true;
                                 'settings' => array(
                                     'label'=> '',
                                     'imageUrl'=> false,
-                                    'options'=>array('class'=>'glyphicon glyphicon-cog top_page_setting')
+                                    'url'=>'Yii::app()->createUrl("menu/update", array("id"=>$data->id))',
+                                    'options'=>array('class'=>'glyphicon glyphicon-cog', "data-toggle"=>"modal", "data-target"=>"#update_menu")
                                 ),
                                 'delete' => array(
                                     'label'=> '',
@@ -65,7 +65,7 @@ $this->menu['pages']['active'] = true;
                         array(
                             'name'=>'label',
                             'header'=>'Main Navigation',
-                            'value' => '$data->pages_id ? CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/update",array("id"=>$data->pages_id)),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink")) : $data->label',
+                            'value' => '$data->pages_id ? CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/update",array("id"=>$data->pages_id)),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink")) : CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/pageins"),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink"))',
                             'type'  => 'raw',
                         ),
                         array(
@@ -75,7 +75,8 @@ $this->menu['pages']['active'] = true;
                                 'settings' => array(
                                     'label'=> '',
                                     'imageUrl'=> false,
-                                    'options'=>array('class'=>'glyphicon glyphicon-cog main_page_setting')
+                                    'url'=>'Yii::app()->createUrl("menu/update", array("id"=>$data->id))',
+                                    'options'=>array('class'=>'glyphicon glyphicon-cog', "data-toggle"=>"modal", "data-target"=>"#update_menu")
                                 ),
                                 'delete' => array(
                                     'label'=> '',
@@ -107,7 +108,7 @@ $this->menu['pages']['active'] = true;
                         array(
                             'name'=>'label',
                             'header'=>'Footer Navigation',
-                            'value' => '$data->pages_id ? CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/update",array("id"=>$data->pages_id)),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink")) : $data->label',
+                            'value' => '$data->pages_id ? CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/update",array("id"=>$data->pages_id)),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink")) : CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/pageins"),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink"))',
                             'type'  => 'raw',
                         ),
                         array(
@@ -117,7 +118,8 @@ $this->menu['pages']['active'] = true;
                                 'settings' => array(
                                     'label'=> '',
                                     'imageUrl'=> false,
-                                    'options'=>array('class'=>'glyphicon glyphicon-cog footer_page_setting')
+                                    'url'=>'Yii::app()->createUrl("menu/update", array("id"=>$data->id))',
+                                    'options'=>array('class'=>'glyphicon glyphicon-cog', "data-toggle"=>"modal", "data-target"=>"#update_menu")
                                 ),
                                 'delete' => array(
                                     'label'=> '',
@@ -138,6 +140,14 @@ $this->menu['pages']['active'] = true;
         <div class="pages_update">
             <h1>This is not a user page. This page contain some Information</h1>
             <h3>Here Some Instruction About How To Create New Page and Menu</h3>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="update_menu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header"></div>
+            <div class="modal-body"></div>
         </div>
     </div>
 </div>
@@ -162,25 +172,24 @@ $this->menu['pages']['active'] = true;
     }
     $(document).ready(function() {
         $('.page_main').tooltipster({
-            content: $('<div class="tool_tip_page"><h4><span class="glyphicon glyphicon-plus"></span> Create New Page</h4><ul><li class="main_li"><span class="glyphicon glyphicon-file"></span><br/><?php echo CHtml::ajaxLink('Add Page', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'mainmenu')), array('success'=>'mainMenu')); ?></li><li><span class="glyphicon glyphicon-link"></span><br/><?php echo CHtml::ajaxLink('Link', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-bold"></span><br/><?php echo CHtml::ajaxLink('Blog', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-barcode"></span><br/><?php echo CHtml::ajaxLink('Products', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-phone-alt"></span><br/><?php echo CHtml::ajaxLink('Contact Us', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li></ul></div>'),
+            content: $('<div class="tool_tip_page"><h4><span class="glyphicon glyphicon-plus"></span> Create New Page</h4><ul><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-file"></span><br/>Add Page', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'mainmenu')), array('success'=>'mainMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-link"></span><br/>Link', Yii::app()->createUrl("pages/create", array('type'=>'custom', 'tag'=>'mainmenu')), array('success'=>'mainMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-bold"></span><br/>Blog', Yii::app()->createUrl("pages/create", array('type'=>'module', 'tag'=>'mainmenu', 'mName'=>'blog')), array('success'=>'mainMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-barcode"></span><br/>Products', Yii::app()->createUrl("pages/create", array('type'=>'module', 'tag'=>'mainmenu', 'mName'=>'store')), array('success'=>'mainMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-phone-alt"></span><br/>Contact Us', Yii::app()->createUrl("pages/create", array('type'=>'module', 'tag'=>'mainmenu', 'mName'=>'/site/contact')), array('success'=>'mainMenu')); ?></ul></div>'),
             position: 'right',
             trigger: 'click'
         });
         $('.page_footer').tooltipster({
-            content: $('<div class="tool_tip_page"><h4><span class="glyphicon glyphicon-plus"></span> Create New Page</h4><ul><li class="footer_li"><span class="glyphicon glyphicon-file"></span><br/><?php echo CHtml::ajaxLink('Add Page', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'footermenu')), array('success'=>'footerMenu')); ?></li><li><span class="glyphicon glyphicon-link"></span><br/><?php echo CHtml::ajaxLink('Link', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-bold"></span><br/><?php echo CHtml::ajaxLink('Blog', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-barcode"></span><br/><?php echo CHtml::ajaxLink('Products', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-phone-alt"></span><br/><?php echo CHtml::ajaxLink('Contact Us', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li></ul></div>'),
+            content: $('<div class="tool_tip_page"><h4><span class="glyphicon glyphicon-plus"></span> Create New Page</h4><ul><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-file"></span><br/>Add Page', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'footermenu')), array('success'=>'footerMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-link"></span><br/>Link', Yii::app()->createUrl("pages/create", array('type'=>'custom', 'tag'=>'footermenu')), array('success'=>'footerMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-bold"></span><br/>Blog', Yii::app()->createUrl("pages/create", array('type'=>'module', 'tag'=>'footermenu', 'mName'=>'blog')), array('success'=>'footerMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-barcode"></span><br/>Products', Yii::app()->createUrl("pages/create", array('type'=>'module', 'tag'=>'footermenu', 'mName'=>'store')), array('success'=>'footerMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-phone-alt"></span><br/>Contact Us', Yii::app()->createUrl("pages/create", array('type'=>'module', 'tag'=>'footermenu', 'mName'=>'/site/contact')), array('success'=>'footerMenu')); ?></ul></div>'),
             position: 'right',
             trigger: 'click'
         });
         $('.page_top').tooltipster({
-            content: $('<div class="tool_tip_page"><h4><span class="glyphicon glyphicon-plus"></span> Create New Page</h4><ul><li class="top_li"><span class="glyphicon glyphicon-file"></span><br/><?php echo CHtml::ajaxLink('Add Page', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-link"></span><br/><?php echo CHtml::ajaxLink('Link', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-bold"></span><br/><?php echo CHtml::ajaxLink('Blog', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-barcode"></span><br/><?php echo CHtml::ajaxLink('Products', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li><li><span class="glyphicon glyphicon-phone-alt"></span><br/><?php echo CHtml::ajaxLink('Contact Us', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?></li></ul></div>'),
-            position: 'right',
-            trigger: 'click'
-        });
-        $('.footer_page_setting').tooltipster({
-            content: $('<div class="tool_tip_page"><h4><span class="glyphicon glyphicon-plus"></span> Update Menu</h4><label>Name</label><br/><input type="text"><br/><label>URL </label><br/><input type="text"><button type="button" class="btn btn-primary btn-xs">Save</button></div>'),
+            content: $('<div class="tool_tip_page"><h4><span class="glyphicon glyphicon-plus"></span> Create New Page</h4><ul><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-file"></span><br/>Add Page', Yii::app()->createUrl("pages/create", array('type'=>'page', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-link"></span><br/>Link', Yii::app()->createUrl("pages/create", array('type'=>'custom', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-bold"></span><br/>Blog', Yii::app()->createUrl("pages/create", array('type'=>'module', 'tag'=>'topmenu', 'mName'=>'blog')), array('success'=>'topMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-barcode"></span><br/>Products', Yii::app()->createUrl("pages/create", array('type'=>'module', 'tag'=>'topmenu', 'mName'=>'store')), array('success'=>'topMenu')); ?><?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-phone-alt"></span><br/>Contact Us', Yii::app()->createUrl("pages/create", array('type'=>'module', 'tag'=>'topmenu', 'mName'=>'/site/contact')), array('success'=>'topMenu')); ?></ul></div>'),
             position: 'right',
             trigger: 'click'
         });
         $('.admin_left_scroll').jScrollPane();
     });
 </script>
+<script type="text/javascript">
+    var CKEDITOR_BASEPATH = '<?php echo Yii::app()->theme->baseUrl.'/comp/ckeditor/'; ?>';
+</script>
+<script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>

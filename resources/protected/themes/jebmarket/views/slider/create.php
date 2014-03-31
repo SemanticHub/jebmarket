@@ -1,7 +1,9 @@
 <?php
 /* @var $this SliderController */
 /* @var $model Slider */
-$this->menu = Yii::app()->params['usermenu'];
+$this->pageHeader = "Create a Slider Slide";
+$this->menuLinks=array(
+    array('label'=>'Manage Slider', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
+);
 ?>
-<h1 class="page-title">Create a Slider Slide</h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

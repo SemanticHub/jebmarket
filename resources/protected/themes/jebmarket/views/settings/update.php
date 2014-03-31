@@ -7,8 +7,10 @@
 $this->menu=array(
 	array('label'=> Yii::t('phrase','Settings'), 'url'=>array('index')),
 	array('label'=> Yii::t('phrase','Create Settings'), 'url'=>array('create')),
-	array('label'=> Yii::t('phrase','Manage Settings'), 'url'=>array('admin')),
+);
+$this->pageHeader = "Update Settings '$model->name'";
+$this->menuLinks=array(
+    array('label'=>'Manage Settings', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
 );
 ?>
-<h1 class="page-title">Update Settings <?php echo $model->name; ?></h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

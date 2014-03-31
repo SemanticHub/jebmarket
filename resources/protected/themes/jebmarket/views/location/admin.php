@@ -1,6 +1,8 @@
 <?php
-$this->menu = Yii::app()->params['usermenu'];
-
+$this->pageHeader = "Manage Locations";
+$this->menuLinks=array(
+    array('label'=>'Create Locations', 'url'=>array('create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+);
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -14,9 +16,6 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-
-<h1 class="page-title">Manage Locations</h1>
-
 <div class="note bs-callout bs-callout-info">
     <p>
         You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
