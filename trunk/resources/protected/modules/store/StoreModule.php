@@ -45,7 +45,7 @@ class StoreModule extends CWebModule {
 
     public $infoFlashKey = 'info';
 
-    public $unlimitedStorePlanId = '2';
+    public $unlimitedStorePlanId = '3'; // TODO: need to make it dynamic
 
     public $menu;
 
