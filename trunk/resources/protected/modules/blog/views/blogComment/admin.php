@@ -1,21 +1,10 @@
 <?php
-$this->menu = Yii::app()->params['usermenu'];
-$this->menu['blog']['active'] = true;
+$this->pageHeader = "Manage Blog Comments";
+$this->menuLinks=array(
+    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
+    array('label'=>'Create Blog Comment', 'url'=>array('create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+);
 ?>
-<div class="row">
-    <div class="col-md-6">
-        <h1 class="page-title">Manage Blog Comments</h1>
-    </div>
-    <div class="col-md-6">
-        <div class="right_top_menu">
-            <ul class="list-inline">
-                <li>
-                    <?php echo CHtml::link('Create Blog Comment',array('create'), array('class'=>'btn btn-success')); ?>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'itemsCssClass' => 'table table-striped table-hover',
     'summaryCssClass' => 'label label-info pull-right',
@@ -30,8 +19,26 @@ $this->menu['blog']['active'] = true;
 		'comment_author_email',
 		'comment_content',
 		'comment_status',
-		array(
-			'class'=>'CButtonColumn',
-		),
+        array(
+            'class' => 'CButtonColumn',
+            'template' => '{update}{view}{delete}',
+            'buttons' => array(
+                'update' => array(
+                    'label' => Yii::t('phrase', 'Edit'),
+                    'imageUrl' => false,
+                    'options' => array('class' => 'btn btn-warning btn-xs')
+                ),
+                'delete' => array(
+                    'label' => Yii::t('phrase', 'Delete'),
+                    'imageUrl' => false,
+                    'options' => array('class' => 'btn btn-danger btn-xs')
+                ),
+                'view' => array(
+                    'label' => Yii::t('phrase', 'View'),
+                    'imageUrl' => false,
+                    'options' => array('class' => 'btn btn-info btn-xs')
+                )
+            )
+        ),
 	),
 )); ?>

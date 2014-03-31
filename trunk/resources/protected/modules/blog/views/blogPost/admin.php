@@ -1,21 +1,10 @@
 <?php
-$this->menu = Yii::app()->params['usermenu'];
-$this->menu['blog']['active'] = true;
+$this->pageHeader = "Manage Blog Post";
+$this->menuLinks=array(
+    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
+    array('label'=>'Create Blog Posts', 'url'=>array('create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+);
 ?>
-<div class="row">
-    <div class="col-md-6">
-        <h1 class="page-title">Manage Blog Posts</h1>
-    </div>
-    <div class="col-md-6">
-        <div class="right_top_menu">
-            <ul class="list-inline">
-                <li>
-                    <?php echo CHtml::link('Create Blog Post',array('create'), array('class'=>'btn btn-success')); ?>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'itemsCssClass' => 'table table-striped table-hover',
     'summaryCssClass' => 'label label-info pull-right',

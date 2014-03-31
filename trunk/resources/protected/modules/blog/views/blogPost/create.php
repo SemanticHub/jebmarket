@@ -1,19 +1,8 @@
 <?php
-$this->menu = Yii::app()->params['usermenu'];
-$this->menu['blog']['active'] = true;
+$this->pageHeader = "Create Blog Post";
+$this->menuLinks=array(
+    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
+    array('label'=>'Manage Blog Post', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
+);
 ?>
-    <div class="row">
-        <div class="col-md-6">
-            <h1 class="page-title">Create Blog Post</h1>
-        </div>
-        <div class="col-md-6">
-            <div class="right_top_menu">
-                <ul class="list-inline">
-                    <li>
-                        <?php echo CHtml::link('Manage Blog Post',array('admin'), array('class'=>'btn btn-success')); ?>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
