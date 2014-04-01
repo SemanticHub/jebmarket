@@ -40,6 +40,8 @@ class Controller extends RController {
      */
     public $menuLinks=array();
 
+    public $showTopNavBar = true;
+
     /*
      * Set all Application Settings from database to Yii::app()->params so that we can still use Yii::app()->params['paramName']
      */
