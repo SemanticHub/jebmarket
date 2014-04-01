@@ -1542,7 +1542,7 @@ form .alert {
     background: #fff; color: #555;
 }
 .label-field {
-    font-weight: 600; background: #f6f6f6; text-transform: uppercase; font-size: 0.9em; text-align: right; max-width: 60px;
+    font-weight: 600; background: #f6f6f6; text-transform: uppercase; font-size: 0.9em; text-align: right; width: 150px;
 }
 .modal-body {
     max-height: 450px; overflow-y: auto;
@@ -1554,15 +1554,15 @@ form .alert {
     margin: 5px 0;
 }
 .navbar.navbar-default.navbar-store {
-    margin: 0; position: absolute; width: 100%; border: none; border-radius: 0;;margin-left: -15px; min-height: 45px;
-    background: #2b3136;
+    margin: 0; position: absolute; width: 100%; border: none; border-radius: 0;;margin-left: -15px; min-height: 55px;
+    background: #2b3136; border-bottom: 5px solid #ccc;
 }
 .store-view-content {
     padding-top: 50px;
 }
 .navbar-store .navbar-brand {
     line-height: normal; height: auto;
-    padding: 10px 15px; color: #fff;
+    padding: 10px 15px; color: #999; font-weight: 600; text-shadow: 1px 1px 3px #000;
 }
 .navbar-store .navbar-nav>li>a, .navbar-store .navbar-nav>li>a:hover{
     padding-top: 13px; padding-bottom: 12px; color: #fff; text-transform: uppercase;

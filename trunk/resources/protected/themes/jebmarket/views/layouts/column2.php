@@ -1,4 +1,5 @@
 <?php $this->beginContent('//layouts/dashboard'); ?>
+<?php  if(isset($this->showTopNavBar) && ($this->showTopNavBar))  { ?>
 <div class="col-md-10 dash_second_menu">
     <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
@@ -44,6 +45,7 @@
         </div>
     </nav>
 </div>
+<?php } ?>
 <div class="col-md-10">
     <?php echo $content; ?>
 </div>
