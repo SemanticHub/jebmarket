@@ -430,6 +430,10 @@ h1.page-title {
     text-transform: uppercase;
     color: #ffffff;
 }
+.add_gap_left{
+    margin-left: 20px;
+    border-left: #AC9393  dotted 1px;
+}
 .dashboard_top_left .portlet-content{
     margin: -25px 0 0 39px;
     padding: 0;
@@ -629,7 +633,7 @@ h1.for_menu{
     margin-right: -15px;
     margin-left: -20px;
 }
-##header_right .navbar-nav{
+#header_right .navbar-nav{
     margin: 0;
 }
 .navbar-top > li > a {

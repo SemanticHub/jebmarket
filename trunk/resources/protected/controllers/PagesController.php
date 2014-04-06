@@ -80,7 +80,7 @@ class PagesController extends Controller {
             }
         }elseif($type == 'custom'){
             if (!isset($_GET['ajax'])) {
-                $menu->label = 'New Page '.$page_num;
+                $menu->label = 'Link Page '.$page_num;
                 $menu->type = $type;
                 $menu->url = 'http://www.demo.com';
                 $menu->tag = $tag;
@@ -97,7 +97,7 @@ class PagesController extends Controller {
      */
     public function actionUpdate($id) {
         $this->layout = false;
-        Yii::app()->clientScript->scriptMap=array('jquery.js'=>false, 'jquery.yiiactiveform.js'=>false);
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
         $model = $this->loadModel($id);
         // AJAX validation is needed
         $this->performAjaxValidation($model);
@@ -106,7 +106,6 @@ class PagesController extends Controller {
             if ($model->save())
                 Yii::app()->user->setFlash('PageMenu', 'Page Saved Successfully.');
         }
-
         $this->render('update', array(
             'model' => $model,
         ));
@@ -141,8 +140,9 @@ class PagesController extends Controller {
     public function actionAdmin() {
         $user_id = Yii::app()->user->id;
         $topMenu = new CDbCriteria();
+        $topMenu->select=array('*','COALESCE( parent_id,odr, \'\') AS colorder');
         $topMenu->condition = "jebapp_user_id=$user_id AND tag='topmenu'";
-        $topMenu->order = 'odr ASC';
+        $topMenu->order = 'colorder DESC';
         $topMenuData=new CActiveDataProvider('Menu', array(
             'criteria'=>$topMenu,
             'pagination'=>array(
@@ -150,8 +150,9 @@ class PagesController extends Controller {
             ),
         ));
         $mainMenu = new CDbCriteria();
+        $mainMenu->select=array('*','COALESCE( parent_id,odr, \'\') AS colorder');
         $mainMenu->condition = "jebapp_user_id=$user_id AND tag='mainmenu'";
-        $mainMenu->order = 'odr ASC';
+        $mainMenu->order = 'colorder ASC';
         $mainMenuData=new CActiveDataProvider('Menu', array(
             'criteria'=>$mainMenu,
             'pagination'=>array(
@@ -159,8 +160,9 @@ class PagesController extends Controller {
             ),
         ));
         $footerMenu = new CDbCriteria();
+        $footerMenu->select=array('*','COALESCE(parent_id,odr, \'\') AS colorder');
         $footerMenu->condition = "jebapp_user_id=$user_id AND tag='footermenu'";
-        $footerMenu->order = 'odr ASC';
+        $footerMenu->order = 'colorder ASC';
         $footerMenuData=new CActiveDataProvider('Menu', array(
             'criteria'=>$footerMenu,
             'pagination'=>array(

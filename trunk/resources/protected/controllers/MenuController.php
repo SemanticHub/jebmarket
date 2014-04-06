@@ -70,18 +70,17 @@ class MenuController extends Controller {
      */
     public function actionUpdate($id) {
         $this->layout = false;
-        Yii::app()->clientScript->scriptMap=array('jquery.js'=>false, 'jquery.yiiactiveform.js'=>false);
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
         $model = $this->loadModel($id);
-
         if (isset($_POST['Menu'])) {
             $model->attributes = $_POST['Menu'];
             if($model->url == "") unset ($model->url);
-            $model->save();
-        }else{
-            $this->render('update', array(
-                'model' => $model,
-            ));
+            if ($model->save())
+                Yii::app()->user->setFlash('PageMenu', 'Menu Saved Successfully.');
         }
+        $this->render('update', array(
+            'model' => $model,
+        ));
     }
 
     /**
@@ -92,7 +91,7 @@ class MenuController extends Controller {
      */
     public function actionDelete($id, $pageId) {
         $this->loadModel($id)->delete();
-        pages::model()->deleteByPk($pageId);
+        Pages::model()->deleteByPk($pageId);
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
