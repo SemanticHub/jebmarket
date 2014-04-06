@@ -22,7 +22,14 @@ $this->pageHeader = "Pages";
                         array(
                             'name'=>'label',
                             'header'=>'Top Navigation',
-                            'value' => '$data->pages_id ? CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/update",array("id"=>$data->pages_id)),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink")) : CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/pageins"),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink"))',
+                            'value' =>function($data){
+                                    if (isset($data->pages_id)){
+                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$data->pages_id),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                    }else{
+                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                    }
+                                    return $class;
+                                },
                             'type'  => 'raw',
                         ),
                         array(
@@ -65,7 +72,14 @@ $this->pageHeader = "Pages";
                         array(
                             'name'=>'label',
                             'header'=>'Main Navigation',
-                            'value' => '$data->pages_id ? CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/update",array("id"=>$data->pages_id)),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink")) : CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/pageins"),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink"))',
+                            'value' =>function($data){
+                                    if (isset($data->pages_id)){
+                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$data->pages_id),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                    }else{
+                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                    }
+                                    return $class;
+                                },
                             'type'  => 'raw',
                         ),
                         array(
@@ -108,7 +122,14 @@ $this->pageHeader = "Pages";
                         array(
                             'name'=>'label',
                             'header'=>'Footer Navigation',
-                            'value' => '$data->pages_id ? CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/update",array("id"=>$data->pages_id)),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink")) : CHtml::ajaxLink($data->label,Yii::app()->createUrl("pages/pageins"),array("type"=>"POST", "update"=>".pages_update"),array("class"=>"admin_nav_gridLink"))',
+                            'value' =>function($data){
+                                    if (isset($data->pages_id)){
+                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$data->pages_id),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                    }else{
+                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                    }
+                                    return $class;
+                                },
                             'type'  => 'raw',
                         ),
                         array(
@@ -151,7 +172,6 @@ $this->pageHeader = "Pages";
         </div>
     </div>
 </div>
-<div id='results'></div>
 <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/tooltipster.css">
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.tooltipster.min.js"></script>
 <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/jquery.jscrollpane.css">
@@ -187,6 +207,18 @@ $this->pageHeader = "Pages";
             trigger: 'click'
         });
         $('.admin_left_scroll').jScrollPane();
+    });
+    $(document.body).on('hidden.bs.modal', function () {
+        $('#update_menu').removeData('bs.modal')
+    });
+    $(".admin_nav_gridLink").live( "click", function() {
+        $.ajax({
+            'type':'POST',
+            'url':$(this).attr("href"),
+            'cache':false,
+            'data':$(this).parents("pages-form").serialize(),
+            'success':function(html){$(".pages_update").html(html)}
+        });return false;
     });
 </script>
 <script type="text/javascript">

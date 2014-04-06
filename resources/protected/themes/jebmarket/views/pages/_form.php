@@ -2,10 +2,7 @@
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'pages-form',
-        'enableAjaxValidation'=>true,
-        'action'=>$this->createUrl('pages/update'),
-        'enableClientValidation'=>true,
-        'focus' => 'input[type="text"]:first',
+        'enableAjaxValidation'=>false,
         'htmlOptions' => array(
             'class' => 'form-horizontal',
             'role' => 'form',
@@ -50,38 +47,28 @@
     </div>
     <div class="form-group buttons">
         <div class="col-lg-12">
-            <?php echo CHtml::ajaxSubmitButton('Save',CHtml::normalizeUrl(array('pages/update','id'=>$model->id)),
-                array(
-                    'dataType'=>'json',
-                    'type'=>'post',
-                    'success'=>'function(data) {
-                         $("#AjaxLoader").hide();
-                        if(data.status=="success"){
-                         $("#formResult").html("form submitted successfully.");
-                         $("#user-form")[0].reset();
-                        }
-                         else{
-                        $.each(data, function(key, val) {
-                        $("#user-form #"+key+"_em_").text(val);
-                        $("#user-form #"+key+"_em_").show();
-                        });
-                        }
-                    }',
-                    'beforeSend'=>'function(){
-                           $("#AjaxLoader").show();
-                      }'
-                ),array('id'=>'ajaxSubmitButton','class'=>'btn btn-primary btn-sm')); ?>
+            <?php echo CHtml::Button('Save',array('onclick'=>'send();', 'class'=>'btn btn-primary btn-sm')); ?>
         </div>
     </div>
     <?php $this->endWidget(); ?>
 </div>
 <script>
     CKEDITOR.replace('Pages[content]');
-    //CKEDITOR.instances.Pages_content.updateElement();
-    /*function updateAllMessageForms()
+    function send()
     {
-        for (instance in CKEDITOR.instances) {
-            CKEDITOR.instances[instance].updateElement();
-        }
-    }*/
+        $('#Pages_content').html(CKEDITOR.instances['Pages_content'].getData());
+        var data=$("#pages-form").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo  CHtml::normalizeUrl(array('pages/update','id'=>$model->id)); ?>',
+            data:data,
+            success:function(data){
+                $('.form_page').html(data);
+            },
+            error: function(data) {
+                $('.form_page').html(data);
+            },
+            dataType:'html'
+        });
+    }
 </script>

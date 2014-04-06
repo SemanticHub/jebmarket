@@ -1,12 +1,10 @@
 <?php
 /* @var $this PagesController */
 /* @var $model Pages */
-$this->menu = Yii::app()->params['usermenu'];
-$this->menu['pages']['active'] = true;
 ?>
 <div class="row">
     <?php if (Yii::app()->user->hasFlash('PageMenu')){ ?>
-        <div class="alert alert-success" style="padding: 5px 10px;margin: 5px 0 5px 0;font-size: 15px;">
+        <div class="alert alert-success" style="padding: 5px 10px;margin: -15px 0 5px 0;font-size: 15px;background: #000;border: none;border-radius: 0;color: white;">
             <?php echo Yii::app()->user->getFlash('PageMenu'); ?>
         </div>
     <?php } ?>

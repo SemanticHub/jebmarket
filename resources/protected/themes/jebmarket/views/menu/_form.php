@@ -9,7 +9,6 @@ $form = $this->beginWidget('CActiveForm', array(
     )
 ));
 ?>
-<?php echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger')); ?>
 <div class="form-group">
     <?php echo $form->labelEx($model, 'url', array('class' => 'control-label col-lg-12')); ?>
     <div class="col-lg-12">
@@ -62,20 +61,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="form-group buttons">
     <div class="col-lg-12">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <?php echo CHtml::ajaxSubmitButton('Save',CHtml::normalizeUrl(array('menu/update','id'=>$model->id)),
-            array(
-                'dataType'=>'json',
-                'type'=>'post',
-                'success'=>'function(data) {
-                         $.fn.yiiGridView.update("topMenu-grid");
-                         $.fn.yiiGridView.update("mainMenu-grid");
-                         $.fn.yiiGridView.update("footerMenu-grid");
-                         $("#update_menu").modal("hide");
-                    }',
-                'beforeSend'=>'function(){
-                           $("#AjaxLoader").show();
-                      }'
-            ),array('id'=>'ajaxSubmitButton','class'=>'btn btn-primary')); ?>
+        <?php echo CHtml::Button('Save',array('onclick'=>'send();', 'class'=>'btn btn-primary btn-sm')); ?>
 
         <?php //echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-primary')); ?>
     </div>
@@ -96,3 +82,24 @@ Yii::app()->clientScript->registerScript(
 <?php if($model->type == 'module'){ ?>
 <script>$("#Menu_url").attr("disabled", true);</script>
 <?php } ?>
+<script>
+    function send()
+    {
+        var data=$("#menu-form").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo  CHtml::normalizeUrl(array('menu/update','id'=>$model->id)); ?>',
+            data:data,
+            success:function(data){
+                $.fn.yiiGridView.update("topMenu-grid");
+                $.fn.yiiGridView.update("mainMenu-grid");
+                $.fn.yiiGridView.update("footerMenu-grid");
+                $('.menu_form').html(data);
+            },
+            error: function(data) {
+                $('.menu_form').html(data);
+            },
+            dataType:'html'
+        });
+    }
+</script>
