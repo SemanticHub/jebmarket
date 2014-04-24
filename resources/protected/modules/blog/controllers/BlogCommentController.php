@@ -6,7 +6,7 @@ class BlogCommentController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+    public $layout=false;
 
 	/**
 	 * @return array action filters
@@ -34,10 +34,11 @@ class BlogCommentController extends Controller
 	 */
 	public function actionCreate()
 	{
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
 		$model=new BlogComment;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['BlogComment']))
 		{
@@ -58,16 +59,17 @@ class BlogCommentController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['BlogComment']))
 		{
 			$model->attributes=$_POST['BlogComment'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->comment_id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(
@@ -105,6 +107,7 @@ class BlogCommentController extends Controller
 	 */
 	public function actionAdmin()
 	{
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
 		$model=new BlogComment('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['BlogComment']))

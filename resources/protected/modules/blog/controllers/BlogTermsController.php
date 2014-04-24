@@ -6,7 +6,7 @@ class BlogTermsController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout=false;
 
     /**
      * @return array action filters
@@ -41,6 +41,7 @@ class BlogTermsController extends Controller
 	 */
 	public function actionCreatetag()
 	{
+	    Yii::app()->clientScript->scriptMap['*.js'] = false;
 		$model=new BlogTerms;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -68,6 +69,7 @@ class BlogTermsController extends Controller
 	 */
 	public function actionCreatecategory()
 	{
+	    Yii::app()->clientScript->scriptMap['*.js'] = false;
 		$model=new BlogTerms;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -96,6 +98,7 @@ class BlogTermsController extends Controller
 	 */
 	public function actionUpdatecategory($id)
 	{
+	    Yii::app()->clientScript->scriptMap['*.js'] = false;
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -109,7 +112,7 @@ class BlogTermsController extends Controller
             }
             $model->taxonomy = 'category';
 			if($model->save())
-				$this->redirect(array('viewcategory','id'=>$model->term_id));
+				$this->redirect(array('category'));
 		}
 
 		$this->render('updatecategory',array(
@@ -119,6 +122,7 @@ class BlogTermsController extends Controller
 
 	public function actionUpdatetag($id)
 	{
+	    Yii::app()->clientScript->scriptMap['*.js'] = false;
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -132,7 +136,7 @@ class BlogTermsController extends Controller
             }
             $model->taxonomy = 'tag';
 			if($model->save())
-				$this->redirect(array('viewtag','id'=>$model->term_id));
+				$this->redirect(array('tag'));
 		}
 
 		$this->render('updatetag',array(
@@ -204,6 +208,7 @@ class BlogTermsController extends Controller
      */
     public function actionTag()
     {
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
         $model=new BlogTerms('search');
         $model->unsetAttributes();  // clear any default values
         if(isset($_GET['BlogTerms']))
@@ -219,6 +224,7 @@ class BlogTermsController extends Controller
      */
     public function actionCategory()
     {
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
         $model=new BlogTerms('search');
         $model->unsetAttributes();  // clear any default values
         if(isset($_GET['BlogTerms']))

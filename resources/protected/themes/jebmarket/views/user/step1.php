@@ -1,4 +1,4 @@
-<div class="modal-header signup_step_head">
+  <div class="modal-header signup_step_head">
     <ul class="list-inline signup_step">
         <li class="active">
             <p class="glyphicon glyphicon-th blue"></p>

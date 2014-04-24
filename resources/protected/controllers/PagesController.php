@@ -60,7 +60,6 @@ class PagesController extends Controller {
                 $model->slug = 'new-page-'.$page_num;
                 $model->title = 'New Page '.$page_num;
                 if ($model->save()){
-                    $menu->pages_id = $model->id;
                     $menu->label = $model->title;
                     $menu->type = $type;
                     $menu->tag = $tag;
@@ -69,22 +68,44 @@ class PagesController extends Controller {
                         echo "hide";
                 }
             }
-        }elseif($type == 'module'){
+        }elseif($type == 'blog'){
             if (!isset($_GET['ajax'])) {
-                $menu->label = 'New Page '.$page_num;
-                $menu->type = $type;
-                $menu->url = $mName;
-                $menu->tag = $tag;
-                if ($menu->save())
+                $builder=Yii::app()->db->schema->commandBuilder;
+                $createmenu=$builder->createMultipleInsertCommand('jebapp_menu', array(
+                    array('label' => "Blog-$page_num", 'url' => "blog-$page_num", 'route' => 'blog', 'visibility' => 'auto', 'active' => '1', 'tag' => $tag, 'odr' => '3', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                ));
+                $createmenu->execute();
                     echo "hide";
             }
         }elseif($type == 'custom'){
             if (!isset($_GET['ajax'])) {
-                $menu->label = 'Link Page '.$page_num;
-                $menu->type = $type;
-                $menu->url = 'http://www.demo.com';
-                $menu->tag = $tag;
-                if ($menu->save())
+                $builder=Yii::app()->db->schema->commandBuilder;
+                $createmenu=$builder->createMultipleInsertCommand('jebapp_menu', array(
+                    array('label' => "Link-Page-$page_num", 'url' => "#", 'visibility' => 'auto', 'active' => '1', 'tag' => $tag, 'type' => 'custom', 'jebapp_user_id' => Yii::app()->user->id),
+                ));
+                $createmenu->execute();
+                    echo "hide";
+            }
+        }elseif($type == 'social'){
+            if (!isset($_GET['ajax'])) {
+                $builder=Yii::app()->db->schema->commandBuilder;
+                $createmenu=$builder->createMultipleInsertCommand('jebapp_menu', array(
+                    array('label' => 'Facebook', 'url' => '#', 'visibility' => 'auto', 'active' => '1', 'tag' => $tag, 'odr' => '1', 'type' => 'social', 'class' => 'facebook', 'jebapp_user_id' => Yii::app()->user->id),
+                    array('label' => 'Twitter', 'url' => '#', 'visibility' => 'auto', 'active' => '1', 'tag' => $tag, 'odr' => '2', 'type' => 'social', 'class' => 'twitter', 'jebapp_user_id' => Yii::app()->user->id),
+                    array('label' => 'Google Plus', 'url' => '#', 'visibility' => 'auto', 'active' => '1', 'tag' => $tag, 'odr' => '3', 'type' => 'social', 'class' => 'google', 'jebapp_user_id' => Yii::app()->user->id),
+                ));
+                $createmenu->execute();
+                    echo "hide";
+            }
+        }elseif($type == 'login'){
+            if (!isset($_GET['ajax'])) {
+                $builder=Yii::app()->db->schema->commandBuilder;
+                $createmenu=$builder->createMultipleInsertCommand('jebapp_menu', array(
+                    array('label' => '<span class="glyphicon glyphicon-user"></span> Login / Register', 'url' => 'site/login', 'visibility' => 'public', 'active' => '1', 'tag' => $tag, 'odr' => '4', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                    array('label' => '<span class="glyphicon glyphicon-log-out"></span> Logout', 'url' => 'site/logout', 'visibility' => 'private', 'active' => '1', 'tag' => $tag, 'odr' => '5', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                    array('label' => '<span class="glyphicon glyphicon-edit"></span> My Account', 'url' => 'user/profile', 'visibility' => 'private', 'active' => '1', 'tag' => $tag, 'odr' => '6', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                ));
+                $createmenu->execute();
                     echo "hide";
             }
         }
@@ -139,32 +160,26 @@ class PagesController extends Controller {
      */
     public function actionAdmin() {
         $user_id = Yii::app()->user->id;
-        $topMenu = new CDbCriteria();
-        $topMenu->select=array('*','COALESCE( parent_id,odr, \'\') AS colorder');
-        $topMenu->condition = "jebapp_user_id=$user_id AND tag='topmenu'";
-        $topMenu->order = 'colorder DESC';
-        $topMenuData=new CActiveDataProvider('Menu', array(
-            'criteria'=>$topMenu,
+        $topMenu = Menu::model()->findAll(array('condition' => 'tag="topmenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout") AND type NOT IN ("social")', 'order' => 'odr', 'params' => array(':user_id' => $user_id)));
+        $customTopMenu = Menu::model()->findAll(array('condition' => 'tag="topmenu" AND type="social" AND jebapp_user_id=:user_id LIMIT 1', 'params' => array(':user_id' => $user_id)));
+        $topMenu = array_merge($customTopMenu, $topMenu);
+        $topMenuData=new CArrayDataProvider($topMenu, array(
             'pagination'=>array(
                 'pageSize'=>200,
             ),
         ));
-        $mainMenu = new CDbCriteria();
-        $mainMenu->select=array('*','COALESCE( parent_id,odr, \'\') AS colorder');
-        $mainMenu->condition = "jebapp_user_id=$user_id AND tag='mainmenu'";
-        $mainMenu->order = 'colorder ASC';
-        $mainMenuData=new CActiveDataProvider('Menu', array(
-            'criteria'=>$mainMenu,
+        $menuItems = Menu::model()->findAll(array('condition' => 'tag="mainmenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout") AND type NOT IN ("social")', 'order' => 'odr', 'params' => array(':user_id' => $user_id)));
+        $customTopMenu = Menu::model()->findAll(array('condition' => 'tag="mainmenu" AND type="social" AND jebapp_user_id=:user_id LIMIT 1', 'params' => array(':user_id' => $user_id)));
+        $menuItems = array_merge($customTopMenu, $menuItems);
+        $mainMenuData=new CArrayDataProvider($menuItems, array(
             'pagination'=>array(
                 'pageSize'=>200,
             ),
         ));
-        $footerMenu = new CDbCriteria();
-        $footerMenu->select=array('*','COALESCE(parent_id,odr, \'\') AS colorder');
-        $footerMenu->condition = "jebapp_user_id=$user_id AND tag='footermenu'";
-        $footerMenu->order = 'colorder ASC';
-        $footerMenuData=new CActiveDataProvider('Menu', array(
-            'criteria'=>$footerMenu,
+        $footerMenu = Menu::model()->findAll(array('condition' => 'tag="footermenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout") AND type NOT IN ("social")', 'order' => 'odr', 'params' => array(':user_id' => $user_id)));
+        $customTopMenu = Menu::model()->findAll(array('condition' => 'tag="footermenu" AND type="social" AND jebapp_user_id=:user_id LIMIT 1', 'params' => array(':user_id' => $user_id)));
+        $footerMenu = array_merge($customTopMenu, $footerMenu);
+        $footerMenuData=new CArrayDataProvider($footerMenu, array(
             'pagination'=>array(
                 'pageSize'=>200,
             ),
@@ -174,6 +189,63 @@ class PagesController extends Controller {
             'mainMenuData' => $mainMenuData,
             'footerMenuData' => $footerMenuData,
         ));
+    }
+
+    protected function gridDataColumn($data)
+    {
+        $pageID = Pages::model()->findByAttributes(array("jebapp_user_id"=>Yii::app()->user->id, "slug"=>$data));
+        if(!empty($pageID->id)){
+            return $pageID->id;
+        }
+    }
+
+    public function actionSociallink() {
+        $this->layout = false;
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
+        $model = new Menu;
+        if (isset($_POST['Menu'])) {
+            $model->attributes = $_POST['Menu'];
+            $model->tag = Yii::app()->request->getParam('tag');
+            $model->type = 'social';
+            $model->active = '1';
+            if ($model->save())
+                Yii::app()->user->setFlash('PageMenu', 'Menu Saved Successfully.');
+        }
+        $user_id = Yii::app()->user->id;
+        $socialinks = Menu::model()->findAll(array('condition' => 'type="social" AND jebapp_user_id=:user_id AND tag=:tag', 'order' => 'odr', 'params' => array(':user_id' => $user_id, ':tag' => Yii::app()->request->getParam('tag'))));
+        $socialink=new CArrayDataProvider($socialinks, array(
+            'pagination'=>array(
+                'pageSize'=>200,
+            ),
+        ));
+        $this->render('sociallink', array(
+            'sociallink' => $socialink,
+            'model' => $model
+        ));
+    }
+
+    public function actionCustomlink($id) {
+        $this->layout = false;
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
+        $model = $this->loadCustomlink($id);
+        if (isset($_POST['Menu'])) {
+            $model->attributes = $_POST['Menu'];
+            $model->tag = Yii::app()->request->getParam('tag');
+            $model->type = 'custom';
+            $model->active = '1';
+            if ($model->save())
+                Yii::app()->user->setFlash('customMenu', 'Menu Saved Successfully.');
+        }
+        $this->render('customlink', array(
+            'model' => $model
+        ));
+    }
+
+    public function loadCustomlink($id) {
+        $model = Menu::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        return $model;
     }
 
     /**

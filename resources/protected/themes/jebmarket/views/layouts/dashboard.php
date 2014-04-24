@@ -18,7 +18,7 @@
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
 </head>
-<body>
+<body style="background: #F7F7F7;">
 <div class="container-fluid">
     <div class="row dashboard">
         <div class="col-md-2 sidebar sidebar-left">

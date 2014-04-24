@@ -21,23 +21,22 @@ class ProfileUrlRule extends CBaseUrlRule
                     $_GET['user_id'] = $user->id;
                     $path_re = array_slice($path, 1);
                     $path_t = implode("/",$path_re);
-                    $page_view = Yii::app()->request->getParam('view');
-                    if(!empty($page_view)){
-                        $path_t = $page_view;
-                    }
-                    $menu = Menu::model()->findAll(array('condition' => "jebapp_user_id = $user->id AND url = '$path_t'"));
                     if(isset($path[0]) && !isset($path[1])){
-                        $route = 'page/view/view/home';
+                        $menu = Menu::model()->findByAttributes(array("jebapp_user_id"=>$user->id, "default_home"=>'1'));
+                        $route = 'page/view/view/'.$menu->url;
                         return $route;
-                    }elseif(!empty($menu)){
-                        $route = $path_t;
-                        if(!empty($page_view)){
+                    }else{
+                        $menu = Menu::model()->findByAttributes(array("jebapp_user_id"=>$user->id, "url"=>$path[1]));
+                        if(!empty($menu)){
                             $route = 'page/view/view/'.$path_t;
+                            if($menu->route == 'blog'){
+                                $route = 'blog';
+                            }
+                            return $route;
+                        }else{
+                            $route = $path_t;
+                            return $route;
                         }
-                        return $route;
-                    }elseif($path[1] == 'blog'){
-                        $route = $path_t;
-                        return $route;
                     }
                 }
             }

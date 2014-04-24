@@ -1,11 +1,42 @@
-<?php
-$this->menu=array(
-    array('label'=>'Create Category', 'url'=>array('createcategory')),
-);
-$this->pageHeader = "Update Category";
-$this->menuLinks=array(
-    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
-    array('label'=>'Manage Category', 'url'=>array('category'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
-);
-?>
-<?php $this->renderPartial('_formcategory', array('model'=>$model)); ?>
+<div class="blog_page">
+    <div class="trd_page_menu">
+        <p onclick="updatecategory();" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Save</p>
+        <p onclick="creatcategory();" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Category</p>
+    </div>
+    <?php $this->renderPartial('_formcategory', array('model'=>$model)); ?>
+</div>
+<script>
+    function creatcategory()
+    {
+        var data=$("#blog-terms-form").serialize();
+        $.ajax({
+            cache: true,
+            url: '<?php echo  CHtml::normalizeUrl(array('BlogTerms/createcategory')); ?>',
+            data:data,
+            success:function(data){
+                $('.blog_page').html(data);
+            },
+            error: function(data) {
+                $('.blog_page').html(data);
+            },
+            dataType:'html'
+        });
+    }
+    function updatecategory()
+    {
+        var data=$("#blog-terms-form").serialize();
+        $.ajax({
+            type: 'POST',
+            cache: true,
+            url: '<?php echo  CHtml::normalizeUrl(array('BlogTerms/updatecategory?id='.$model->term_id)); ?>',
+            data:data,
+            success:function(data){
+                $('.blog_page').html(data);
+            },
+            error: function(data) {
+                $('.blog_page').html(data);
+            },
+            dataType:'html'
+        });
+    }
+</script>

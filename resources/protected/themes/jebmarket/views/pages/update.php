@@ -9,6 +9,9 @@
         </div>
     <?php } ?>
     <div class="col-md-12">
+        <div class="trd_page_menu" style="margin: 0">
+            <p onclick="send();" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Save</p>
+        </div>
         <?php $this->renderPartial('_form', array('model'=>$model)); ?>
     </div>
 </div>

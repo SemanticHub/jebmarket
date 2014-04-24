@@ -30,27 +30,6 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->error($model, 'visibility', array('class' => 'text-danger control-hint')); ?>
     </div>
 </div>
-<div class="form-group">
-    <?php echo $form->labelEx($model, 'parent_id', array('class' => 'control-label col-lg-12')); ?>
-    <div class="col-lg-12">
-        <?php echo $form->dropDownList($model,'parent_id', CHtml::listData(Menu::model()->findAll(array('condition' => "jebapp_user_id =".Yii::app()->user->id)), 'id', 'label'), array('empty'=>'--SELECT--', 'class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'parent_id', array('class' => 'text-danger control-hint')); ?>
-    </div>
-</div>
-<div class="form-group">
-    <?php echo $form->labelEx($model, 'odr', array('class' => 'control-label col-lg-12')); ?>
-    <div class="col-lg-12">
-        <?php echo $form->textField($model, 'odr', array('class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'odr', array('class' => 'text-danger control-hint')); ?>
-    </div>
-</div>
-    <div class="form-group">
-        <?php echo $form->labelEx($model, 'class', array('class' => 'control-label col-lg-12')); ?>
-        <div class="col-lg-12">
-            <?php echo $form->textField($model, 'class', array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'class', array('class' => 'text-danger control-hint')); ?>
-        </div>
-    </div>
     <div class="form-group rememberMe">
         <div class="col-lg-12">
             <?php echo $form->checkBox($model, 'active', array('size' => 1, 'maxlength' => 1, 'checked' => 'checked')); ?>
@@ -67,6 +46,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 <?php
+/*
 Yii::app()->clientScript->registerScript(
     'update_menu_type',
     CHtml::ajax( array (
@@ -76,12 +56,9 @@ Yii::app()->clientScript->registerScript(
         'data'=> array('type'=>'js:$("#Menu_type").val()', 'url'=> $model->url)
     )),
     CClientScript::POS_READY);
-?>
+*/?>
 <?php $this->endWidget(); ?>
 </div>
-<?php if($model->type == 'module'){ ?>
-<script>$("#Menu_url").attr("disabled", true);</script>
-<?php } ?>
 <script>
     function send()
     {
@@ -91,9 +68,15 @@ Yii::app()->clientScript->registerScript(
             url: '<?php echo  CHtml::normalizeUrl(array('menu/update','id'=>$model->id)); ?>',
             data:data,
             success:function(data){
-                $.fn.yiiGridView.update("topMenu-grid");
-                $.fn.yiiGridView.update("mainMenu-grid");
-                $.fn.yiiGridView.update("footerMenu-grid");
+                <?php
+                    if($model->tag == 'topmenu'){
+                        echo "$.fn.yiiGridView.update('topMenu-grid');";
+                    }elseif($model->tag == 'mainmenu'){
+                        echo "$.fn.yiiGridView.update('mainMenu-grid');";
+                    }elseif($model->tag == 'footermenu'){
+                        echo "$.fn.yiiGridView.update('footerMenu-grid');";
+                    }
+                ?>
                 $('.menu_form').html(data);
             },
             error: function(data) {

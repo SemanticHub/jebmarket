@@ -32,13 +32,13 @@ class Menu extends CActiveRecord
      */
     public function rules() {
         return array(
-            array('type, label', 'required'),
-            array('parent_id, odr, pages_id', 'numerical', 'integerOnly' => true),
-            array('visibility, tag, type', 'length', 'max' => 45),
-            array('url', 'length', 'max' => 255),
+            array('type, url', 'required'),
+            array('parent_id, odr, default_home', 'numerical', 'integerOnly' => true),
+            array('visibility, tag, type, route', 'length', 'max' => 45),
+            array('url, label', 'length', 'max' => 255),
             array('class', 'length', 'max' => 24),
             array('active', 'length', 'max' => 1),
-            array('id, jebapp_user_id, pages_id, class, odr, type, label, url, visibility, active, parent_id, tag', 'safe', 'on' => 'search'),
+            array('id, jebapp_user_id, default_home, route, class, odr, type, label, url, visibility, active, parent_id, tag', 'safe', 'on' => 'search'),
         );
     }
 
@@ -64,8 +64,10 @@ class Menu extends CActiveRecord
             'tag' => 'Position',
             'odr' => 'Order',
             'type' => 'Type',
+            'target' => 'Target',
             'jebapp_user_id' => 'User ID',
-            'pages_id' => 'Page ID'
+            'route' => 'Route',
+            'default_home' => 'Default Home'
         );
     }
 
@@ -81,15 +83,16 @@ class Menu extends CActiveRecord
         $criteria->compare('id', $this->id);
         $criteria->compare('label', $this->label, true);
         $criteria->compare('url', $this->url, true);
+        $criteria->compare('route', $this->route, true);
         $criteria->compare('visibility', $this->visibility, true);
         $criteria->compare('active', $this->active, true);
         $criteria->compare('parent_id', $this->parent_id);
+        $criteria->compare('default_home', $this->default_home);
         $criteria->compare('tag', $this->tag, true);
         $criteria->compare('odr', $this->odr, true);
         $criteria->compare('type', $this->type, true);
         $criteria->compare('class', $this->class, true);
         $criteria->compare('jebapp_user_id', $this->jebapp_user_id = Yii::app()->user->id);
-        $criteria->compare('pages_id', $this->pages_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria
@@ -146,7 +149,7 @@ class Menu extends CActiveRecord
         $domainname = Website::model()->domainName();
         if(!empty($domainname)){
             if($type == 'page') {
-                $url = Yii::app()->createUrl($domainname.'/page/view', array('view' => $urlString));
+                $url = Yii::app()->createUrl($domainname.'/'.$urlString);
             } else if ($type == 'custom') {
                 $url = $urlString;
             } else {
