@@ -37,7 +37,7 @@ class BlogTerms extends CActiveRecord
 			array('description, name', 'required'),
 			array('jebapp_user_id', 'numerical', 'integerOnly'=>true),
 			array('name, slug', 'length', 'max'=>200),
-            array('slug', 'isSlugValid'),
+            //array('slug', 'isSlugValid'),
             array('slug', 'match', 'not' => true, 'pattern' => '/[^a-z0-9_]/', 'message' => 'Invalid characters in friendly URL.'),
 			array('taxonomy', 'length', 'max'=>32),
 			array('parent, count', 'length', 'max'=>20),

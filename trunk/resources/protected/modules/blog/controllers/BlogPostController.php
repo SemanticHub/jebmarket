@@ -6,7 +6,7 @@ class BlogPostController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout=false;
 
 	/**
 	 * @return array action filters
@@ -34,6 +34,7 @@ class BlogPostController extends Controller
 	 */
 	public function actionCreate()
 	{
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
 		$model=new BlogPost;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -53,7 +54,7 @@ class BlogPostController extends Controller
                 $model->category = implode(",",$model->category);
             }
             if($model->save())
-                $this->redirect(array('view','id'=>$model->id));
+                $this->redirect(array('admin','mid'=>Yii::app()->request->getParam('mid')));
 		}
 
 		$this->render('create',array(
@@ -68,6 +69,7 @@ class BlogPostController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -124,6 +126,8 @@ class BlogPostController extends Controller
 	 */
 	public function actionAdmin()
 	{
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
+        $menu = Menu::model()->findByAttributes(array('id'=>Yii::app()->request->getParam('mid')));
 		$model=new BlogPost('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['BlogPost']))
@@ -131,6 +135,7 @@ class BlogPostController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+            'menu'=>$menu,
 		));
 	}
 

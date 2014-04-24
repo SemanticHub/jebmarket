@@ -1,10 +1,6 @@
-<?php
-$this->pageHeader = "Manage Blog Tags";
-$this->menuLinks=array(
-    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
-    array('label'=>'Create Blog Tags', 'url'=>array('createtag'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
-);
-?>
+<div class="3rd_page_menu">
+    <a href="<?php echo Yii::app()->baseUrl.'/blog/blogTerms/createtag'; ?>" class="btn btn-default blog_ajax_link"><span class="glyphicon glyphicon-plus"></span> Add Tag</a>
+</div>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'itemsCssClass' => 'table table-striped table-hover',
     'summaryCssClass' => 'label label-info pull-right',
@@ -27,7 +23,7 @@ $this->menuLinks=array(
                     'label' => Yii::t('phrase', 'Edit'),
                     'imageUrl' => false,
                     'url'=>"CHtml::normalizeUrl(array('updatetag', 'id'=>\$data->term_id))",
-                    'options' => array('class' => 'btn btn-warning btn-xs')
+                    'options' => array('class' => 'btn btn-warning btn-xs blog_ajax_link')
                 ),
                 'delete' => array(
                     'label' => Yii::t('phrase', 'Delete'),
@@ -38,7 +34,7 @@ $this->menuLinks=array(
                     'label' => Yii::t('phrase', 'View'),
                     'imageUrl' => false,
                     'url'=>"CHtml::normalizeUrl(array('viewtag', 'id'=>\$data->term_id))",
-                    'options' => array('class' => 'btn btn-info btn-xs')
+                    'options' => array('class' => 'btn btn-info btn-xs blog_ajax_link')
                 )
             )
         ),

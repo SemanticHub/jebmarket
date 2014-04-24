@@ -41,10 +41,6 @@
             <?php echo $form->error($model, 'comment_content', array('class' => 'text-danger control-hint')); ?>
         </div>
 
-        <div class="form-group buttons">
-            <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-success')); ?>
-        </div>
-
 <?php $this->endWidget(); ?>
     </div>
 </div><!-- form -->

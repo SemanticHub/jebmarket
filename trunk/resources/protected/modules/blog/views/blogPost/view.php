@@ -1,15 +1,45 @@
-<?php
-$this->menu=array(
-    array('label'=>'Create Post', 'url'=>array('create')),
-    array('label'=>'Update Post', 'url'=>array('update', 'id'=>$model->id)),
-    array('label'=>'Delete Post', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-);
-$this->pageHeader = "View Post '$model->post_title'";
-$this->menuLinks=array(
-    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
-    array('label'=>'Manage Post', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
-);
-?>
+<div class="blog_page">
+    <div class="trd_page_menu">
+        <p onclick="createpost();" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Post</p>
+        <p onclick="updatepost();" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> Update Post</p>
+    </div>
+</div>
+<script>
+    function createpost()
+    {
+        var data=$("#blog-terms-form").serialize();
+        $.ajax({
+            type: 'POST',
+            cache: true,
+            url: '<?php echo  CHtml::normalizeUrl(array('BlogPost/create')); ?>',
+            data:data,
+            success:function(data){
+                $('.blog_page').html(data);
+            },
+            error: function(data) {
+                $('.blog_page').html(data);
+            },
+            dataType:'html'
+        });
+    }
+    function updatepost()
+    {
+        var data=$("#blog-terms-form").serialize();
+        $.ajax({
+            type: 'POST',
+            cache: true,
+            url: '<?php echo  CHtml::normalizeUrl(array('BlogPost/update?id='.$model->id)); ?>',
+            data:data,
+            success:function(data){
+                $('.blog_page').html(data);
+            },
+            error: function(data) {
+                $('.blog_page').html(data);
+            },
+            dataType:'html'
+        });
+    }
+</script>
 <?php $this->widget('zii.widgets.CDetailView', array(
     'htmlOptions' => array('class' => 'table  table-view'),
 	'data'=>$model,

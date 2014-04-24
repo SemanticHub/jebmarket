@@ -1,10 +1,6 @@
-<?php
-$this->pageHeader = "Manage Blog Post";
-$this->menuLinks=array(
-    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
-    array('label'=>'Create Blog Posts', 'url'=>array('create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
-);
-?>
+<div class="3rd_page_menu">
+    <a href="<?php echo Yii::app()->baseUrl.'/blog/blogPost/create?mid='.$menu->id; ?>" class="btn btn-default blog_ajax_link"><span class="glyphicon glyphicon-plus"></span> Add Post</a>
+</div>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'itemsCssClass' => 'table table-striped table-hover',
     'summaryCssClass' => 'label label-info pull-right',
@@ -27,7 +23,7 @@ $this->menuLinks=array(
                 'update' => array(
                     'label' => Yii::t('phrase', 'Edit'),
                     'imageUrl' => false,
-                    'options' => array('class' => 'btn btn-warning btn-xs')
+                    'options' => array('class' => 'btn btn-warning btn-xs blog_ajax_link')
                 ),
                 'delete' => array(
                     'label' => Yii::t('phrase', 'Delete'),
@@ -37,9 +33,26 @@ $this->menuLinks=array(
                 'view' => array(
                     'label' => Yii::t('phrase', 'View'),
                     'imageUrl' => false,
-                    'options' => array('class' => 'btn btn-info btn-xs')
+                    'options' => array('class' => 'btn btn-info btn-xs blog_ajax_link')
                 )
             )
         ),
 	),
 )); ?>
+<script>
+    $('.dash_second_menu .navbar-right').html('' +
+        '<ul class="nav navbar-nav navbar-right">' +
+        '<li><a href="<?php echo Yii::app()->baseUrl.'/blog/blogPost/admin?mid='.$menu->id; ?>" class="blog_ajax_link"><span class="glyphicon glyphicon-th"></span> Manage Post</a></li>' +
+        '<li><a href="<?php echo Yii::app()->baseUrl.'/blog/blogTerms/category'; ?>" class="blog_ajax_link"><span class="glyphicon glyphicon-th"></span> Manage Category</a></li>' +
+        '<li><a href="<?php echo Yii::app()->baseUrl.'/blog/blogTerms/tag'; ?>" class="blog_ajax_link"><span class="glyphicon glyphicon-th"></span> Manage Tag</a></li>' +
+        '<li><a href="<?php echo Yii::app()->baseUrl.'/blog/blogComment/admin'; ?>" class="blog_ajax_link"><span class="glyphicon glyphicon-th"></span> Manage Comment</a></li>' +
+        '<li><a href="<?php echo Yii::app()->baseUrl.'/menu/update?id='.$menu->id; ?>" data-toggle="modal" data-target="#update_menu"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>' +
+        '<li>' +<?php
+        $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+        if(!empty($domainName->name)){
+        ?>
+        '<a href="<?php echo Yii::app()->baseUrl.'/'.$domainName->name.'/'.$menu->url; ?>" target="_blank"><span class="glyphicon glyphicon-export"></span> View Blog</a>' +
+        <?php } ?>'</li>' +
+        '</ul>'
+    );
+</script>

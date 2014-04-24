@@ -15,8 +15,6 @@
     )
 )); ?>
 
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
-
     <?php echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger')); ?>
 
     <div class="form-group">
@@ -41,10 +39,6 @@
         <?php echo $form->labelEx($model, 'description', array('class' => 'control-label')); ?>
         <?php echo $form->textArea($model, 'description', array('rows'=>6, 'cols'=>50, 'class' => 'form-control')); ?>
         <?php echo $form->error($model, 'description', array('class' => 'text-danger control-hint')); ?>
-    </div>
-
-    <div class="form-group buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-success')); ?>
     </div>
 
 <?php $this->endWidget(); ?>

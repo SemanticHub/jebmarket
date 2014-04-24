@@ -115,7 +115,7 @@ class BlogComment extends CActiveRecord
 		$criteria->compare('comment_parent',$this->comment_parent,true);
 		$criteria->compare('comment_date',$this->comment_date,true);
 		$criteria->compare('comment_date_gmt',$this->comment_date_gmt,true);
-		$criteria->compare('user_id',$this->user_id,true);
+		$criteria->compare('user_id',$this->user_id = Yii::app()->user->id);
 		$criteria->compare('jebapp_blog_post_id',$this->jebapp_blog_post_id,true);
 
 		return new CActiveDataProvider($this, array(

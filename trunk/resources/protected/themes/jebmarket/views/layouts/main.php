@@ -120,6 +120,11 @@
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
 <![endif]-->
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script>
+    if ($('#carousel-example-generic').length) {
+        $('#carousel-example-generic').carousel();
+    }
+</script>
 <?php
 //Its under testing
 $t = new JebReportTracker( $idSite = 3, Yii::app()->params['piwikURL']);

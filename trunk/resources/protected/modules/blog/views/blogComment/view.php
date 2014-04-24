@@ -1,15 +1,27 @@
-<?php
-$this->menu=array(
-    array('label'=>'Create Blog Comment', 'url'=>array('create')),
-    array('label'=>'Update Blog Comment', 'url'=>array('update', 'id'=>$model->comment_id)),
-    array('label'=>'Delete Blog Comment', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->comment_id),'confirm'=>'Are you sure you want to delete this item?')),
-);
-$this->pageHeader = "View Post";
-$this->menuLinks=array(
-    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
-    array('label'=>'Manage Blog Comment', 'url'=>array('admin'), 'icon'=>'<span class="glyphicon glyphicon-th"></span> '),
-);
-?>
+<div class="blog_page">
+    <div class="trd_page_menu">
+        <p onclick="updatecomment();" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> Update Comment</p>
+    </div>
+</div>
+<script>
+    function updatecomment()
+    {
+        var data=$("#blog-comment-form").serialize();
+        $.ajax({
+            type: 'POST',
+            cache: true,
+            url: '<?php echo  CHtml::normalizeUrl(array('BlogComment/update?id='.$model->comment_id)); ?>',
+            data:data,
+            success:function(data){
+                $('.blog_page').html(data);
+            },
+            error: function(data) {
+                $('.blog_page').html(data);
+            },
+            dataType:'html'
+        });
+    }
+</script>
 <?php $this->widget('zii.widgets.CDetailView', array(
     'htmlOptions' => array('class' => 'table  table-view'),
 	'data'=>$model,

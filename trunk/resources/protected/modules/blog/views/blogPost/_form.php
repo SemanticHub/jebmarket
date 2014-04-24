@@ -15,7 +15,7 @@
     )
 )); ?>
 
-    <div class="col-md-8">
+    <div class="col-md-9">
         <?php
             echo $form->errorSummary($model, '', '', array('class' => 'alert alert-danger'));
         ?>
@@ -28,11 +28,11 @@
 
         <div class="form-group">
             <label class="control-label required" for="BlogPost_post_content">Post Content <span class="required">*</span> <a class="btn btn-success btn-xs" data-toggle="modal" href="<?php echo Yii::app()->getBaseUrl(true)."/blog/media/index";?>" data-target="#myModal"><strong class="glyphicon glyphicon-picture"></strong> Add Media</a></a> </label>
-            <?php echo $form->textArea($model, 'post_content', array('rows'=>6, 'cols'=>50, 'class' => 'ckeditor form-control')); ?>
+            <?php echo $form->textArea($model, 'post_content', array('rows'=>6, 'cols'=>50, 'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'post_content', array('class' => 'text-danger control-hint')); ?>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="thumbnail">
             <div class="list-group">
                 <p class="list-group-item active">Publish</p>
@@ -47,30 +47,23 @@
                     <?php echo $form->dropDownList($model,'comment_status',array('public'=>'Public', 'private'=>'Private', 'none'=>'No Comments'), array('class' => 'form-control')); ?>
                     <?php echo $form->error($model, 'comment_status', array('class' => 'text-danger control-hint')); ?>
                 </div>
-
-                <div class="form-group buttons">
-                    <?php echo CHtml::submitButton($model->isNewRecord ? 'Publish' : 'Update', array('class' => 'btn btn-success')); ?>
-                </div>
             </div>
         </div>
         <div class="thumbnail">
             <div class="list-group checkbox_category">
                 <p class="list-group-item active">Category</p>
                 <?php echo $form->checkBoxList($model, 'category', CHtml::listData(BlogTerms::model()->findAll(array('condition' => "taxonomy = 'category' AND jebapp_user_id =".Yii::app()->user->id)), 'term_id', 'name'), array('class' => 'category_input')); ?>
-                <p><?php echo CHtml::link('Add New Category',array('/blog/blogTerms/createcategory'), array('class'=>'btn btn-success btn-xs add_new_cat')); ?></p>
+                <p><?php echo CHtml::link('Add New Category',array('/blog/blogTerms/createcategory'), array('class'=>'btn btn-success btn-xs add_new_cat blog_ajax_link')); ?></p>
             </div>
         </div>
         <div class="thumbnail">
             <div class="list-group checkbox_category">
                 <p class="list-group-item active">Tags</p>
                 <?php echo $form->checkBoxList($model, 'tag', CHtml::listData(BlogTerms::model()->findAll(array('condition' => "taxonomy = 'tag' AND jebapp_user_id =".Yii::app()->user->id)), 'term_id', 'name'), array('class' => 'category_input')); ?>
-                <p><?php echo CHtml::link('Add New Tag',array('/blog/blogTerms/createtag'), array('class'=>'btn btn-success btn-xs add_new_cat')); ?></p>
+                <p><?php echo CHtml::link('Add New Tag',array('/blog/blogTerms/createtag'), array('class'=>'btn btn-success btn-xs add_new_cat blog_ajax_link')); ?></p>
             </div>
         </div>
     </div>
-
-    <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>
-
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

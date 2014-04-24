@@ -1,10 +1,3 @@
-<?php
-$this->pageHeader = "Manage Blog Comments";
-$this->menuLinks=array(
-    array('label'=>'Back To Blog Home', 'url'=>array('/blog/admin'), 'icon'=>'<span class="glyphicon glyphicon-arrow-left"></span> '),
-    array('label'=>'Create Blog Comment', 'url'=>array('create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
-);
-?>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'itemsCssClass' => 'table table-striped table-hover',
     'summaryCssClass' => 'label label-info pull-right',
@@ -26,7 +19,7 @@ $this->menuLinks=array(
                 'update' => array(
                     'label' => Yii::t('phrase', 'Edit'),
                     'imageUrl' => false,
-                    'options' => array('class' => 'btn btn-warning btn-xs')
+                    'options' => array('class' => 'btn btn-warning btn-xs blog_ajax_link')
                 ),
                 'delete' => array(
                     'label' => Yii::t('phrase', 'Delete'),
@@ -36,7 +29,7 @@ $this->menuLinks=array(
                 'view' => array(
                     'label' => Yii::t('phrase', 'View'),
                     'imageUrl' => false,
-                    'options' => array('class' => 'btn btn-info btn-xs')
+                    'options' => array('class' => 'btn btn-info btn-xs blog_ajax_link')
                 )
             )
         ),

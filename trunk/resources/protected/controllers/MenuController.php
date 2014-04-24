@@ -50,6 +50,8 @@ class MenuController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
+        $this->layout = false;
+        Yii::app()->clientScript->scriptMap['*.js'] = false;
         $model = new Menu;
 
         if (isset($_POST['Menu'])) {
@@ -88,10 +90,21 @@ class MenuController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      * @param $pageId
+     * @param null $tag
      */
-    public function actionDelete($id, $pageId) {
-        $this->loadModel($id)->delete();
-        Pages::model()->deleteByPk($pageId);
+    public function actionDelete($id, $pageId = null, $tag = null) {
+        if($pageId == 'social' && !empty($tag)){
+            $user_id = Yii::app()->user->id;
+            Menu::model()->deleteAll(array('condition' => 'type="social" AND jebapp_user_id=:user_id AND tag=:tag', 'order' => 'odr', 'params' => array(':user_id' => $user_id, ':tag' => $tag)));
+        }elseif($pageId == 'login' && !empty($tag)){
+            $user_id = Yii::app()->user->id;
+            Menu::model()->deleteAll(array('condition' => 'jebapp_user_id=:user_id AND tag=:tag AND url IN ("site/login", "site/logout", "user/profile")', 'order' => 'odr', 'params' => array(':user_id' => $user_id, ':tag' => $tag)));
+        }else{
+            $this->loadModel($id)->delete();
+        }
+        if(!empty($pageId) && empty($tag)){
+            Pages::model()->deleteByPk($pageId);
+        }
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));

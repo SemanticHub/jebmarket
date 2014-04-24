@@ -188,7 +188,6 @@ return array(
             'password' => array('label' => '<span class="glyphicon glyphicon-lock"></span> Change Password', 'url' => array('/user/changepass')),
 
             'websiteBlock' => array('label' => 'WebSite', 'linkOptions' => array('class' => 'list-group-title')),
-            'blog' => array('label' => '<span class="glyphicon glyphicon-list-alt"></span> Blog', 'url' => array('/blog/admin')),
             'pages' => array('label' => '<span class="glyphicon glyphicon-edit"></span> Pages', 'url' => array('/pages/admin')),
             'settings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Settings', 'url' => array('/website/admin')),
 
