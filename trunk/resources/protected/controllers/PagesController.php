@@ -160,25 +160,19 @@ class PagesController extends Controller {
      */
     public function actionAdmin() {
         $user_id = Yii::app()->user->id;
-        $topMenu = Menu::model()->findAll(array('condition' => 'tag="topmenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout") AND type NOT IN ("social")', 'order' => 'odr', 'params' => array(':user_id' => $user_id)));
-        $customTopMenu = Menu::model()->findAll(array('condition' => 'tag="topmenu" AND type="social" AND jebapp_user_id=:user_id LIMIT 1', 'params' => array(':user_id' => $user_id)));
-        $topMenu = array_merge($customTopMenu, $topMenu);
+        $topMenu = Menu::model()->findAll(array('condition' => 'tag="topmenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout")', 'order' => 'odr DESC', 'params' => array(':user_id' => $user_id)));
         $topMenuData=new CArrayDataProvider($topMenu, array(
             'pagination'=>array(
                 'pageSize'=>200,
             ),
         ));
-        $menuItems = Menu::model()->findAll(array('condition' => 'tag="mainmenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout") AND type NOT IN ("social")', 'order' => 'odr', 'params' => array(':user_id' => $user_id)));
-        $customTopMenu = Menu::model()->findAll(array('condition' => 'tag="mainmenu" AND type="social" AND jebapp_user_id=:user_id LIMIT 1', 'params' => array(':user_id' => $user_id)));
-        $menuItems = array_merge($customTopMenu, $menuItems);
+        $menuItems = Menu::model()->findAll(array('condition' => 'tag="mainmenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout")', 'order' => 'odr', 'params' => array(':user_id' => $user_id)));
         $mainMenuData=new CArrayDataProvider($menuItems, array(
             'pagination'=>array(
                 'pageSize'=>200,
             ),
         ));
-        $footerMenu = Menu::model()->findAll(array('condition' => 'tag="footermenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout") AND type NOT IN ("social")', 'order' => 'odr', 'params' => array(':user_id' => $user_id)));
-        $customTopMenu = Menu::model()->findAll(array('condition' => 'tag="footermenu" AND type="social" AND jebapp_user_id=:user_id LIMIT 1', 'params' => array(':user_id' => $user_id)));
-        $footerMenu = array_merge($customTopMenu, $footerMenu);
+        $footerMenu = Menu::model()->findAll(array('condition' => 'tag="footermenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout")', 'order' => 'odr', 'params' => array(':user_id' => $user_id)));
         $footerMenuData=new CArrayDataProvider($footerMenu, array(
             'pagination'=>array(
                 'pageSize'=>200,
@@ -197,31 +191,6 @@ class PagesController extends Controller {
         if(!empty($pageID->id)){
             return $pageID->id;
         }
-    }
-
-    public function actionSociallink() {
-        $this->layout = false;
-        Yii::app()->clientScript->scriptMap['*.js'] = false;
-        $model = new Menu;
-        if (isset($_POST['Menu'])) {
-            $model->attributes = $_POST['Menu'];
-            $model->tag = Yii::app()->request->getParam('tag');
-            $model->type = 'social';
-            $model->active = '1';
-            if ($model->save())
-                Yii::app()->user->setFlash('PageMenu', 'Menu Saved Successfully.');
-        }
-        $user_id = Yii::app()->user->id;
-        $socialinks = Menu::model()->findAll(array('condition' => 'type="social" AND jebapp_user_id=:user_id AND tag=:tag', 'order' => 'odr', 'params' => array(':user_id' => $user_id, ':tag' => Yii::app()->request->getParam('tag'))));
-        $socialink=new CArrayDataProvider($socialinks, array(
-            'pagination'=>array(
-                'pageSize'=>200,
-            ),
-        ));
-        $this->render('sociallink', array(
-            'sociallink' => $socialink,
-            'model' => $model
-        ));
     }
 
     public function actionCustomlink($id) {
