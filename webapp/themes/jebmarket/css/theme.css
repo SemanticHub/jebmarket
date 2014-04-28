@@ -1298,6 +1298,20 @@ form .alert {
     margin: 0 0 0 -15px;
     display: table;
 }
+body.dragging, body.dragging * {
+    cursor: move !important;
+}
+.dragged {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 2000;
+}
+.admin_pages_left tbody tr.placeholder {
+    position: relative;
+}
+.admin_pages_left tbody tr.placeholder:before {
+    position: absolute;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .logo_img img{
