@@ -85,6 +85,14 @@ class MenuController extends Controller {
         ));
     }
 
+    public function actionOrder() {
+        $this->layout = false;
+        $menu = new Menu;
+        if (!isset($_GET['ajax'])) {
+            $menu->save();
+        }
+    }
+
     /**
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'admin' page.

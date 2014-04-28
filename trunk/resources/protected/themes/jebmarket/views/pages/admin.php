@@ -1,13 +1,14 @@
 <?php
 $this->pageHeader = "Pages";
 ?>
+<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery-sortable-min.js"></script>
 <div class="row admin_pages">
     <div class="col-md-3 admin_pages_left">
         <div class="admin_left_scroll">
             <h4>Navigation</h4>
             <div class="page_top_nav">
                 <?php
-                $this->widget('zii.widgets.grid.CGridView', array(
+                $this->widget('ext.MGridViewWidget.MGridViewWidget', array(
                     'id' => 'topMenu-grid',
                     'itemsCssClass' => 'table table-striped table-hover',
                     'summaryCssClass' => 'label label-info pull-right top-21',
@@ -24,15 +25,15 @@ $this->pageHeader = "Pages";
                             'header'=>'Top Navigation',
                             'value' =>function($data){
                                     if ($data->type=='page'){
-                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$this->gridDataColumn("$data->url"),'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$this->gridDataColumn("$data->url"),'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
                                     }elseif($data->route=='blog'){
-                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
                                     }elseif($data->type=='module' && $data->url=='site/login'){
                                         $class = '<p>'.$data->label.'</p>';
                                     }elseif($data->type=='custom' || $data->type=='social'){
                                         $class = CHtml::link($data->label,array("customlink", 'id'=>$data->id, 'tag'=>$data->tag),array("class"=>"admin_nav_gridLink"));
                                     }else{
-                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
                                     }
                                     return $class;
                                 },
@@ -64,7 +65,7 @@ $this->pageHeader = "Pages";
             </div>
             <div class="page_top_nav">
                 <?php
-                $this->widget('zii.widgets.grid.CGridView', array(
+                $this->widget('ext.MGridViewWidget.MGridViewWidget', array(
                     'id' => 'mainMenu-grid',
                     'itemsCssClass' => 'table table-striped table-hover',
                     'summaryCssClass' => 'label label-info pull-right top-21',
@@ -81,15 +82,15 @@ $this->pageHeader = "Pages";
                             'header'=>'Main Navigation',
                             'value' =>function($data){
                                     if ($data->type=='page'){
-                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$this->gridDataColumn("$data->url"),'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$this->gridDataColumn("$data->url"),'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
                                     }elseif($data->route=='blog'){
-                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
                                     }elseif($data->type=='module' && $data->url=='site/login'){
                                         $class = '<p>'.$data->label.'</p>';
                                     }elseif($data->type=='custom' || $data->type=='social'){
                                         $class = CHtml::link($data->label,array("customlink", 'id'=>$data->id, 'tag'=>$data->tag),array("class"=>"admin_nav_gridLink"));
                                     }else{
-                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
                                     }
                                     return $class;
                                 },
@@ -121,7 +122,7 @@ $this->pageHeader = "Pages";
             </div>
             <div class="page_top_nav">
                 <?php
-                $this->widget('zii.widgets.grid.CGridView', array(
+                $this->widget('ext.MGridViewWidget.MGridViewWidget', array(
                     'id' => 'footerMenu-grid',
                     'itemsCssClass' => 'table table-striped table-hover',
                     'summaryCssClass' => 'label label-info pull-right top-21',
@@ -138,15 +139,15 @@ $this->pageHeader = "Pages";
                             'header'=>'Footer Navigation',
                             'value' =>function($data){
                                     if ($data->type=='page'){
-                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$this->gridDataColumn("$data->url"),'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$this->gridDataColumn("$data->url"),'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
                                     }elseif($data->route=='blog'){
-                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
                                     }elseif($data->type=='module' && $data->url=='site/login'){
                                         $class = '<p>'.$data->label.'</p>';
                                     }elseif($data->type=='custom' || $data->type=='social'){
                                         $class = CHtml::link($data->label,array("customlink", 'id'=>$data->id, 'tag'=>$data->tag),array("class"=>"admin_nav_gridLink"));
                                     }else{
-                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink add_gap_left" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
                                     }
                                     return $class;
                                 },
@@ -212,6 +213,32 @@ $this->pageHeader = "Pages";
         $('.page_footer').tooltipster(data);
     }
     $(document).ready(function() {
+        $("#topMenu-grid tbody").sortable({
+            itemSelector: 'tr',
+            containerSelector: 'tbody'
+        })
+        var group = $("#mainMenu-grid tbody").sortable({
+            itemSelector: 'tr',
+            containerSelector: 'tbody',
+            /*onDrop: function() {
+                var data = group.sortable("serialize").get();
+                var jsonString = JSON.stringify(data);
+                $.ajax({
+                    'type':'POST',
+                    'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
+                    'dataType':"json",
+                    'cache':true,
+                    'data':jsonString,
+                    'success':function(){
+                        $.fn.yiiGridView.update('mainMenu-grid');
+                    }
+                });
+            }**/
+        })
+        $("#footerMenu-grid tbody").sortable({
+            itemSelector: 'tr',
+            containerSelector: 'tbody'
+        })
         $('.page_main').tooltipster({
             content: $('<div class="tool_tip_page">' +
                 '<h4><span class="glyphicon glyphicon-plus"></span> Create New Page</h4>' +
