@@ -70,7 +70,7 @@
             '/',
             { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
             { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-            { name: 'tools', items: [ 'Maximize', 'ShowBlocks', 'Slideshow', 'Simplebox' ] },
+            { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
             { name: 'others', items: [ '-' ] },
         ],
         // Toolbar groups configuration.
