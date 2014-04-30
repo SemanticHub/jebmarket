@@ -632,13 +632,12 @@ h1.for_menu{
 }
 #header_right .navbar-top {
     margin-bottom: 5px;
-    width: 100%;
-    float: right;
-    margin-right: -15px;
-    margin-left: -20px;
+    margin-right: 5px;
+    margin-left: 15px;
 }
 #header_right .navbar-nav{
     margin: 0;
+    float: right;
 }
 .dashboard{
     background: #f7f7f7;
@@ -683,13 +682,13 @@ h1.for_menu{
     background: url(../icon/social/google-16.png) no-repeat center center
 }
 ul.nav.nav-pills.navbar-footer {
-    display: inline-block
+    display: inline-block;
 }
 .nav-pills.navbar-top > li {
-    float: right
+    float: left;
 }
 .nav-pills.navbar-top > li + li {
-    margin-left: 0
+    margin-left: 0;
 }
 .navbar.navbar-main {
     margin-bottom: 3px;
@@ -1332,6 +1331,9 @@ body.dragging, body.dragging * {
     color: #98a7b5;
     float: left;
 }
+.dashboard .leftsiteview{
+    margin-top: 25px;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .logo_img img{
@@ -1386,6 +1388,8 @@ body.dragging, body.dragging * {
     .navbar.navbar-main {
         margin-bottom: 0;
         margin-top: 0;
+        float: right;
+        width: 100%;
     }
     .navbar-top > li > a.facebook {
         width: 16px; height: 16px;margin: 5px 0 0 10px;
