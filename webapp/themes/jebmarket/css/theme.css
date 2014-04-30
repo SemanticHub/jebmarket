@@ -426,7 +426,7 @@ h1.page-title {
     margin: 1px 0 0 10px;
     padding: 0;
     float: left;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     color: #ffffff;
 }
@@ -1311,6 +1311,26 @@ body.dragging, body.dragging * {
 }
 .admin_pages_left tbody tr.placeholder:before {
     position: absolute;
+}
+.dashboard_top_left{
+    font-size: 13px;
+}
+.dashboard .sidebar-left{
+    width: 12%;
+}
+.dashboard .col-md-10{
+    width: 88%;
+}
+.dashboard .col-md-9{
+    width: 80%;
+}
+.dashboard .admin_pages_left{
+    width: 20%;
+}
+.dashboard .viewyoursite{
+    margin: 8px 0 8px 15px;
+    color: #98a7b5;
+    float: left;
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

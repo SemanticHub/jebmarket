@@ -40,12 +40,12 @@
                     'htmlOptions' => array('class' => 'panel panel-default')
                 ));
                 echo CHtml::link('Log Out',array("/site/logout"));
-                if(!empty($domainName->domain)){
-                    echo CHtml::link('View Your WebSite',array("/$domainName->domain"), array('target'=>'_blank'));
-                }
                 ?>
             </div>
             <?php
+            if(!empty($domainName->domain)){
+                echo CHtml::link('<span class="glyphicon glyphicon-export"></span> View Your WebSite',array("/$domainName->domain"), array('target'=>'_blank', 'class'=>'viewyoursite'));
+            }
             $this->widget('zii.widgets.CMenu', array(
                 'items' => Yii::app()->params['usermenu'],
                 'encodeLabel'=>false,

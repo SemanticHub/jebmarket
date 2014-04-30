@@ -213,31 +213,59 @@ $this->pageHeader = "Pages";
         $('.page_footer').tooltipster(data);
     }
     $(document).ready(function() {
-        $("#topMenu-grid tbody").sortable({
-            itemSelector: 'tr',
-            containerSelector: 'tbody'
-        })
-        var group = $("#mainMenu-grid tbody").sortable({
+        var topMenugroup = $("#topMenu-grid tbody").sortable({
             itemSelector: 'tr',
             containerSelector: 'tbody',
-            /*onDrop: function() {
-                var data = group.sortable("serialize").get();
+            onDrop: function($item, container, _super) {
+                var data = topMenugroup.sortable("serialize").get();
                 var jsonString = JSON.stringify(data);
                 $.ajax({
                     'type':'POST',
                     'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
                     'dataType':"json",
                     'cache':true,
-                    'data':jsonString,
-                    'success':function(){
+                    'data':{Menu : jsonString},
+                    'success':function(data){
+                        $.fn.yiiGridView.update('topMenu-grid');
+                    }
+                });
+            }
+        })
+        var mainMenugroup = $("#mainMenu-grid tbody").sortable({
+            itemSelector: 'tr',
+            containerSelector: 'tbody',
+            onDrop: function($item, container, _super) {
+                var data = mainMenugroup.sortable("serialize").get();
+                var jsonString = JSON.stringify(data);
+                $.ajax({
+                    'type':'POST',
+                    'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
+                    'dataType':"json",
+                    'cache':true,
+                    'data':{Menu : jsonString},
+                    'success':function(data){
                         $.fn.yiiGridView.update('mainMenu-grid');
                     }
                 });
-            }**/
+            }
         })
-        $("#footerMenu-grid tbody").sortable({
+        var footerMenugroup = $("#footerMenu-grid tbody").sortable({
             itemSelector: 'tr',
-            containerSelector: 'tbody'
+            containerSelector: 'tbody',
+            onDrop: function($item, container, _super) {
+                var data = footerMenugroup.sortable("serialize").get();
+                var jsonString = JSON.stringify(data);
+                $.ajax({
+                    'type':'POST',
+                    'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
+                    'dataType':"json",
+                    'cache':true,
+                    'data':{Menu : jsonString},
+                    'success':function(data){
+                        $.fn.yiiGridView.update('footerMenu-grid');
+                    }
+                });
+            }
         })
         $('.page_main').tooltipster({
             content: $('<div class="tool_tip_page">' +
@@ -309,3 +337,11 @@ $this->pageHeader = "Pages";
     var CKEDITOR_BASEPATH = '<?php echo Yii::app()->theme->baseUrl.'/comp/ckeditor/'; ?>';
 </script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>
+<style>
+    .dashboard .sidebar-left{
+        width: 12%;
+    }
+    .dashboard .dash_second_menu{
+        width: 88%;
+    }
+</style>

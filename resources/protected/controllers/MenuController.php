@@ -87,9 +87,15 @@ class MenuController extends Controller {
 
     public function actionOrder() {
         $this->layout = false;
-        $menu = new Menu;
-        if (!isset($_GET['ajax'])) {
-            $menu->save();
+        if (isset($_POST['Menu'])) {
+            $data = json_decode($_POST['Menu'], TRUE);
+            $ordnum = 0;
+            foreach ($data as $key => $value) {
+                foreach ($value as $k => $v) {
+                    $ordnum = $ordnum + 1;
+                    Menu::model()->updateByPk($v['id'], array('odr'=>$ordnum));
+                }
+            }
         }
     }
 
