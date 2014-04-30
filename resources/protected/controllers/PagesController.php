@@ -160,7 +160,7 @@ class PagesController extends Controller {
      */
     public function actionAdmin() {
         $user_id = Yii::app()->user->id;
-        $topMenu = Menu::model()->findAll(array('condition' => 'tag="topmenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout")', 'order' => 'odr DESC', 'params' => array(':user_id' => $user_id)));
+        $topMenu = Menu::model()->findAll(array('condition' => 'tag="topmenu" AND jebapp_user_id=:user_id AND url NOT IN ("user/profile", "site/logout")', 'order' => 'odr', 'params' => array(':user_id' => $user_id)));
         $topMenuData=new CArrayDataProvider($topMenu, array(
             'pagination'=>array(
                 'pageSize'=>200,

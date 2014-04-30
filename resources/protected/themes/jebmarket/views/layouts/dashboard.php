@@ -50,7 +50,7 @@
                 'items' => Yii::app()->params['usermenu'],
                 'encodeLabel'=>false,
                 'itemCssClass' => 'list-group-item',
-                'htmlOptions' => array('class' => 'list-group'),
+                'htmlOptions' => array('class' => 'list-group leftsiteview'),
                 'activateItems' => true,
                 'activateParents' => true,
                 'activeCssClass' => 'active'
