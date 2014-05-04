@@ -1,13 +1,18 @@
 <?php
 $this->storeLinks=array(
-    array('label'=>'Add Product', 'url'=>array('/store/product/create'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+    array(
+        'label'=>'Add Product',
+        'url'=>array('/store/product/new'),
+        'icon'=>'<span class="glyphicon glyphicon-plus"></span>'
+    ),
 );
 $this->storeMenu=array(
-    array('label'=>'Store Settings', 'url'=>array('/store/store/settings')),
-    //array('label'=>'Manage Products', 'url'=>array('/store/product/admin')),
+    array(
+        'label'=>'Store Settings',
+        'url'=>array('/store/store/settings')
+    ),
 );
 $this->menu['storeProducts']['active'] = true;
-?>
+$this->renderPartial('_new_product_form', array( 'product'=>$product ));
 
-<h1 class="page-title">Product</h1>
-<?php $this->renderPartial('_form', array('product'=>$product, 'productDetail'=>$productDetail)); ?>
+?>

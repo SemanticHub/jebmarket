@@ -1,14 +1,11 @@
 <?php
 
-class ProductController extends StoreBaseController
-{
+class ProductController extends StoreBaseController {
 
 	public $layout='main';
-
 	public $defaultAction = 'admin';
 
-	public function filters()
-	{
+	public function filters() {
 		return array(
             'storeRights', // rights module impl for store
 			'accessControl', // perform access control for CRUD operations
@@ -16,8 +13,7 @@ class ProductController extends StoreBaseController
 		);
 	}
 
-	public function accessRules()
-	{
+	public function accessRules() {
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				//'actions'=>array('index','view'),
@@ -37,13 +33,22 @@ class ProductController extends StoreBaseController
 		);
 	}
 
-	public function actionView($id)
-	{
+	public function actionView($id) {
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
 	}
 
+    public function actionNew() {
+        $product=new Product;
+        $product->store_id = Store::model()->getUserStoreId();
+        $product->status = 0;
+        $product->added = date("Y-m-d H:i:s");
+
+        $product->productDetail = new ProductDetail;
+
+        $this->render('create', array( 'product'=>$product ));
+    }
 
 	public function actionCreate()
 	{
@@ -66,7 +71,6 @@ class ProductController extends StoreBaseController
         $product = new Product;
         $product->store_id = Store::model()->getUserStoreId();
         $product->status = 0;
-        $product->title = 'new product';
         $product->added = date("Y-m-d H:i:s");
         //$product->published = 0;
 
@@ -85,12 +89,12 @@ class ProductController extends StoreBaseController
     /*
      * This is for security, so that reloading the page will add another product
      *  */
-    public function actionNew($id){
+    /*public function actionNew($id){
         $product = Product::model()->findByPk($id);
         $productDetail = ProductDetail::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
 
         $this->render('create',array('product'=>$product, 'productDetail'=>$productDetail));
-    }
+    }*/
 
 	//public function actionUpdate($id)
 	//{

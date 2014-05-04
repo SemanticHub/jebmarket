@@ -80,7 +80,7 @@ class Product extends CActiveRecord
 			'store_id' => 'Store',
 			'manufacture_id' => 'Manufacture',
 			'status' => 'Status',
-			'title' => 'Title',
+			'title' => 'Product Title',
 			'sku' => 'Sku',
 			'barcode_type' => 'Barcode Type',
 			'barcode_value' => 'Barcode Value',
