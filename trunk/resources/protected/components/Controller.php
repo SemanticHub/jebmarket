@@ -46,6 +46,7 @@ class Controller extends RController {
      * Set all Application Settings from database to Yii::app()->params so that we can still use Yii::app()->params['paramName']
      */
     public function init() {
+        Yii::app()->theme = Website::model()->theme();
         parent::init();
         Yii::app()->params = CMap::mergeArray(Yii::app()->params, Settings::model()->getParams());
         $this->verifiedUser();

@@ -86,7 +86,6 @@ class MenuController extends Controller {
     }
 
     public function actionOrder() {
-        $this->layout = false;
         if (isset($_POST['Menu'])) {
             $data = json_decode($_POST['Menu'], TRUE);
             $ordnum = 0;
