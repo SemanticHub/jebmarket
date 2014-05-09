@@ -141,6 +141,23 @@ class Website extends CActiveRecord
     }
 
     /**
+     * @return array|mixed|null
+     */
+    public function theme()
+    {
+        $user_id = $this->findByAttributes(array('domain'=>$this->domainName()));
+        $theme = 'jebmarket';
+        if(!empty($user_id->jebapp_user_id)){
+            $theme_id = UserTemplate::model()->findByAttributes(array('jebapp_user_id'=>$user_id->jebapp_user_id, 'active' => '1'));
+            if(!empty($theme_id->jebapp_template_id)){
+                $themeName = Template::model()->findByAttributes(array('id'=>$theme_id->jebapp_template_id));
+                $theme = $themeName->name;
+            }
+        }
+        return $theme;
+    }
+
+    /**
      * @param $name
      * @return array|mixed|null
      */

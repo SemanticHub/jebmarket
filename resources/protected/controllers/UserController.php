@@ -351,7 +351,15 @@ EOF;
     public function actionStep3() {
         $this->layout = false;
         Yii::app()->clientScript->scriptMap=array('jquery.js'=>false);
-        $this->render('step3');
+        $userTemplate = Template::model()->findAll(array('condition' => 'active=1', 'order' => 'update_date DESC'));
+        $dataProvider=new CArrayDataProvider($userTemplate, array(
+            'pagination'=>array(
+                'pageSize'=>200,
+            ),
+        ));
+        $this->render('step3',array(
+            'dataProvider'=>$dataProvider,
+        ));
     }
 
     /**

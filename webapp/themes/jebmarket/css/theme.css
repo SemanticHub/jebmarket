@@ -1188,6 +1188,12 @@ form .alert {
     background: -webkit-gradient(radial,50% 25%,0,50% 25%,800,from(rgba(0,0,0,.85)),to(#000)) transparent;
     background: -moz-radial-gradient(center 45deg,circle cover,rgba(0,0,0,.85) 0%,#000 100%) transparent;
 }
+#template_views {
+    background: #000;
+    background: -webkit-gradient(radial,50% 25%,0,50% 25%,800,from(rgba(66, 62, 62, 0.85)),to(#000)) transparent;
+    background: -moz-radial-gradient(center 45deg,circle cover,rgba(0,0,0,.85) 0%,#000 100%) transparent;
+    overflow: hidden;
+}
 #signup_box.modal .modal-content, #signup_box2.modal .modal-content, #signup_box3.modal .modal-content, #signup_box.modal .modal-header, #signup_box2.modal .modal-header, #signup_box3.modal .modal-header, #signup_box.modal .form-control-wrapper, #signup_box2.modal .form-control-wrapper, #signup_box3.modal .form-control-wrapper, #signup_box.modal .panel, #signup_box2.modal .panel, #signup_box3.modal .panel {
     background: none;
     border: none;
@@ -1333,6 +1339,109 @@ body.dragging, body.dragging * {
 }
 .dashboard .leftsiteview{
     margin-top: 25px;
+}
+.admin_template .viewimg, .front_template .viewimg{
+    max-height: 238px;
+    overflow: hidden;
+    margin: 0;
+    float: left;
+}
+.admin_template .template_title, .front_template .template_title{
+    margin: 0;
+    padding: 0;
+    background: #F3EAEA;
+    float: left;
+    width: 100%;
+    border-top: 2px solid #D3D3D3;
+}
+.admin_template .template_title h4, .front_template .template_title h4{
+    margin: 0;
+    padding: 7px 4px;
+    font-size: 16px;
+    float: left;
+    color: #000;
+}
+.admin_template .template_title a, .front_template .template_title a{
+    float: right;
+    margin: 4px 4px 0 0;
+}
+.admin_template .view_theme, .front_template .view_theme{
+    margin: 0 0 15px 0;
+    padding: 0;
+    float: left;
+}
+.admin_template .template_buttons, .front_template .template_buttons{
+     margin: 0;
+     padding: 0;
+     background: #F3EAEA;
+     float: left;
+     width: 100%;
+    border-bottom: 2px solid #D3D3D3;
+ }
+.admin_template .template_buttons.active, .admin_template .template_title.active{
+    background: #2f2f2f;
+}
+.admin_template .template_title.active h4{
+    color: #ffffff;
+}
+.admin_template .template_buttons .right_site, .front_template .template_buttons .right_site{
+    margin: 4px;
+    padding: 0;
+    float: right;
+    text-align: right;
+}
+.admin_template .template_buttons .left_site, .front_template .template_buttons .left_site{
+    margin: 4px;
+    padding: 0;
+    float: left;
+    text-align: left;
+}
+.admin_template .template_buttons .left_site h4{
+    margin: 2px 0 0 0;
+    padding: 0;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+#signup_template_list .img-thumbnail{
+    height: 165px;
+    width: 100%;
+}
+.single_template_view{
+    background: none;
+}
+.single_template_view .image_left{
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+.single_template_view .content_right{
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+#template_views .modal-content{
+    box-shadow: none;
+    border: none;
+    background: none;
+}
+#template_views .modal-dialog{
+    margin: 50px auto;
+}
+#template_views.modal{
+    overflow: initial;
+}
+.single_template_view .img-thumbnail{
+    width: 500px;
+    margin-right: 20px;
+}
+.single_template_view .content_right h3{
+    color: #ffffff;
+    font-weight: bolder;
+    font-size: 30px;
+}
+.single_template_view .content_right p{
+    color: #ffffff;
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
@@ -1660,7 +1769,8 @@ body.dragging, body.dragging * {
     font-weight: 600; background: #f6f6f6; text-transform: uppercase; font-size: 0.9em; text-align: right; width: 150px;
 }
 .modal-body {
-    max-height: 450px; overflow-y: auto;
+    /*max-height: 450px;
+    overflow-y: auto;*/
 }
 .modal-title.page-title {
     color: #EC6030; font-weight: 600;
