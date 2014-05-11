@@ -20,7 +20,7 @@ class ProductController extends StoreBaseController {
 				//'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'new'),
+				'actions'=>array('create','update', 'new', 'discard', 'edit'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -47,7 +47,58 @@ class ProductController extends StoreBaseController {
 
         $product->productDetail = new ProductDetail;
 
+        if(isset($_POST['Product'])) {
+            $product->attributes=$_POST['Product'];
+            $product->productDetail->attributes = $_POST['ProductDetail'];
+            $product->validate();
+            $product->productDetail->validate();
+
+            if($product->save()) {
+                $product->productDetail->product_id = $product->id;
+                $product->productDetail->save();
+                $productImages = $this->getAttachedImages();
+                Yii::import("ext.JebUpload.JebFileUploader");
+                foreach($productImages as $k=>$v) {
+                    $i = $v;
+                    $i->product_id = $product->id;
+
+
+
+                    $dir_media = 'media/store/'.Store::model()->getUserStoreId();
+
+                    if(!is_dir($dir_media)){
+                        mkdir($dir_media, 0777);
+                    }
+
+                    $i->image_file->saveAs($dir_media);
+
+                    if(!$i->image_file->hasError)
+                        $i->save();
+                    else
+                        Yii::app()->user->setFlash('error', 'There was an error with saving image files.');
+                }
+                $this->clearAttachedImages();
+                $this->redirect($this->actionAdmin());
+            }
+        }
+
         $this->render('create', array( 'product'=>$product ));
+    }
+
+    public function actionDiscard() {
+        $this->clearAttachedImages();
+        $this->redirect($this->actionAdmin());
+    }
+
+    private  function  getAttachedImages() {
+        if(isset($_SESSION['tempProductImages']) && !empty($_SESSION['tempProductImages']))
+            return $_SESSION['tempProductImages'];
+        else
+            return false;
+    }
+
+    private  function  clearAttachedImages() {
+        unset($_SESSION['tempProductImages']);
     }
 
 	public function actionCreate()
@@ -96,27 +147,13 @@ class ProductController extends StoreBaseController {
         $this->render('create',array('product'=>$product, 'productDetail'=>$productDetail));
     }*/
 
-	//public function actionUpdate($id)
-	//{
-        //$es = new EditableSaver('Product');
-        //$es->update();
+	public function actionEdit($id)
+	{
+        $product = Product::model()->findByPk($id);
+        $productDetail = ProductDetail::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
 
-		/*$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Product']))
-		{
-			$model->attributes=$_POST['Product'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));*/
-	//}
+        $this->render('update',array('product'=>$product, 'productDetail'=>$productDetail));
+	}
     public function actionUpdate() {
         $es = new EditableSaver('Product');
         $es->update();
@@ -126,9 +163,13 @@ class ProductController extends StoreBaseController {
 	{
 		//$this->loadModel($id)->delete();
         $product = $this->loadModel($id);
-        $productDetail = ProductDetail::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
+        //$productDetail = ProductDetail::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
+        //$productImages = ProductImage::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
 
-        if($productDetail->delete()) $product->delete();
+        StoreProductImage::model()->deleteAllByAttributes(array('product_id' => $product->id));
+        ProductDetail::model()->deleteAllByAttributes(array('product_id' => $product->id));
+
+        $product->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

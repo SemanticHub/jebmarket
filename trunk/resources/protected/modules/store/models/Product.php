@@ -21,7 +21,7 @@
  * @property string $default_image
  *
  * The followings are the available model relations:
- * @property ProductDetail[] $productDetail
+ * @property ProductDetail $productDetail
  * @property ProductImage[] $productImages
  * @property ProductManufacture $productManufacture
  */
@@ -64,7 +64,7 @@ class Product extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'productDetail' => array(self::HAS_MANY, 'ProductDetail', 'product_id'),
+			'productDetail' => array(self::HAS_ONE, 'ProductDetail', 'product_id'),
 			'productImages' => array(self::HAS_MANY, 'ProductImage', 'product_id'),
             'productManufacture'=>array(self::HAS_ONE, 'manufacture', 'manufacture_id'),
 		);
