@@ -33,7 +33,7 @@ class ProductDetail extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('product_id', 'required'),
+			//array('product_id', 'required'),
 			array('product_id', 'numerical', 'integerOnly'=>true),
 			array('keyword, meta_description', 'length', 'max'=>255),
 			array('buy_price', 'length', 'max'=>20),

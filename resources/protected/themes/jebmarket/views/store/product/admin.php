@@ -76,7 +76,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                 'update' => array(
                     'label' => Yii::t('phrase', 'Edit'),
                     'imageUrl' => false,
-                    'url' => 'Yii::app()->createUrl("store/product/new", array("id"=>$data->id))',
+                    'url' => 'Yii::app()->createUrl("store/product/edit", array("id"=>$data->id))',
                     'options' => array('class' => 'btn btn-warning btn-xs')
                 ),
                 'delete' => array(
