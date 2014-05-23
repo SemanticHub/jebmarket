@@ -109,6 +109,14 @@ class Pages extends CActiveRecord {
         return parent::beforeSave();
     }
 
+    public function pageID()
+    {
+        $page = $this->findByAttributes(array('slug'=>Yii::app()->request->getParam('view'), 'jebapp_user_id'=>Yii::app()->user->id));
+        if(!empty($page->id)){
+            return $page->id;
+        }
+    }
+
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
