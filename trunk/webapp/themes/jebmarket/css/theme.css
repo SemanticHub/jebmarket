@@ -309,12 +309,11 @@ h1.page-title {
     background: #f7f7f7;
     padding-bottom: 99999px;
     margin-bottom: -99999px;
-    overflow: hidden;
 }
 .col-md-3.admin_pages_left{
     padding-right: 0;
     padding-left: 10px;
-    margin-top: -15px;
+    margin-top: 0;
 }
 .page_top_nav{
     padding: 0 6px 0 0;
@@ -454,7 +453,7 @@ h1.page-title {
     text-decoration: underline;
 }
 .col-md-10.dash_second_menu{
-    margin: 0 0 15px 0;
+    margin: 0;
     padding: 0;
 }
 .dash_second_menu .navbar-default{
@@ -1328,9 +1327,13 @@ body.dragging, body.dragging * {
 }
 .dashboard .col-md-9{
     width: 80%;
+    margin: 0;
+    padding-right: 0;
+    padding-left: 6px;
 }
 .dashboard .admin_pages_left{
     width: 20%;
+    z-index: 9;
 }
 .dashboard .viewyoursite{
     margin: 8px 0 8px 15px;
@@ -1442,6 +1445,16 @@ body.dragging, body.dragging * {
 }
 .single_template_view .content_right p{
     color: #ffffff;
+}
+.dashboard .sidebar-left{
+    width: 12%;
+}
+.dashboard .dash_second_menu{
+    width: 88%;
+}
+.admin_pages .pages_update{
+    margin: 0;
+    padding: 0;
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
@@ -2233,4 +2246,11 @@ Store Module Styles
     100% {
         background-position: -7px -400px;
     }
+}
+.lyrow{
+    margin: 0;
+    padding: 0;
+}
+.remove.label, .drag.label{
+    display: none;
 }

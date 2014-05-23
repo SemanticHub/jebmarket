@@ -6,6 +6,8 @@
  * The followings are the available columns in table 'jebapp_user_template':
  * @property integer $id
  * @property string $custom_template
+ * @property string $header
+ * @property string $footer
  * @property string $custom_js
  * @property string $custom_css
  * @property string $type
@@ -40,10 +42,10 @@ class UserTemplate extends CActiveRecord
 			array('jebapp_template_id, jebapp_user_id', 'required'),
 			array('active, jebapp_template_id, jebapp_user_id', 'numerical', 'integerOnly'=>true),
 			array('type', 'length', 'max'=>45),
-			array('custom_template, custom_js, custom_css, create_date, update_date', 'safe'),
+			array('custom_template, header, footer, custom_js, custom_css, create_date, update_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, custom_template, custom_js, custom_css, type, active, create_date, update_date, jebapp_template_id, jebapp_user_id', 'safe', 'on'=>'search'),
+			array('id, custom_template, header, footer, custom_js, custom_css, type, active, create_date, update_date, jebapp_template_id, jebapp_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +70,8 @@ class UserTemplate extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'custom_template' => 'Custom Template',
+            'header' => 'Header',
+            'footer' => 'Footer',
 			'custom_js' => 'Custom Js',
 			'custom_css' => 'Custom Css',
 			'type' => 'Type',
@@ -99,6 +103,8 @@ class UserTemplate extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('custom_template',$this->custom_template,true);
+        $criteria->compare('header',$this->header,true);
+        $criteria->compare('footer',$this->footer,true);
 		$criteria->compare('custom_js',$this->custom_js,true);
 		$criteria->compare('custom_css',$this->custom_css,true);
 		$criteria->compare('type',$this->type,true);
