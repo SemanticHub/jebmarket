@@ -6,9 +6,13 @@
     <?php if (isset($this->metaDescription)) { ?>
         <meta name="description" content="<?php echo $this->metaDescription ?>"><?php } ?>
     <?php if (isset($this->metaKeywords)) { ?>
-    <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
-    <?php $domainname = Website::model()->domainName(); if(empty($domainname)){ ?>
-    <link rel="shortcut icon" href="<?php echo Yii::app()->baseUrl; ?>/favicon.ico">
+        <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
+    <?php
+    $pageID = Pages::model()->pageID();
+    $domainname = Website::model()->domainName();
+    if(empty($domainname)){
+        ?>
+        <link rel="shortcut icon" href="<?php echo Yii::app()->baseUrl; ?>/favicon.ico">
     <?php }else{?>
         <link rel="shortcut icon" href="<?php echo Website::model()->logoName('favicon') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('favicon') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'favicon.ico'; ?>">
     <?php } ?>
@@ -19,12 +23,12 @@
     <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
 </head>
 <body class="edit">
-<?php if(!empty(Pages::model()->pageID())){ ?>
-<div class="sidebar-nav">
-<div class="alert alert-success save_success" style="font-size: 13px;margin: 0 0 10px;padding: 3px; color: #ffffff; background: #000; display: none;">
-    <p>Page Saved Successfully.</p>
-</div>
-<a href="#" class="btn btn-xs btn-primary" onclick="save()" id="save_custom"><i class="glyphicon glyphicon-save"></i> Save</a><br />
+<?php if(!empty($pageID)){ ?>
+    <div class="sidebar-nav">
+    <div class="alert alert-success save_success" style="font-size: 13px;margin: 0 0 10px;padding: 3px; color: #ffffff; background: #000; display: none;">
+        <p>Page Saved Successfully.</p>
+    </div>
+    <a href="#" class="btn btn-xs btn-primary" onclick="save()" id="save_custom"><i class="glyphicon glyphicon-save"></i> Save</a><br />
     <ul class="nav nav-list accordion-group">
         <li class="nav-header">
             <div class="pull-right popover-info">
@@ -1020,70 +1024,71 @@
     </div>
     </li>
     </ul>
-</div>
+    </div>
 <div class="sidebar_custom_view">
-<?php } ?>
-<div class="header_body">
-    <div class="navbar-wrapper" id="header_nav">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <?php if(empty($domainname)){ ?>
-                        <a class="navbar-brand logo" href="<?php echo Yii::app()->HomeUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
-                    <?php }else{?>
-                        <a class="navbar-brand logo_img" href="<?php echo Yii::app()->baseUrl.'/'.Website::model()->domainName(); ?>">
-                            <img src="<?php echo Website::model()->logoName('logo') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('logo') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'jebmarket_logo.png'; ?>" alt="" />
-                        </a>
-                    <?php } ?>
-                    <div id="header_right">
-                        <?php
-                        $this->widget('zii.widgets.CMenu', array(
-                            'encodeLabel' => false,
-                            'submenuHtmlOptions' => array('class' => 'dropdown-menu'),
-                            'items' => Menu::model()->renderMenuItems("topmenu"),
-                            'htmlOptions' => array('class' => 'nav nav-pills navbar-top navbar-right clearfix'),
-                        ));
-                        ?>
-                        <?php if(Yii::app()->params['activationStatus']) {  ?>
-                            <ul class="nav nav-pills navbar-top navbar-right clearfix">
-                                <li id="alert" class="label label-warning" style="padding: 3px 10px 6px 4px; text-shadow: 1px 1px 1px #999; cursor: pointer; text-transform: uppercase">
-                                    <?php echo '<span class="label label-danger">'.Yii::app()->params['activationStatus']['count'].'</span>'. Yii::t('phrase', ' days left to verify your account'); ?>
-                                </li>
-                            </ul>
-                            <script type="text/javascript">
-                                $(function(){
-                                    var alertPopover = $('#alert').popover({
-                                        html: true,
-                                        placement: 'bottom',
-                                        trigger: 'click',
-                                        content: '<div style="margin:0; text-align: center" class="alert alert-danger">' +
-                                            '<span class="glyphicon glyphicon-info-sign"></span> &#160; If you don\'t verify your email within next <span class="label label-danger">' +
-                                            <?php echo Yii::app()->params['activationStatus']['count'] ?> +
-                                            '</span> days, your account will be suspended.' +
-                                            '<br /><?php echo CHtml::ajaxLink("<span class=\"glyphicon glyphicon-send\"></span> &#160; Resend Verification Email Now", Yii::app()->createUrl("/user/sendajaxverification"), array('data' => '', 'update' => '#flashMessages'), array("class" => "btn btn-xs btn-primary")) ?></div>'
-                                    });
-                                });
-                            </script>
+    <?php } ?>
+    <div class="header_body">
+        <div class="navbar-wrapper" id="header_nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php if(empty($domainname)){ ?>
+                            <a class="navbar-brand logo" href="<?php echo Yii::app()->HomeUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
+                        <?php }else{?>
+                            <a class="navbar-brand logo_img" href="<?php echo Yii::app()->baseUrl.'/'.Website::model()->domainName(); ?>">
+                                <img src="<?php echo Website::model()->logoName('logo') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('logo') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'jebmarket_logo.png'; ?>" alt="" />
+                            </a>
                         <?php } ?>
-                        <div class="navbar navbar-inverse navbar-main">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="navbar-collapse collapse">
-                                <?php
-                                $this->widget('zii.widgets.CMenu', array(
-                                    'htmlOptions' => array('class' => 'nav navbar-nav navbar-right'),
-                                    'submenuHtmlOptions' => array('class' => 'dropdown-menu'),
-                                    'activeCssClass' => 'active',
-                                    'activateParents' => true,
-                                    'encodeLabel' => false,
-                                    'items' => Menu::model()->renderMenuItems("mainmenu"),
-                                ));
-                                ?>
+                        <div id="header_right">
+                            <?php
+                            $this->widget('zii.widgets.CMenu', array(
+                                'encodeLabel' => false,
+                                'submenuHtmlOptions' => array('class' => 'dropdown-menu'),
+                                'items' => Menu::model()->renderMenuItems("topmenu"),
+                                'htmlOptions' => array('class' => 'nav nav-pills navbar-top navbar-right clearfix'),
+                            ));
+                            ?>
+                            <?php if(Yii::app()->params['activationStatus']) {  ?>
+                                <ul class="nav nav-pills navbar-top navbar-right clearfix">
+                                    <li id="alert" class="label label-warning" style="padding: 3px 10px 6px 4px; text-shadow: 1px 1px 1px #999; cursor: pointer; text-transform: uppercase">
+                                        <?php echo '<span class="label label-danger">'.Yii::app()->params['activationStatus']['count'].'</span>'. Yii::t('phrase', ' days left to verify your account'); ?>
+                                    </li>
+                                </ul>
+                                <script type="text/javascript">
+                                    $(function(){
+                                        var alertPopover = $('#alert').popover({
+                                            html: true,
+                                            placement: 'bottom',
+                                            trigger: 'click',
+                                            content: '<div style="margin:0; text-align: center" class="alert alert-danger">' +
+                                                '<span class="glyphicon glyphicon-info-sign"></span> &#160; If you don\'t verify your email within next <span class="label label-danger">' +
+                                                <?php echo Yii::app()->params['activationStatus']['count'] ?> +
+                                                '</span> days, your account will be suspended.' +
+                                                '<br /><?php echo CHtml::ajaxLink("<span class=\"glyphicon glyphicon-send\"></span> &#160; Resend Verification Email Now", Yii::app()->createUrl("/user/sendajaxverification"), array('data' => '', 'update' => '#flashMessages'), array("class" => "btn btn-xs btn-primary")) ?></div>'
+                                        });
+                                    });
+                                </script>
+                            <?php } ?>
+                            <div class="navbar navbar-inverse navbar-main">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div class="navbar-collapse collapse">
+                                    <?php
+                                    $this->widget('zii.widgets.CMenu', array(
+                                        'htmlOptions' => array('class' => 'nav navbar-nav navbar-right'),
+                                        'submenuHtmlOptions' => array('class' => 'dropdown-menu'),
+                                        'activeCssClass' => 'active',
+                                        'activateParents' => true,
+                                        'encodeLabel' => false,
+                                        'items' => Menu::model()->renderMenuItems("mainmenu"),
+                                    ));
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1091,24 +1096,23 @@
             </div>
         </div>
     </div>
-</div>
-<div class="content_body theme_edit">
-    <div class="lyrow">
-        <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i> remove</a>
-        <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
-        <div class="view">
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                    <?php echo $content; ?>
+    <div class="content_body theme_edit">
+        <div class="lyrow">
+            <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i> remove</a>
+            <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+            <div class="view">
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <?php echo $content; ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="footer_body">
-    <div class="container">
-        <footer class="footer">
-            <p class="pull-right"><a class="footer-logo" href="#"><?php echo Yii::t('phrase', 'Back to top') ?></a></p>
+    <div class="footer_body">
+        <div class="container">
+            <footer class="footer">
+                <p class="pull-right"><a class="footer-logo" href="#"><?php echo Yii::t('phrase', 'Back to top') ?></a></p>
             <span class="footer-menu">
                 <ul class="nav nav-pills navbar-footer" style="border-right: 1px solid #ddd">
                     <li>
@@ -1122,31 +1126,31 @@
                 ));
                 ?>
             </span>
-        </footer>
+            </footer>
+        </div>
     </div>
-</div>
-<?php if(!empty(Pages::model()->pageID())){ ?>
+    <?php if(!empty($pageID)){ ?>
 </div>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/media/com_css/template_edit.css">
-<script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="http://cdn.transparensee.com/lib/jquery-plugin/touchpunch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://cdn.transparensee.com/lib/jquery-plugin/touchpunch/0.2.2/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/media/com_js/jquery.htmlClean.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/media/com_js/scripts.min.js"></script>
-<script>
-    function save()
-    {
-        downloadLayoutSrc();
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo  CHtml::normalizeUrl(array('pages/update','id'=>Pages::model()->pageID())); ?>',
-            data: { 'Pages[content]': $('#download-layout').html() },
-            success:function(data){
-                $('.save_success').show();
-            },
-            dataType:'html'
-        });
-    }
-</script>
+    <script>
+        function save()
+        {
+            downloadLayoutSrc();
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo  CHtml::normalizeUrl(array('pages/update','id'=>$pageID)); ?>',
+                data: { 'Pages[content]': $('#download-layout').html() },
+                success:function(data){
+                    $('.save_success').show();
+                },
+                dataType:'html'
+            });
+        }
+    </script>
 <?php } ?>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 7]>

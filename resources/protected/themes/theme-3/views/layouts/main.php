@@ -7,7 +7,11 @@
         <meta name="description" content="<?php echo $this->metaDescription ?>"><?php } ?>
     <?php if (isset($this->metaKeywords)) { ?>
         <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
-    <?php $domainname = Website::model()->domainName(); if(empty($domainname)){ ?>
+    <?php
+    $pageID = Pages::model()->pageID();
+    $domainname = Website::model()->domainName();
+    if(empty($domainname)){
+        ?>
         <link rel="shortcut icon" href="<?php echo Yii::app()->baseUrl; ?>/favicon.ico">
     <?php }else{?>
         <link rel="shortcut icon" href="<?php echo Website::model()->logoName('favicon') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('favicon') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'favicon.ico'; ?>">
@@ -19,7 +23,7 @@
     <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
 </head>
 <body class="edit">
-<?php if(!empty(Pages::model()->pageID())){ ?>
+<?php if(!empty($pageID)){ ?>
     <div class="sidebar-nav">
     <div class="alert alert-success save_success" style="font-size: 13px;margin: 0 0 10px;padding: 3px; color: #ffffff; background: #000; display: none;">
         <p>Page Saved Successfully.</p>
@@ -1125,7 +1129,7 @@
             </footer>
         </div>
     </div>
-    <?php if(!empty(Pages::model()->pageID())){ ?>
+    <?php if(!empty($pageID)){ ?>
 </div>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/media/com_css/template_edit.css">
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
@@ -1138,7 +1142,7 @@
             downloadLayoutSrc();
             $.ajax({
                 type: 'POST',
-                url: '<?php echo  CHtml::normalizeUrl(array('pages/update','id'=>Pages::model()->pageID())); ?>',
+                url: '<?php echo  CHtml::normalizeUrl(array('pages/update','id'=>$pageID)); ?>',
                 data: { 'Pages[content]': $('#download-layout').html() },
                 success:function(data){
                     $('.save_success').show();
