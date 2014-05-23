@@ -245,3 +245,9 @@ a.language-selected { font-style: italic; font-weight: bold; }
 .remove.label{
     display: none;
 }
+.header_body{
+    border-bottom: 2px solid #7BE640;
+}
+.footer_body{
+    border-top: 2px solid #7BE640;
+}
