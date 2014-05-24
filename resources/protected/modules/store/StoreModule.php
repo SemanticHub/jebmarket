@@ -33,6 +33,8 @@ class StoreModule extends CWebModule {
 
     public $transactionType = array();
 
+    public $productType = array();
+
     public $transactionPeriod = array();
 
     public static $messageTranslationCategory = 'storemodule';
@@ -57,6 +59,8 @@ class StoreModule extends CWebModule {
 		));
 
         if( empty($this->transactionType) ) $this->transactionType = $this->getStoreTransactionFeeType();
+
+        if( empty($this->productType) ) $this->productType = $this->getStoreProductType();
 
         if( empty($this->transactionPeriod) ) $this->transactionPeriod = $this->getStoreTransactionPeriod();
 
@@ -84,6 +88,14 @@ class StoreModule extends CWebModule {
             '1' => 'Free',
             '2' => 'Percentage Share',
             '3' => 'Fixed'
+        );
+    }
+
+    public function getStoreProductType(){
+        return array(
+            '1' => 'Physical',
+            '2' => 'Digital',
+            '3' => 'Service'
         );
     }
 

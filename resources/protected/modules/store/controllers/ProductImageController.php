@@ -53,12 +53,27 @@ class ProductImageController extends StoreBaseController
      */
     public function actionAttach()
     {
-        $model=new ProductImage;
-        $model->image_file = CUploadedFile::getInstance($model, 'image_file');
-        if(!isset($_SESSION['tempProductImages'])) {
-            $_SESSION['tempProductImages'] =  array();
+
+        Yii::app()->getModule('blog');
+        $dir_media = 'media/'.Yii::app()->user->id;
+
+        if(!is_dir($dir_media)){
+            mkdir($dir_media, 0777);
         }
-        array_push($_SESSION['tempProductImages'], $model);
+
+        $media = new Media();
+
+        $media->url = CUploadedFile::getInstance($media, 'url');
+        $media->caption = $media->url->getName();
+        $media->alternative_text = $media->url->getName();
+        $media->description = $media->url->getName();
+        if($media->url->saveAs($dir_media.'/'.$media->url->getName()))
+            $media->url = $media->url->getName();
+
+        $media->upload_date = date("Y-m-d H:i:s");
+        $media->modified_date = date("Y-m-d H:i:s");
+        $media->save();
+        echo $media->id;
     }
 
 

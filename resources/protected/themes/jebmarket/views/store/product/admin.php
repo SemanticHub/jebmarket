@@ -1,6 +1,6 @@
 <?php
 $this->storeLinks=array(
-    array('label'=>'Add Product', 'url'=>array('/store/product/new'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+    array('label'=>'Add Product', 'url'=>array('/store/product/new'), 'icon'=>'<span class="glyphicon glyphicon-plus" style="color:greenyellow"></span> '),
 );
 $this->storeMenu=array(
     array('label'=>'Store Settings', 'url'=>array('/store/store/settings')),

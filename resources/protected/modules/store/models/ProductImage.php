@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'jebapp_store_product_image':
  * @property integer $id
  * @property integer $product_id
+ * @property integer $media_id
  * @property string $image_file
  * @property string $alt_text
  * @property string $title_txt
@@ -31,14 +32,10 @@ class ProductImage extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			array('product_id, image_file', 'required'),
+			array('product_id', 'required'),
 			array('product_id, order, is_default', 'numerical', 'integerOnly'=>true),
 			array('image_file, alt_text, title_txt, tag', 'length', 'max'=>255),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, product_id, image_file, alt_text, title_txt, order, is_default, tag', 'safe', 'on'=>'search'),
 		);
 	}
@@ -48,10 +45,9 @@ class ProductImage extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'product' => array(self::BELONGS_TO, 'Product', 'product_id'),
+			//'media' => array(self::BELONGS_TO, 'Media', 'product_id'),
 		);
 	}
 
@@ -63,6 +59,7 @@ class ProductImage extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'product_id' => 'Product',
+			'media_id' => 'Media',
 			'image_file' => 'Image File',
 			'alt_text' => 'Alt Text',
 			'title_txt' => 'Title Txt',
@@ -75,23 +72,15 @@ class ProductImage extends CActiveRecord
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria=new CDbCriteria;
-
 		$criteria->compare('id',$this->id);
 		$criteria->compare('product_id',$this->product_id);
+		$criteria->compare('media_id',$this->media_id);
 		$criteria->compare('image_file',$this->image_file,true);
 		$criteria->compare('alt_text',$this->alt_text,true);
 		$criteria->compare('title_txt',$this->title_txt,true);

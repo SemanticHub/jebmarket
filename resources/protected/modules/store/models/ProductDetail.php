@@ -30,16 +30,11 @@ class ProductDetail extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			//array('product_id', 'required'),
 			array('product_id', 'numerical', 'integerOnly'=>true),
 			array('keyword, meta_description', 'length', 'max'=>255),
 			array('buy_price', 'length', 'max'=>20),
-			array('description', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
+			array('description, page_title', 'safe'),
 			array('id, product_id, description, keyword, meta_description, buy_price, page_title', 'safe', 'on'=>'search'),
 		);
 	}
@@ -47,10 +42,7 @@ class ProductDetail extends CActiveRecord
 	/**
 	 * @return array relational rules.
 	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
+	public function relations() {
 		return array(
 			'product' => array(self::BELONGS_TO, 'Product', 'product_id'),
 		);

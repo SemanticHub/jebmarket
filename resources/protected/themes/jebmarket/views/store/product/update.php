@@ -1,10 +1,19 @@
 <?php
 $this->storeLinks=array(
     array(
-        'label'=>'Add Product',
-        'url'=>array('/store/product/new'),
-        'icon'=>'<span class="glyphicon glyphicon-plus"></span>'
+        'id'=>'product-save-action-link',
+        'label'=>'Save',
+        'url'=>'#',
+        'class'=>'',
+        'icon'=>'<span class="glyphicon glyphicon-floppy-disk" style="color: cornflowerblue"></span>',
     ),
+    array(
+        'id'=>'product-cancel-action-link',
+        'label'=>'Cancel',
+        'url'=>'#',
+        'class'=>'',
+        'icon'=>'<span class="glyphicon glyphicon-floppy-remove" style="color: red"></span>'
+    )
 );
 $this->storeMenu=array(
     array(
@@ -13,8 +22,15 @@ $this->storeMenu=array(
     ),
 );
 $this->menu['storeProducts']['active'] = true;
+$this->renderPartial('_update_product_form', array( 'product'=>$product ));
 ?>
-
-<h1 class="page-title">Update Product <?php echo $product->id; ?></h1>
-
-<?php $this->renderPartial('_form', array('product'=>$product, 'productDetail'=>$productDetail)); ?>
+<script type="text/javascript">
+    $(function(){
+        $('#product-save-action-link').click(function(){
+            $('#edit-product-form').submit();
+        });
+        $('#product-cancel-action-link').click(function(){
+            $('#product-cancel-action-button').click();
+        })
+    });
+</script>
