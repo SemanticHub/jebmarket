@@ -1131,35 +1131,13 @@
     </div>
     <?php if(!empty($pageID)){ ?>
 </div>
-<link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/media/com_css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
-<link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/media/com_css/template_edit.css">
+<link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
+<link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/template_edit.css">
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
     <script type="text/javascript" src="http://cdn.transparensee.com/lib/jquery-plugin/touchpunch/0.2.2/jquery.ui.touch-punch.min.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/media/com_js/jquery.htmlClean.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/media/com_js/scripts.min.js"></script>
-    <script>
-        $(function() {
-            $(".header_body").resizable({
-                handles: 's'
-            });
-            $(".footer_body").resizable({
-                handles: 'n'
-            });
-        });
-        function save()
-        {
-            downloadLayoutSrc();
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo  CHtml::normalizeUrl(array('pages/update','id'=>$pageID)); ?>',
-                data: { 'Pages[content]': $('#download-layout').html() },
-                success:function(data){
-                    $('.save_success').show();
-                },
-                dataType:'html'
-            });
-        }
-    </script>
+    <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.htmlClean.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/component/js/scripts.min.js"></script>
+    <script src="<?php echo Yii::app()->baseUrl; ?>/component/ckeditor/ckeditor.js"></script>
 <?php } ?>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 7]>
