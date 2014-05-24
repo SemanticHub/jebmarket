@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'jebapp_store_product_category':
  * @property integer $id
+ * @property integer $store_id
  * @property integer $parent_id
  * @property integer $is_root
  * @property string $name
@@ -15,6 +16,9 @@
  * @property integer $shop_default
  * @property integer $status
  * @property integer $visibility
+ *
+ * The followings are the available model relations:
+ * @property Store $store
  */
 class ProductCategory extends CActiveRecord
 {
@@ -31,16 +35,13 @@ class ProductCategory extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('name', 'required'),
+			array('name', 'unique', 'caseSensitive'=>false, 'criteria'=>array('condition'=>'store_id=:store_id','params'=>array(':store_id'=>Store::model()->getUserStoreId()))),
 			array('parent_id, is_root, shop_default, status, visibility', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>45),
 			array('description, meta_description, meta_keyword, image', 'length', 'max'=>255),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, parent_id, is_root, name, description, meta_description, meta_keyword, image, shop_default, status, visibility', 'safe', 'on'=>'search'),
+			array('id, store_id, parent_id, is_root, name, description, meta_description, meta_keyword, image, shop_default, status, visibility', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,10 +50,9 @@ class ProductCategory extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-		);
+        return array(
+            'store' => array(self::BELONGS_TO, 'Store', 'store_id'),
+        );
 	}
 
 	/**
@@ -62,6 +62,7 @@ class ProductCategory extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'store_id' => 'Store',
 			'parent_id' => 'Parent',
 			'is_root' => 'Is Root',
 			'name' => 'Name',
@@ -77,23 +78,15 @@ class ProductCategory extends CActiveRecord
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('store_id',$this->store_id);
 		$criteria->compare('parent_id',$this->parent_id);
 		$criteria->compare('is_root',$this->is_root);
 		$criteria->compare('name',$this->name,true);

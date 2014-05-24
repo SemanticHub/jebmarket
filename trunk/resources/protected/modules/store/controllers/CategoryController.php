@@ -12,25 +12,12 @@ class CategoryController extends StoreBaseController
 		);
 	}
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'list'),
 				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin','JebAdmin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -39,23 +26,17 @@ class CategoryController extends StoreBaseController
 	}
 
 	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
-
-	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate()
 	{
-		$model=new StoreProductCategory;
+        $new = new ProductCategory();
+        $new->store_id = Store::model()->getUserStoreId();
+        $new->name = Yii::app()->request->getParam('name');;
+        $new->save();
+        echo "{id:".$new->id.", name: ".$new->name."}";
+		/*$model=new StoreProductCategory;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -69,19 +50,13 @@ class CategoryController extends StoreBaseController
 
 		$this->render('create',array(
 			'model'=>$model,
-		));
+		));*/
 	}
 
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['StoreProductCategory']))
@@ -96,11 +71,6 @@ class CategoryController extends StoreBaseController
 		));
 	}
 
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 */
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
@@ -110,20 +80,11 @@ class CategoryController extends StoreBaseController
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
+	public function actionList()
 	{
-		$dataProvider=new CActiveDataProvider('ProductCategory');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+        echo CJSON::encode(Editable::source(ProductCategory::model()->findAll('store_id=:store_id', array(':store_id'=>Store::model()->getUserStoreId())), 'id', 'name'));
+    }
 
-	/**
-	 * Manages all models.
-	 */
 	public function actionAdmin()
 	{
 		$model=new StoreProductCategory('search');
@@ -136,13 +97,6 @@ class CategoryController extends StoreBaseController
 		));
 	}
 
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return StoreProductCategory the loaded model
-	 * @throws CHttpException
-	 */
 	public function loadModel($id)
 	{
 		$model=StoreProductCategory::model()->findByPk($id);

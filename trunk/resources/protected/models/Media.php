@@ -1,29 +1,29 @@
 <?php
 
 /**
- * This is the model class for table "jebapp_store_product_image".
+ * This is the model class for table "jebapp_media".
  *
- * The followings are the available columns in table 'jebapp_store_product_image':
+ * The followings are the available columns in table 'jebapp_media':
  * @property integer $id
- * @property integer $product_id
- * @property string $image_file
- * @property string $alt_text
- * @property string $title_txt
- * @property integer $order
- * @property integer $is_default
- * @property string $tag
+ * @property string $caption
+ * @property string $alternative_text
+ * @property string $description
+ * @property string $url
+ * @property string $upload_date
+ * @property string $modified_date
+ * @property integer $jebapp_user_id
  *
  * The followings are the available model relations:
- * @property StoreProduct $product
+ * @property User $jebappUser
  */
-class StoreProductImage extends CActiveRecord
+class Media extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'jebapp_store_product_image';
+		return 'jebapp_media';
 	}
 
 	/**
@@ -34,12 +34,13 @@ class StoreProductImage extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('product_id, image_file', 'required'),
-			array('product_id, order, is_default', 'numerical', 'integerOnly'=>true),
-			array('image_file, alt_text, title_txt, tag', 'length', 'max'=>255),
+			array('caption, alternative_text, description, url', 'required'),
+			array('jebapp_user_id', 'numerical', 'integerOnly'=>true),
+			array('url', 'length', 'max'=>255),
+			array('upload_date, modified_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, product_id, image_file, alt_text, title_txt, order, is_default, tag', 'safe', 'on'=>'search'),
+			array('id, caption, alternative_text, description, url, upload_date, modified_date, jebapp_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,7 +52,7 @@ class StoreProductImage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'product' => array(self::BELONGS_TO, 'StoreProduct', 'product_id'),
+			'jebappUser' => array(self::BELONGS_TO, 'User', 'jebapp_user_id'),
 		);
 	}
 
@@ -62,13 +63,13 @@ class StoreProductImage extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'product_id' => 'Product',
-			'image_file' => 'Image File',
-			'alt_text' => 'Alt Text',
-			'title_txt' => 'Title Txt',
-			'order' => 'Order',
-			'is_default' => 'Is Default',
-			'tag' => 'Tag',
+			'caption' => 'Caption',
+			'alternative_text' => 'Alternative Text',
+			'description' => 'Description',
+			'url' => 'Url',
+			'upload_date' => 'Upload Date',
+			'modified_date' => 'Modified Date',
+			'jebapp_user_id' => 'Jebapp User',
 		);
 	}
 
@@ -91,24 +92,32 @@ class StoreProductImage extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('product_id',$this->product_id);
-		$criteria->compare('image_file',$this->image_file,true);
-		$criteria->compare('alt_text',$this->alt_text,true);
-		$criteria->compare('title_txt',$this->title_txt,true);
-		$criteria->compare('order',$this->order);
-		$criteria->compare('is_default',$this->is_default);
-		$criteria->compare('tag',$this->tag,true);
+		$criteria->compare('caption',$this->caption,true);
+		$criteria->compare('alternative_text',$this->alternative_text,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('url',$this->url,true);
+		$criteria->compare('upload_date',$this->upload_date,true);
+		$criteria->compare('modified_date',$this->modified_date,true);
+		$criteria->compare('jebapp_user_id',$this->jebapp_user_id = Yii::app()->user->id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 
+    /**
+     * @return bool
+     */
+    public function beforeSave() {
+        $this->jebapp_user_id = Yii::app()->user->id;
+        return parent::beforeSave();
+    }
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return StoreProductImage the static model class
+	 * @return Media the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

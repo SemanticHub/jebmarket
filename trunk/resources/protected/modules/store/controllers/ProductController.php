@@ -48,37 +48,39 @@ class ProductController extends StoreBaseController {
         $product->productDetail = new ProductDetail;
 
         if(isset($_POST['Product'])) {
+
+            // product
             $product->attributes=$_POST['Product'];
             $product->productDetail->attributes = $_POST['ProductDetail'];
             $product->validate();
             $product->productDetail->validate();
 
             if($product->save()) {
+
+                // product detail
                 $product->productDetail->product_id = $product->id;
                 $product->productDetail->save();
-                $productImages = $this->getAttachedImages();
-                Yii::import("ext.JebUpload.JebFileUploader");
-                foreach($productImages as $k=>$v) {
-                    $i = $v;
-                    $i->product_id = $product->id;
 
-
-
-                    $dir_media = 'media/store/'.Store::model()->getUserStoreId();
-
-                    if(!is_dir($dir_media)){
-                        mkdir($dir_media, 0777);
-                    }
-
-                    $i->image_file->saveAs($dir_media);
-
-                    if(!$i->image_file->hasError)
-                        $i->save();
-                    else
-                        Yii::app()->user->setFlash('error', 'There was an error with saving image files.');
+                // product categories
+                foreach ($product->productCategories as $categoryId) {
+                    $productToCategory = new ProductToCategory();
+                    $productToCategory->product_id = $product->id;
+                    $productToCategory->category_id = $categoryId;
+                    $productToCategory->validate();
+                    $productToCategory->save();
                 }
-                $this->clearAttachedImages();
+
+                // product image
+                foreach ($product->productImages as $mediaId) {
+                    $productImage = new ProductImage();
+                    $productImage->product_id = $product->id;
+                    $productImage->media_id = $mediaId;
+                    $productImage->image_file = Media::model()->findByPk($mediaId)->url;
+                    $productImage->validate();
+                    $productImage->save();
+                }
                 $this->redirect($this->actionAdmin());
+
             }
         }
 
@@ -86,106 +88,92 @@ class ProductController extends StoreBaseController {
     }
 
     public function actionDiscard() {
-        $this->clearAttachedImages();
+        //$this->clearAttachedImages();
         $this->redirect($this->actionAdmin());
     }
 
-    private  function  getAttachedImages() {
-        if(isset($_SESSION['tempProductImages']) && !empty($_SESSION['tempProductImages']))
-            return $_SESSION['tempProductImages'];
-        else
-            return false;
-    }
-
-    private  function  clearAttachedImages() {
-        unset($_SESSION['tempProductImages']);
-    }
-
-	public function actionCreate()
-	{
-		/*$model=new Product;
-        $model->productDetail = new ProductDetail;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Product']))
-		{
-			$model->attributes=$_POST['Product'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}*/
-
-		/*$this->render('create',array(
-			'model'=>$model,
-		));*/
-        $product = new Product;
-        $product->store_id = Store::model()->getUserStoreId();
-        $product->status = 0;
-        $product->added = date("Y-m-d H:i:s");
-        //$product->published = 0;
-
-        if($product->save()) {
-            $product->productDetail = new ProductDetail;
-            $product->productDetail->product_id = $product->id;
-
-            if($product->productDetail->save()) {
-                Yii::app()->user->setFlash($this->module->successFlashKey, "A new unpublished product has been created, update product information and set publish to make the product available for users.");
-                $this->redirect(array('new','id'=>$product->id));
-            }
+	public function actionEdit($id) {
+        $product = Product::model()->findByPk($id);
+        $product->productDetail = ProductDetail::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
+        $product->productImages = ProductImage::model()->findAll(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
+        $productCategories = [];
+        $productToCategory = ProductToCategory::model()->findAll(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
+        foreach($productToCategory as $k => $v) {
+            array_push($productCategories, $v->category_id);
         }
-        //$this->render('create',array('model'=>$product));
+        $product->productCategories = $productCategories;
+        $product->productManufacture = ProductManufacture::model()->findAll();
+
+        if(isset($_POST['Product'])) {
+
+            // product
+            $product->attributes=$_POST['Product'];
+            $product->productDetail->attributes = $_POST['ProductDetail'];
+
+            if($product->save()) {
+
+                // product detail
+                $product->productDetail->save();
+
+                // product categories
+                ProductToCategory::model()->deleteAll(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
+                foreach ($product->productCategories as $categoryId) {
+                    $productToCategory = new ProductToCategory();
+                    $productToCategory->product_id = $product->id;
+                    $productToCategory->category_id = $categoryId;
+                    $productToCategory->validate();
+                    $productToCategory->save();
+                }
+
+                // product image
+                /*foreach ($product->productImages as $mediaId) {
+                    $productImage = new ProductImage();
+                    $productImage->product_id = $product->id;
+                    $productImage->media_id = $mediaId;
+                    $productImage->image_file = Media::model()->findByPk($mediaId)->url;
+                    $productImage->validate();
+                    $productImage->save();
+                }*/
+                $this->redirect($this->actionAdmin());
+
+            }
+
+        }
+
+        $this->render('update',array('product'=>$product));
 	}
 
-    /*
-     * This is for security, so that reloading the page will add another product
-     *  */
-    /*public function actionNew($id){
-        $product = Product::model()->findByPk($id);
-        $productDetail = ProductDetail::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
-
-        $this->render('create',array('product'=>$product, 'productDetail'=>$productDetail));
-    }*/
-
-	public function actionEdit($id)
-	{
-        $product = Product::model()->findByPk($id);
-        $productDetail = ProductDetail::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
-
-        $this->render('update',array('product'=>$product, 'productDetail'=>$productDetail));
-	}
     public function actionUpdate() {
         $es = new EditableSaver('Product');
         $es->update();
     }
 
-	public function actionDelete($id)
-	{
-		//$this->loadModel($id)->delete();
+	public function actionDelete($id) {
+        // load core product
         $product = $this->loadModel($id);
-        //$productDetail = ProductDetail::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
-        //$productImages = ProductImage::model()->find(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
-
-        StoreProductImage::model()->deleteAllByAttributes(array('product_id' => $product->id));
-        ProductDetail::model()->deleteAllByAttributes(array('product_id' => $product->id));
-
+        // delete all productDetail if variations available
+        ProductDetail::model()->deleteAll(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
+        // delete all product to category reference but categories will still there for other products
+        ProductToCategory::model()->deleteAll(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
+        // delete all productImage but medias will still there for other products
+        ProductImage::model()->deleteAll(array('condition'=> 'product_id=:product_id', 'params'=> array(':product_id'=>$product->id)));
+        // delete the actual product
         $product->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        //Yii::app()->user->setFlash('success', 'Product successfully deleted.');
+        $this->setLiveFlashes('Product successfully deleted.');
+
+		if(!isset($_GET['ajax'])) $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
-	public function actionIndex()
-	{
+	public function actionIndex() {
 		$dataProvider=new CActiveDataProvider('Product');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}
 
-	public function actionAdmin()
-	{
+	public function actionAdmin() {
         $model=new Product('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Product']))
@@ -196,18 +184,15 @@ class ProductController extends StoreBaseController {
 		));
 	}
 
-	public function loadModel($id)
-	{
+	public function loadModel($id) {
 		$model=Product::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
 
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='product-form')
-		{
+	protected function performAjaxValidation($model) {
+		if(isset($_POST['ajax']) && $_POST['ajax']==='product-form') {
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}

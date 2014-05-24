@@ -1,35 +1,23 @@
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/comp/elastislide/css/elastislide.css">
-<style type="text/css">
-    .gallery {
-        width: 100%;max-width: 450px;margin: 0 auto;border-radius: 20px;position: relative;
-    }
-    .lt-ie8 .elastislide-list {
-        display: none;
-    }
-    @media screen and (max-width: 690px) {
-        .codrops-demos {
-            float: left;clear: both;
-        }
-    }
-</style>
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/elastislide/js/modernizr.custom.17475.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="<?php /*echo Yii::app()->theme->baseUrl; */?>/comp/elastislide/css/elastislide.css">-->
+<!--<link rel="stylesheet" type="text/css" href="<?php /*echo Yii::app()->theme->baseUrl; */?>/comp/select2/select2.css">-->
+<!--<script src="<?php /*echo Yii::app()->theme->baseUrl; */?>/comp/elastislide/js/modernizr.custom.17475.js"></script>-->
 <?php
-$form = $this->beginWidget('CActiveForm', array(
-    'id' => 'slider-form',
-    'enableAjaxValidation' => false,
-    'htmlOptions' => array(
-        'class' => '',
-        'role' => 'form',
-        'enctype' => 'multipart/form-data'
-    )
-));
+    $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'create-product-form',
+        'enableAjaxValidation' => false,
+        'htmlOptions' => array(
+            'class' => '',
+            'role' => 'form',
+            'enctype' => 'multipart/form-data'
+        )
+    ));
 ?>
 <h1 class="page-title row">
     <div class="col-md-6">New Product</div>
     <div class="col-md-6" style="text-align: right">
         <?php echo $form->radioButtonList($product,'status', array('0'=> 'Draft', '1'=> 'Publish') ,array('separator'=>' ', 'class'=>'publish_option')); ?>
         <?php echo CHtml::htmlButton(' <span class="glyphicon glyphicon-floppy-disk"></span> Save', array('submit'=> 'new','class' => 'btn btn-sm btn-primary')); ?>
-        <a style="color: #fff" class="btn btn-sm btn-danger" href="discard" role="button"> <span class="glyphicon glyphicon-floppy-remove"></span> Discard</a>
+        <a id="product-cancel-action-button" style="color: #fff" class="btn btn-sm btn-danger" href="discard" role="button"> <span class="glyphicon glyphicon-floppy-remove"></span> Discard</a>
     </div>
 </h1>
 <div class="row">
@@ -39,32 +27,37 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 <div class="row">
-    <div class="col-md-5" style="text-align: center">
-        <!--<div class="gallery">
-            <ul id="carousel" class="elastislide-list">
-                <li data-preview="http://placehold.it/400x400&text=image 1"><a href="#"><img src="http://placehold.it/90x90&text=1" alt="image01" /></a></li>
-                <li data-preview="http://placehold.it/400x400&text=image 2"><a href="#"><img src="http://placehold.it/90x90&text=2" alt="image02" /></a></li>
-                <li data-preview="http://placehold.it/400x400&text=image 3"><a href="#"><img src="http://placehold.it/90x90&text=3" alt="image03" /></a></li>
-                <li data-preview="http://placehold.it/400x400&text=image 4"><a href="#"><img src="http://placehold.it/90x90&text=4" alt="image04" /></a></li>
-                <li data-preview="http://placehold.it/400x400&text=image 5"><a href="#"><img src="http://placehold.it/90x90&text=5" alt="image05" /></a></li>
-            </ul>
-
-            <div class="image-preview" id="dropPreview">
-                <img id="preview" src="http://placehold.it/400x400&text=image" />
+    <div class="col-md-5">
+        <div class="form-group">
+            <?php echo $form->labelEx($product,'productImages', array('class' => 'control-label')); ?>
+            <div id="dropzone" class="dropzone">
+                 <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
             </div>
-        </div>-->
+        </div>
+        <hr class="" />
 
-        <div id="dropzone" class="dropzone">
-             <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+        <div class="form-group">
+            <?php echo $form->labelEx($product,'productCategories', array('class' => 'control-label'));?>
+            <?php echo $form->dropDownList($product, 'productCategories', CHtml::listData(ProductCategory::model()->findAll('store_id=:store_id', array(':store_id'=>Store::model()->getUserStoreId())), 'id', 'name'), array('multiple'=>'multiple', 'class'=>'form-control'));
+            echo $form->error($product,'productCategories'); ?>
+        </div>
+
+        <div class="form-group">
+            <?php
+                echo $form->labelEx($product,'manufacture_id', array('class' => 'control-label'));
+                echo $form->dropDownList($product, 'manufacture_id', CHtml::listData(ProductManufacture::model()->findAll(), 'id', 'name'), array('class'=>'form-control'));
+                echo $form->error($product,'manufacture_id');
+            ?>
         </div>
     </div>
 
     <div class="col-md-7">
         <div class="row">
-            <div class="col-sx-12">
-                <ol class="breadcrumb" style="margin-bottom: 0">
-                    <li><a href="#">Un-categorised</a></li>
-                </ol>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?php echo $form->labelEx($product,'type_id'); ?>
+                    <?php echo $form->radioButtonList($product,'type_id',Yii::app()->controller->module->productType, array( 'template'=> '{input} {label}', 'separator'=>' ','encode'=> false,'type'=>'text','class'=>'')); ?>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -112,7 +105,8 @@ $form = $this->beginWidget('CActiveForm', array(
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <?php echo $form->textarea($product,'short_details', array('class'=>'form-control ', 'value'=>'[['.$product->getAttributeLabel('short_details').']]')); ?>
+                    <?php echo $form->labelEx($product->productDetail,'short_details', array('class' => 'control-label')); ?>
+                    <?php echo $form->textarea($product,'short_details', array('class'=>'form-control ')); ?>
                     <?php echo $form->error($product,'short_details', array('class' => 'text-danger control-hint')); ?>
                 </div>
             </div>
@@ -120,8 +114,39 @@ $form = $this->beginWidget('CActiveForm', array(
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <?php echo $form->textarea($product->productDetail,'description', array('class'=>'form-control ', 'value'=>'[['.CHtml::encode(ProductDetail::model()->getAttributeLabel('description').']]'))); ?>
+                    <?php echo $form->labelEx($product->productDetail,'description', array('class' => 'control-label')); ?>
+                    <?php echo $form->textarea($product->productDetail,'description', array('class'=>'form-control ')); ?>
                     <?php echo $form->error($product->productDetail,'description', array('class' => 'text-danger control-hint')); ?>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label" for="Product_productImages">Seo</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?php echo $form->textField($product->productDetail,'page_title', array('class'=>'form-control ', 'placeholder'=> ProductDetail::model()->getAttributeLabel('page_title'))); ?>
+                    <?php echo $form->error($product->productDetail,'page_title', array('class' => 'text-danger control-hint')); ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?php echo $form->textField($product->productDetail,'keyword', array('class'=>'form-control ', 'placeholder'=> ProductDetail::model()->getAttributeLabel('keyword'))); ?>
+                    <?php echo $form->error($product->productDetail,'keyword', array('class' => 'text-danger control-hint')); ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?php echo $form->textarea($product->productDetail,'meta_description', array('class'=>'form-control ', 'placeholder'=> ProductDetail::model()->getAttributeLabel('meta_description'))); ?>
+                    <?php echo $form->error($product->productDetail,'meta_description', array('class' => 'text-danger control-hint')); ?>
                 </div>
             </div>
         </div>
@@ -129,9 +154,10 @@ $form = $this->beginWidget('CActiveForm', array(
 
 </div>
 <?php $this->endWidget(); ?>
-<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/elastislide/js/jquery.elastislide.js"></script>
+<!--<script type="text/javascript" src="<?php /*echo Yii::app()->theme->baseUrl; */?>/comp/elastislide/js/jquery.elastislide.js"></script>-->
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/dropzone.js"></script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>
+<!--<script src="<?php /*echo Yii::app()->theme->baseUrl; */?>/comp/select2/select2.min.js"></script>-->
 <script type="text/javascript">
     /*var current = 0,
         $preview = $( '#preview' ),
@@ -161,13 +187,20 @@ $form = $this->beginWidget('CActiveForm', array(
         carousel.setCurrent( pos );
 
     }*/
-
-    new Dropzone(
-        "div#dropzone", {
-            url: "../productImage/attach",
-            paramName : 'ProductImage[image_file]'
+    Dropzone.autoDiscover = false;
+    $('div#dropzone').dropzone({
+        url: "../productImage/attach",
+        paramName : 'Media[url]',
+        success: function(file, res){
+            $('<input/>', {
+                type: 'hidden',
+                name: 'Product[productImages][]',
+                value: res,
+                rel: 'internal'
+            }).appendTo('#dropzone');
+            return file.previewElement.classList.add("dz-success");
         }
-    );
+    });
 
     CKEDITOR.replace( 'Product_short_details', {
         extraPlugins : 'autogrow,placeholder',

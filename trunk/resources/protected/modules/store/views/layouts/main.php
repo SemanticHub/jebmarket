@@ -37,7 +37,7 @@
                         if(isset($this->storeLinks) && sizeof($this->storeLinks) > 0 ) {
                             foreach($this->storeLinks as $linkItem) {
                                 ?>
-                                <li><a href="<?php echo $this->createUrl($linkItem['url'][0]) ?>"><?php echo $linkItem['icon'].' ' ?> <?php echo $linkItem['label'] ?></a></li>
+                                <li><a <?php if(isset($linkItem['id'])) { ?>id="<?php echo $linkItem['id']; }?>" <?php if(isset($linkItem['class'])) { ?> class="<?php echo $linkItem['class'];} ?>" href="<?php echo $this->createUrl($linkItem['url'][0]) ?>"><?php echo $linkItem['icon'].' ' ?> <?php echo $linkItem['label'] ?></a></li>
                             <?php
                             }
                         }
