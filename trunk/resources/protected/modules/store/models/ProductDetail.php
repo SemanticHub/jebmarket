@@ -34,7 +34,7 @@ class ProductDetail extends CActiveRecord
 			array('product_id', 'numerical', 'integerOnly'=>true),
 			array('keyword, meta_description', 'length', 'max'=>255),
 			array('buy_price', 'length', 'max'=>20),
-			array('description, page_title', 'safe'),
+			array('description, page_title ', 'safe'),
 			array('id, product_id, description, keyword, meta_description, buy_price, page_title', 'safe', 'on'=>'search'),
 		);
 	}
