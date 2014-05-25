@@ -15,12 +15,8 @@ class ManufactureController extends StoreBaseController
 	public function accessRules()
 	{
 		return array(
-			/*array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),*/
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'setAdd', 'addNew'),
+				'actions'=>array('create','update', 'New'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -124,11 +120,12 @@ class ManufactureController extends StoreBaseController
 		}
 	}
 
-    public function actionAddNew(){
+    public function actionNew(){
         $newManufacture = new ProductManufacture;
         $newManufacture->name = $manufactureName = Yii::app()->request->getParam('name');;
         $newManufacture->save();
-        return "{id:".$newManufacture->id.", name: ".$newManufacture->name."}";
+        $data = array('id'=> $newManufacture->id, 'text' => $newManufacture->name);
+        echo CJSON::encode($data);
     }
 
     public function actionSetAdd(){

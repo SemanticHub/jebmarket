@@ -43,7 +43,7 @@
         <div class="form-group">
             <?php
                 echo $form->labelEx($product,'manufacture_id', array('class' => 'control-label'));
-                echo $form->dropDownList($product, 'manufacture_id', CHtml::listData(ProductManufacture::model()->findAll(), 'id', 'name'), array('class'=>'form-control'));
+                echo $form->dropDownList($product, 'manufacture_id', CHtml::listData(ProductManufacture::model()->findAll(), 'id', 'name'), array('style'=>'width:100%'));
                 echo $form->error($product,'manufacture_id');
             ?>
         </div>
@@ -158,8 +158,49 @@
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/select2/select2.min.js"></script>
 <script type="text/javascript">
     $(function(){
-        $("#Product_productCategories").select2();
+        $("#Product_productCategories").select2({
+            formatNoMatches : function(term) {
+                return "<a href=\"#\" onclick=\"return addNewCategory()\" alt=\""+term+"\" id=\"addNewActionOption\" class=\"btn btn-sm btn-primary\">Add</a>"
+            }
+        });
     });
+    function addNewCategory(){
+        $.ajax({
+            type: "POST",
+            url: "../category/create",
+            data: {name: $('#addNewActionOption').attr('alt') },
+            dataType: 'json',
+            success: function(data, page){
+                $("#Product_productCategories").append($('<option>', {value:data.id, text: data.text}));
+                var selectedItems = $("#Product_productCategories").select2("val");
+                selectedItems.push(data.id);
+                $("#Product_productCategories").select2("val", selectedItems);
+                $("#Product_productCategories").select2("close");
+            }
+        });
+    }
+    $(function(){
+        $("#Product_manufacture_id").select2({
+            formatNoMatches : function(term) {
+                return "<a href=\"#\" onclick=\"return addNewManufacture()\" alt=\""+term+"\" id=\"addNewActionManufacture\" class=\"btn btn-sm btn-primary\">Add</a>"
+            }
+        });
+    });
+    function addNewManufacture(){
+        $.ajax({
+            type: "POST",
+            url: "../manufacture/new",
+            data: {name: $('#addNewActionManufacture').attr('alt') },
+            dataType: 'json',
+            success: function(data, page){
+                $("#Product_manufacture_id").append($('<option>', {value:data.id, text: data.text}));
+                var selectedItems = $("#Product_productCategories").select2("val");
+                selectedItems.push(data.id);
+                $("#Product_manufacture_id").select2("val", selectedItems);
+                $("#Product_manufacture_id").select2("close");
+            }
+        });
+    }
     /*var current = 0,
         $preview = $( '#preview' ),
         $carouselEl = $( '#carousel' ),

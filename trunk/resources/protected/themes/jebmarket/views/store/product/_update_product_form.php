@@ -24,8 +24,8 @@
     <div class="col-md-6">Edit Product</div>
     <div class="col-md-6" style="text-align: right">
         <?php echo $form->radioButtonList($product,'status', array('0'=> 'Draft', '1'=> 'Publish') ,array('separator'=>' ', 'class'=>'publish_option')); ?>
-        <?php echo CHtml::htmlButton(' <span class="glyphicon glyphicon-floppy-disk"></span> Save', array('submit'=> 'new','class' => 'btn btn-sm btn-primary')); ?>
-        <a id="product-cancel-action-button" style="color: #fff" class="btn btn-sm btn-danger" href="discard" role="button"> <span class="glyphicon glyphicon-floppy-remove"></span> Discard</a>
+<!--        <?php /*echo CHtml::htmlButton(' <span class="glyphicon glyphicon-floppy-disk"></span> Save', array('submit'=> 'new','class' => 'btn btn-sm btn-primary')); */?>
+        <a id="product-cancel-action-button" style="color: #fff" class="btn btn-sm btn-danger" href="discard" role="button"> <span class="glyphicon glyphicon-floppy-remove"></span> Discard</a>-->
     </div>
 </h1>
 <div class="row">
@@ -64,7 +64,7 @@
         <div class="form-group">
             <?php
                 echo $form->labelEx($product,'manufacture_id', array('class' => 'control-label'));
-                echo $form->dropDownList($product, 'manufacture_id', CHtml::listData(ProductManufacture::model()->findAll(), 'id', 'name'), array('class'=>'form-control'));
+                echo $form->dropDownList($product, 'manufacture_id', CHtml::listData(ProductManufacture::model()->findAll(), 'id', 'name'), array('style'=>'width:100%'));
                 echo $form->error($product,'manufacture_id');
             ?>
         </div>
@@ -182,8 +182,49 @@
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/select2/select2.min.js"></script>
 <script type="text/javascript">
     $(function(){
-        $("#Product_productCategories").select2();
+        $("#Product_productCategories").select2({
+            formatNoMatches : function(term) {
+                return "<a href=\"#\" onclick=\"return addNewCategory()\" alt=\""+term+"\" id=\"addNewActionOption\" class=\"btn btn-sm btn-primary\">Add</a>"
+            }
+        });
     });
+    function addNewCategory(){
+        $.ajax({
+            type: "POST",
+            url: "../category/create",
+            data: {name: $('#addNewActionOption').attr('alt') },
+            dataType: 'json',
+            success: function(data, page){
+                $("#Product_productCategories").append($('<option>', {value:data.id, text: data.text}));
+                var selectedItems = $("#Product_productCategories").select2("val");
+                selectedItems.push(data.id);
+                $("#Product_productCategories").select2("val", selectedItems);
+                $("#Product_productCategories").select2("close");
+            }
+        });
+    }
+    $(function(){
+        $("#Product_manufacture_id").select2({
+            formatNoMatches : function(term) {
+                return "<a href=\"#\" onclick=\"return addNewManufacture()\" alt=\""+term+"\" id=\"addNewActionManufacture\" class=\"btn btn-sm btn-primary\">Add</a>"
+            }
+        });
+    });
+    function addNewManufacture(){
+        $.ajax({
+            type: "POST",
+            url: "../manufacture/new",
+            data: {name: $('#addNewActionManufacture').attr('alt') },
+            dataType: 'json',
+            success: function(data, page){
+                $("#Product_manufacture_id").append($('<option>', {value:data.id, text: data.text}));
+                var selectedItems = $("#Product_productCategories").select2("val");
+                selectedItems.push(data.id);
+                $("#Product_manufacture_id").select2("val", selectedItems);
+                $("#Product_manufacture_id").select2("close");
+            }
+        });
+    }
     var current = 0,
         $preview = $( '#preview' ),
         $carouselEl = $( '#carousel' ),

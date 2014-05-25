@@ -35,22 +35,8 @@ class CategoryController extends StoreBaseController
         $new->store_id = Store::model()->getUserStoreId();
         $new->name = Yii::app()->request->getParam('name');;
         $new->save();
-        echo "{id:".$new->id.", name: ".$new->name."}";
-		/*$model=new StoreProductCategory;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['StoreProductCategory']))
-		{
-			$model->attributes=$_POST['StoreProductCategory'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));*/
+        $data = array('id'=> $new->id, 'text' => $new->name);
+        echo CJSON::encode($data);
 	}
 
 	public function actionUpdate($id)

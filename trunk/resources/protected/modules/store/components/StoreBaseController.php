@@ -49,6 +49,6 @@ class StoreBaseController extends CController {
     }
     public function setLiveFlashes($message, $type = 'success'){
         Yii::app()->user->setFlash($type, $message);
-        $this->renderPartial('//layouts/_flash_messages');
+        $this->renderPartial('/layouts/_flash_messages');
     }
 }
