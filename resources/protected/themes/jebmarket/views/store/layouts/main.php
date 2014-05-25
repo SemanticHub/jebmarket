@@ -60,7 +60,7 @@
             </div>
     </nav>
     <div class="store-view-content">
-        <div id="flashMessages" style="position: absolute; z-index: 10; width: 98%">
+        <div id="flashMessages" style="z-index: 10; width: 98%">
             <?php $this->renderPartial('/layouts/_flash_messages');?>
         </div>
         <?php echo $content; ?>
