@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/comp/elastislide/css/elastislide.css">
-<!--<link rel="stylesheet" type="text/css" href="<?php /*echo Yii::app()->theme->baseUrl; */?>/comp/select2/select2.css">-->
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/comp/select2/select2.css">
 <style type="text/css">
     .gallery { width: 100%;max-width: 450px;margin: 0 auto;border-radius: 20px;position: relative; }
     .lt-ie8 .elastislide-list { display: none; }
@@ -57,7 +57,7 @@
 
         <div class="form-group">
             <?php echo $form->labelEx($product,'productCategories', array('class' => 'control-label'));?>
-            <?php echo $form->dropDownList($product, 'productCategories', CHtml::listData(ProductCategory::model()->findAll('store_id=:store_id', array(':store_id'=>Store::model()->getUserStoreId())), 'id', 'name'), array('multiple'=>'multiple', 'class'=>'form-control'));
+            <?php echo $form->dropDownList($product, 'productCategories', CHtml::listData(ProductCategory::model()->findAll('store_id=:store_id', array(':store_id'=>Store::model()->getUserStoreId())), 'id', 'name'), array('multiple'=>'multiple', 'style'=>'width: 100%'));
             echo $form->error($product,'productCategories'); ?>
         </div>
 
@@ -179,8 +179,11 @@
 <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/elastislide/js/jquery.elastislide.js"></script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/dropzone.js"></script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>
-<!--<script src="<?php /*echo Yii::app()->theme->baseUrl; */?>/comp/select2/select2.min.js"></script>-->
+<script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/select2/select2.min.js"></script>
 <script type="text/javascript">
+    $(function(){
+        $("#Product_productCategories").select2();
+    });
     var current = 0,
         $preview = $( '#preview' ),
         $carouselEl = $( '#carousel' ),

@@ -27,10 +27,10 @@ $this->renderPartial('_new_product_form', array( 'product'=>$product ));
 <script type="text/javascript">
     $(function(){
         $('#product-save-action-link').click(function(){
-            $('#product-form').submit();
+            $('#create-product-form').submit();
         });
         $('#product-cancel-action-link').click(function(){
-            $('#product-cancel-action-button').click();
+            location.href = 'discard';
         })
     });
 </script>

@@ -62,6 +62,11 @@ return array(
                 '2' => 'Percentage Share',
                 '3' => 'Fixed'
             ),
+            'productType' => array(
+                '1' => 'Physical',
+                '2' => 'Digital',
+                '3' => 'Service'
+            ),
             'successFlashKey'=>'success',
             'warningFlashKey'=>'warning',
             'errorFlashKey'=>'danger',

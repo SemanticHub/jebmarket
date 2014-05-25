@@ -30,7 +30,7 @@ $this->renderPartial('_update_product_form', array( 'product'=>$product ));
             $('#edit-product-form').submit();
         });
         $('#product-cancel-action-link').click(function(){
-            $('#product-cancel-action-button').click();
+            location.href = 'discard';
         })
     });
 </script>
