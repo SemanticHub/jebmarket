@@ -3,8 +3,9 @@
 class ManufactureController extends StoreBaseController
 {
 
-	public function filters()
-	{
+	public $defaultAction = "admin";
+
+    public function filters() {
 		return array(
             'storeRights', // rights module impl for store
 			'accessControl', // perform access control for CRUD operations
@@ -16,7 +17,7 @@ class ManufactureController extends StoreBaseController
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'New'),
+				'actions'=>array('create','update', 'New', 'admin'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -91,17 +92,14 @@ class ManufactureController extends StoreBaseController
 		));
 	}*/
 
-	/*public function actionAdmin()
-	{
-		$model=new StoreProductCategory('search');
+	public function actionAdmin() {
+		$model=new ProductManufacture('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['StoreProductCategory']))
-			$model->attributes=$_GET['StoreProductCategory'];
+		if(isset($_GET['ProductManufacture']))
+			$model->attributes=$_GET['ProductManufacture'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}*/
+		$this->render('admin',array( 'model'=>$model));
+	}
 
 	public function loadModel($id)
 	{
