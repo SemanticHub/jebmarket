@@ -3,7 +3,8 @@
 class CategoryController extends StoreBaseController
 {
 
-	public function filters()
+    public $defaultAction = "admin";
+    public function filters()
 	{
 		return array(
             'storeRights', // rights module impl for store
@@ -16,7 +17,7 @@ class CategoryController extends StoreBaseController
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'list'),
+				'actions'=>array('create','update', 'admin'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -66,17 +67,11 @@ class CategoryController extends StoreBaseController
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
-	public function actionList()
-	{
-        echo CJSON::encode(Editable::source(ProductCategory::model()->findAll('store_id=:store_id', array(':store_id'=>Store::model()->getUserStoreId())), 'id', 'name'));
-    }
-
-	public function actionAdmin()
-	{
-		$model=new StoreProductCategory('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['StoreProductCategory']))
-			$model->attributes=$_GET['StoreProductCategory'];
+	public function actionAdmin() {
+		$model=new ProductCategory('search');
+		$model->unsetAttributes();
+		if(isset($_GET['ProductCategory']))
+			$model->attributes=$_GET['ProductCategory'];
 
 		$this->render('admin',array(
 			'model'=>$model,

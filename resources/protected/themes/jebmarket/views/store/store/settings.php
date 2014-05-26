@@ -1,6 +1,6 @@
 <?php
 $this->storeLinks=array(
-    array('label'=>'My Store', 'url'=>array('/store/store'), 'icon'=>'<span class="glyphicon glyphicon-cog icon-store-store"></span> '),
+    array('label'=>'My Store', 'url'=>array('/store/store'), 'icon'=>'<span class="glyphicon glyphicon-cog icon-store-store"></span>'),
 );
 ?>
 <h1 class="page-title">Store Settings</h1>
