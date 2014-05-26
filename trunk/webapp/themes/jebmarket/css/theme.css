@@ -1803,9 +1803,11 @@ body.dragging, body.dragging * {
     padding: 10px 15px; color: #999; font-weight: 600; text-shadow: 1px 1px 3px #000;
 }
 .navbar-store .navbar-nav>li>a, .navbar-store .navbar-nav>li>a:hover{
-    padding-top: 13px; padding-bottom: 12px; color: #fff; text-transform: uppercase;
+    padding-top: 13px; padding-bottom: 12px; color: #fff; text-transform: uppercase; font-size: 13px; font-weight: 600;
 }
-
+.navbar-store .navbar-nav>li>a:hover {
+    text-decoration: underline; color: #ccc;
+}
 /*
 Store Module Styles
 */
@@ -2253,4 +2255,32 @@ Store Module Styles
 }
 .remove.label, .drag.label{
     display: none;
+}
+.store-view-content h4 {
+    margin-top: 0;
+}
+/* menu bootstrap icons and colors */
+.glyphicon {
+    margin-right: 5px;
+}
+.icon-store-store {
+    color: orangered;
+}
+.icon-store-product {
+    color: #0099ff;
+}
+.icon-store-product-category {
+    color: #0099ff;
+}
+.icon-store-product-manufacture {
+    color: #0099ff;
+}
+.icon-store-product-add {
+    color: #0099ff;
+}
+.icon-store-customer {
+    color: limegreen;
+}
+.icon-store-settings {
+    color: deeppink;
 }
