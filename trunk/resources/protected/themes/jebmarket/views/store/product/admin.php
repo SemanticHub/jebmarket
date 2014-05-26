@@ -1,39 +1,17 @@
 <?php
 $this->storeLinks=array(
-    array('label'=>'Add Product', 'url'=>array('/store/product/new'), 'icon'=>'<span class="glyphicon glyphicon-plus" style="color:greenyellow"></span> '),
+    array('label'=>'Add Product', 'url'=>array('/store/product/new'), 'icon'=>'<span class="glyphicon glyphicon-plus icon-store-product-add"></span>'),
+    array('label'=>'Categories', 'url'=> '#', 'icon'=>'<span class="glyphicon glyphicon-list-alt icon-store-product-category"></span>'),
+    array('label'=>'Manufactures', 'url'=> '#', 'icon'=>'<span class="glyphicon glyphicon-certificate icon-store-product-manufacture"></span>'),
 );
-$this->storeMenu=array(
+/*$this->storeMenu=array(
     array('label'=>'Store Settings', 'url'=>array('/store/store/settings')),
     //array('label'=>'Manage Products', 'url'=>array('/store/product/admin')),
-);
+);*/
 $this->menu['storeProducts']['active'] = true;
-/*Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#product-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");*/
 ?>
 
 <h1 class="page-title">Manage Products</h1>
-
-<!--<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php /*echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); */?>
-<div class="search-form" style="display:none">
-<?php /*$this->renderPartial('_search',array(
-  	'model'=>$model,
-)); */?>
-</div>-->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'product-grid',

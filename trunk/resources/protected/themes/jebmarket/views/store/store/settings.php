@@ -1,6 +1,7 @@
 <?php
-//$this->menu = Yii::app()->params['usermenu'];
-//$this->menu['myStore']['active'] = true;
+$this->storeLinks=array(
+    array('label'=>'My Store', 'url'=>array('/store/store'), 'icon'=>'<span class="glyphicon glyphicon-cog icon-store-store"></span> '),
+);
 ?>
 <h1 class="page-title">Store Settings</h1>
 <div class="row">
