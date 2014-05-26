@@ -3,6 +3,7 @@
 .elastislide-list {
 	list-style-type: none;
 	display: none;
+    max-height: 120px;
 }
 
 .no-js .elastislide-list {
