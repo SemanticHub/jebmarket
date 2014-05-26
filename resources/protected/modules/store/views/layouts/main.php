@@ -23,9 +23,7 @@
                         . ' '
                         . ( $store->visibility ? '<span class="label label-info">Private</span>' : '<span class="label label-info">Public</span>')
                         . ' '
-                        . ('<span class="label label-default">' . $store->timezone . '</span>')
-                        . ' '
-                        . '<a href="" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-cog"></span></a>';
+                        . ('<span class="label label-default">' . $store->timezone . '</span>');
                     ?>
                 </div>
             </div>
@@ -37,10 +35,11 @@
                         if(isset($this->storeLinks) && sizeof($this->storeLinks) > 0 ) {
                             foreach($this->storeLinks as $linkItem) {
                                 ?>
-                                <li><a <?php if(isset($linkItem['id'])) { ?>id="<?php echo $linkItem['id']; }?>" <?php if(isset($linkItem['class'])) { ?> class="<?php echo $linkItem['class'];} ?>" href="<?php echo $this->createUrl($linkItem['url'][0]) ?>"><?php echo $linkItem['icon'].' ' ?> <?php echo $linkItem['label'] ?></a></li>
+                                <li><a <?php if(isset($linkItem['id'])) { ?>id="<?php echo $linkItem['id']; }?>" <?php if(isset($linkItem['class'])) { ?> class="<?php echo $linkItem['class'];} ?>" href="<?php echo $this->createUrl($linkItem['url'][0]) ?>"><?php echo $linkItem['icon'].'' ?><?php echo $linkItem['label'] ?></a></li>
                             <?php
                             }
                         }
+                        if(isset($this->storeMenu) && sizeof($this->storeMenu) > 0 ) {
                         ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span> More<b class="caret"></b></a>
@@ -55,6 +54,7 @@
                             ));
                             ?>
                         </li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>

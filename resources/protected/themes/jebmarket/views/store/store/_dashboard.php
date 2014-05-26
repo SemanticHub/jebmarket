@@ -1,7 +1,3 @@
-<?php
-//$this->menu = Yii::app()->params['usermenu'];
-$this->menu['myStore']['active'] = true;
-?>
 <div class="row store-dashboard">
     <div class="col-sm-3">
         <div class="panel panel-default panel-high" >

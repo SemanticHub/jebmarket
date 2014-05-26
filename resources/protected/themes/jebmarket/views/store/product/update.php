@@ -15,12 +15,12 @@ $this->storeLinks=array(
         'icon'=>'<span class="glyphicon glyphicon-floppy-remove" style="color: red"></span>'
     )
 );
-$this->storeMenu=array(
+/*$this->storeMenu=array(
     array(
         'label'=>'Store Settings',
         'url'=>array('/store/store/settings')
     ),
-);
+);*/
 $this->menu['storeProducts']['active'] = true;
 $this->renderPartial('_update_product_form', array( 'product'=>$product ));
 ?>

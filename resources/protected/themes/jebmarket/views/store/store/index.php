@@ -1,11 +1,11 @@
 <?php
 $this->storeLinks=array(
-    array('label'=>'Add Product', 'url'=>array('/store/product/new'), 'icon'=>'<span class="glyphicon glyphicon-plus"></span> '),
+    array('label'=>'Store Settings', 'url'=>array('/store/store/settings'), 'icon'=>'<span class="glyphicon glyphicon-cog icon-store-settings"></span> '),
 );
-$this->storeMenu=array(
-    array('label'=>'Store Settings', 'url'=>array('/store/store/settings')),
+/*$this->storeMenu=array(
     array('label'=>'Manage Products', 'url'=>array('/store/product/admin')),
-);
+    array('label'=>'Manage Customers', 'url'=>array('/store/customer/admin')),
+);*/
 
 $this->menu['myStore']['active'] = true;
 ?>
