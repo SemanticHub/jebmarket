@@ -1,7 +1,6 @@
 <?php
 
-class ManufactureController extends StoreBaseController
-{
+class ManufactureController extends StoreBaseController {
 
 	public $defaultAction = "admin";
 
@@ -30,67 +29,27 @@ class ManufactureController extends StoreBaseController
 		);
 	}
 
-/*	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}*/
-
-	public function actionCreate()
-	{
+	public function actionCreate() {
 		$model=new ProductManufacture;
-
-		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
-
-		if(isset($_POST['ProductManufacture']))
-		{
+		if(isset($_POST['ProductManufacture'])) {
 			$model->attributes=$_POST['ProductManufacture'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin','id'=>$model->id));
 		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',array( 'model'=>$model, ));
 	}
-
-	/*public function actionUpdate($id)
-	{
+    public function actionUpdate($id) {
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
-		if(isset($_POST['StoreProductCategory']))
-		{
-			$model->attributes=$_POST['StoreProductCategory'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+		if(isset($_POST['ProductManufacture'])) {
+			$model->attributes=$_POST['ProductManufacture'];
+			if($model->save()) $this->redirect(array('admin','id'=>$model->id));
 		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}*/
-
-/*	public function actionDelete($id)
-	{
-		$this->loadModel($id)->delete();
-
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-	}*/
-
-/*	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('ProductCategory');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}*/
+		$this->render('update',array( 'model'=>$model));
+	}
 
 	public function actionAdmin() {
 		$model=new ProductManufacture('search');
@@ -109,8 +68,7 @@ class ManufactureController extends StoreBaseController
 		return $model;
 	}
 
-	protected function performAjaxValidation($model)
-	{
+	protected function performAjaxValidation($model) {
 		if(isset($_POST['ajax']) && $_POST['ajax']==='store-product-manufacture-form')
 		{
 			echo CActiveForm::validate($model);
@@ -126,25 +84,30 @@ class ManufactureController extends StoreBaseController
         echo CJSON::encode($data);
     }
 
-    public function actionSetAdd(){
-        /*$productId = Yii::app()->request->getParam('pk');
-        $manufactureName = yii::app()->request->getParam('value');;
-        $manufacture = ProductManufacture::model()->find(array('condition'=>'name=:name', 'params'=>array(':name'=>$manufactureName)));
+    /*	public function actionView($id)
+{
+    $this->render('view',array(
+        'model'=>$this->loadModel($id),
+    ));
+}*/
 
-        if($manufacture) {
-            $product = Product::model()->findByPk($productId);
-            $product->manufacture_id = $manufacture->id;
-            $product->update();
-        } else {
-            $newManufacture = new ProductManufacture;
-            $newManufacture->name = $manufactureName;
-            $newManufacture->save();
 
-            $product = Product::model()->findByPk($productId);
-            $product->manufacture_id = $newManufacture->id;
-            $product->update();
+
+    /*	public function actionDelete($id)
+        {
+            $this->loadModel($id)->delete();
+
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
         }*/
-        $es = new EditableSaver('Product');
-        $es->update();
-    }
+
+    /*	public function actionIndex()
+        {
+            $dataProvider=new CActiveDataProvider('ProductCategory');
+            $this->render('index',array(
+                'dataProvider'=>$dataProvider,
+            ));
+        }*/
+
 }

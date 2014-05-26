@@ -17,7 +17,7 @@ class CategoryController extends StoreBaseController
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'admin'),
+				'actions'=>array('create','update', 'admin', 'new'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -30,8 +30,7 @@ class CategoryController extends StoreBaseController
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
-	{
+	public function actionNew() {
         $new = new ProductCategory();
         $new->store_id = Store::model()->getUserStoreId();
         $new->name = Yii::app()->request->getParam('name');;
@@ -40,10 +39,8 @@ class CategoryController extends StoreBaseController
         echo CJSON::encode($data);
 	}
 
-	public function actionUpdate($id)
-	{
+	public function actionUpdate($id) {
 		$model=$this->loadModel($id);
-
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['StoreProductCategory']))

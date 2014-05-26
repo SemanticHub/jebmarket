@@ -28,9 +28,11 @@ $this->renderPartial('_new_product_form', array( 'product'=>$product ));
     $(function(){
         $('#product-save-action-link').click(function(){
             $('#create-product-form').submit();
+            return false;
         });
         $('#product-cancel-action-link').click(function(){
             location.href = 'discard';
+            return false;
         })
     });
 </script>
