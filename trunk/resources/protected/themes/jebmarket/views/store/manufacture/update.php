@@ -1,14 +1,14 @@
 <?php
 $this->storeLinks=array(
     array(
-        'id'=>'product-save-action-link',
+        'id'=>'model-save-action-link',
         'label'=>'Save',
         'url'=>'#',
         'class'=>'',
         'icon'=>'<span class="glyphicon glyphicon-floppy-disk" style="color: cornflowerblue"></span>',
     ),
     array(
-        'id'=>'product-cancel-action-link',
+        'id'=>'model-cancel-action-link',
         'label'=>'Cancel',
         'url'=>'#',
         'class'=>'',
@@ -22,16 +22,16 @@ $this->storeLinks=array(
     ),
 );*/
 $this->menu['storeProducts']['active'] = true;
-$this->renderPartial('_update_product_form', array( 'product'=>$product ));
+$this->renderPartial('_form', array( 'model'=>$model ));
 ?>
 <script type="text/javascript">
     $(function(){
-        $('#product-save-action-link').click(function(){
-            $('#edit-product-form').submit();
+        $('#model-save-action-link').click(function(){
+            $('#model-form').submit();
             return false;
         });
-        $('#product-cancel-action-link').click(function(){
-            location.href = 'discard';
+        $('#model-cancel-action-link').click(function(){
+            location.href = 'admin';
             return false;
         })
     });

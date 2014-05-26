@@ -167,7 +167,7 @@
     function addNewCategory(){
         $.ajax({
             type: "POST",
-            url: "../category/create",
+            url: "../category/new",
             data: {name: $('#addNewActionOption').attr('alt') },
             dataType: 'json',
             success: function(data, page){
