@@ -6,7 +6,6 @@ $this->storeLinks=array(
     array('label'=>'Manage Products', 'url'=>array('/store/product/admin')),
     array('label'=>'Manage Customers', 'url'=>array('/store/customer/admin')),
 );*/
-
 $this->menu['myStore']['active'] = true;
 ?>
 <h1 class="page-title">Store Dashboard</h1>
@@ -20,5 +19,6 @@ $this->menu['myStore']['active'] = true;
 <?php
 } else {
     $this->renderPartial('_dashboard', array('model' => $model));
-} ?>
+}
+?>
 

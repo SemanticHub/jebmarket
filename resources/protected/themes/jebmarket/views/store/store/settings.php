@@ -171,7 +171,7 @@ $this->storeLinks=array(
     </div>
 </div>
 
-<div class="row">
+<!--<div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -180,36 +180,36 @@ $this->storeLinks=array(
             <ul class="list-group">
                 <li class="list-group-item">
                         <span class="label label-default">
-                            <?php echo $storeDetail->getAttributeLabel('keyword') ?>
+                            <?php /*echo $storeDetail->getAttributeLabel('keyword') */?>
                         </span>
                     &#160; <span class="glyphicon glyphicon-arrow-right"></span>
                     <?php
-                    $this->widget('editable.EditableField', array(
+/*                    $this->widget('editable.EditableField', array(
                         'type' => 'textarea',
                         'model' => $storeDetail,
                         'attribute' => 'keyword',
                         'url' => $this->createUrl('detail/update'),
                     ));
-                    ?>
+                    */?>
                 </li>
                 <li class="list-group-item">
                         <span class="label label-default">
-                            <?php echo $storeDetail->getAttributeLabel('description') ?>
+                            <?php /*echo $storeDetail->getAttributeLabel('description') */?>
                         </span>
                     &#160; <span class="glyphicon glyphicon-arrow-right"></span>
                     <?php
-                    $this->widget('editable.EditableField', array(
+/*                    $this->widget('editable.EditableField', array(
                         'type' => 'textarea',
                         'model' => $storeDetail,
                         'attribute' => 'description',
                         'url' => $this->createUrl('detail/update'),
                     ));
-                    ?>
+                    */?>
                 </li>
             </ul>
         </div>
     </div>
-</div>
+</div>-->
 
 
 <div class="modal fade" id="location-modal">
@@ -252,7 +252,7 @@ $this->storeLinks=array(
         $('#location_root').live('change', function () {
             $.ajax({
                 type: "POST",
-                url: "<?php echo $this->createUrl('location/levels'); ?>",
+                url: "<?php echo $this->createUrl('/location/levels'); ?>",
                 data: { location_id: $(this).val() }
             }).done(function (data) {
                 $('#location-level-view').empty();
@@ -265,11 +265,11 @@ $this->storeLinks=array(
             $(e.target).parent().nextAll().remove();
             $.ajax({
                 type: "POST",
-                url: "<?php echo $this->createUrl('location/levels'); ?>",
+                url: "<?php echo $this->createUrl('/location/levels'); ?>",
                 data: { location_id: $(this).val() }
             }).done(function (data) {
                 if (data) {
-                    var wrapper = $('<div/>').attr('class', 'location-level');
+                    var wrapper = $('<div/>').attr('class', '/location-level');
                     $(data).appendTo(wrapper);
                     $(wrapper).appendTo($('#location-level-view'));
                 } else {
@@ -281,7 +281,7 @@ $this->storeLinks=array(
             if ($('#location-level-view select').last().attr('name') == "UserDetails[location]") {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo $this->createUrl('user/location'); ?>",
+                    url: "<?php echo $this->createUrl('/user/location'); ?>",
                     data: { location_id: $('#location-level-view select').last().val() }
                 }).done(function (data) {
                     $('#location').html(data);
