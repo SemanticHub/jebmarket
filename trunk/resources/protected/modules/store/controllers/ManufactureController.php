@@ -16,7 +16,7 @@ class ManufactureController extends StoreBaseController {
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'New', 'admin'),
+				'actions'=>array('create','update', 'New', 'admin', 'delete'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -50,6 +50,10 @@ class ManufactureController extends StoreBaseController {
 		}
 		$this->render('update',array( 'model'=>$model));
 	}
+    public function actionDelete($id) {
+        $this->loadModel($id)->delete();
+        if(!isset($_GET['ajax'])) $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+    }
 
 	public function actionAdmin() {
 		$model=new ProductManufacture('search');
@@ -60,8 +64,7 @@ class ManufactureController extends StoreBaseController {
 		$this->render('admin',array( 'model'=>$model));
 	}
 
-	public function loadModel($id)
-	{
+	public function loadModel($id) {
 		$model=ProductManufacture::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
@@ -93,14 +96,7 @@ class ManufactureController extends StoreBaseController {
 
 
 
-    /*	public function actionDelete($id)
-        {
-            $this->loadModel($id)->delete();
 
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if(!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-        }*/
 
     /*	public function actionIndex()
         {
