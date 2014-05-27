@@ -35,7 +35,27 @@
                         if(isset($this->storeLinks) && sizeof($this->storeLinks) > 0 ) {
                             foreach($this->storeLinks as $linkItem) {
                                 ?>
-                                <li><a <?php if(isset($linkItem['id'])) { ?>id="<?php echo $linkItem['id']; }?>" <?php if(isset($linkItem['class'])) { ?> class="<?php echo $linkItem['class'];} ?>" href="<?php echo $this->createUrl($linkItem['url'][0]) ?>"><?php echo $linkItem['icon'].'' ?><?php echo $linkItem['label'] ?></a></li>
+                                <li class="dropdown">
+                                    <a <?php if(isset($linkItem['id'])) { ?>id="<?php echo $linkItem['id']; }?>"
+                                        <?php if(isset($linkItem['class'])) { ?> class="<?php echo $linkItem['class'];} ?>"
+                                                    href="<?php echo $this->createUrl($linkItem['url'][0]) ?>"
+                                        <?php if(isset($linkItem['items']) && sizeof($linkItem['items']) > 0 ) { ?>
+                                            class="dropdown-toggle" data-toggle="dropdown" <?php } ?>>
+                                <?php echo $linkItem['icon'].'' ?><?php echo $linkItem['label'] ?>
+                                    </a>
+                                    <?php
+                                    if(isset($linkItem['items']) && sizeof($linkItem['items']) > 0 ) {
+                                        $this->widget('zii.widgets.CMenu', array(
+                                            'items' => $linkItem['items'],
+                                            'encodeLabel'=>false,
+                                            'htmlOptions' => array('class' => 'dropdown-menu'),
+                                            'activateItems' => true,
+                                            'activateParents' => true,
+                                            'activeCssClass' => 'active'
+                                        ));
+                                    }
+                                    ?>
+                                </li>
                             <?php
                             }
                         }
