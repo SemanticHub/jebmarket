@@ -86,7 +86,7 @@ class ProductCategory extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('store_id',$this->store_id);
+		$criteria->compare('store_id',Store::model()->getUserStoreId());
 		$criteria->compare('parent_id',$this->parent_id);
 		$criteria->compare('is_root',$this->is_root);
 		$criteria->compare('name',$this->name,true);

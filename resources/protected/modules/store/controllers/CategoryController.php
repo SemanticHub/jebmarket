@@ -4,8 +4,7 @@ class CategoryController extends StoreBaseController
 {
 
     public $defaultAction = "admin";
-    public function filters()
-	{
+    public function filters() {
 		return array(
             'storeRights', // rights module impl for store
 			'accessControl', // perform access control for CRUD operations
@@ -13,11 +12,10 @@ class CategoryController extends StoreBaseController
 		);
 	}
 
-	public function accessRules()
-	{
+	public function accessRules() {
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'admin', 'new'),
+				'actions'=>array('create','update', 'delete', 'admin', 'new'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -39,24 +37,30 @@ class CategoryController extends StoreBaseController
         echo CJSON::encode($data);
 	}
 
+    public function actionCreate() {
+        $model=new ProductCategory();
+        $model->store_id = Store::model()->getUserStoreId();
+        $this->performAjaxValidation($model);
+        if(isset($_POST['ProductCategory'])) {
+            $model->attributes=$_POST['ProductCategory'];
+            if($model->save()) $this->redirect(array('admin','id'=>$model->id));
+        }
+        $this->render('create',array( 'model'=>$model, ));
+    }
+
 	public function actionUpdate($id) {
 		$model=$this->loadModel($id);
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['StoreProductCategory']))
-		{
-			$model->attributes=$_POST['StoreProductCategory'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+        $model->store_id = Store::model()->getUserStoreId();
+		$this->performAjaxValidation($model);
+		if(isset($_POST['ProductCategory'])) {
+			$model->attributes=$_POST['ProductCategory'];
+			if($model->save()) $this->redirect(array('admin','id'=>$model->id));
 		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update',array( 'model'=>$model, ));
 	}
 
-	public function actionDelete($id)
-	{
+	public function actionDelete($id) {
+        ProductToCategory::model()->deleteAll(array('condition'=> 'category_id=:category_id', 'params'=> array(':category_id'=>$id)));
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -75,9 +79,8 @@ class CategoryController extends StoreBaseController
 		));
 	}
 
-	public function loadModel($id)
-	{
-		$model=StoreProductCategory::model()->findByPk($id);
+	public function loadModel($id) {
+		$model = ProductCategory::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -87,8 +90,7 @@ class CategoryController extends StoreBaseController
 	 * Performs the AJAX validation.
 	 * @param StoreProductCategory $model the model to be validated
 	 */
-	protected function performAjaxValidation($model)
-	{
+	protected function performAjaxValidation($model) {
 		if(isset($_POST['ajax']) && $_POST['ajax']==='store-product-category-form')
 		{
 			echo CActiveForm::validate($model);

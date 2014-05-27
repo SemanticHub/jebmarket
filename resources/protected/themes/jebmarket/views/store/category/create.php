@@ -1,18 +1,38 @@
 <?php
-/* @var $this StoreProductCategoryController */
-/* @var $model StoreProductCategory */
-
-$this->breadcrumbs=array(
-	'Store Product Categories'=>array('index'),
-	'Create',
+$this->storeLinks=array(
+    array(
+        'id'=>'model-save-action-link',
+        'label'=>'Save',
+        'url'=> '#',
+        'class'=>'',
+        'icon'=>'<span class="glyphicon glyphicon-floppy-disk" style="color: cornflowerblue"></span>',
+    ),
+    array(
+        'id'=>'model-cancel-action-link',
+        'label'=>'Cancel',
+        'url'=> '#',
+        'class'=>'',
+        'icon'=>'<span class="glyphicon glyphicon-floppy-remove" style="color: red"></span>'
+    )
 );
-
-$this->menu=array(
-	array('label'=>'List StoreProductCategory', 'url'=>array('index')),
-	array('label'=>'Manage StoreProductCategory', 'url'=>array('admin')),
-);
+/*$this->storeMenu=array(
+    array(
+        'label'=>'Store Settings',
+        'url'=>array('/store/store/settings')
+    ),
+);*/
+$this->menu['storeProducts']['active'] = true;
+$this->renderPartial('_form', array( 'model'=>$model ));
 ?>
-
-<h1>Create StoreProductCategory</h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<script type="text/javascript">
+    $(function(){
+        $('#model-save-action-link').click(function(){
+            $('#model-form').submit();
+            return false;
+        });
+        $('#model-cancel-action-link').click(function(){
+            location.href = 'admin';
+            return false;
+        })
+    });
+</script>
