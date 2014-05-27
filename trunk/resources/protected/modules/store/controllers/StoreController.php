@@ -13,7 +13,7 @@ class StoreController extends StoreBaseController {
 	public function accessRules() {
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','view'),
+				'actions'=>array('index','create','view', 'update'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
