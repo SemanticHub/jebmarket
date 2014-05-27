@@ -1,6 +1,12 @@
 <?php
 $this->storeLinks=array(
-    array('label'=>'Add Product', 'url'=>array('/store/product/new'), 'icon'=>'<span class="glyphicon glyphicon-plus icon-store-product-add"></span>'),
+    array('label'=>'Add Product', 'url'=>array('/store/product/new'), 'icon'=>'<span class="glyphicon glyphicon-plus icon-store-product-add"></span>',
+        'items' => array(
+            array('label'=>'<span class="glyphicon glyphicon-plus icon-store-product-add"></span>Physical Product', 'url'=>array('/store/product/new?type=1'), 'icon'=>'<span class="glyphicon glyphicon-plus icon-store-product-add"></span>'),
+            array('label'=>'<span class="glyphicon glyphicon-plus icon-store-product-add"></span>Digital Product', 'url'=>array('/store/product/new?type=2'), 'icon'=>'<span class="glyphicon glyphicon-plus icon-store-product-add"></span>'),
+            array('label'=>'<span class="glyphicon glyphicon-plus icon-store-product-add"></span>Service', 'url'=>array('/store/product/new?type=3'), 'icon'=>'<span class="glyphicon glyphicon-plus icon-store-product-add"></span>')
+        )
+    ),
     array('label'=>'Categories', 'url'=>array('/store/category'), 'icon'=>'<span class="glyphicon glyphicon-list-alt icon-store-product-category"></span>'),
     array('label'=>'Manufactures', 'url'=> array('/store/manufacture'), 'icon'=>'<span class="glyphicon glyphicon-certificate icon-store-product-manufacture"></span>'),
 );
@@ -10,7 +16,6 @@ $this->storeLinks=array(
 );*/
 $this->menu['storeProducts']['active'] = true;
 ?>
-
 <h1 class="page-title">Manage Products</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(

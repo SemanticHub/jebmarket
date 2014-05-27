@@ -44,6 +44,7 @@ class ProductController extends StoreBaseController {
         $product->store_id = Store::model()->getUserStoreId();
         $product->status = 0;
         $product->added = date("Y-m-d H:i:s");
+        if(Yii::app()->request->getParam('type')) $product->type_id = Yii::app()->request->getParam('type');
 
         $product->productDetail = new ProductDetail;
 
@@ -88,8 +89,7 @@ class ProductController extends StoreBaseController {
     }
 
     public function actionDiscard() {
-        //$this->clearAttachedImages();
-        $this->redirect($this->actionAdmin());
+        $this->redirect("admin");
     }
 
 	public function actionEdit($id) {
