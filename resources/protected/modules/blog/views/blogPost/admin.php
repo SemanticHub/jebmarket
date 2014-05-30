@@ -49,9 +49,9 @@
         '<li><a href="<?php echo Yii::app()->baseUrl.'/menu/update?id='.$menu->id; ?>" data-toggle="modal" data-target="#update_menu"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>' +
         '<li>' +<?php
         $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
-        if(!empty($domainName->name)){
+        if(!empty($domainName->domain)){
         ?>
-        '<a href="<?php echo Yii::app()->baseUrl.'/'.$domainName->name.'/'.$menu->url; ?>" target="_blank"><span class="glyphicon glyphicon-export"></span> View Blog</a>' +
+        '<a href="<?php echo Yii::app()->baseUrl.'/'.$domainName->domain.'/'.$menu->url; ?>" target="_blank"><span class="glyphicon glyphicon-export"></span> View Blog</a>' +
         <?php } ?>'</li>' +
         '</ul>'
     );

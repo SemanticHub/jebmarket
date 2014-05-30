@@ -1329,11 +1329,11 @@ body.dragging, body.dragging * {
     width: 80%;
     margin: 0;
     padding-right: 0;
-    padding-left: 6px;
+    padding-left: 0;
 }
 .dashboard .admin_pages_left{
     width: 20%;
-    z-index: 9;
+    z-index: 22;
 }
 .dashboard .viewyoursite{
     margin: 8px 0 8px 15px;
@@ -2286,4 +2286,10 @@ Store Module Styles
 }
 .icon-store-settings {
     color: deeppink;
+}
+.dashboard .sidebar-left{
+    width: 12%;
+}
+.dashboard .dash_second_menu{
+    width: 88%;
 }

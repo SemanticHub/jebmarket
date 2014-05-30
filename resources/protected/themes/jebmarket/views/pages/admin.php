@@ -25,15 +25,13 @@ $this->pageHeader = "Pages";
                             'header'=>'Top Navigation',
                             'value' =>function($data){
                                     if ($data->type=='page'){
-                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$this->gridDataColumn("$data->url"),'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array($this->gridDataColumn("$data->url")),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url")));
                                     }elseif($data->route=='blog'){
-                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
-                                    }elseif($data->type=='module' && $data->url=='site/login'){
-                                        $class = '<p>'.$data->label.'</p>';
-                                    }elseif($data->type=='custom' || $data->type=='social'){
-                                        $class = CHtml::link($data->label,array("customlink", 'id'=>$data->id, 'tag'=>$data->tag),array("class"=>"admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url")));
+                                    }elseif($data->type=='custom' || $data->type=='social' || $data->url=='site/login'){
+                                        $class = CHtml::link($data->label,array($this->gridDataColumn("$data->url", 'home')),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url", 'home')));
                                     }else{
-                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array($this->gridDataColumn("$data->url", 'module')),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url", 'module')));
                                     }
                                     return $class;
                                 },
@@ -41,8 +39,14 @@ $this->pageHeader = "Pages";
                         ),
                         array(
                             'class' => 'CButtonColumn',
-                            'template'=>'{delete}',
+                            'template'=>'{settings}{delete}',
                             'buttons' => array(
+                                'settings' => array(
+                                    'label'=> '',
+                                    'imageUrl'=> false,
+                                    'url'=>'Yii::app()->createUrl("menu/update", array("id"=>$data->id))',
+                                    'options'=>array('class'=>'glyphicon glyphicon-cog', "data-toggle"=>"modal", "data-target"=>"#update_menu")
+                                ),
                                 'delete' => array(
                                     'label'=> '',
                                     'imageUrl'=> false,
@@ -82,15 +86,13 @@ $this->pageHeader = "Pages";
                             'header'=>'Main Navigation',
                             'value' =>function($data){
                                     if ($data->type=='page'){
-                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$this->gridDataColumn("$data->url"),'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array($this->gridDataColumn("$data->url")),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url")));
                                     }elseif($data->route=='blog'){
-                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
-                                    }elseif($data->type=='module' && $data->url=='site/login'){
-                                        $class = '<p>'.$data->label.'</p>';
-                                    }elseif($data->type=='custom' || $data->type=='social'){
-                                        $class = CHtml::link($data->label,array("customlink", 'id'=>$data->id, 'tag'=>$data->tag),array("class"=>"admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url")));
+                                    }elseif($data->type=='custom' || $data->type=='social' || $data->url=='site/login'){
+                                        $class = CHtml::link($data->label,array($this->gridDataColumn("$data->url", 'home')),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url", 'home')));
                                     }else{
-                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array($this->gridDataColumn("$data->url", 'module')),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url", 'module')));
                                     }
                                     return $class;
                                 },
@@ -99,7 +101,14 @@ $this->pageHeader = "Pages";
                         array(
                             'class' => 'CButtonColumn',
                             'template'=>'{delete}',
+                            'template'=>'{settings}{delete}',
                             'buttons' => array(
+                                'settings' => array(
+                                    'label'=> '',
+                                    'imageUrl'=> false,
+                                    'url'=>'Yii::app()->createUrl("menu/update", array("id"=>$data->id))',
+                                    'options'=>array('class'=>'glyphicon glyphicon-cog', "data-toggle"=>"modal", "data-target"=>"#update_menu")
+                                ),
                                 'delete' => array(
                                     'label'=> '',
                                     'imageUrl'=> false,
@@ -139,15 +148,13 @@ $this->pageHeader = "Pages";
                             'header'=>'Footer Navigation',
                             'value' =>function($data){
                                     if ($data->type=='page'){
-                                        $class = CHtml::link($data->label,array("pages/update",'id'=>$this->gridDataColumn("$data->url"),'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array($this->gridDataColumn("$data->url")),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url")));
                                     }elseif($data->route=='blog'){
-                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
-                                    }elseif($data->type=='module' && $data->url=='site/login'){
-                                        $class = '<p>'.$data->label.'</p>';
-                                    }elseif($data->type=='custom' || $data->type=='social'){
-                                        $class = CHtml::link($data->label,array("customlink", 'id'=>$data->id, 'tag'=>$data->tag),array("class"=>"admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array("blog/blogPost/admin",'mid'=>$data->id),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url")));
+                                    }elseif($data->type=='custom' || $data->type=='social' || $data->url=='site/login'){
+                                        $class = CHtml::link($data->label,array($this->gridDataColumn("$data->url", 'home')),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url", 'home')));
                                     }else{
-                                        $class = CHtml::link($data->label,array("pages/pageins"),array("class"=> $data->parent_id ? "admin_nav_gridLink" : "admin_nav_gridLink"));
+                                        $class = CHtml::link($data->label,array($this->gridDataColumn("$data->url", 'module')),array("class"=> "admin_nav_gridLink", 'dataid'=>$data->id, 'dataurl'=>$this->gridDataColumn("$data->url", 'module')));
                                     }
                                     return $class;
                                 },
@@ -155,8 +162,14 @@ $this->pageHeader = "Pages";
                         ),
                         array(
                             'class' => 'CButtonColumn',
-                            'template'=>'{delete}',
+                            'template'=>'{settings}{delete}',
                             'buttons' => array(
+                                'settings' => array(
+                                    'label'=> '',
+                                    'imageUrl'=> false,
+                                    'url'=>'Yii::app()->createUrl("menu/update", array("id"=>$data->id))',
+                                    'options'=>array('class'=>'glyphicon glyphicon-cog', "data-toggle"=>"modal", "data-target"=>"#update_menu")
+                                ),
                                 'delete' => array(
                                     'label'=> '',
                                     'imageUrl'=> false,
@@ -215,6 +228,7 @@ $this->pageHeader = "Pages";
     $(document).ready(function() {
         var topMenugroup = $("#topMenu-grid tbody").sortable({
             itemSelector: 'tr',
+            delay: 100,
             containerSelector: 'tbody',
             onDrop: function($item, container, _super) {
                 var data = topMenugroup.sortable("serialize").get();
@@ -233,6 +247,7 @@ $this->pageHeader = "Pages";
         })
         var mainMenugroup = $("#mainMenu-grid tbody").sortable({
             itemSelector: 'tr',
+            delay: 100,
             containerSelector: 'tbody',
             onDrop: function($item, container, _super) {
                 var data = mainMenugroup.sortable("serialize").get();
@@ -251,6 +266,7 @@ $this->pageHeader = "Pages";
         })
         var footerMenugroup = $("#footerMenu-grid tbody").sortable({
             itemSelector: 'tr',
+            delay: 100,
             containerSelector: 'tbody',
             onDrop: function($item, container, _super) {
                 var data = footerMenugroup.sortable("serialize").get();
@@ -320,8 +336,22 @@ $this->pageHeader = "Pages";
             'url':$(this).attr("href"),
             'cache':true,
             'data':$(this).parents("pages-form").serialize(),
-            'success':function(html){$(".pages_update").html(html)}
-        });return false;
+            'success':function(html){
+                $(".pages_update").html(html);
+            }
+        });
+        $('.dash_second_menu .navbar-right').html('' +
+            '<ul class="nav navbar-nav navbar-right">' +
+            '<li><a href="<?php echo Yii::app()->baseUrl.'/menu/update?id='; ?>'+$(this).attr('dataid')+'" data-toggle="modal" data-target="#update_menu"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>' +
+            '<li>' +
+            <?php
+                $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+                if(!empty($domainName->name)){
+            ?>
+            '<a href="<?php echo Yii::app()->baseUrl.'/'; ?>'+$(this).attr('dataurl')+'" target="_blank"><span class="glyphicon glyphicon-export"></span> View Page</a>' +
+            <?php } ?>'</li>' +
+            '</ul>'
+        );return false;
     });
     $(".blog_ajax_link").live( "click", function() {
         $.ajax({
@@ -329,19 +359,25 @@ $this->pageHeader = "Pages";
             'url':$(this).attr("href"),
             'cache':true,
             'data':$(this).parents("pages-form").serialize(),
-            'success':function(html){$(".pages_update").html(html)}
-        });return false;
+            'success':function(html){
+                $(".pages_update").html(html);
+            }
+        });
+        $('.dash_second_menu .navbar-right').html('' +
+            '<ul class="nav navbar-nav navbar-right">' +
+            '<li><a href="<?php echo Yii::app()->baseUrl.'/menu/update?id='; ?>'+$(this).attr('dataid')+'" data-toggle="modal" data-target="#update_menu"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>' +
+            '<li>' +
+            <?php
+                $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+                if(!empty($domainName->name)){
+            ?>
+            '<a href="<?php echo Yii::app()->baseUrl.'/'; ?>'+$(this).attr('dataurl')+'" target="_blank"><span class="glyphicon glyphicon-export"></span> View Page</a>' +
+            <?php } ?>'</li>' +
+            '</ul>'
+        );return false;
     });
 </script>
 <script type="text/javascript">
     var CKEDITOR_BASEPATH = '<?php echo Yii::app()->theme->baseUrl.'/comp/ckeditor/'; ?>';
 </script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>
-<style>
-    .dashboard .sidebar-left{
-        width: 12%;
-    }
-    .dashboard .dash_second_menu{
-        width: 88%;
-    }
-</style>
