@@ -185,11 +185,27 @@ class PagesController extends Controller {
         ));
     }
 
-    protected function gridDataColumn($data)
+    protected function gridDataColumn($data, $d = null)
     {
-        $pageID = Pages::model()->findByAttributes(array("jebapp_user_id"=>Yii::app()->user->id, "slug"=>$data));
-        if(!empty($pageID->id)){
-            return $pageID->id;
+        $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+        if($d == 'home'){
+            if(!empty($domainName->domain) && $domainName->domain != '/'){
+                return '/'.$domainName->domain.'/?edit=n';
+            }else{
+                return '/?edit=n';
+            }
+        }elseif($d == 'module'){
+            if(!empty($domainName->domain) && $domainName->domain != '/'){
+                return $domainName->domain.'/'.$data.'?edit=n';
+            }else{
+                return '/'.$data.'?edit=n';
+            }
+        }else{
+            if(!empty($domainName->domain) && $domainName->domain != '/'){
+                return $domainName->domain.'/'.$data.'?edit=n';
+            }else{
+                return 'page/view?view='.$data.'&edit=n';
+            }
         }
     }
 

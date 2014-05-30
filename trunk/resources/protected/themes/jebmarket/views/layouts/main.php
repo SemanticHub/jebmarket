@@ -9,21 +9,26 @@
         <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
     <?php
     $pageID = Pages::model()->pageID();
+    $editID = Yii::app()->request->getParam('edit');
     $domainname = Website::model()->domainName();
     if(empty($domainname)){
-    ?>
+        ?>
         <link rel="shortcut icon" href="<?php echo Yii::app()->baseUrl; ?>/favicon.ico">
     <?php }else{?>
         <link rel="shortcut icon" href="<?php echo Website::model()->logoName('favicon') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('favicon') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'favicon.ico'; ?>">
     <?php } ?>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css">
-    <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+    <?php if(empty($editID)){ ?>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css">
+    <?php
+        Yii::app()->clientScript->registerCoreScript('jquery');
+    }
+    ?>
     <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
 </head>
 <body class="edit">
-<?php if(!empty($pageID)){ ?>
+<?php if(!empty($pageID) && empty($editID)){ ?>
     <div class="sidebar-nav">
     <div class="alert alert-success save_success" style="font-size: 13px;margin: 0 0 10px;padding: 3px; color: #ffffff; background: #000; display: none;">
         <p>Page Saved Successfully.</p>
@@ -1129,7 +1134,7 @@
             </footer>
         </div>
     </div>
-    <?php if(!empty($pageID)){ ?>
+    <?php if(!empty($pageID) && empty($editID)){ ?>
 </div>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/template_edit.css">
