@@ -426,3 +426,29 @@ a.language-selected { font-style: italic; font-weight: bold; }
 .edit_left_component  .jspContainer {
     overflow: initial;
 }
+.edit .theme_edit .lyrow .grid_button {
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: all 500ms ease;
+    position: absolute;
+    opacity: 0;
+}
+.sidebar-nav .grid_button{
+    display: none;
+}
+.edit .theme_edit .lyrow .grid.btn{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.edit .theme_edit .lyrow .grid_button .label{
+    padding-top: 3px;
+    padding-bottom: 6px;
+    float: left;
+}
+.theme_edit .lyrow:hover > .grid_button{
+    opacity: 1;
+}
+.content_body.theme_edit{
+    min-height: 500px;
+}

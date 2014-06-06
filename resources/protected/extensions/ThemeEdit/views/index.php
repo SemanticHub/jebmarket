@@ -18,6 +18,21 @@
         <div class="lyrow">
             <a href="#close" class="remove label label-danger"><i class="glyphicon-remove glyphicon"></i></a>
             <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+            <div class="btn-group grid_button" role="toolbar">
+                <span class="label label-primary">Select Columns</span>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="1">1</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="2">2</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="3">3</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="4">4</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="5">5</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="6">6</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="7">7</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="8">8</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="9">9</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="10">10</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="11">11</button>
+                <button type="button" class="btn btn-xs btn-default grid" data-val="12">12</button>
+            </div>
             <div class="preview">Columns</div>
             <div class="view">
                 <div class="row clearfix">
