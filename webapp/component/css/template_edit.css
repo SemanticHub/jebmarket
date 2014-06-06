@@ -414,7 +414,7 @@ a.language-selected { font-style: italic; font-weight: bold; }
 .sidebar-nav .lyrow {
     position: initial;
 }
-.edit .theme_edit .column .box .configuration {
+.edit .theme_edit .column .box .configuration, .theme_edit .configuration {
     display: none;
 }
 .sidebar-nav .jspDrag {
@@ -451,4 +451,7 @@ a.language-selected { font-style: italic; font-weight: bold; }
 }
 .content_body.theme_edit{
     min-height: 500px;
+}
+.theme_edit .drag {
+    right: 30px;
 }
