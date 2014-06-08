@@ -346,7 +346,7 @@ $this->pageHeader = "Pages";
             '<li>' +
             <?php
                 $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
-                if(!empty($domainName->name)){
+                if(!empty($domainName->domain)){
             ?>
             '<a href="<?php echo Yii::app()->baseUrl.'/'; ?>'+$(this).attr('dataurl')+'" target="_blank"><span class="glyphicon glyphicon-export"></span> View Page</a>' +
             <?php } ?>'</li>' +
@@ -369,15 +369,20 @@ $this->pageHeader = "Pages";
             '<li>' +
             <?php
                 $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
-                if(!empty($domainName->name)){
+                if(!empty($domainName->domain)){
             ?>
             '<a href="<?php echo Yii::app()->baseUrl.'/'; ?>'+$(this).attr('dataurl')+'" target="_blank"><span class="glyphicon glyphicon-export"></span> View Page</a>' +
             <?php } ?>'</li>' +
             '</ul>'
         );return false;
     });
+    $(function() {
+        $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n'; ?>");
+    });
 </script>
+<!--
 <script type="text/javascript">
     var CKEDITOR_BASEPATH = '<?php echo Yii::app()->theme->baseUrl.'/comp/ckeditor/'; ?>';
 </script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>
+-->

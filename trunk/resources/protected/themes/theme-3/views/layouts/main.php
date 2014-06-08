@@ -8,18 +8,20 @@
     <?php if (isset($this->metaKeywords)) { ?>
         <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
     <?php
+    $editID = Yii::app()->request->getParam('edit');
     $domainname = Website::model()->domainName();
     if(empty($domainname)){
         ?>
         <link rel="shortcut icon" href="<?php echo Yii::app()->baseUrl; ?>/favicon.ico">
     <?php }else{?>
         <link rel="shortcut icon" href="<?php echo Website::model()->logoName('favicon') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('favicon') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'favicon.ico'; ?>">
-    <?php } ?>
+    <?php } if(empty($editID)){ ?>
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <?php Yii::app()->clientScript->registerCoreScript('jquery'); } ?>
+
     <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css">
-    <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 
     <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
 </head>
@@ -116,12 +118,14 @@
         </footer>
     </div>
 </div>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 7]>
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/html5shiv.js"></script>
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
-<![endif]-->
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<?php if(empty($editID)){ ?>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 7]>
+    <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/html5shiv.js"></script>
+    <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<?php } ?>
 </body>
 </html>
 <?php $this->widget('ext.ThemeEdit.ThemeEdit'); ?>
