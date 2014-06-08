@@ -1,5 +1,5 @@
 body {
-    margin: 0 0 0 234px;
+    margin: 0 0 0 90px;
     padding: 0;
 }
 .edit_left_header{
@@ -11,13 +11,12 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     -moz-box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    padding: 0 10px;
+    padding: 0;
     margin: 0;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    z-index: 7;
-    position: absolute;
+    float: left;
 }
 .edit_left_header .alert-success{
     font-size: 14px;
@@ -32,14 +31,76 @@ body {
 }
 .edit_left_header #save_custom{
     float: left;
-    margin: 10px 14px 10px 0;
+    margin: 10px 14px 10px 10px;
 }
-.edit_left_header #desktop_view, .edit_left_header #tablet_view, .edit_left_header #mobile_view{
-    margin: 4px 0 0 0;
+.component_firstico span{
+    font-size: 30px;
+    color: #836F6F;
+    cursor: pointer;
+    margin: 0 0 40px 0;
     padding: 0;
-    width: 43px;
-    height: 35px;
+    width: 100%;
     float: left;
+    text-align: center;
+}
+.component_firstico span:hover{
+    color: #ffffff;
+}
+.edit_left_header #desktop_view{
+    margin: 0 0 0 10px;
+    padding: 0;
+    width: 21px;
+    height: 28px;
+    float: left;
+}
+.edit_left_header #tablet_view, .edit_left_header #mobile_view{
+    margin: 0 0 0 8px;
+    padding: 0;
+    width: 16px;
+    height: 28px;
+    float: left;
+}
+.colponent_list_pop{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    width: 195px;
+    top: -550px;
+    background: #727272;
+    opacity: 0;
+    left: 90px;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+.show_com{
+    top: 77px;
+    opacity: 1;
+}
+.colponent_list{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 430px;
+    background: #363b3e;
+    outline: none;
+}
+.colponent_list_header{
+    margin: 0 0 2px 10px;
+    padding: 0;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+.colponent_list_remove{
+    margin: 3px 0 0 0;
+    padding: 0;
+    position: absolute;
+    font-size: 15px;
+    right: 3px;
+    cursor: pointer;
 }
 .edit_left_header #desktop_view{
     background: url("../image/monitor_icon.png") no-repeat;
@@ -54,7 +115,7 @@ body {
     background-position-y: -43px;
 }
 .edit_left_component{
-    margin: 51px 0 0 0;
+    margin: 20px 0 0 0;
     padding: 0;
     width: 100%;
     float: left;
@@ -65,7 +126,7 @@ body {
     float: left;
     width: 100%;
     z-index: 1;
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
     padding: 0;
     height: 22px;
     background: #27292B;
@@ -201,13 +262,13 @@ body {
     z-index: 99999;
     left: 0;
     bottom: 0;
-    width: 234px;
+    width: 90px;
     box-shadow: 1px 0px 2px rgba(0,0,0,.3);
     -moz-box-shadow: 1px 0px 2px rgba(0,0,0,.3);
     -webkit-box-shadow: 1px 0px 2px rgba(0,0,0,.3);
     border-right: 1px solid #111010;
     text-shadow: 0 -1px 0 #1e1d1c;
-    background: #363b3e;
+    background: #181818;
     font-size: 13px;
     color: #fff;
 }
@@ -233,12 +294,12 @@ body {
     transition: margin 0.2s;
     position: relative;
     left: 1px;
-    margin: 5px 0 5px 11px !important;
+    margin: 5px 0 3px 5px !important;
     border: 1px solid #2e2f33 !important;
     border-radius: 3px !important;
     box-shadow: inset 0 0 2px rgba(255,255,255,0.2) !important;
-    width: 98px !important;
-    height: 76px !important;
+    width: 175px !important;
+    height: 45px !important;
     padding: 5px 0 0 !important;
     color: #fff;
     text-transform: uppercase !important;
@@ -255,10 +316,11 @@ body {
 .sidebar-nav .preview {
     display: block;
     color: #FFF;
-    font-size: 12px;
+    font-size: 10px;
     z-index: 9999999;
-    margin: 45px 0 0 0;
-    padding: 0;
+    margin: 0;
+    padding: 0 0 0 60px;
+    text-align: left;
 }
 .sidebar-nav .preview input { width:105px; padding:0 10px; background:#bbb; font-size:10px; color:#999; line-height:20px; height:20px; position:relative; top:-1px; }
 .sidebar-nav .view { display: none; }
@@ -404,12 +466,13 @@ a.language-selected { font-style: italic; font-weight: bold; }
 }
 .sidebar-nav .drag.label {
     margin: 0;
-    padding: 20px 0 0 0;
-    width: 98px !important;
+    padding: 14px 0 0 10px;
+    width: 175px !important;
     z-index: 0;
-    height: 76px !important;
+    height: 45px !important;
     background: none;
     color: #A79C9C;
+    display: flex;
 }
 .sidebar-nav .lyrow {
     position: initial;
