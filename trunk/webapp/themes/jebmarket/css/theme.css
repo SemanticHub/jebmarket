@@ -2293,3 +2293,9 @@ Store Module Styles
 .dashboard .dash_second_menu{
     width: 88%;
 }
+.loadin_page_up{
+    text-align: center;
+    right: 50%;
+    position: absolute;
+    top: 100px;
+}

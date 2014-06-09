@@ -194,8 +194,7 @@ $this->pageHeader = "Pages";
     </div>
     <div class="col-md-9">
         <div class="pages_update">
-            <h1>This is not a user page. This page contain some Information</h1>
-            <h3>Here Some Instruction About How To Create New Page and Menu</h3>
+            <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/loading.gif" class="loadin_page_up ">
         </div>
     </div>
 </div>
@@ -233,15 +232,14 @@ $this->pageHeader = "Pages";
             onDrop: function($item, container, _super) {
                 var data = topMenugroup.sortable("serialize").get();
                 var jsonString = JSON.stringify(data);
+                $item.removeClass("dragged").removeAttr("style")
+                $("body").removeClass("dragging")
                 $.ajax({
                     'type':'POST',
                     'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
                     'dataType':"json",
                     'cache':true,
-                    'data':{Menu : jsonString},
-                    'success':function(data){
-                        $.fn.yiiGridView.update('topMenu-grid');
-                    }
+                    'data':{Menu : jsonString}
                 });
             }
         })
@@ -252,15 +250,14 @@ $this->pageHeader = "Pages";
             onDrop: function($item, container, _super) {
                 var data = mainMenugroup.sortable("serialize").get();
                 var jsonString = JSON.stringify(data);
+                $item.removeClass("dragged").removeAttr("style")
+                $("body").removeClass("dragging")
                 $.ajax({
                     'type':'POST',
                     'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
                     'dataType':"json",
                     'cache':true,
-                    'data':{Menu : jsonString},
-                    'success':function(data){
-                        $.fn.yiiGridView.update('mainMenu-grid');
-                    }
+                    'data':{Menu : jsonString}
                 });
             }
         })
@@ -271,15 +268,14 @@ $this->pageHeader = "Pages";
             onDrop: function($item, container, _super) {
                 var data = footerMenugroup.sortable("serialize").get();
                 var jsonString = JSON.stringify(data);
+                $item.removeClass("dragged").removeAttr("style")
+                $("body").removeClass("dragging")
                 $.ajax({
                     'type':'POST',
                     'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
                     'dataType':"json",
                     'cache':true,
-                    'data':{Menu : jsonString},
-                    'success':function(data){
-                        $.fn.yiiGridView.update('footerMenu-grid');
-                    }
+                    'data':{Menu : jsonString}
                 });
             }
         })
