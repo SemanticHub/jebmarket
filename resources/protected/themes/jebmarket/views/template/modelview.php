@@ -1,6 +1,6 @@
 <div class="single_template_view">
     <div class="image_left">
-        <img class="img-thumbnail" src="<?php echo Yii::app()->baseUrl.'/themes/'.$model->name.'/screenshot.jpg'; ?>"/>
+        <img class="img-thumbnail" src="<?php echo $this->assetUrl.'/screenshot.jpg'; ?>"/>
     </div>
     <div class="content_right">
         <h3><?php echo $model->title; ?></h3>

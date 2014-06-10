@@ -24,6 +24,14 @@ class RController extends CController
 	*/
 	public $breadcrumbs=array();
 
+    private $_assetUrl;
+
+    public function getAssetUrl(){
+        if ($this->_assetUrl === null)
+            $this->_assetUrl = Yii::app()->getAssetManager()->publish(Yii::app()->basePath.'/themes/'.Website::model()->theme().'/assets/');
+        return $this->_assetUrl;
+    }
+
 	/**
 	* The filter method for 'rights' access filter.
 	* This filter is a wrapper of {@link CAccessControlFilter}.

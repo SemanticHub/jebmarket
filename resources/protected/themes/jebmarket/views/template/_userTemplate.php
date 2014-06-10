@@ -11,7 +11,7 @@ $template = Template::model()->findByPk($data->jebapp_template_id);
             <a href="<?php echo Yii::app()->baseUrl.'/pages/admin'; ?>" class="btn btn-primary btn-xs">Customize</a>
         </div>
         <div class="viewimg">
-            <img src="<?php echo Yii::app()->baseUrl.'/themes/'.$template->name.'/screenshot.jpg'; ?>" alt="" width="100%" />
+            <img src="<?php echo $this->assetUrl.'/screenshot.jpg'; ?>" alt="" width="100%" />
         </div>
         <div class="<?php echo ($data->active == '1') ? 'template_buttons active' : 'template_buttons'; ?>">
             <div class="left_site">

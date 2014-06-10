@@ -42,6 +42,8 @@ class Controller extends RController {
 
     public $showTopNavBar = true;
 
+    private $_assetUrl;
+
     /*
      * Set all Application Settings from database to Yii::app()->params so that we can still use Yii::app()->params['paramName']
      */
@@ -51,7 +53,6 @@ class Controller extends RController {
         Yii::app()->params = CMap::mergeArray(Yii::app()->params, Settings::model()->getParams());
         $this->verifiedUser();
     }
-
 
     public function verifiedUser(){
         // if user is logged in or try for a login
@@ -79,6 +80,11 @@ class Controller extends RController {
         }
     }
 
+    public function getAssetUrl(){
+        if ($this->_assetUrl === null)
+            $this->_assetUrl = Yii::app()->getAssetManager()->publish(Yii::app()->basePath.'/themes/'.Website::model()->theme().'/assets/');
+        return $this->_assetUrl;
+    }
 
     public function userMenu(){
         $userMenu = array();

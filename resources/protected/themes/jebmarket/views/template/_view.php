@@ -4,7 +4,7 @@
             <h4><?php echo $data->title; ?></h4>
         </div>
         <div class="viewimg">
-            <img src="<?php echo Yii::app()->baseUrl.'/themes/'.$data->name.'/screenshot.jpg'; ?>" alt="" width="100%" />
+            <img src="<?php echo $this->assetUrl.'/screenshot.jpg'; ?>" alt="" width="100%" />
         </div>
         <div class="template_buttons">
             <div class="left_site">
