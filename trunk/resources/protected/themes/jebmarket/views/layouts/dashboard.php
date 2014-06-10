@@ -14,7 +14,7 @@
     <?php } ?>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css">
+    <link rel="stylesheet" href="<?php echo $this->assetUrl; ?>/css/admin_theme.css">
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
 </head>
@@ -78,8 +78,8 @@
 </div>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 7]>
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/html5shiv.js"></script>
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
+<script src="<?php echo $this->assetUrl; ?>/js/html5shiv.js"></script>
+<script src="<?php echo $this->assetUrl; ?>/js/respond.min.js"></script>
 <![endif]-->
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>

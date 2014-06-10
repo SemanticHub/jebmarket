@@ -18,9 +18,17 @@ class StoreBaseController extends CController {
 
     public $storeBreadcrumbs=array();
 
+    private $_assetUrl;
+
     public function init() {
         parent::init();
         $this->menu = $this->module->menu;
+    }
+
+    public function getAssetUrl(){
+        if ($this->_assetUrl === null)
+            $this->_assetUrl = Yii::app()->getAssetManager()->publish(Yii::app()->basePath.'/themes/'.Website::model()->theme().'/assets/');
+        return $this->_assetUrl;
     }
 
     public function filterStoreRights($filterChain) {
