@@ -195,6 +195,7 @@ return array(
             'websiteBlock' => array('label' => 'WebSite', 'linkOptions' => array('class' => 'list-group-title')),
             'pages' => array('label' => '<span class="glyphicon glyphicon-edit"></span> Pages', 'url' => array('/pages/admin')),
             'templates' => array('label' => '<span class="glyphicon glyphicon-th-large"></span> Templates', 'url' => array('/template/admin')),
+            'medias' => array('label' => '<span class="glyphicon glyphicon-picture icon-media"></span> Medias', 'url' => array('/media/admin')),
             'settings' => array('label' => '<span class="glyphicon glyphicon-cog"></span> Settings', 'url' => array('/website/admin')),
 
             'storeBlock' => array('label' => 'Store', 'linkOptions' => array('class' => 'list-group-title')),
