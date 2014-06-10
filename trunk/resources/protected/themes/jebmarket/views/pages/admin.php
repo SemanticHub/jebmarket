@@ -1,7 +1,7 @@
 <?php
 $this->pageHeader = "Pages";
 ?>
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery-sortable-min.js"></script>
+<script src="<?php echo $this->assetUrl; ?>/js/jquery-sortable-min.js"></script>
 <div class="row admin_pages">
     <div class="col-md-3 admin_pages_left">
         <div class="admin_left_scroll">
@@ -206,11 +206,11 @@ $this->pageHeader = "Pages";
         </div>
     </div>
 </div>
-<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/tooltipster.css">
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.tooltipster.min.js"></script>
-<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/jquery.jscrollpane.css">
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.jscrollpane.min.js"></script>
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.mousewheel.js"></script>
+<link rel="stylesheet" href="<?php echo $this->assetUrl; ?>/css/tooltipster.css">
+<script src="<?php echo $this->assetUrl; ?>/js/jquery.tooltipster.min.js"></script>
+<link rel="stylesheet" href="<?php echo $this->assetUrl; ?>/css/jquery.jscrollpane.css">
+<script src="<?php echo $this->assetUrl; ?>/js/jquery.jscrollpane.min.js"></script>
+<script src="<?php echo $this->assetUrl; ?>/js/jquery.mousewheel.js"></script>
 <script>
     function topMenu(data) {
         $.fn.yiiGridView.update('topMenu-grid');
@@ -378,7 +378,7 @@ $this->pageHeader = "Pages";
 </script>
 <!--
 <script type="text/javascript">
-    var CKEDITOR_BASEPATH = '<?php echo Yii::app()->theme->baseUrl.'/comp/ckeditor/'; ?>';
+    var CKEDITOR_BASEPATH = '<?php echo $this->assetUrl.'/comp/ckeditor/'; ?>';
 </script>
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/comp/ckeditor/ckeditor.js"></script>
+<script src="<?php echo $this->assetUrl; ?>/comp/ckeditor/ckeditor.js"></script>
 -->
