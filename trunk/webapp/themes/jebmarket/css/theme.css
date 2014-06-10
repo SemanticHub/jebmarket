@@ -1794,6 +1794,7 @@ body.dragging, body.dragging * {
 .navbar.navbar-default.navbar-store {
     margin: 0; width: inherit; border: none; border-radius: 0;margin-left: -15px;  min-height: inherit;
     background: #272C30; border-bottom: 1px solid #aaa; z-index: 99; position: fixed;
+    border-left: 1px dashed #444;
 }
 .store-view-content {
     padding-top: 50px;
@@ -2268,6 +2269,9 @@ Store Module Styles
 }
 .icon-store-store {
     color: orangered;
+}
+.icon-media {
+    color: #ffff00;
 }
 .icon-store-product {
     color: #0099ff;
