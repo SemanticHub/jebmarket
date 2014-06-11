@@ -80,7 +80,7 @@
                 </span>
                     <div class="preview">Title</div>
                     <div class="view">
-                        <h3 contenteditable="true">h3. Lorem ipsum dolor sit amet.</h3>
+                        <h3 contenteditable="true" id="editable">h3. Lorem ipsum dolor sit amet.</h3>
                     </div>
                 </div>
                 <div class="box box-element">
@@ -113,7 +113,7 @@
                 </span>
                     <div class="preview">Paragraph</div>
                     <div class="view">
-                        <p contenteditable="true">Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu. </small></p>
+                        <p contenteditable="true" id="editable">Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu. </small></p>
                     </div>
                 </div>
                 <div class="box box-element">
@@ -121,7 +121,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Address</div>
                     <div class="view">
-                        <address contenteditable="true">
+                        <address contenteditable="true" id="editable">
                             <strong>Twitter, Inc.</strong><br>
                             795 Folsom Ave, Suite 600<br>
                             San Francisco, CA 94107<br>
@@ -137,7 +137,7 @@
                 </span>
                     <div class="preview">Blockquote</div>
                     <div class="view clearfix">
-                        <blockquote contenteditable="true">
+                        <blockquote contenteditable="true" id="editable">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                             <small>Someone famous <cite title="Source Title">Source Title</cite></small>
                         </blockquote>
@@ -152,7 +152,7 @@
                 </span>
                     <div class="preview">Unordered List</div>
                     <div class="view">
-                        <ul contenteditable="true">
+                        <ul contenteditable="true" id="editable">
                             <li>Lorem ipsum dolor sit amet</li>
                             <li>Consectetur adipiscing elit</li>
                             <li>Integer molestie lorem at massa</li>
@@ -173,7 +173,7 @@
                 </span>
                     <div class="preview">Ordered List</div>
                     <div class="view">
-                        <ol contenteditable="true">
+                        <ol contenteditable="true" id="editable">
                             <li>Lorem ipsum dolor sit amet</li>;
                             <li>Consectetur adipiscing elit</li>
                             <li>Integer molestie lorem at massa</li>
@@ -1021,6 +1021,7 @@
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.mousewheel.js"></script>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/tooltipster.css">
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.tooltipster.min.js"></script>
+<script src="<?php echo Yii::app()->baseUrl; ?>/component/ckeditor/ckeditor.js"></script>
 <script>
     function save(){
         downloadLayoutSrc();
@@ -1034,4 +1035,6 @@
             dataType:'html'
         });
     }
+    CKEDITOR.disableAutoInline = true;
+    CKEDITOR.inline('editable');
 </script>

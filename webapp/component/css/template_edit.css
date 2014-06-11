@@ -490,12 +490,12 @@ a.language-selected { font-style: italic; font-weight: bold; }
     overflow: initial;
 }
 .edit .theme_edit .lyrow .grid_button {
-    top: 0;
+    top: -21px;
     left: 0;
-    z-index: 10;
     transition: all 500ms ease;
     position: absolute;
     opacity: 0;
+    z-index: 99999;
 }
 .sidebar-nav .grid_button{
     display: none;
@@ -517,4 +517,17 @@ a.language-selected { font-style: italic; font-weight: bold; }
 }
 .theme_edit .drag {
     right: 30px;
+}
+.theme_edit .lyrow .ui-resizable .ui-resizable-e {
+    display: block;
+    background: #88ceff;
+    border-radius: 1px;
+    position: absolute;
+    width: 5px;
+    -webkit-transition: opacity 0.0025s linear;
+    -moz-transition: opacity 0.0025s linear;
+    transition: opacity 0.0025s linear;
+}
+.theme_edit .lyrow .ui-resizable .ui-icon-gripsmall-diagonal-se{
+    background: none;
 }
