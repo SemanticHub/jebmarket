@@ -2193,3 +2193,6 @@ Store Module Styles
     position: absolute;
     top: 100px;
 }
+.content_body{
+    min-height: 450px;
+}

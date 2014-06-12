@@ -329,14 +329,14 @@ EOF;
                         array('label' => 'Home', 'url' => 'home', 'visibility' => 'auto', 'default_home' => '1', 'active' => '1', 'tag' => 'mainmenu', 'odr' => '1', 'type' => 'page', 'jebapp_user_id' => Yii::app()->user->id),
                         array('label' => 'About Us', 'url' => 'about', 'visibility' => 'auto', 'active' => '1', 'tag' => 'mainmenu', 'odr' => '2', 'type' => 'page', 'jebapp_user_id' => Yii::app()->user->id),
                         array('label' => 'Blog', 'url' => 'blog', 'route' => 'blog', 'visibility' => 'auto', 'active' => '1', 'tag' => 'mainmenu', 'odr' => '3', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
-                        array('label' => 'Contact', 'url' => 'site/contact', 'visibility' => 'auto', 'active' => '1', 'tag' => 'mainmenu', 'odr' => '4', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                        //array('label' => 'Contact', 'url' => 'site/contact', 'visibility' => 'auto', 'active' => '1', 'tag' => 'mainmenu', 'odr' => '4', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
                         array('label' => 'About Us', 'url' => 'about', 'visibility' => 'auto', 'active' => '1', 'tag' => 'footermenu', 'odr' => '2', 'type' => 'page', 'jebapp_user_id' => Yii::app()->user->id),
                         array('label' => 'Facebook', 'url' => '#', 'visibility' => 'auto', 'active' => '1', 'tag' => 'topmenu', 'odr' => '1', 'type' => 'social', 'class' => 'facebook', 'jebapp_user_id' => Yii::app()->user->id),
                         array('label' => 'Twitter', 'url' => '#', 'visibility' => 'auto', 'active' => '1', 'tag' => 'topmenu', 'odr' => '2', 'type' => 'social', 'class' => 'twitter', 'jebapp_user_id' => Yii::app()->user->id),
                         array('label' => 'Google Plus', 'url' => '#', 'visibility' => 'auto', 'active' => '1', 'tag' => 'topmenu', 'odr' => '3', 'type' => 'social', 'class' => 'google', 'jebapp_user_id' => Yii::app()->user->id),
-                        array('label' => '<span class="glyphicon glyphicon-user"></span> Login / Register', 'url' => 'site/login', 'visibility' => 'public', 'active' => '1', 'tag' => 'topmenu', 'odr' => '4', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
-                        array('label' => '<span class="glyphicon glyphicon-log-out"></span> Logout', 'url' => 'site/logout', 'visibility' => 'private', 'active' => '1', 'tag' => 'topmenu', 'odr' => '5', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
-                        array('label' => '<span class="glyphicon glyphicon-edit"></span> My Account', 'url' => 'user/profile', 'visibility' => 'private', 'active' => '1', 'tag' => 'topmenu', 'odr' => '6', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                        //array('label' => '<span class="glyphicon glyphicon-user"></span> Login / Register', 'url' => 'site/login', 'visibility' => 'public', 'active' => '1', 'tag' => 'topmenu', 'odr' => '4', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                        //array('label' => '<span class="glyphicon glyphicon-log-out"></span> Logout', 'url' => 'site/logout', 'visibility' => 'private', 'active' => '1', 'tag' => 'topmenu', 'odr' => '5', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
+                        //array('label' => '<span class="glyphicon glyphicon-edit"></span> My Account', 'url' => 'user/profile', 'visibility' => 'private', 'active' => '1', 'tag' => 'topmenu', 'odr' => '6', 'type' => 'module', 'jebapp_user_id' => Yii::app()->user->id),
                     ));
                     $createmenu->execute();
                     $createpage->execute();

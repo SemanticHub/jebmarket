@@ -11,7 +11,6 @@
     <div class="edit_left_component">
         <div class="component_firstico">
             <span class="glyphicon glyphicon-plus list_com"></span>
-            <span class="glyphicon glyphicon-pencil"></span>
             <span class="glyphicon glyphicon-list-alt"></span>
             <span class="glyphicon glyphicon-cog"></span>
         </div>
@@ -20,6 +19,7 @@
             <span class="glyphicon glyphicon-remove colponent_list_remove"></span>
 
             <div class="colponent_list">
+            <?php if(Yii::app()->user->checkAccess(Rights::module()->superuserName)){ ?>
             <ul class="nav nav-list accordion-group">
                 <div class="component_header">
                     <p>Admin Component</p>
@@ -41,69 +41,10 @@
                                             <h4 class="modal-title" contenteditable="true"><b>Choose Your Online Business Membership Plan</b></h4>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-sm-4 price_box_left">
-                                                    <div class="price_box1" contenteditable="true">
-                                                        <h4><sup>$</sup>20<span>/month</span></h4>
-                                                        <h5>Basic</h5>
-                                                        <h6><a href="<?php echo Yii::app()->baseUrl.'/user/step1?name=Basic'; ?>" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#signup_box" class="btn btn-primary btn-block start_now"> Start Your Free Trial </a></h6>
-                                                        <ul>
-                                                            <li>Unlimited bandwidth</li>
-                                                            <li>Unlimited products</li>
-                                                            <li>1 GB File storage</li>
-                                                            <li>2.0% Transaction fee</li>
-                                                            <li>Discount code engine</li>
-                                                            <li>24x7 Phone support</li>
-                                                            <li><s>Gift cards</s></li>
-                                                            <li><s>Abandoned cart recovery</s></li>
-                                                            <li><s>Professional reports</s></li>
-                                                            <li><s>Advanced report builder</s></li>
-                                                            <li><s>Real-time carrier shipping</s></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-sm-4 price_box_middle">
-                                                    <div class="price_box3" contenteditable="true">
-                                                        <p>Most Popular</p>
-                                                        <h4><sup>$</sup>70<span>/month</span></h4>
-                                                        <h5>Premium</h5>
-                                                        <h6><a href="<?php echo Yii::app()->baseUrl.'/user/step1?name=Premium'; ?>" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#signup_box" class="btn btn-primary btn-block start_now"> Start Your Free Trial </a></h6>
-                                                        <ul>
-                                                            <li>Unlimited bandwidth</li>
-                                                            <li>Unlimited products</li>
-                                                            <li><span>5 GB</span> File storage</li>
-                                                            <li><span>1.0%</span> Transaction fee</li>
-                                                            <li>Discount code engine</li>
-                                                            <li>24x7 Phone support</li>
-                                                            <li>Gift cards</li>
-                                                            <li>Abandoned cart recovery</li>
-                                                            <li>Professional reports</li>
-                                                            <li><s>Advanced report builder</s></li>
-                                                            <li><s>Real-time carrier shipping</s></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-sm-4 price_box_right">
-                                                    <div class="price_box2" contenteditable="true">
-                                                        <h4><sup>$</sup>170<span>/month</span></h4>
-                                                        <h5>Executive</h5>
-                                                        <h6><a href="<?php echo Yii::app()->baseUrl.'/user/step1?name=Executive'; ?>" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#signup_box" class="btn btn-primary btn-block start_now"> Start Your Free Trial </a></h6>
-                                                        <ul>
-                                                            <li>Unlimited bandwidth</li>
-                                                            <li>Unlimited products</li>
-                                                            <li><span>Unlimited</span> File storage</li>
-                                                            <li><span>No</span> Transaction fee</li>
-                                                            <li>Discount code engine</li>
-                                                            <li>24x7 Phone support</li>
-                                                            <li>Gift cards</li>
-                                                            <li>Abandoned cart recovery</li>
-                                                            <li>Professional reports</li>
-                                                            <li>Advanced report builder</li>
-                                                            <li>Real-time carrier shipping</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <?php
+                                                $pages = Pages::model()->findByAttributes(array('slug' => 'plans'));
+                                                echo $pages->content;
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -337,6 +278,7 @@
                 </li>
 
             </ul>
+            <?php } ?>
                 <ul class="nav nav-list accordion-group">
                 <div class="component_header">
                     <p>Basic Component</p>
