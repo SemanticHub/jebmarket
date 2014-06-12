@@ -287,7 +287,7 @@ $this->pageHeader = "Pages";
                 '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-paperclip"></span><br/>Link Page', Yii::app()->createUrl("pages/create", array('type'=>'custom', 'tag'=>'mainmenu')), array('success'=>'mainMenu')); ?>' +
                 '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-bold"></span><br/>Blog', Yii::app()->createUrl("pages/create", array('type'=>'blog', 'tag'=>'mainmenu')), array('success'=>'mainMenu')); ?>' +
                 '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-link"></span><br/>Social Link', Yii::app()->createUrl("pages/create", array('type'=>'social', 'tag'=>'mainmenu')), array('success'=>'mainMenu')); ?>' +
-                '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-user"></span><br/>Login / Register', Yii::app()->createUrl("pages/create", array('type'=>'login', 'tag'=>'mainmenu')), array('success'=>'mainMenu')); ?>' +
+                '<?php //echo CHtml::ajaxLink('<span class="glyphicon glyphicon-user"></span><br/>Login / Register', Yii::app()->createUrl("pages/create", array('type'=>'login', 'tag'=>'mainmenu')), array('success'=>'mainMenu')); ?>' +
                 '</ul>' +
                 '</div>'),
             position: 'right',
@@ -301,7 +301,7 @@ $this->pageHeader = "Pages";
                 '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-paperclip"></span><br/>Link Page', Yii::app()->createUrl("pages/create", array('type'=>'custom', 'tag'=>'footermenu')), array('success'=>'footerMenu')); ?>' +
                 '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-bold"></span><br/>Blog', Yii::app()->createUrl("pages/create", array('type'=>'blog', 'tag'=>'footermenu')), array('success'=>'footerMenu')); ?>' +
                 '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-link"></span><br/>Social Link', Yii::app()->createUrl("pages/create", array('type'=>'social', 'tag'=>'footermenu')), array('success'=>'footerMenu')); ?>' +
-                '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-user"></span><br/>Login / Register', Yii::app()->createUrl("pages/create", array('type'=>'login', 'tag'=>'footermenu')), array('success'=>'footerMenu')); ?>' +
+                '<?php //echo CHtml::ajaxLink('<span class="glyphicon glyphicon-user"></span><br/>Login / Register', Yii::app()->createUrl("pages/create", array('type'=>'login', 'tag'=>'footermenu')), array('success'=>'footerMenu')); ?>' +
                 '</ul>' +
                 '</div>'),
             position: 'right',
@@ -315,7 +315,7 @@ $this->pageHeader = "Pages";
                 '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-paperclip"></span><br/>Link Page', Yii::app()->createUrl("pages/create", array('type'=>'custom', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?>' +
                 '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-bold"></span><br/>Blog', Yii::app()->createUrl("pages/create", array('type'=>'blog', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?>' +
                 '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-link"></span><br/>Social Link', Yii::app()->createUrl("pages/create", array('type'=>'social', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?>' +
-                '<?php echo CHtml::ajaxLink('<span class="glyphicon glyphicon-user"></span><br/>Login / Register', Yii::app()->createUrl("pages/create", array('type'=>'login', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?>' +
+                '<?php //echo CHtml::ajaxLink('<span class="glyphicon glyphicon-user"></span><br/>Login / Register', Yii::app()->createUrl("pages/create", array('type'=>'login', 'tag'=>'topmenu')), array('success'=>'topMenu')); ?>' +
                 '</ul>' +
                 '</div>'),
             position: 'right',
