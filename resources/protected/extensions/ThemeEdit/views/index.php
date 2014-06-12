@@ -18,7 +18,323 @@
         <div class="colponent_list_pop">
             <p class="colponent_list_header">Add</p>
             <span class="glyphicon glyphicon-remove colponent_list_remove"></span>
+
             <div class="colponent_list">
+            <ul class="nav nav-list accordion-group">
+                <div class="component_header">
+                    <p>Admin Component</p>
+                </div>
+                <li class="boxes" id="elmBase">
+                    <div class="box box-element">
+                        <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                        <div class="preview">Start Business</div>
+                        <div class="view">
+                            <a href="#" data-toggle="modal" data-target="#member_plan" class="btn btn-lg btn-success" contenteditable="true"> Start Your Online Business Now </a>
+                            <div class="modal fade" id="member_plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" contenteditable="true"><b>Choose Your Online Business Membership Plan</b></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-sm-4 price_box_left">
+                                                    <div class="price_box1" contenteditable="true">
+                                                        <h4><sup>$</sup>20<span>/month</span></h4>
+                                                        <h5>Basic</h5>
+                                                        <h6><a href="<?php echo Yii::app()->baseUrl.'/user/step1?name=Basic'; ?>" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#signup_box" class="btn btn-primary btn-block start_now"> Start Your Free Trial </a></h6>
+                                                        <ul>
+                                                            <li>Unlimited bandwidth</li>
+                                                            <li>Unlimited products</li>
+                                                            <li>1 GB File storage</li>
+                                                            <li>2.0% Transaction fee</li>
+                                                            <li>Discount code engine</li>
+                                                            <li>24x7 Phone support</li>
+                                                            <li><s>Gift cards</s></li>
+                                                            <li><s>Abandoned cart recovery</s></li>
+                                                            <li><s>Professional reports</s></li>
+                                                            <li><s>Advanced report builder</s></li>
+                                                            <li><s>Real-time carrier shipping</s></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4 price_box_middle">
+                                                    <div class="price_box3" contenteditable="true">
+                                                        <p>Most Popular</p>
+                                                        <h4><sup>$</sup>70<span>/month</span></h4>
+                                                        <h5>Premium</h5>
+                                                        <h6><a href="<?php echo Yii::app()->baseUrl.'/user/step1?name=Premium'; ?>" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#signup_box" class="btn btn-primary btn-block start_now"> Start Your Free Trial </a></h6>
+                                                        <ul>
+                                                            <li>Unlimited bandwidth</li>
+                                                            <li>Unlimited products</li>
+                                                            <li><span>5 GB</span> File storage</li>
+                                                            <li><span>1.0%</span> Transaction fee</li>
+                                                            <li>Discount code engine</li>
+                                                            <li>24x7 Phone support</li>
+                                                            <li>Gift cards</li>
+                                                            <li>Abandoned cart recovery</li>
+                                                            <li>Professional reports</li>
+                                                            <li><s>Advanced report builder</s></li>
+                                                            <li><s>Real-time carrier shipping</s></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4 price_box_right">
+                                                    <div class="price_box2" contenteditable="true">
+                                                        <h4><sup>$</sup>170<span>/month</span></h4>
+                                                        <h5>Executive</h5>
+                                                        <h6><a href="<?php echo Yii::app()->baseUrl.'/user/step1?name=Executive'; ?>" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#signup_box" class="btn btn-primary btn-block start_now"> Start Your Free Trial </a></h6>
+                                                        <ul>
+                                                            <li>Unlimited bandwidth</li>
+                                                            <li>Unlimited products</li>
+                                                            <li><span>Unlimited</span> File storage</li>
+                                                            <li><span>No</span> Transaction fee</li>
+                                                            <li>Discount code engine</li>
+                                                            <li>24x7 Phone support</li>
+                                                            <li>Gift cards</li>
+                                                            <li>Abandoned cart recovery</li>
+                                                            <li>Professional reports</li>
+                                                            <li>Advanced report builder</li>
+                                                            <li>Real-time carrier shipping</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="signup_box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header signup_step_head">
+                                            <ul class="list-inline signup_step">
+                                                <li class="active">
+                                                    <p class="glyphicon glyphicon-th blue"></p>
+                                                    <p class="step_name">1. Email Registration</p>
+                                                </li>
+                                                <li>
+                                                    <p class="glyphicon glyphicon-briefcase"></p>
+                                                    <p class="step_name">2. Initialize Business</p>
+                                                </li>
+                                                <li>
+                                                    <p class="glyphicon glyphicon-saved"></p>
+                                                    <p class="step_name">3. Select Template</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="signup_box2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header signup_step_head">
+                                            <ul class="list-inline signup_step">
+                                                <li>
+                                                    <p class="glyphicon glyphicon-th blue"></p>
+                                                    <p class="step_name">1. Email Registration</p>
+                                                </li>
+                                                <li class="active">
+                                                    <p class="glyphicon glyphicon-briefcase"></p>
+                                                    <p class="step_name">2. Initialize Business</p>
+                                                </li>
+                                                <li>
+                                                    <p class="glyphicon glyphicon-saved"></p>
+                                                    <p class="step_name">3. Select Template</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="signup_box3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header signup_step_head">
+                                            <ul class="list-inline signup_step">
+                                                <li>
+                                                    <p class="glyphicon glyphicon-th blue"></p>
+                                                    <p class="step_name">1. Email Registration</p>
+                                                </li>
+                                                <li>
+                                                    <p class="glyphicon glyphicon-briefcase"></p>
+                                                    <p class="step_name">2. Initialize Business</p>
+                                                </li>
+                                                <li class="active">
+                                                    <p class="glyphicon glyphicon-saved"></p>
+                                                    <p class="step_name">3. Select Template</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(document).ready(function(){
+                                    $('#myCarousel').carousel();
+                                    $(".start_now").click(function() {
+                                        $('#member_plan').modal('hide');
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="box box-element">
+                        <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                        <div class="preview">Start Free Trial</div>
+                        <div class="view">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 price_box_left">
+                                    <div class="price_box1" contenteditable="true">
+                                        <h4><sup>$</sup>20<span>/month</span></h4>
+                                        <h5>Basic</h5>
+                                        <h6><a href="<?php echo Yii::app()->baseUrl.'/user/step1?name=Basic'; ?>" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#signup_box" class="btn btn-primary btn-block start_now"> Start Your Free Trial </a></h6>
+                                        <ul>
+                                            <li>Unlimited bandwidth</li>
+                                            <li>Unlimited products</li>
+                                            <li>1 GB File storage</li>
+                                            <li>2.0% Transaction fee</li>
+                                            <li>Discount code engine</li>
+                                            <li>24x7 Phone support</li>
+                                            <li><s>Gift cards</s></li>
+                                            <li><s>Abandoned cart recovery</s></li>
+                                            <li><s>Professional reports</s></li>
+                                            <li><s>Advanced report builder</s></li>
+                                            <li><s>Real-time carrier shipping</s></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-4 price_box_middle">
+                                    <div class="price_box3" contenteditable="true">
+                                        <p>Most Popular</p>
+                                        <h4><sup>$</sup>70<span>/month</span></h4>
+                                        <h5>Premium</h5>
+                                        <h6><a href="<?php echo Yii::app()->baseUrl.'/user/step1?name=Premium'; ?>" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#signup_box" class="btn btn-primary btn-block start_now"> Start Your Free Trial </a></h6>
+                                        <ul>
+                                            <li>Unlimited bandwidth</li>
+                                            <li>Unlimited products</li>
+                                            <li><span>5 GB</span> File storage</li>
+                                            <li><span>1.0%</span> Transaction fee</li>
+                                            <li>Discount code engine</li>
+                                            <li>24x7 Phone support</li>
+                                            <li>Gift cards</li>
+                                            <li>Abandoned cart recovery</li>
+                                            <li>Professional reports</li>
+                                            <li><s>Advanced report builder</s></li>
+                                            <li><s>Real-time carrier shipping</s></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-4 price_box_right">
+                                    <div class="price_box2" contenteditable="true">
+                                        <h4><sup>$</sup>170<span>/month</span></h4>
+                                        <h5>Executive</h5>
+                                        <h6><a href="<?php echo Yii::app()->baseUrl.'/user/step1?name=Executive'; ?>" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#signup_box" class="btn btn-primary btn-block start_now"> Start Your Free Trial </a></h6>
+                                        <ul>
+                                            <li>Unlimited bandwidth</li>
+                                            <li>Unlimited products</li>
+                                            <li><span>Unlimited</span> File storage</li>
+                                            <li><span>No</span> Transaction fee</li>
+                                            <li>Discount code engine</li>
+                                            <li>24x7 Phone support</li>
+                                            <li>Gift cards</li>
+                                            <li>Abandoned cart recovery</li>
+                                            <li>Professional reports</li>
+                                            <li>Advanced report builder</li>
+                                            <li>Real-time carrier shipping</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="signup_box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header signup_step_head">
+                                            <ul class="list-inline signup_step">
+                                                <li class="active">
+                                                    <p class="glyphicon glyphicon-th blue"></p>
+                                                    <p class="step_name">1. Email Registration</p>
+                                                </li>
+                                                <li>
+                                                    <p class="glyphicon glyphicon-briefcase"></p>
+                                                    <p class="step_name">2. Initialize Business</p>
+                                                </li>
+                                                <li>
+                                                    <p class="glyphicon glyphicon-saved"></p>
+                                                    <p class="step_name">3. Select Template</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="signup_box2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header signup_step_head">
+                                            <ul class="list-inline signup_step">
+                                                <li>
+                                                    <p class="glyphicon glyphicon-th blue"></p>
+                                                    <p class="step_name">1. Email Registration</p>
+                                                </li>
+                                                <li class="active">
+                                                    <p class="glyphicon glyphicon-briefcase"></p>
+                                                    <p class="step_name">2. Initialize Business</p>
+                                                </li>
+                                                <li>
+                                                    <p class="glyphicon glyphicon-saved"></p>
+                                                    <p class="step_name">3. Select Template</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="signup_box3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header signup_step_head">
+                                            <ul class="list-inline signup_step">
+                                                <li>
+                                                    <p class="glyphicon glyphicon-th blue"></p>
+                                                    <p class="step_name">1. Email Registration</p>
+                                                </li>
+                                                <li>
+                                                    <p class="glyphicon glyphicon-briefcase"></p>
+                                                    <p class="step_name">2. Initialize Business</p>
+                                                </li>
+                                                <li class="active">
+                                                    <p class="glyphicon glyphicon-saved"></p>
+                                                    <p class="step_name">3. Select Template</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(document).ready(function(){
+                                    $('#myCarousel').carousel();
+                                    $(".start_now").click(function() {
+                                        $('#member_plan').modal('hide');
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
                 <ul class="nav nav-list accordion-group">
                 <div class="component_header">
                     <p>Basic Component</p>
@@ -80,7 +396,7 @@
                 </span>
                     <div class="preview">Title</div>
                     <div class="view">
-                        <h3 contenteditable="true" id="editable">h3. Lorem ipsum dolor sit amet.</h3>
+                        <h3 contenteditable="true" class="editable">h3. Lorem ipsum dolor sit amet.</h3>
                     </div>
                 </div>
                 <div class="box box-element">
@@ -113,7 +429,7 @@
                 </span>
                     <div class="preview">Paragraph</div>
                     <div class="view">
-                        <p contenteditable="true" id="editable">Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu. </small></p>
+                        <p contenteditable="true" id="com2" class="editable">Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu. </small></p>
                     </div>
                 </div>
                 <div class="box box-element">
@@ -121,7 +437,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Address</div>
                     <div class="view">
-                        <address contenteditable="true" id="editable">
+                        <address contenteditable="true" id="com3" class="editable">
                             <strong>Twitter, Inc.</strong><br>
                             795 Folsom Ave, Suite 600<br>
                             San Francisco, CA 94107<br>
@@ -137,7 +453,7 @@
                 </span>
                     <div class="preview">Blockquote</div>
                     <div class="view clearfix">
-                        <blockquote contenteditable="true" id="editable">
+                        <blockquote contenteditable="true" id="com4" class="editable">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                             <small>Someone famous <cite title="Source Title">Source Title</cite></small>
                         </blockquote>
@@ -152,7 +468,7 @@
                 </span>
                     <div class="preview">Unordered List</div>
                     <div class="view">
-                        <ul contenteditable="true" id="editable">
+                        <ul contenteditable="true" id="com5" class="editable">
                             <li>Lorem ipsum dolor sit amet</li>
                             <li>Consectetur adipiscing elit</li>
                             <li>Integer molestie lorem at massa</li>
@@ -173,7 +489,7 @@
                 </span>
                     <div class="preview">Ordered List</div>
                     <div class="view">
-                        <ol contenteditable="true" id="editable">
+                        <ol contenteditable="true" id="com6" class="editable">
                             <li>Lorem ipsum dolor sit amet</li>;
                             <li>Consectetur adipiscing elit</li>
                             <li>Integer molestie lorem at massa</li>
@@ -193,7 +509,7 @@
                 </span>
                     <div class="preview">Description</div>
                     <div class="view">
-                        <dl contenteditable="true">
+                        <dl contenteditable="true" id="com7" class="editable">
                             <dt>Description lists</dt>
                             <dd>A description list is perfect for defining terms.</dd>
                             <dt>Euismod</dt>
@@ -223,7 +539,7 @@
                 </span>
                     <div class="preview">Table</div>
                     <div class="view">
-                        <table class="table" contenteditable="true">
+                        <table class="table editable" contenteditable="true" id="com8">
                             <thead>
                             <tr>
                                 <th>#</th>
@@ -367,7 +683,7 @@
                 </span>
                     <div class="preview">Button</div>
                     <div class="view">
-                        <button type="button" class="btn btn-default" contenteditable="true">Default</button>
+                        <button type="button" class="btn btn-default editable" contenteditable="true" id="com9">Default</button>
                     </div>
                 </div>
                 <div class="box box-element">
@@ -402,7 +718,7 @@
                 </span>
                     <div class="preview">Anchor Button</div>
                     <div class="view">
-                        <a href="#" class="btn" type="button" contenteditable="true">Button</a>
+                        <a href="#" class="btn editable" type="button" contenteditable="true" id="com10">Button</a>
                     </div>
                 </div>
                 <div class="box box-element">
@@ -465,7 +781,7 @@
                 </span>
                     <div class="preview">Button Dropdowns</div>
                     <div class="view">
-                        <div class="btn-group">
+                        <div class="btn-group editable">
                             <button class="btn btn-default" contenteditable="true">Action</button>
                             <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
                             <ul class="dropdown-menu" contenteditable="true">
@@ -492,7 +808,7 @@
                 </span>
                     <div class="preview">Navs</div>
                     <div class="view">
-                        <ul class="nav nav-tabs" contenteditable="true">
+                        <ul class="nav nav-tabs editable" contenteditable="true">
                             <li class="active"><a href="#">Home</a></li>
                             <li><a href="#">Profile</a></li>
                             <li class="disabled"><a href="#">Messages</a></li>
@@ -513,7 +829,7 @@
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Breadcrumb</div>
-                    <div class="view">
+                    <div class="view editable">
 
                         <ul class="breadcrumb">
                             <li><a href="#" contenteditable="true">Home</a> <span class="divider">/</span></li>
@@ -539,7 +855,7 @@
                         </span>
                     <div class="preview">Pagination</div>
                     <div class="view">
-                        <ul class="pagination" contenteditable="true">
+                        <ul class="pagination editable" contenteditable="true">
                             <li><a href="#">Prev</a></li>
                             <li><a href="#">1</a></li>
                             <li><a href="#">2</a></li>
@@ -568,7 +884,7 @@
                 </span>
                     <div class="preview">Label</div>
                     <div class="view">
-                        <span class="label label-default" contenteditable="true">Label</span>
+                        <span class="label label-default editable" contenteditable="true">Label</span>
                     </div>
                 </div>
                 <div class="box box-element">
@@ -578,7 +894,7 @@
                 </span>
                     <div class="preview">Badge</div>
                     <div class="view">
-                        <ul class="nav nav-pills" contenteditable="true">
+                        <ul class="nav nav-pills editable" contenteditable="true">
                             <li class="active">
                                 <a href="#">
                                     <span class="badge pull-right">42</span>
@@ -602,7 +918,7 @@
                 </span>
                     <div class="preview">Jumbotron</div>
                     <div class="view">
-                        <div class="jumbotron" contenteditable="true">
+                        <div class="jumbotron editable" contenteditable="true">
                             <h1>Hello, world!</h1>
                             <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
                             <p><a class="btn btn-primary btn-large" href="#">Learn more</a></p>
@@ -614,7 +930,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Page Header</div>
                     <div class="view">
-                        <div class="page-header">
+                        <div class="page-header editable">
                             <h1 contenteditable="true">Example page header <small>Subtext for header</small></h1>
                         </div>
                     </div>
@@ -624,9 +940,11 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Text</div>
                     <div class="view">
-                        <h2 contenteditable="true">Heading</h2>
-                        <p contenteditable="true">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-                        <p><a class="btn" href="#" contenteditable="true">View details &raquo;</a></p>
+                        <div class="editable">
+                            <h2 contenteditable="true">Heading</h2>
+                            <p contenteditable="true">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                            <p><a class="btn" href="#" contenteditable="true">View details &raquo;</a></p>
+                        </div>
                     </div>
                 </div>
                 <div class="box box-element">
@@ -634,7 +952,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Thumbnails</div>
                     <div class="view">
-                        <div class="row">
+                        <div class="row editable">
                             <div class="col-md-4">
                                 <div class="thumbnail">
                                     <img alt="300x200" src="http://lorempixel.com/600/200/people">
@@ -679,7 +997,7 @@
                 </span>
                     <div class="preview">Progress Bar</div>
                     <div class="view">
-                        <div class="progress">
+                        <div class="progress editable">
                             <div class="progress-bar progress-success" style="width: 60%;"></div>
                         </div>
                     </div>
@@ -692,7 +1010,7 @@
                 </span>
                     <div class="preview">Media Object</div>
                     <div class="view">
-                        <div class="media">
+                        <div class="media editable">
                             <a href="#" class="pull-left">
                                 <img src="http://lorempixel.com/64/64/" class="media-object">
                             </a>
@@ -719,7 +1037,7 @@
                 </span>
                     <div class="preview">List group</div>
                     <div class="view">
-                        <div class="list-group" contenteditable="true">
+                        <div class="list-group editable" contenteditable="true">
                             <a href="#" class="list-group-item active">Home</a>
                             <div class="list-group-item">List header</div>
                             <div class="list-group-item">
@@ -750,7 +1068,7 @@
                 </span>
                     <div class="preview">Panels</div>
                     <div class="view">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default editable">
                             <div class="panel-heading">
                                 <h3 class="panel-title" contenteditable="true">Panel title</h3>
                             </div>
@@ -777,7 +1095,7 @@
                     <div class="preview">Modal</div>
                     <div class="view">
                         <!-- Button to trigger modal -->
-                        <a id="myModalLink" href="#myModalContainer" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+                        <a id="myModalLink editable" href="#myModalContainer" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
 
                         <!-- Modal -->
                         <div class="modal fade" id="myModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -821,7 +1139,7 @@
                     <div class="preview">Navbar</div>
                     <div class="view">
 
-                        <nav class="navbar navbar-default" role="navigation">
+                        <nav class="navbar navbar-default editable" role="navigation">
                             <!-- Brand and toggle get grouped for better mobile display -->
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -882,7 +1200,7 @@
                 </span>
                     <div class="preview">Tabs</div>
                     <div class="view">
-                        <div class="tabbable" id="myTabs"> <!-- Only required for left/right tabs -->
+                        <div class="tabbable editable" id="myTabs"> <!-- Only required for left/right tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#tab1" data-toggle="tab" contenteditable="true">Section 1</a></li>
                                 <li><a href="#tab2" data-toggle="tab" contenteditable="true">Section 2</a></li>
@@ -915,7 +1233,7 @@
                 </span>
                     <div class="preview">Alerts</div>
                     <div class="view">
-                        <div class="alert alert-success alert-dismissable" contenteditable="true">
+                        <div class="alert alert-success alert-dismissable editable" contenteditable="true">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h4>Alert!</h4>
                             <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
@@ -927,7 +1245,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Collapse</div>
                     <div class="view">
-                        <div class="panel-group" id="myAccordion">
+                        <div class="panel-group editable" id="myAccordion">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <a class="panel-title" data-toggle="collapse" data-parent="#myAccordion" href="#collapseOne" contenteditable="true">
@@ -963,7 +1281,7 @@
                     <div class="view">
 
 
-                        <div class="carousel slide" id="myCarousel">
+                        <div class="carousel slide editable" id="myCarousel">
                             <ol class="carousel-indicators">
                                 <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
                                 <li data-slide-to="1" data-target="#myCarousel" class=""></li>
@@ -1015,13 +1333,11 @@
 <script type="text/javascript" src="http://cdn.transparensee.com/lib/jquery-plugin/touchpunch/0.2.2/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.htmlClean.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/component/js/scripts.min.js"></script>
-<script src="<?php echo Yii::app()->baseUrl; ?>/component/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/jquery.jscrollpane.css">
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.jscrollpane.min.js"></script>
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.mousewheel.js"></script>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/tooltipster.css">
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.tooltipster.min.js"></script>
-<script src="<?php echo Yii::app()->baseUrl; ?>/component/ckeditor/ckeditor.js"></script>
 <script>
     function save(){
         downloadLayoutSrc();
@@ -1035,6 +1351,4 @@
             dataType:'html'
         });
     }
-    CKEDITOR.disableAutoInline = true;
-    CKEDITOR.inline('editable');
 </script>
