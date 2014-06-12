@@ -5,7 +5,7 @@ class PageController extends Controller {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2'
      */
-    public $layout = '//layouts/column1';
+    public $layout = '//layouts/main';
 
     /**
      * @return array action filters
