@@ -27,12 +27,12 @@ $form = $this->beginWidget('CActiveForm', array(
                         if(!hasError){
                                 $.ajax({
                                         "type":"POST",
-                                        "url":"'.CHtml::normalizeUrl(array("user/step2")).'",
+                                        "url":"'.CHtml::normalizeUrl(array("/user/step2")).'",
                                         "data":form.serialize(),
                                         }).done(function (data) {
                                             $("#signup_box2").modal(data);
                                             $("#signup_box3").modal({
-                                                remote : "user/step3",
+                                                remote : "'.CHtml::normalizeUrl(array("/user/step3")).'",
                                                 backdrop: "static",
                                                 keyboard: false
                                             });

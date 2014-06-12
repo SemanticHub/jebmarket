@@ -27,12 +27,12 @@ $form = $this->beginWidget('CActiveForm', array(
                         if(!hasError){
                                 $.ajax({
                                         "type":"POST",
-                                        "url":"'.CHtml::normalizeUrl(array("user/step1?name=".Yii::app()->request->getParam('name'))).'",
+                                        "url":"'.CHtml::normalizeUrl(array("/user/step1?name=".Yii::app()->request->getParam('name'))).'",
                                         "data":form.serialize(),
                                         }).done(function (data) {
                                             $("#signup_box").modal(data);
                                             $("#signup_box2").modal({
-                                                remote : "user/step2",
+                                                remote : "'.CHtml::normalizeUrl(array("/user/step2")).'",
                                                 backdrop: "static",
                                                 keyboard: false
                                             });
