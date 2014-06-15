@@ -12,7 +12,7 @@
         <div class="component_firstico">
             <span class="glyphicon glyphicon-plus list_com"></span>
             <span class="glyphicon glyphicon-list-alt"></span>
-            <span class="glyphicon glyphicon-cog"></span>
+            <span class="glyphicon glyphicon-cog list_sittings"></span>
         </div>
         <div class="colponent_list_pop">
             <p class="colponent_list_header">Add</p>
@@ -30,7 +30,7 @@
                         <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                         <div class="preview">Start Business</div>
                         <div class="view">
-                            <div class="editable">
+                            <div class="editable" contenteditable="true" id="com32">
                                 <a href="#" data-toggle="modal" data-target="#member_plan" class="btn btn-lg btn-success" contenteditable="true"> Start Your Online Business Now </a>
                             </div>
                             <div class="modal fade" id="member_plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -133,7 +133,7 @@
                         <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                         <div class="preview">Start Free Trial</div>
                         <div class="view">
-                            <div class="editable">
+                            <div class="editable" contenteditable="true" id="com33">
                                 <div class="col-lg-4 col-sm-4 price_box_left">
                                     <div class="price_box1" contenteditable="true">
                                         <h4><sup>$</sup>20<span>/month</span></h4>
@@ -340,8 +340,8 @@
                 </span>
                     <div class="preview">Title</div>
                     <div class="view">
-                        <div class="editable">
-                            <h3 contenteditable="true">h3. Lorem ipsum dolor sit amet.</h3>
+                        <div class="editable" contenteditable="true" id="com1">
+                            <h3>h3. Lorem ipsum dolor sit amet.</h3>
                         </div>
                     </div>
                 </div>
@@ -375,8 +375,8 @@
                 </span>
                     <div class="preview">Paragraph</div>
                     <div class="view">
-                        <div class="editable">
-                            <p contenteditable="true" id="com2">Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu. </small></p>
+                        <div class="editable" contenteditable="true" id="com2">
+                            <p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu. </small></p>
                         </div>
                     </div>
                 </div>
@@ -385,8 +385,8 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Address</div>
                     <div class="view">
-                        <div class="editable">
-                            <address contenteditable="true" id="com3">
+                        <div class="editable" contenteditable="true" id="com3">
+                            <address>
                                 <strong>Twitter, Inc.</strong><br>
                                 795 Folsom Ave, Suite 600<br>
                                 San Francisco, CA 94107<br>
@@ -404,8 +404,8 @@
                 </span>
                     <div class="preview">Blockquote</div>
                     <div class="view clearfix">
-                        <div class="editable">
-                            <blockquote contenteditable="true" id="com4">
+                        <div class="editable" contenteditable="true" id="com4">
+                            <blockquote>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                                 <small>Someone famous <cite title="Source Title">Source Title</cite></small>
                             </blockquote>
@@ -422,8 +422,8 @@
                 </span>
                     <div class="preview">Unordered List</div>
                     <div class="view">
-                        <div class="editable">
-                            <ul contenteditable="true" id="com5">
+                        <div class="editable" contenteditable="true" id="com5">
+                            <ul>
                                 <li>Lorem ipsum dolor sit amet</li>
                                 <li>Consectetur adipiscing elit</li>
                                 <li>Integer molestie lorem at massa</li>
@@ -446,8 +446,8 @@
                 </span>
                     <div class="preview">Ordered List</div>
                     <div class="view">
-                        <div class="editable">
-                            <ol contenteditable="true" id="com6">
+                        <div class="editable" contenteditable="true" id="com6">
+                            <ol>
                                 <li>Lorem ipsum dolor sit amet</li>;
                                 <li>Consectetur adipiscing elit</li>
                                 <li>Integer molestie lorem at massa</li>
@@ -469,8 +469,8 @@
                 </span>
                     <div class="preview">Description</div>
                     <div class="view">
-                        <div class="editable">
-                            <dl contenteditable="true" id="com7">
+                        <div class="editable" contenteditable="true" id="com7">
+                            <dl>
                                 <dt>Description lists</dt>
                                 <dd>A description list is perfect for defining terms.</dd>
                                 <dt>Euismod</dt>
@@ -501,8 +501,8 @@
                 </span>
                     <div class="preview">Table</div>
                     <div class="view">
-                        <div class="editable">
-                            <table class="table" contenteditable="true" id="com8">
+                        <div class="editable" contenteditable="true" id="com8">
+                            <table class="table">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -554,69 +554,42 @@
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="form-inline">Inline</a>
                 </span>
-                    <div class="preview">Form</div>
+                    <div class="preview">Contact Form</div>
                     <div class="view">
-                        <div class="editable">
-                            <form role="form">
+                        <div class="editable false" contenteditable="false">
+                            <?php
+                            $form = $this->beginWidget('CActiveForm', array(
+                                'id' => 'contact-form',
+                                'action' => Yii::app()->createUrl('/site/contact'),
+                                'htmlOptions' => array(
+                                    'class' => 'form-horizontal',
+                                    'role' => 'form'
+                                )
+                            ));
+                            ?>
+                            <?php echo $form->errorSummary($contact, '', '', array('class' => 'alert alert-danger')); ?>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">File input</label>
-                                    <input type="file" id="exampleInputFile">
-                                    <p class="help-block">Example block-level help text here.</p>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Check me out
-                                    </label>
-                                </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="box box-element">
-                    <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
-                <span class="configuration">
-                </span>
-                    <div class="preview">Horizontal Form</div>
-                    <div class="view">
-                        <div class="editable">
-                            <form class="form-horizontal" role="form">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                                    </div>
+                                    <?php echo $form->labelEx($contact, 'name'); ?>
+                                    <?php echo $form->textField($contact, 'name', array('maxlength' => 80, 'class' => 'form-control')); ?>
+                                    <?php echo $form->error($contact, 'name', array('class' => 'text-danger control-hint')); ?>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                                    </div>
+                                    <?php echo $form->labelEx($contact, 'email'); ?>
+                                    <?php echo $form->textField($contact, 'email', array('maxlength' => 80, 'class' => 'form-control')); ?>
+                                    <?php echo $form->error($contact, 'email', array('class' => 'text-danger control-hint')); ?>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Remember me
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <?php echo $form->labelEx($contact, 'subject'); ?>
+                                    <?php echo $form->textField($contact, 'subject', array('maxlength' => 255, 'class' => 'form-control')); ?>
+                                    <?php echo $form->error($contact, 'subject', array('class' => 'text-danger control-hint')); ?>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-default">Sign in</button>
-                                    </div>
+                                    <?php echo $form->labelEx($contact, 'body'); ?>
+                                    <?php echo $form->textArea($contact, 'body', array('form-groups' => 6, 'rows' => 5, 'cols' => 50, 'class' => 'form-control')); ?>
+                                    <?php echo $form->error($contact, 'body', array('class' => 'text-danger control-hint')); ?>
                                 </div>
-                            </form>
+                            <?php echo CHtml::submitButton('Submit', array('class' => 'btn btn-primary')); ?>
+                            <?php $this->endWidget(); ?>
                         </div>
                     </div>
                 </div>
@@ -652,8 +625,8 @@
                 </span>
                     <div class="preview">Button</div>
                     <div class="view">
-                        <div class="editable">
-                            <button type="button" class="btn btn-default" contenteditable="true" id="com9">Default</button>
+                        <div class="editable" contenteditable="true" id="com9">
+                            <button type="button" class="btn btn-default">Default</button>
                         </div>
 
                     </div>
@@ -690,8 +663,8 @@
                 </span>
                     <div class="preview">Anchor Button</div>
                     <div class="view">
-                        <div class="editable">
-                            <a href="#" class="btn" type="button" contenteditable="true" id="com10">Button</a>
+                        <div class="editable" contenteditable="true" id="com10">
+                            <a href="#" class="btn" type="button">Button</a>
                         </div>
                     </div>
                 </div>
@@ -711,7 +684,7 @@
                 </span>
                     <div class="preview">Image</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com11">
                             <img alt="140x140" src="http://lorempixel.com/140/140/">
                         </div>
                     </div>
@@ -741,7 +714,7 @@
               </span>
                     <div class="preview">Button Group</div>
                     <div class="view">
-                        <div class="editable">
+                        <div  contenteditable="true" id="com12">
                             <div class="btn-group">
                                 <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-align-left"></i> Left</button>
                                 <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-align-center"></i> Center</button>
@@ -759,7 +732,7 @@
                 </span>
                     <div class="preview">Button Dropdowns</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com13">
                             <div class="btn-group">
                                 <button class="btn btn-default" contenteditable="true">Action</button>
                                 <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
@@ -788,7 +761,7 @@
                 </span>
                     <div class="preview">Navs</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com14">
                             <ul class="nav nav-tabs" contenteditable="true">
                                 <li class="active"><a href="#">Home</a></li>
                                 <li><a href="#">Profile</a></li>
@@ -812,7 +785,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Breadcrumb</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com15">
                             <ul class="breadcrumb">
                                 <li><a href="#" contenteditable="true">Home</a> <span class="divider">/</span></li>
                                 <li><a href="#" contenteditable="true">Library</a> <span class="divider">/</span></li>
@@ -837,7 +810,7 @@
                         </span>
                     <div class="preview">Pagination</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com16">
                             <ul class="pagination editable" contenteditable="true">
                                 <li><a href="#">Prev</a></li>
                                 <li><a href="#">1</a></li>
@@ -878,7 +851,7 @@
                 </span>
                     <div class="preview">Badge</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com17">
                             <ul class="nav nav-pills" contenteditable="true">
                                 <li class="active">
                                     <a href="#">
@@ -904,7 +877,7 @@
                 </span>
                     <div class="preview">Jumbotron</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com18">
                             <div class="jumbotron" contenteditable="true">
                                 <h1>Hello, world!</h1>
                                 <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
@@ -918,7 +891,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Page Header</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com19">
                             <div class="page-header">
                                 <h1 contenteditable="true">Example page header <small>Subtext for header</small></h1>
                             </div>
@@ -930,7 +903,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Text</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com20">
                             <h2 contenteditable="true">Heading</h2>
                             <p contenteditable="true">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
                             <p><a class="btn" href="#" contenteditable="true">View details &raquo;</a></p>
@@ -942,7 +915,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Thumbnails</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com21">
                             <div class="col-md-4">
                                 <div class="thumbnail">
                                     <img alt="300x200" src="http://lorempixel.com/600/200/people">
@@ -987,7 +960,7 @@
                 </span>
                     <div class="preview">Progress Bar</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com22">
                             <div class="progress">
                                 <div class="progress-bar progress-success" style="width: 60%;"></div>
                             </div>
@@ -1002,7 +975,7 @@
                 </span>
                     <div class="preview">Media Object</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com23">
                             <div class="media">
                                 <a href="#" class="pull-left">
                                     <img src="http://lorempixel.com/64/64/" class="media-object">
@@ -1031,7 +1004,7 @@
                 </span>
                     <div class="preview">List group</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com24">
                             <div class="list-group" contenteditable="true">
                                 <a href="#" class="list-group-item active">Home</a>
                                 <div class="list-group-item">List header</div>
@@ -1064,7 +1037,7 @@
                 </span>
                     <div class="preview">Panels</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com25">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title" contenteditable="true">Panel title</h3>
@@ -1093,7 +1066,7 @@
                     <div class="preview">Modal</div>
                     <div class="view">
                         <!-- Button to trigger modal -->
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com26">
                             <a id="myModalLink" href="#myModalContainer" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
                         </div>
                         <!-- Modal -->
@@ -1137,7 +1110,7 @@
                 </span>
                     <div class="preview">Navbar</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com27">
                             <nav class="navbar navbar-default" role="navigation">
                                 <!-- Brand and toggle get grouped for better mobile display -->
                                 <div class="navbar-header">
@@ -1199,7 +1172,7 @@
                 </span>
                     <div class="preview">Tabs</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com28">
                             <div class="tabbable" id="myTabs"> <!-- Only required for left/right tabs -->
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab1" data-toggle="tab" contenteditable="true">Section 1</a></li>
@@ -1234,7 +1207,7 @@
                 </span>
                     <div class="preview">Alerts</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com29">
                             <div class="alert alert-success alert-dismissable" contenteditable="true">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <h4>Alert!</h4>
@@ -1248,7 +1221,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Collapse</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com30">
                             <div class="panel-group" id="myAccordion">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
@@ -1283,7 +1256,7 @@
                     <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                     <div class="preview">Carousel</div>
                     <div class="view">
-                        <div class="editable">
+                        <div class="editable" contenteditable="true" id="com31">
                             <div class="carousel slide" id="myCarousel">
                                 <ol class="carousel-indicators">
                                     <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
@@ -1328,6 +1301,28 @@
                 </ul>
             </div>
         </div>
+        <div class="colponent_list_pop2">
+        <p class="colponent_list_header">Settings</p>
+        <span class="glyphicon glyphicon-remove colponent_list_remove"></span>
+        <div class="colponent_list">
+            <ul class="nav nav-list accordion-group backgrounds">
+                <div class="component_header">
+                    <p>Background</p>
+                </div>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/1.png">
+                </li>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/2.png">
+                </li>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/3.png">
+                </li>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/4.png">
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <div id="download-layout" style="display: none;"><div class="container"></div></div>
@@ -1336,12 +1331,13 @@
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 <script type="text/javascript" src="http://cdn.transparensee.com/lib/jquery-plugin/touchpunch/0.2.2/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.htmlClean.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/component/js/scripts.min.js"></script>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/jquery.jscrollpane.css">
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.jscrollpane.min.js"></script>
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.mousewheel.js"></script>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/tooltipster.css">
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.tooltipster.min.js"></script>
+<script src="<?php echo Yii::app()->baseUrl; ?>/component/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/component/js/scripts.min.js"></script>
 <script>
     function save(){
         downloadLayoutSrc();

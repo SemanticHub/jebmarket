@@ -7,9 +7,11 @@ class ThemeEdit extends CWidget {
         $pageID = Pages::model()->pageID();
         $editID = Yii::app()->request->getParam('edit');
         if(!empty($pageID) && empty($editID)){
+            $contact = new ContactForm;
             $this->render('index',array(
                 'pageID' => $pageID,
-                'editID' => $editID
+                'editID' => $editID,
+                'contact' => $contact
             ));
         }
     }
