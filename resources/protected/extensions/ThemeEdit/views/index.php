@@ -30,8 +30,8 @@
                         <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
                         <div class="preview">Start Business</div>
                         <div class="view">
-                            <div class="editable" contenteditable="true" id="com32">
-                                <a href="#" data-toggle="modal" data-target="#member_plan" class="btn btn-lg btn-success" contenteditable="true"> Start Your Online Business Now </a>
+                            <div class="editable false" contenteditable="false" id="com32">
+                                <a href="#" data-toggle="modal" data-target="#member_plan" class="btn btn-lg btn-success"> Start Your Online Business Now </a>
                             </div>
                             <div class="modal fade" id="member_plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
