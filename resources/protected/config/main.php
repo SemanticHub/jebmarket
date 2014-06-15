@@ -134,17 +134,17 @@ return array(
         ),
         # Database Access
         # ---------------
-        /*'db' => array(
+        'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
             'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => '1234',
-            #'username' => 'jassifie_yiijeb',
-            #'password' => '99.9%available',
+            #'username' => 'root',
+            #'password' => '123456',
+            'username' => 'jassifie_yiijeb',
+            'password' => '99.9%available',
             'charset' => 'utf8',
             'initSQLs'=>array("set time_zone='+00:00';"),
-        ),*/
-        'db' => array(
+        ),
+        /*'db' => array(
             'connectionString' => 'mysql:host=myjebwebpro.chitkpzlvepd.us-west-2.rds.amazonaws.com;dbname=myjebwebprodb',
             'emulatePrepare' => true,
             'username' => 'myjebwebprouser',
@@ -153,7 +153,7 @@ return array(
             #'password' => '99.9%available',
             'charset' => 'utf8',
             'initSQLs'=>array("set time_zone='+00:00';"),
-        ),
+        ),*/
         # Authorization Manager
         # ------------------------
         'authManager' => array(
