@@ -118,7 +118,7 @@ return array(
                 #'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
                 #'rights/<controller:\w+>' => 'rights/<controller>',
                 #'rights/<controller:\w+>/<action:\w+>' => 'rights/<controller>/<action>',
-                'http://<user:\w+>.myjeb.com' => 'user',
+                'http://<user:\w+>.myjeb.com' => '<user>',
                 array(
                     'class' => 'application.components.ProfileUrlRule',
                     'connectionID' => 'db',
