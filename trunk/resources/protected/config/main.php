@@ -118,12 +118,12 @@ return array(
                 #'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
                 #'rights/<controller:\w+>' => 'rights/<controller>',
                 #'rights/<controller:\w+>/<action:\w+>' => 'rights/<controller>/<action>',
+                'http://<user:\w+>.myjeb.com' => 'user',
                 array(
                     'class' => 'application.components.ProfileUrlRule',
                     'connectionID' => 'db',
                 ),
                 'blog/admin' => 'blog/default/admin',
-                'http://<user:\w+>.myjeb.com' => 'user',
                 '<module:\w+>/<controller:\w+>' => '<module>/<controller>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
