@@ -123,6 +123,7 @@ return array(
                     'connectionID' => 'db',
                 ),
                 'blog/admin' => 'blog/default/admin',
+                'http://<user:\w+>.myjeb.com' => 'user',
                 '<module:\w+>/<controller:\w+>' => '<module>/<controller>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
@@ -133,13 +134,23 @@ return array(
         ),
         # Database Access
         # ---------------
-        'db' => array(
+        /*'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
             'emulatePrepare' => true,
-            #'username' => 'root',
-            #'password' => '1234',
-            'username' => 'jassifie_yiijeb',
-            'password' => '99.9%available',
+            'username' => 'root',
+            'password' => '1234',
+            #'username' => 'jassifie_yiijeb',
+            #'password' => '99.9%available',
+            'charset' => 'utf8',
+            'initSQLs'=>array("set time_zone='+00:00';"),
+        ),*/
+        'db' => array(
+            'connectionString' => 'mysql:host=myjebwebpro.chitkpzlvepd.us-west-2.rds.amazonaws.com;dbname=myjebwebprodb',
+            'emulatePrepare' => true,
+            'username' => 'myjebwebprouser',
+            'password' => '99.95%access',
+            #'username' => 'jassifie_yiijeb',
+            #'password' => '99.9%available',
             'charset' => 'utf8',
             'initSQLs'=>array("set time_zone='+00:00';"),
         ),
