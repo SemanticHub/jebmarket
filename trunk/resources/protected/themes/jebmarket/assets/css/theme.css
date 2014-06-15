@@ -999,7 +999,7 @@ form .alert {
     color: #7E7777;
 }
 .price_box1{
-    margin: 0;
+    margin: 20px 0 0 0;
     background: #ecf2f6;
     border: 1px solid #d9dee1;
     border-radius: 2px;
@@ -1010,7 +1010,7 @@ form .alert {
     -moz-transition: all 0.1s ease-in-out 0s;
 }
 .price_box2{
-    margin: 0;
+    margin: 20px 0 0 0;
     background: #ecf2f6;
     border: 1px solid #d9dee1;
     border-radius: 2px;
@@ -1022,7 +1022,7 @@ form .alert {
 }
 .price_box3{
     background: #fff;
-    margin-top: -20px;
+    margin-top: 0px;
     padding: 20px 30px 45px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
     border: 1px solid #d9dee1;
