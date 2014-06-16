@@ -119,6 +119,13 @@ class UserTemplate extends CActiveRecord
 		));
 	}
 
+    public function customCSS()
+    {
+        $theme = Template::model()->findByAttributes(array('name'=>Yii::app()->theme->name));
+        $templates = $this->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id, 'jebapp_template_id' => $theme->id));
+        return $templates->custom_css;
+    }
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
