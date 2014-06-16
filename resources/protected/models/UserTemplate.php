@@ -123,7 +123,9 @@ class UserTemplate extends CActiveRecord
     {
         $theme = Template::model()->findByAttributes(array('name'=>Yii::app()->theme->name));
         $templates = $this->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id, 'jebapp_template_id' => $theme->id));
-        return $templates->custom_css;
+        if(!empty($templates->custom_css)){
+            return $templates->custom_css;
+        }
     }
 
 	/**
