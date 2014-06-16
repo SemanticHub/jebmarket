@@ -122,7 +122,16 @@ class UserTemplate extends CActiveRecord
     public function customCSS()
     {
         $theme = Template::model()->findByAttributes(array('name'=>Yii::app()->theme->name));
-        $templates = $this->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id, 'jebapp_template_id' => $theme->id));
+        $userID = Yii::app()->user->id;
+        if(empty($userID)){
+            $user_id = Website::model()->findByAttributes(array('domain'=>Website::model()->domainName()));
+            if(!empty($user_id->jebapp_user_id)){
+                $userID = $user_id->jebapp_user_id;
+            }else{
+                $userID = '40';
+            }
+        }
+        $templates = $this->findByAttributes(array('jebapp_user_id'=>$userID, 'jebapp_template_id' => $theme->id));
         if(!empty($templates->custom_css)){
             return $templates->custom_css;
         }
