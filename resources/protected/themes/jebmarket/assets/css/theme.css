@@ -156,7 +156,8 @@ label {
     }
 }
 .navbar-inverse {
-    background-color: #000000; border:none;
+    background: none;
+    border:none;
 }
 .navbar-inverse .navbar-brand {
     font-weight: bold; color: #fff;
@@ -792,7 +793,7 @@ form .alert {
     border-bottom: 1px dashed #ccc;
 }
 #header_nav{
-    background: #000000;
+    background: none;
     margin: 0;
     padding: 1px 0;
 }
@@ -807,6 +808,7 @@ form .alert {
 }
 #header_right .navbar-collapse {
     margin-top: 8px;
+    background: none;
 }
 #header_right{
     margin: 0 0 0 -100px;
@@ -2196,3 +2198,7 @@ Store Module Styles
 .content_body{
     min-height: 450px;
 }
+.header_body{
+    background: #000;
+}
+.footer_body{}

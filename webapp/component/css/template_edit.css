@@ -31,7 +31,7 @@ body {
 }
 .edit_left_header #save_custom{
     float: left;
-    margin: 10px 14px 10px 10px;
+    margin: 10px 0px 10px 0px;
 }
 .component_firstico span{
     font-size: 30px;
@@ -352,9 +352,9 @@ body {
 
 .box,.lyrow { position:relative;}
 
-.edit .theme_edit .lyrow .drag { top:0; right:30px; z-index:10; }
-.edit .theme_edit .drag { z-index:11; }
-.edit .theme_edit .column .box .drag { top:0;right: 30px; }
+.edit .theme_edit .lyrow .drag { top:-18px; right:30px; z-index:10; }
+.edit .theme_edit .drag { z-index:999999999; }
+.edit .theme_edit .column .box .drag { top:-18px;right: 30px; }
 .edit .theme_edit .column .box .configuration {position: absolute; top: 3px; right: 140px;white-space:nowrap; }
 .edit .theme_edit .column .box .configuration:hover { z-index:1001;}
 
@@ -362,7 +362,7 @@ body {
 .theme_edit .column .navbar-fixed-top {top: 33px;}
 .edit .theme_edit .column .navbar-fixed-bottom { left: 180px;}
 
-.edit .theme_edit .remove { position: absolute; top: 0; right: 0; z-index:10; }
+.edit .theme_edit .remove { position: absolute; top: -18px; right: 0; z-index:999999999; }
 .theme_edit .configuration {
     filter: alpha(opacity=0);
     opacity: 0;
@@ -536,6 +536,8 @@ a.language-selected { font-style: italic; font-weight: bold; }
 }
 .theme_edit .drag {
     right: 30px;
+    top: -18px;
+    z-index: 999999999;
 }
 .theme_edit .form-horizontal .form-group {
     margin-left: 0;
@@ -553,4 +555,12 @@ a.language-selected { font-style: italic; font-weight: bold; }
 }
 .theme_edit .lyrow .ui-resizable .ui-icon-gripsmall-diagonal-se{
     background: none;
+}
+#page_clear{
+    float: left;
+    margin: 2px 0 10px 0;
+    width: 100%;
+}
+.colponent_list_pop2 .accordion-group{
+    margin: 0;
 }

@@ -120,16 +120,13 @@ class PagesController extends Controller {
         $this->layout = false;
         Yii::app()->clientScript->scriptMap['*.js'] = false;
         $model = $this->loadModel($id);
-        // AJAX validation is needed
-        $this->performAjaxValidation($model);
-        if (isset($_POST['Pages'])) {
+        if (isset($_POST['Pages']) || isset($_POST['UserTemplate'])) {
             $model->attributes = $_POST['Pages'];
-            if ($model->save())
-                Yii::app()->user->setFlash('PageMenu', 'Page Saved Successfully.');
+            $model->save();
+            $theme = Template::model()->findByAttributes(array('name'=>Yii::app()->theme->name));
+            $templates = UserTemplate::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id, 'jebapp_template_id' => $theme->id));
+            UserTemplate::model()->updateByPk($templates->id, array('custom_css'=>$_POST['UserTemplate']['custom_css']));
         }
-        $this->render('update', array(
-            'model' => $model,
-        ));
     }
 
     /**

@@ -125,7 +125,10 @@
 <script src="<?php echo $this->assetUrl; ?>/js/respond.min.js"></script>
 <![endif]-->
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<?php } ?>
+<?php
+}
+echo '<style>'.UserTemplate::model()->customCSS().'</style>';
+?>
 </body>
 </html>
 <?php $this->widget('ext.ThemeEdit.ThemeEdit'); ?>

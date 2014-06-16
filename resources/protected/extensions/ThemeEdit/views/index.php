@@ -1,12 +1,10 @@
 <div class="sidebar-nav">
     <div class="edit_left_header">
-        <a href="#" class="btn btn-sm btn-primary" onclick="save()" id="save_custom"><i class="glyphicon glyphicon-save"></i> Save</a>
+        <a href="#" class="btn btn-sm btn-primary btn-block" onclick="save()" id="save_custom"><i class="glyphicon glyphicon-save"></i> Save</a>
         <a href="#" id="desktop_view"></a>
         <a href="#" id="tablet_view"></a>
         <a href="#" id="mobile_view"></a>
-        <div class="alert alert-success">
-            <p>Page Saved Successfully.</p>
-        </div>
+        <a href="#" id="page_clear" class="btn btn-danger btn-block btn-xs"><span class="glyphicon glyphicon-trash"></span> Clear Page</a>
     </div>
     <div class="edit_left_component">
         <div class="component_firstico">
@@ -1322,8 +1320,59 @@
                     <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/4.png">
                 </li>
             </ul>
+            <ul class="nav nav-list accordion-group header_backgrounds">
+                <div class="component_header">
+                    <p>Header Background</p>
+                </div>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/1.png">
+                </li>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/2.png">
+                </li>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/3.png">
+                </li>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/4.png">
+                </li>
+            </ul>
+            <ul class="nav nav-list accordion-group footer_backgrounds">
+                <div class="component_header">
+                    <p>Footer Background</p>
+                </div>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/1.png">
+                </li>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/2.png">
+                </li>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/3.png">
+                </li>
+                <li>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/4.png">
+                </li>
+            </ul>
         </div>
     </div>
+</div>
+    <div class="modal fade page_saved">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p style="color: #000000;">Page Saved Successfully.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div style="">
+    <p id="temp_body"></p>
+    <p id="temp_footer"></p>
+    <p id="temp_header"></p>
 </div>
 <div id="download-layout" style="display: none;"><div class="container"></div></div>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
@@ -1344,9 +1393,9 @@
         $.ajax({
             type: 'POST',
             url: '<?php echo  CHtml::normalizeUrl(array('pages/update','id'=>$pageID)); ?>',
-            data: { 'Pages[content]': $('#download-layout').html() },
+            data: { 'Pages[content]': $('#download-layout').html(), 'UserTemplate[custom_css]': 'body{'+$('#temp_body').attr('style')+'}.header_body{'+$('#temp_header').attr('style')+'}.footer_body{'+$('#temp_footer').attr('style')+'}'},
             success:function(data){
-                $('.edit_left_header .alert-success').show();
+                $('.page_saved').modal('show');
             },
             dataType:'html'
         });
