@@ -1,3 +1,4 @@
+<iframe frameborder="0" scrolling="no" style="border: 0px; background-color: transparent; width: 400px; height: 800px;" id="for_mobile" src=""></iframe>
 <div class="sidebar-nav">
     <div class="edit_left_header">
         <a href="#" class="btn btn-sm btn-primary btn-block" onclick="save()" id="save_custom"><i class="glyphicon glyphicon-save"></i> Save</a>
@@ -9,7 +10,6 @@
     <div class="edit_left_component">
         <div class="component_firstico">
             <span class="glyphicon glyphicon-plus list_com"></span>
-            <span class="glyphicon glyphicon-list-alt"></span>
             <span class="glyphicon glyphicon-cog list_sittings"></span>
         </div>
         <div class="colponent_list_pop">
@@ -1305,7 +1305,12 @@
         <div class="colponent_list">
             <ul class="nav nav-list accordion-group backgrounds">
                 <div class="component_header">
-                    <p>Background</p>
+                    <p>Main Background</p>
+                </div>
+                <div class="custom_color">
+                    <label>Select Color </label>
+                    <input type='text' id="main_custom_color"/>
+                    <label>Select Image </label>
                 </div>
                 <li>
                     <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/1.png">
@@ -1324,6 +1329,11 @@
                 <div class="component_header">
                     <p>Header Background</p>
                 </div>
+                <div class="custom_color">
+                    <label>Select Color </label>
+                    <input type='text' id="header_custom_color"/>
+                    <label>Select Image </label>
+                </div>
                 <li>
                     <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/1.png">
                 </li>
@@ -1340,6 +1350,11 @@
             <ul class="nav nav-list accordion-group footer_backgrounds">
                 <div class="component_header">
                     <p>Footer Background</p>
+                </div>
+                <div class="custom_color">
+                    <label>Select Color </label>
+                    <input type='text' id="footer_custom_color"/>
+                    <label>Select Image </label>
                 </div>
                 <li>
                     <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/1.png">
@@ -1375,6 +1390,7 @@
     <p id="temp_header"></p>
 </div>
 <div id="download-layout" style="display: none;"><div class="container"></div></div>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/component/js/scripts.min.js"></script>
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/template_edit.css">
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
@@ -1386,7 +1402,8 @@
 <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/tooltipster.css">
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/js/jquery.tooltipster.min.js"></script>
 <script src="<?php echo Yii::app()->baseUrl; ?>/component/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/component/js/scripts.min.js"></script>
+<script src="<?php echo Yii::app()->baseUrl; ?>/component/js/spectrum.js"></script>
+<link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/component/css/spectrum.css">
 <script>
     function save(){
         downloadLayoutSrc();

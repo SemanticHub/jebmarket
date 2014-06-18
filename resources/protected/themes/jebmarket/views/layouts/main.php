@@ -9,13 +9,14 @@
         <meta name="keywords" content="<?php echo $this->metaKeywords ?>"><?php } ?>
     <?php
     $editID = Yii::app()->request->getParam('edit');
+    $iframeID = Yii::app()->request->getParam('iframe');
     $domainname = Website::model()->domainName();
     if(empty($domainname)){
         ?>
         <link rel="shortcut icon" href="<?php echo Yii::app()->baseUrl; ?>/favicon.ico">
     <?php }else{?>
         <link rel="shortcut icon" href="<?php echo Website::model()->logoName('favicon') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('favicon') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'favicon.ico'; ?>">
-    <?php } if(empty($editID)){ ?>
+    <?php } if(empty($editID) || !empty($iframeID)){ ?>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -118,7 +119,7 @@
         </footer>
     </div>
 </div>
-<?php if(empty($editID)){ ?>
+<?php if(empty($editID) || !empty($iframeID)){ ?>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 7]>
 <script src="<?php echo $this->assetUrl; ?>/js/html5shiv.js"></script>
