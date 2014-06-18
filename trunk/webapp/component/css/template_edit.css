@@ -564,3 +564,14 @@ a.language-selected { font-style: italic; font-weight: bold; }
 .colponent_list_pop2 .accordion-group{
     margin: 0;
 }
+.custom_color{
+    margin: 0 0 0 10px;
+    padding: 0;
+    float: left;
+    width: 100%;
+}
+.custom_color label{
+    color: #E9DFDF;
+    font-weight: normal;
+    margin: 10px 46px 10px 0;
+}

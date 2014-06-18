@@ -6,7 +6,7 @@ class ThemeEdit extends CWidget {
     {
         $pageID = Pages::model()->pageID();
         $editID = Yii::app()->request->getParam('edit');
-        if(!empty($pageID) && empty($editID)){
+        if(!empty($pageID) && empty($editID) || !empty($iframeID)){
             $contact = new ContactForm;
             $this->render('index',array(
                 'pageID' => $pageID,
