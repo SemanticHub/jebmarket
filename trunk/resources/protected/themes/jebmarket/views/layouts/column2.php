@@ -46,7 +46,7 @@
     </nav>
 </div>
 <?php } ?>
-<div class="col-md-10">
+<div class="col-md-10 dash_content_body">
     <?php echo $content; ?>
 </div>
 <?php $this->endContent(); ?>

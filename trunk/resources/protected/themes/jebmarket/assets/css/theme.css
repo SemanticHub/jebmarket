@@ -329,102 +329,9 @@ h1.page-title {
 .admin_page{
     display: none;
 }
-.dashboard .sidebar-left .panel{
-    background: none;
-    border: none;
-    box-shadow: none;
-}
-.dashboard .sidebar-left .panel-default>.panel-heading{
-    color: #fff;
-    background-color: #272c30;
-    border-bottom: 1px solid #2b3136;
-    border-radius: 0;
-    margin: 0;
-    padding: 1px 0 0 10px;
-    min-height: 50px;
-}
-.dashboard .sidebar-left .list-group-item {
-    background: none;
-}
-.dashboard .sidebar-left .list-group-item.active {
-    background: #272c30;
-    color: #ffffff;
-}
-.dashboard .sidebar-left .list-group-item.active a {
-    color: #ffffff;
-}
-.dashboard .sidebar-left .list-group-item a {
-    color: #98a7b5;
-}
-.dashboard .sidebar-left .list-group-title {
-    color: #777;
-    font-weight: 400;
-    border-bottom: 1px solid #2b3136;
-    text-shadow: none;
-}
-.dashboard_icon_drop{
-    display: none;
-}
-.dashboard_top_left{
-    cursor: pointer;
-}
-.dashboard_icon_drop.popover.bottom{
-    margin-top: 55px;
-    margin-right: 10px;
-    margin-left: 10px;
-    width: 203px;
-}
-.deshboard_dropname{
-    margin: 1px 0 0 10px;
-    padding: 0;
-    float: left;
-    font-size: 13px;
-    text-transform: uppercase;
-    color: #ffffff;
-}
 .add_gap_left{
     margin-left: 20px;
     border-left: #AC9393  dotted 1px;
-}
-.dashboard_top_left .portlet-content{
-    margin: -25px 0 0 39px;
-    padding: 0;
-    width: 100%;
-    float: left;
-}
-.dashboard_top_left .portlet-content a{
-    color: #98a7b5;
-    font-size: 12px;
-    font-weight: normal;
-    margin: 0;
-    outline: medium none;
-    padding: 0 20px 0 0;
-    text-decoration: none;
-}
-.dashboard_top_left .portlet-content a:hover{
-    color: #FFFFFF;
-    text-decoration: underline;
-}
-.col-md-10.dash_second_menu{
-    margin: 0;
-    padding: 0;
-}
-.dash_second_menu .navbar-default{
-    margin: 0;
-    padding: 0;
-    background: #272c30;
-    height: 45px;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    border-bottom: 1px solid #2b3136;
-    text-align: right;
-}
-.dash_second_menu .navbar-default .navbar-nav>li>a {
-    color: #ffffff;
-}
-.dash_second_menu .navbar-default .navbar-brand{
-    color: #ffffff;
 }
 #website-form{
     padding: 15px;
@@ -432,14 +339,6 @@ h1.page-title {
 .dashboard_icon_drop .list-group-item {
     float: left;
     width: 100%;
-}
-.dashboard_icon_drop .list-group .list-group-item {
-    float: left;
-    width: 100%;
-    border-bottom: #F4EFEF solid 1px;
-}
-.dashboard_icon_drop .list-group .list-group-item a {
-    font-size: 13px;
 }
 .tool_tip_page h4{
     font-size: 16px;

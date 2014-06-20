@@ -1,4 +1,3 @@
-<iframe frameborder="0" scrolling="no" style="border: 0px; background-color: transparent; width: 400px; height: 800px;" id="for_mobile" src=""></iframe>
 <div class="sidebar-nav">
     <div class="edit_left_header">
         <a href="#" class="btn btn-sm btn-primary btn-block" onclick="save()" id="save_custom"><i class="glyphicon glyphicon-save"></i> Save</a>
@@ -25,11 +24,11 @@
                 <li class="boxes" id="elmBase">
                     <div class="box box-element">
                         <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                        <span class="drag label label-default"><span class="glyphicon glyphicon-user component_img"></span></span>
                         <div class="preview">Start Business</div>
                         <div class="view">
                             <div class="editable false" contenteditable="false" id="com32">
-                                <a href="#" data-toggle="modal" data-target="#member_plan" class="btn btn-lg btn-success"> Start Your Online Business Now </a>
+                                <a href="#" data-toggle="modal" data-target="#member_plan" class="btn btn-lg btn-success member_plansa"> Start Your Online Business Now </a>
                             </div>
                             <div class="modal fade" id="member_plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -122,13 +121,16 @@
                                     $(".start_now").click(function() {
                                         $('#member_plan').modal('hide');
                                     });
+                                    $(".member_plans").click(function() {
+                                        $('#member_plan').modal('show');
+                                    });
                                 });
                             </script>
                         </div>
                     </div>
                     <div class="box box-element">
                         <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                        <span class="drag label label-default"><span class="glyphicon glyphicon-user component_img"></span></span>
                         <div class="preview">Start Free Trial</div>
                         <div class="view">
                             <div class="editable" contenteditable="true" id="com33">
@@ -285,7 +287,7 @@
                 <div class="box box-element">
                     <div class="lyrow">
                         <a href="#close" class="remove label label-danger"><i class="glyphicon-remove glyphicon"></i></a>
-                        <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                        <span class="drag label label-default"><span class="glyphicon glyphicon-th-large component_img"></span></span>
                         <div class="btn-group grid_button" role="toolbar">
                             <span class="label label-primary">Select Columns</span>
                             <button type="button" class="btn btn-xs btn-default grid" data-val="1">1</button>
@@ -312,7 +314,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-text-width component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Align <span class="caret"></span></a>
@@ -345,7 +347,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-text-width component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Align <span class="caret"></span></a>
@@ -380,7 +382,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-text-width component_img"></span></span>
                     <div class="preview">Address</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com3">
@@ -396,7 +398,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-text-width component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="pull-right">Pull right</a>
                 </span>
@@ -413,7 +415,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-text-width component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="list-unstyled">Unstyled</a>
                     <a class="btn btn-xs btn-default" href="#" rel="list-inline">Inline</a>
@@ -437,7 +439,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-text-width component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="list-unstyled">Unstyled</a>
                     <a class="btn btn-xs btn-default" href="#" rel="list-inline">Inline</a>
@@ -461,7 +463,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-text-width component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="dl-horizontal">Horizontal</a>
                 </span>
@@ -484,7 +486,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-th component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Style <span class="caret"></span></a>
@@ -548,7 +550,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-file component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="form-inline">Inline</a>
                 </span>
@@ -593,7 +595,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-unchecked component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -631,7 +633,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-unchecked component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -668,7 +670,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-picture component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -696,7 +698,7 @@
                 <li class="boxes" id="elmComponents">
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
               <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Size <span class="caret"></span></a>
@@ -724,7 +726,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="dropup">Dropup</a>
                 </span>
@@ -746,7 +748,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -780,7 +782,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                     <div class="preview">Breadcrumb</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com15">
@@ -794,7 +796,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Size <span class="caret"></span></a>
@@ -823,7 +825,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -844,7 +846,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                 </span>
                     <div class="preview">Badge</div>
@@ -869,7 +871,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="well">Well</a>
                 </span>
@@ -886,7 +888,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                     <div class="preview">Page Header</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com19">
@@ -898,7 +900,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                     <div class="preview">Text</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com20">
@@ -910,7 +912,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                     <div class="preview">Thumbnails</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com21">
@@ -949,7 +951,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
 
 
@@ -967,7 +969,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="well">well</a>
                 </span>
@@ -997,7 +999,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                 </span>
                     <div class="preview">List group</div>
@@ -1018,7 +1020,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -1060,7 +1062,7 @@
                 <li class="boxes mute" id="elmJS">
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                     <div class="preview">Modal</div>
                     <div class="view">
                         <!-- Button to trigger modal -->
@@ -1090,7 +1092,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
               <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Position <span class="caret"></span></a>
@@ -1165,7 +1167,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                 </span>
                     <div class="preview">Tabs</div>
@@ -1190,7 +1192,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -1216,7 +1218,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                     <div class="preview">Collapse</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com30">
@@ -1251,7 +1253,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><i class="glyphicon glyphicon-move"></i> drag</span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
                     <div class="preview">Carousel</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com31">
@@ -1407,6 +1409,7 @@
 <script>
     function save(){
         downloadLayoutSrc();
+        $(".member_plansa").attr('data-target','#member_plan');
         $.ajax({
             type: 'POST',
             url: '<?php echo  CHtml::normalizeUrl(array('pages/update','id'=>$pageID)); ?>',
@@ -1417,4 +1420,24 @@
             dataType:'html'
         });
     }
+    $(document).ready(function () {
+        $("#mobile_view").live( "click", function() {
+            $('.edit #mobile_iframe').remove();
+            $('.edit #tab_iframe').remove();
+            $('.edit .header_body').hide();
+            $('.edit .content_body').hide();
+            $('.edit .footer_body').hide();
+            $(".edit").append('<iframe width="320px" src="" id="mobile_iframe""></iframe>');
+            $("#mobile_iframe").attr("src", "<?php echo Yii::app()->request->requestUri; ?>&iframe=n&edit=n");
+        });
+        $("#tablet_view").live( "click", function() {
+            $('.edit #tab_iframe').remove();
+            $('.edit #mobile_iframe').remove();
+            $('.edit .header_body').hide();
+            $('.edit .content_body').hide();
+            $('.edit .footer_body').hide();
+            $(".edit").append('<iframe width="600px" src="" id="tab_iframe"></iframe>');
+            $("#tab_iframe").attr("src", "<?php echo Yii::app()->request->requestUri; ?>&iframe=n&edit=n");
+        });
+    })
 </script>
