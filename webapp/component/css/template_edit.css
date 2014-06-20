@@ -531,6 +531,7 @@ a.language-selected { font-style: italic; font-weight: bold; }
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 15px;
 }
 .content_body.theme_edit .container{
     padding-left: 0;
