@@ -1,3 +1,15 @@
+<div class="modal fade page_saved">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p style="color: #000000;">Page Saved Successfully.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="sidebar-nav">
     <div class="edit_left_header">
         <a href="#" class="btn btn-sm btn-primary btn-block" onclick="save()" id="save_custom"><i class="glyphicon glyphicon-save"></i> Save</a>
@@ -693,12 +705,12 @@
                 </ul>
                 <ul class="nav nav-list accordion-group">
                 <div class="component_header">
-                    <p>Components</p>
+                    <p>Group Component</p>
                 </div>
                 <li class="boxes" id="elmComponents">
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-unchecked component_img"></span></span>
               <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Size <span class="caret"></span></a>
@@ -726,7 +738,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-unchecked component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="dropup">Dropup</a>
                 </span>
@@ -748,7 +760,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-list component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -782,7 +794,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-list component_img"></span></span>
                     <div class="preview">Breadcrumb</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com15">
@@ -796,7 +808,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-list component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Size <span class="caret"></span></a>
@@ -825,7 +837,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-header component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -846,7 +858,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-header component_img"></span></span>
                 <span class="configuration">
                 </span>
                     <div class="preview">Badge</div>
@@ -871,7 +883,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-header component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="well">Well</a>
                 </span>
@@ -888,7 +900,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-header component_img"></span></span>
                     <div class="preview">Page Header</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com19">
@@ -900,7 +912,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-text-width component_img"></span></span>
                     <div class="preview">Text</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com20">
@@ -912,7 +924,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-picture component_img"></span></span>
                     <div class="preview">Thumbnails</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com21">
@@ -951,7 +963,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-flash component_img"></span></span>
                 <span class="configuration">
 
 
@@ -969,7 +981,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-picture component_img"></span></span>
                 <span class="configuration">
                     <a class="btn btn-xs btn-default" href="#" rel="well">well</a>
                 </span>
@@ -999,7 +1011,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-list component_img"></span></span>
                 <span class="configuration">
                 </span>
                     <div class="preview">List group</div>
@@ -1020,7 +1032,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-align-justify component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -1057,19 +1069,17 @@
                 </ul>
                 <ul class="nav nav-list accordion-group">
                 <div class="component_header">
-                    <p>JavaScript</p>
+                    <p>JS Component</p>
                 </div>
                 <li class="boxes mute" id="elmJS">
-                <div class="box box-element">
-                    <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
-                    <div class="preview">Modal</div>
-                    <div class="view">
-                        <!-- Button to trigger modal -->
+                    <!--<div class="box box-element">
+                        <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                        <div class="preview">Modal</div>
+                        <div class="view">
                         <div class="editable" contenteditable="true" id="com26">
                             <a id="myModalLink" href="#myModalContainer" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
                         </div>
-                        <!-- Modal -->
                         <div class="modal fade" id="myModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -1084,15 +1094,14 @@
                                         <button type="button" class="btn btn-default" data-dismiss="modal" contenteditable="true">Close</button>
                                         <button type="button" class="btn btn-primary" contenteditable="true">Save changes</button>
                                     </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-th-list component_img"></span></span>
                 <span class="configuration">
               <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Position <span class="caret"></span></a>
@@ -1167,7 +1176,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-th component_img"></span></span>
                 <span class="configuration">
                 </span>
                     <div class="preview">Tabs</div>
@@ -1192,7 +1201,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-comment component_img"></span></span>
                 <span class="configuration">
                     <span class="btn-group btn-group-xs">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Styles <span class="caret"></span></a>
@@ -1253,7 +1262,7 @@
                 </div>
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                    <span class="drag label label-default"><span class="glyphicon glyphicon-briefcase component_img"></span></span>
+                    <span class="drag label label-default"><span class="glyphicon glyphicon-film component_img"></span></span>
                     <div class="preview">Carousel</div>
                     <div class="view">
                         <div class="editable" contenteditable="true" id="com31">
@@ -1374,18 +1383,6 @@
         </div>
     </div>
 </div>
-    <div class="modal fade page_saved">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p style="color: #000000;">Page Saved Successfully.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
 <div style="">
     <p id="temp_body"></p>
     <p id="temp_footer"></p>
