@@ -458,14 +458,18 @@ h1.page-title {
 }
 .dash_second_menu .navbar-default{
     margin: 0;
-    padding: 0;
-    background: #272c30;
-    height: 45px;
+    width: inherit;
     border: none;
     border-radius: 0;
-    box-shadow: none;
-    border-bottom: 1px solid #2b3136;
-    text-align: right;
+    min-height: inherit;
+    background: #272C30;
+    border-bottom: 1px solid #aaa;
+    z-index: 99;
+    position: fixed;
+    border-left: 1px dashed #444;
+}
+.dashboard .dash_content_body{
+    margin-top: 50px;
 }
 .dash_second_menu .navbar-default .navbar-nav>li>a {
     color: #ffffff;
@@ -1792,12 +1796,22 @@ body.dragging, body.dragging * {
     margin: 5px 0;
 }
 .navbar.navbar-default.navbar-store {
-    margin: 0; width: inherit; border: none; border-radius: 0;margin-left: -15px;  min-height: inherit;
-    background: #272C30; border-bottom: 1px solid #aaa; z-index: 99; position: fixed;
+    margin: -50px 0 0 -15px;
+    width: inherit;
+    border: none;
+    border-radius: 0;
+    min-height: inherit;
+    background: #272C30;
+    border-bottom: 1px solid #aaa;
+    z-index: 99;
+    position: fixed;
     border-left: 1px dashed #444;
 }
 .store-view-content {
-    padding-top: 50px;
+    padding-top: 0px;
+}
+.dash_content_body #rights{
+    margin-top: -50px;
 }
 .navbar-store .navbar-brand {
     line-height: normal; height: auto;
