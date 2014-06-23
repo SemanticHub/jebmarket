@@ -1,5 +1,6 @@
 <?php
 $this->pageHeader = "Pages";
+$domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
 ?>
 <script src="<?php echo $this->assetUrl; ?>/js/jquery-sortable-min.js"></script>
 <div class="row admin_pages">
@@ -60,9 +61,11 @@ $this->pageHeader = "Pages";
                                         },
                                     'options'=>array('class'=>'glyphicon glyphicon-remove')
                                 ),
-                            )
+                            ),
+                            'afterDelete'=>'function(link,success,data){ if(success) $(".pages_update").load("'.Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n"); }'
                         ),
                     ),
+                    'afterAjaxUpdate'=>'function(id, data){topFunction();}',
                 ));
                 ?>
                 <p class="add_new_page page_top"><span class="glyphicon glyphicon-plus"></span> Add Page</p>
@@ -122,9 +125,11 @@ $this->pageHeader = "Pages";
                                         },
                                     'options'=>array('class'=>'glyphicon glyphicon-remove')
                                 ),
-                            )
+                            ),
+                            'afterDelete'=>'function(link,success,data){ if(success) $(".pages_update").load("'.Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n"); }'
                         ),
                     ),
+                    'afterAjaxUpdate'=>'function(id, data){mainFunction();}',
                 ));
                 ?>
                 <p class="add_new_page page_main"><span class="glyphicon glyphicon-plus"></span> Add Page</p>
@@ -183,9 +188,11 @@ $this->pageHeader = "Pages";
                                         },
                                     'options'=>array('class'=>'glyphicon glyphicon-remove')
                                 ),
-                            )
+                            ),
+                            'afterDelete'=>'function(link,success,data){ if(success) $(".pages_update").load("'.Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n"); }'
                         ),
                     ),
+                    'afterAjaxUpdate'=>'function(id, data){footerFunction(); }',
                 ));
                 ?>
                 <p class="add_new_page page_footer"><span class="glyphicon glyphicon-plus"></span> Add Page</p>
@@ -212,19 +219,7 @@ $this->pageHeader = "Pages";
 <script src="<?php echo $this->assetUrl; ?>/js/jquery.jscrollpane.min.js"></script>
 <script src="<?php echo $this->assetUrl; ?>/js/jquery.mousewheel.js"></script>
 <script>
-    function topMenu(data) {
-        $.fn.yiiGridView.update('topMenu-grid');
-        $('.page_top').tooltipster(data);
-    }
-    function mainMenu(data) {
-        $.fn.yiiGridView.update('mainMenu-grid');
-        $('.page_main').tooltipster(data);
-    }
-    function footerMenu(data) {
-        $.fn.yiiGridView.update('footerMenu-grid');
-        $('.page_footer').tooltipster(data);
-    }
-    $(document).ready(function() {
+    function topFunction() {
         var topMenugroup = $("#topMenu-grid tbody").sortable({
             itemSelector: 'tr',
             delay: 100,
@@ -232,17 +227,23 @@ $this->pageHeader = "Pages";
             onDrop: function($item, container, _super) {
                 var data = topMenugroup.sortable("serialize").get();
                 var jsonString = JSON.stringify(data);
-                $item.removeClass("dragged").removeAttr("style")
-                $("body").removeClass("dragging")
+                $item.removeClass("dragged").removeAttr("style");
+                $("body").removeClass("dragging");
                 $.ajax({
                     'type':'POST',
                     'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
                     'dataType':"json",
                     'cache':true,
-                    'data':{Menu : jsonString}
+                    'data':{Menu : jsonString},
+                    'success':function(){
+                        $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n'; ?>");
+                        $('.dash_second_menu .navbar-right').html('<ul class="nav navbar-nav navbar-right"></ul>');
+                    }
                 });
             }
         })
+    }
+    function mainFunction() {
         var mainMenugroup = $("#mainMenu-grid tbody").sortable({
             itemSelector: 'tr',
             delay: 100,
@@ -250,17 +251,23 @@ $this->pageHeader = "Pages";
             onDrop: function($item, container, _super) {
                 var data = mainMenugroup.sortable("serialize").get();
                 var jsonString = JSON.stringify(data);
-                $item.removeClass("dragged").removeAttr("style")
-                $("body").removeClass("dragging")
+                $item.removeClass("dragged").removeAttr("style");
+                $("body").removeClass("dragging");
                 $.ajax({
                     'type':'POST',
                     'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
                     'dataType':"json",
                     'cache':true,
-                    'data':{Menu : jsonString}
+                    'data':{Menu : jsonString},
+                    'success':function(){
+                        $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n'; ?>");
+                        $('.dash_second_menu .navbar-right').html('<ul class="nav navbar-nav navbar-right"></ul>');
+                    }
                 });
             }
         })
+    }
+    function footerFunction() {
         var footerMenugroup = $("#footerMenu-grid tbody").sortable({
             itemSelector: 'tr',
             delay: 100,
@@ -268,17 +275,44 @@ $this->pageHeader = "Pages";
             onDrop: function($item, container, _super) {
                 var data = footerMenugroup.sortable("serialize").get();
                 var jsonString = JSON.stringify(data);
-                $item.removeClass("dragged").removeAttr("style")
-                $("body").removeClass("dragging")
+                $item.removeClass("dragged").removeAttr("style");
+                $("body").removeClass("dragging");
                 $.ajax({
                     'type':'POST',
                     'url':'<?php echo  CHtml::normalizeUrl(array('menu/order')); ?>',
                     'dataType':"json",
                     'cache':true,
-                    'data':{Menu : jsonString}
+                    'data':{Menu : jsonString},
+                    'success':function(){
+                        $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n'; ?>");
+                        $('.dash_second_menu .navbar-right').html('<ul class="nav navbar-nav navbar-right"></ul>');
+                    }
                 });
             }
         })
+    }
+    function topMenu(data) {
+        $.fn.yiiGridView.update('topMenu-grid');
+        $('.page_top').tooltipster(data);
+        $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n'; ?>");
+        $('.dash_second_menu .navbar-right').html('<ul class="nav navbar-nav navbar-right"></ul>');
+    }
+    function mainMenu(data) {
+        $.fn.yiiGridView.update('mainMenu-grid');
+        $('.page_main').tooltipster(data);
+        $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n'; ?>");
+        $('.dash_second_menu .navbar-right').html('<ul class="nav navbar-nav navbar-right"></ul>');
+    }
+    function footerMenu(data) {
+        $.fn.yiiGridView.update('footerMenu-grid');
+        $('.page_footer').tooltipster(data);
+        $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n'; ?>");
+        $('.dash_second_menu .navbar-right').html('<ul class="nav navbar-nav navbar-right"></ul>');
+    }
+    $(document).ready(function() {
+        topFunction();
+        mainFunction();
+        footerFunction();
         $('.page_main').tooltipster({
             content: $('<div class="tool_tip_page">' +
                 '<h4><span class="glyphicon glyphicon-plus"></span> Create New Page</h4>' +
@@ -364,7 +398,6 @@ $this->pageHeader = "Pages";
             '<li><a href="<?php echo Yii::app()->baseUrl.'/menu/update?id='; ?>'+$(this).attr('dataid')+'" data-toggle="modal" data-target="#update_menu"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>' +
             '<li>' +
             <?php
-                $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
                 if(!empty($domainName->domain)){
             ?>
             '<a href="<?php echo Yii::app()->baseUrl.'/'; ?>'+$(this).attr('dataurl')+'" target="_blank"><span class="glyphicon glyphicon-export"></span> View Page</a>' +
@@ -378,7 +411,7 @@ $this->pageHeader = "Pages";
 </script>
 <!--
 <script type="text/javascript">
-    var CKEDITOR_BASEPATH = '<?php echo $this->assetUrl.'/comp/ckeditor/'; ?>';
+    var CKEDITOR_BASEPATH = '<?php //echo $this->assetUrl.'/comp/ckeditor/'; ?>';
 </script>
-<script src="<?php echo $this->assetUrl; ?>/comp/ckeditor/ckeditor.js"></script>
+<script src="<?php //echo $this->assetUrl; ?>/comp/ckeditor/ckeditor.js"></script>
 -->
