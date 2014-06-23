@@ -249,39 +249,11 @@ h1.page-title {
 .panel .list-group {
     margin-bottom: 0;
 }
-.admin_pages .table>thead>tr>th, .admin_pages .table>tbody>tr>th, .admin_pages .table>tfoot>tr>th, .admin_pages .table>thead>tr>td, .admin_pages .table>tbody>tr>td, .admin_pages .table>tfoot>tr>td{
-    padding: 0;
-}
-.admin_pages .button-column a{
-    padding-top: 11px;
-}
-.admin_pages .button-column a:hover{
-    text-decoration: none;
-}
-.admin_pages_left{
-    background: #f7f7f7;
-    padding-bottom: 99999px;
-    margin-bottom: -99999px;
-}
-.col-md-3.admin_pages_left{
-    padding-right: 0;
-    padding-left: 10px;
-    margin-top: 0;
-}
 .page_top_nav{
     padding: 0 6px 0 0;
 }
-.admin_left_scroll{
-    height: 690px;
-    outline: none;
-}
 .pages_update .page-title{
 
-}
-.admin_pages .table>thead>tr>th{
-    padding: 5px 8px;
-    font-size: 13px;
-    color: #8C8383;
 }
 .add_new_page{
     margin: 0;
@@ -320,12 +292,6 @@ h1.page-title {
     color: #000;
     text-decoration: none;
 }
-.sidebar.sidebar-left {
-    background: #31373d;
-    margin-bottom: -99999px;
-    padding: 0 0 99999px 0;
-    overflow: hidden;
-}
 .admin_page{
     display: none;
 }
@@ -335,10 +301,6 @@ h1.page-title {
 }
 #website-form{
     padding: 15px;
-}
-.dashboard_icon_drop .list-group-item {
-    float: left;
-    width: 100%;
 }
 .tool_tip_page h4{
     font-size: 16px;
@@ -407,9 +369,6 @@ h1.for_menu{
 }
 .form_page .form-horizontal .control-label {
     text-align: left;
-}
-.admin_pages_left .button-column a{
-    margin-left: 10px;
 }
 .filters td {
     background: #eee;
@@ -489,9 +448,6 @@ h1.for_menu{
 #header_right .navbar-nav{
     margin: 0;
     float: right;
-}
-.dashboard{
-    background: #f7f7f7;
 }
 .navbar-top > li > a {
     padding: 0px;
@@ -1077,14 +1033,6 @@ form .alert {
 .help-block {
     font-size: 0.9em; font-style: italic;
 }
-.dashboard_icon{
-    background: url("../images/dashboard_icon.png") no-repeat;
-    float: left;
-    height: 40px;
-    width: 20px;
-    margin: 2px 0 0 0;
-    padding: 0;
-}
 .page_right_button{
     margin: 10px 0 0 0;
     padding: 0;
@@ -1158,39 +1106,6 @@ body.dragging, body.dragging * {
     position: absolute;
     opacity: 0.5;
     z-index: 2000;
-}
-.admin_pages_left tbody tr.placeholder {
-    position: relative;
-}
-.admin_pages_left tbody tr.placeholder:before {
-    position: absolute;
-}
-.dashboard_top_left{
-    font-size: 13px;
-}
-.dashboard .sidebar-left{
-    width: 12%;
-}
-.dashboard .col-md-10{
-    width: 88%;
-}
-.dashboard .col-md-9{
-    width: 80%;
-    margin: 0;
-    padding-right: 0;
-    padding-left: 0;
-}
-.dashboard .admin_pages_left{
-    width: 20%;
-    z-index: 22;
-}
-.dashboard .viewyoursite{
-    margin: 8px 0 8px 15px;
-    color: #98a7b5;
-    float: left;
-}
-.dashboard .leftsiteview{
-    margin-top: 25px;
 }
 .admin_template .viewimg, .front_template .viewimg{
     max-height: 238px;
@@ -1295,16 +1210,6 @@ body.dragging, body.dragging * {
 .single_template_view .content_right p{
     color: #ffffff;
 }
-.dashboard .sidebar-left{
-    width: 12%;
-}
-.dashboard .dash_second_menu{
-    width: 88%;
-}
-.admin_pages .pages_update{
-    margin: 0;
-    padding: 0;
-}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .logo_img img{
@@ -1354,11 +1259,6 @@ body.dragging, body.dragging * {
     h1.page-title, .h1.page-title {
         font-size: 30px;
         margin: 20px 0; padding: 20px 0;
-    }
-    .dashboard h1.page-title, .dashboard .h1.page-title {
-        font-size: 24px;
-        margin: 0px 0 20px 0;
-        padding: 10px 0 10px 0;
     }
     .bs-callout p:last-child{
         font-size: 14px;
@@ -2082,12 +1982,6 @@ Store Module Styles
 .icon-store-settings {
     color: deeppink;
 }
-.dashboard .sidebar-left{
-    width: 12%;
-}
-.dashboard .dash_second_menu{
-    width: 88%;
-}
 .loadin_page_up{
     text-align: center;
     right: 50%;
@@ -2095,9 +1989,11 @@ Store Module Styles
     top: 100px;
 }
 .content_body{
-    min-height: 450px;
+    min-height: 600px;
 }
 .header_body{
     background: #000;
 }
-.footer_body{}
+.footer_body{
+
+}

@@ -68,6 +68,8 @@ Yii::app()->clientScript->registerScript(
             url: '<?php echo  CHtml::normalizeUrl(array('menu/update','id'=>$model->id)); ?>',
             data:data,
             success:function(data){
+                $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.'?edit=n'; ?>");
+                $('.dash_second_menu .navbar-right').html('<ul class="nav navbar-nav navbar-right"></ul>');
                 <?php
                     if($model->tag == 'topmenu'){
                         echo "$.fn.yiiGridView.update('topMenu-grid');";

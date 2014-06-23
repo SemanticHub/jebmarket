@@ -524,7 +524,6 @@ a.language-selected { font-style: italic; font-weight: bold; }
     opacity: 1;
 }
 .content_body.theme_edit{
-    min-height: 500px;
     width: 100%;
     max-width: 1200px;
     margin-right: auto;
