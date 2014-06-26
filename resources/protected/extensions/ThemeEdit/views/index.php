@@ -1323,7 +1323,7 @@
                 <div class="box box-element">
                     <a href="#close" class="remove label label-danger"><i class="glyphicon glyphicon-remove"></i></a>
                     <span class="drag label label-default"><span class="glyphicon glyphicon-film component_img"></span></span>
-                    <div class="preview">Carousel</div>
+                    <div class="preview">Slider</div>
                     <div class="view">
                         <div class="editable">
                             <div id="com31">
@@ -1479,6 +1479,10 @@
                     { name: 'clipboard',	groups: [ 'selection', 'clipboard' ] },
                     { name: 'about' }
                 ];
+            });
+        }else{
+            editor.on( 'configLoaded', function() {
+                editor.config.filebrowserBrowseUrl = "<?php echo Yii::app()->baseUrl.'/blog/media/create'; ?>";
             });
         }
     });

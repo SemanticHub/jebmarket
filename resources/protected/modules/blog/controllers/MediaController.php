@@ -34,7 +34,18 @@ class MediaController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$this->render('create');
+        $user_id_login = Yii::app()->user->id;
+        $criteria = new CDbCriteria();
+        $criteria->condition = "jebapp_user_id=$user_id_login";
+        $dataProvider=new CActiveDataProvider('Media', array(
+            'criteria'=>$criteria,
+            'pagination'=>array(
+                'pageSize'=>18,
+            ),
+        ));
+        $this->render('create',array(
+            'dataProvider'=>$dataProvider,
+        ));
 	}
 
     public function actionUploadmedia()
