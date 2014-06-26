@@ -118,7 +118,7 @@ return array(
                 #'<controller:\w+>/<action:\w+>/<view:\w+>' => '<controller>/<action>',
                 #'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<view:[a-zA-Z0-9-]+>/'=>'page/view',
-                '<controller:\w+>' => '<controller>',
+                '<controller:\w+>' => '<controller>/<action>',
             ),
         ),
         # Database Access
