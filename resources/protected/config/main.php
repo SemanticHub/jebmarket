@@ -112,12 +112,12 @@ return array(
                 #'http://<sub:[^www]\w+>.myjeb.com' => 'site/index',
                 #'<module:\w+>/<controller:\w+>' => '<module>/<controller>',
                 #'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-                '<controller:\w+>' => '<controller>',
-                #'<controller:\w+>/<id:\d+>' => '<controller>/view',
-                #'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                #'<controller:\w+>/<action:\w+>/<view:\w+>' => '<controller>/<action>',
-                #'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<view:[a-zA-Z0-9-]+>/'=>'page/view',
+                // default controller url setup
+                '<controller:w+>/<id:d+>'=>'<controller>/view',
+                '<controller:w+>/<action:w+>/<id:d+>'=>'<controller>/<action>',
+                '<controller:w+>/<action:w+>'=>'<controller>/<action>',
+                // defaults to a site page if not above
+                '<view:[a-zA-Z0-9-]+>/'=>'site/page',
             ),
         ),
         # Database Access
