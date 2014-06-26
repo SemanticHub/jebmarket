@@ -23,13 +23,6 @@ return array(
         'application.modules.reports.components.*',
      ),
     'modules' => array(
-        # Gii tool
-        # -----------
-        'gii' => array(
-            'class' => 'system.gii.GiiModule',
-            'password' => 'mustbedisableonproduction',
-            'ipFilters' => array('*', '::1'),
-        ),
         # Authorization Rights
         # --------------------
         'rights'=>array(
@@ -43,16 +36,11 @@ return array(
             'cssFile' => false,
             'enableBizRule'=>false,
             'enableBizRuleData'=>false,
-            'debug'=>false,
-            # For Installer
-            # 'install'=> true,
-            # 'superUsers'=>array(
-            # 40=>'jebadmin',
-            # ),
+            'debug'=>false
         ),
         'reports',
         'blog',
-        # Shop
+        # Store
         # --------------------------------
         'store' => array(
             'debug' => true,
@@ -121,28 +109,17 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-                'gii' => 'gii',
                 #'http://<sub:[^www]\w+>.myjeb.com' => 'site/index',
                 #'<module:\w+>/<controller:\w+>' => '<module>/<controller>',
                 #'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 #'<controller:\w+>/<id:\d+>' => '<controller>/view',
-                #'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 #'<controller:\w+>/<action:\w+>/<view:\w+>' => '<controller>/<action>',
                 #'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ),
         # Database Access
         # ---------------
-        /* 'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
-            'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => '1234',
-            #'username' => 'jassifie_yiijeb',
-            #'password' => '99.9%available',
-            'charset' => 'utf8',
-            'initSQLs'=>array("set time_zone='+00:00';"),
-        ), */
         # AWS RDS
         # --------
         'db' => array(
@@ -175,13 +152,18 @@ return array(
             'class' => 'CLogRouter',
             'routes' => array(
                 array(
-                    'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning',
+                    'class'=>'CFileLogRoute',
+                    'levels'=>'trace, info',
+                    'categories'=>'system.*',
                 ),
-                # uncomment the following to show log messages on web pages on development.
                 array(
-                    'class'=>'CWebLogRoute',
-                )
+                    'class'=>'CEmailLogRoute',
+                    'levels'=>'error, warning',
+                    'emails'=>'ekram.syed@gmail.com',
+                ),
+                #array(
+                #    'class'=>'CWebLogRoute',
+                #)
             ),
         ),
     ),
