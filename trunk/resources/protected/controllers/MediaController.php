@@ -5,9 +5,8 @@ class MediaController extends Controller {
 	public $layout='//layouts/column2';
 
 	public $defaultAction = 'admin';
-    /**
-	 * @return array action filters
-	 */
+
+
 	public function filters() {
         return array(
             'rights'
@@ -84,7 +83,7 @@ class MediaController extends Controller {
             ),
         ));
         $mediaList = $dataProvider->getData();
-        CVarDumper::dump(CJSON::encode($mediaList), 10, true);
+        echo CJSON::encode($mediaList);
     }
 
 	/*public function actionAdmin() {
