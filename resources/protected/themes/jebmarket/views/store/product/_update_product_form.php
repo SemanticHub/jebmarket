@@ -398,19 +398,25 @@ $form = $this->beginWidget('CActiveForm', array(
         }
     );
     $('#media-manager-gallery').on('shown.bs.tab', function (e) {
-        if (console) console.log(e.target); // activated tab
-        if (console) console.log(e.relatedTarget); // previous tab
+        var repo = <?php echo Yii::app()->homeUrl ?>;
+        var user = <?php echo Yii::app()->user->id ?>;
         $.ajax({
             type: "GET",
-            url: "media/listJSON",
-            data: {name: $('#addNewActionManufacture').attr('alt') },
+            url: "<?php echo Yii::app()->homeUrl ?>/media/listJSON",
+            data: {},
             dataType: 'json',
-            success: function (data, page) {
-                $("#Product_manufacture_id").append($('<option>', {value: data.id, text: data.text}));
-                var selectedItems = $("#Product_productCategories").select2("val");
-                selectedItems.push(data.id);
-                $("#Product_manufacture_id").select2("val", selectedItems);
-                $("#Product_manufacture_id").select2("close");
+            complete: function (data, page) {
+                var list = eval(data.responseText);
+                console.log(list[0]);
+                for(var i = 0; i< list.length; i++){
+                    $('<img/>', {
+                        id: list[i].id,
+                        alt: list[i].alternative_text,
+                        title: list[i].description,
+                        src: repo+'/media/'+user+'/'+list[i].url
+                    }).appendTo('#gallery');
+                }
+                //$('#gallery').html(data.responseText);
             }
         });
     });

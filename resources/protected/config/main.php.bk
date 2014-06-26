@@ -10,7 +10,7 @@ return array(
     'name' => 'JebMarket',
     'timeZone'=>'UTC', # for PHP
     'theme' => 'jebmarket',
-    'preload' => array('log','routeManager'),
+    # 'preload' => array('log'),
     # autoloading model and component classes
     # ---------------------------------------
     'import' => array(
@@ -74,14 +74,6 @@ return array(
         )
     ),
     'components' => array(
-        # RouteManager
-        # ------------------
-        'routeManager' => array(
-            'class' => 'RouteManager',
-            'primaryDemain' => 'http://myjeb.com',
-            'secondaryDomain' => 'http://jebzone.com',
-            'defaultHomeController' => 'home'
-        ),
         # Theme
         # ------------------
         'themeManager' => array(
@@ -122,18 +114,27 @@ return array(
             'showScriptName' => false,
             'rules' => array(
                 'gii' => 'gii',
-                #'http://<sub:[^www]\w+>.myjeb.com' => 'site/index',
-                #'<module:\w+>/<controller:\w+>' => '<module>/<controller>',
-                #'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-                #'<controller:\w+>/<id:\d+>' => '<controller>/view',
-                #'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                #'<controller:\w+>/<action:\w+>/<view:\w+>' => '<controller>/<action>',
-                #'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                #'gii/<controller:\w+>' => 'gii/<controller>',
+                #'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
+                #'rights/<controller:\w+>' => 'rights/<controller>',
+                #'rights/<controller:\w+>/<action:\w+>' => 'rights/<controller>/<action>',
+                'http://<user:\w+>.myjeb.com' => '<user>',
+                array(
+                    'class' => 'application.components.ProfileUrlRule',
+                    'connectionID' => 'db',
+                ),
+                'blog/admin' => 'blog/default/admin',
+                '<module:\w+>/<controller:\w+>' => '<module>/<controller>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<view:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ),
         # Database Access
         # ---------------
-        /* 'db' => array(
+        'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
             'emulatePrepare' => true,
             'username' => 'root',
@@ -142,17 +143,19 @@ return array(
             #'password' => '99.9%available',
             'charset' => 'utf8',
             'initSQLs'=>array("set time_zone='+00:00';"),
-        ), */
+        ),
         # AWS RDS
         # --------
-        'db' => array(
+        /*'db' => array(
             'connectionString' => 'mysql:host=myjebwebpro.chitkpzlvepd.us-west-2.rds.amazonaws.com;dbname=myjebwebprodb',
             'emulatePrepare' => true,
             'username' => 'myjebwebprouser',
             'password' => '99.95%access',
+            #'username' => 'jassifie_yiijeb',
+            #'password' => '99.9%available',
             'charset' => 'utf8',
             'initSQLs'=>array("set time_zone='+00:00';"),
-        ),
+        ),*/
         # Authorization Manager
         # ------------------------
         'authManager' => array(
@@ -179,9 +182,9 @@ return array(
                     'levels' => 'error, warning',
                 ),
                 # uncomment the following to show log messages on web pages on development.
-                array(
-                    'class'=>'CWebLogRoute',
-                )
+                #  array(
+                #          'class'=>'CWebLogRoute',
+                #  )
             ),
         ),
     ),

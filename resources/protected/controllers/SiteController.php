@@ -22,8 +22,7 @@ class SiteController extends Controller
     /**
      * This is the default 'index' action that is invoked
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $criteria = new CDbCriteria();
         $criteria->condition = "slug ='home-page-view'";
         $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => array(':tag' => 'home-slider')));
@@ -34,8 +33,7 @@ class SiteController extends Controller
     /**
      * This is the action to handle external exceptions.
      */
-    public function actionError()
-    {
+    public function actionError() {
         if ($error = Yii::app()->errorHandler->error) {
             if (Yii::app()->request->isAjaxRequest)
                 echo $error['message'];
