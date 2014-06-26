@@ -112,6 +112,7 @@ return array(
                 #'http://<sub:[^www]\w+>.myjeb.com' => 'site/index',
                 #'<module:\w+>/<controller:\w+>' => '<module>/<controller>',
                 #'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                '<controller:\w+>' => '<controller>',
                 #'<controller:\w+>/<id:\d+>' => '<controller>/view',
                 #'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 #'<controller:\w+>/<action:\w+>/<view:\w+>' => '<controller>/<action>',
