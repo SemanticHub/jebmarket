@@ -1383,9 +1383,9 @@
                     <div class="custom_color">
                         <label>Select Color </label>
                         <input type='text' id="main_custom_color"/>
-                        <label>Select Image </label>
+                        <!--<label>Select Image </label>-->
                     </div>
-                    <li>
+                    <!--<li>
                         <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/1.png">
                     </li>
                     <li>
@@ -1396,7 +1396,7 @@
                     </li>
                     <li>
                         <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/4.png">
-                    </li>
+                    </li>-->
                 </ul>
                 <ul class="nav nav-list accordion-group header_backgrounds">
                     <div class="component_header">
@@ -1405,9 +1405,9 @@
                     <div class="custom_color">
                         <label>Select Color </label>
                         <input type='text' id="header_custom_color"/>
-                        <label>Select Image </label>
+                        <!--<label>Select Image </label>-->
                     </div>
-                    <li>
+                    <!--<li>
                         <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/1.png">
                     </li>
                     <li>
@@ -1418,7 +1418,7 @@
                     </li>
                     <li>
                         <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/4.png">
-                    </li>
+                    </li>-->
                 </ul>
                 <ul class="nav nav-list accordion-group footer_backgrounds">
                     <div class="component_header">
@@ -1427,9 +1427,9 @@
                     <div class="custom_color">
                         <label>Select Color </label>
                         <input type='text' id="footer_custom_color"/>
-                        <label>Select Image </label>
+                        <!--<label>Select Image </label>-->
                     </div>
-                    <li>
+                    <!--<li>
                         <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/1.png">
                     </li>
                     <li>
@@ -1440,7 +1440,7 @@
                     </li>
                     <li>
                         <img src="<?php echo Yii::app()->baseUrl; ?>/component/image/pattern/4.png">
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>
@@ -1507,7 +1507,7 @@
             $('.edit .content_body').hide();
             $('.edit .footer_body').hide();
             $(".edit").append('<iframe width="320px" src="" id="mobile_iframe""></iframe>');
-            $("#mobile_iframe").attr("src", "<?php echo Yii::app()->request->requestUri; ?>&iframe=n&edit=n");
+            $("#mobile_iframe").attr("src", "<?php echo (Yii::app()->user->id == 40)?Yii::app()->request->requestUri.'&':Yii::app()->request->requestUri.'?'; ?>iframe=n&edit=n");
         });
         $("#tablet_view").live( "click", function() {
             $('.edit #tab_iframe').remove();
@@ -1516,7 +1516,7 @@
             $('.edit .content_body').hide();
             $('.edit .footer_body').hide();
             $(".edit").append('<iframe width="600px" src="" id="tab_iframe"></iframe>');
-            $("#tab_iframe").attr("src", "<?php echo Yii::app()->request->requestUri; ?>&iframe=n&edit=n");
+            $("#tab_iframe").attr("src", "<?php echo (Yii::app()->user->id == 40)?Yii::app()->request->requestUri.'&':Yii::app()->request->requestUri.'?'; ?>&iframe=n&edit=n");
         });
     })
 </script>

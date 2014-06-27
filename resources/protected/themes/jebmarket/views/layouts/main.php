@@ -33,10 +33,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <?php if(empty($domainname)){ ?>
-                        <a class="navbar-brand logo" href="<?php echo Yii::app()->HomeUrl; ?>"><?php echo Yii::t('phrase', CHtml::encode(Yii::app()->name)); ?></a>
+                        <a class="navbar-brand logo" href="<?php echo Yii::app()->HomeUrl; ?>"></a>
                     <?php }else{?>
                         <a class="navbar-brand logo_img" href="<?php echo Yii::app()->baseUrl.'/'.Website::model()->domainName(); ?>">
-                            <img src="<?php echo Website::model()->logoName('logo') ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('logo') : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'jebmarket_logo.png'; ?>" alt="" />
+                            <?php
+                            $logoDomain = Website::model()->logoName('logo');
+                            if(empty($logoDomain)){
+                                echo '<h1 class="logo_title">Your Site Logo</h1>';
+                            }else{
+                            ?>
+                                <img src="<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Website::model()->logoName('logo'); ?>" alt="" />
+                            <?php } ?>
                         </a>
                     <?php } ?>
                     <div id="header_right">
@@ -48,27 +55,6 @@
                             'htmlOptions' => array('class' => 'nav nav-pills navbar-top navbar-right clearfix'),
                         ));
                         ?>
-                        <?php if(Yii::app()->params['activationStatus']) {  ?>
-                            <ul class="nav nav-pills navbar-top navbar-right clearfix">
-                                <li id="alert" class="label label-warning" style="padding: 3px 10px 6px 4px; text-shadow: 1px 1px 1px #999; cursor: pointer; text-transform: uppercase">
-                                    <?php echo '<span class="label label-danger">'.Yii::app()->params['activationStatus']['count'].'</span>'. Yii::t('phrase', ' days left to verify your account'); ?>
-                                </li>
-                            </ul>
-                            <script type="text/javascript">
-                                $(function(){
-                                    var alertPopover = $('#alert').popover({
-                                        html: true,
-                                        placement: 'bottom',
-                                        trigger: 'click',
-                                        content: '<div style="margin:0; text-align: center" class="alert alert-danger">' +
-                                            '<span class="glyphicon glyphicon-info-sign"></span> &#160; If you don\'t verify your email within next <span class="label label-danger">' +
-                                            <?php echo Yii::app()->params['activationStatus']['count'] ?> +
-                                            '</span> days, your account will be suspended.' +
-                                            '<br /><?php echo CHtml::ajaxLink("<span class=\"glyphicon glyphicon-send\"></span> &#160; Resend Verification Email Now", Yii::app()->createUrl("/user/sendajaxverification"), array('data' => '', 'update' => '#flashMessages'), array("class" => "btn btn-xs btn-primary")) ?></div>'
-                                    });
-                                });
-                            </script>
-                        <?php } ?>
                         <div class="navbar navbar-inverse navbar-main">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -90,6 +76,27 @@
                                 ?>
                             </div>
                         </div>
+                        <?php if(Yii::app()->params['activationStatus']) {  ?>
+                            <ul class="nav nav-pills nav_active clearfix">
+                                <li id="alert" class="label label-warning">
+                                    <?php echo '<span class="label label-danger">'.Yii::app()->params['activationStatus']['count'].'</span>'. Yii::t('phrase', ' days left to verify your account'); ?>
+                                </li>
+                            </ul>
+                            <script type="text/javascript">
+                                $(function(){
+                                    var alertPopover = $('#alert').popover({
+                                        html: true,
+                                        placement: 'bottom',
+                                        trigger: 'click',
+                                        content: '<div style="margin:0; text-align: center" class="alert alert-danger">' +
+                                            '<span class="glyphicon glyphicon-info-sign"></span> &#160; If you don\'t verify your email within next <span class="label label-danger">' +
+                                            <?php echo Yii::app()->params['activationStatus']['count'] ?> +
+                                            '</span> days, your account will be suspended.' +
+                                            '<br /><?php echo CHtml::ajaxLink("<span class=\"glyphicon glyphicon-send\"></span> &#160; Resend Verification Email Now", Yii::app()->createUrl("/user/sendajaxverification"), array('data' => '', 'update' => '#flashMessages'), array("class" => "btn btn-xs btn-primary")) ?></div>'
+                                    });
+                                });
+                            </script>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -102,13 +109,17 @@
 <div class="footer_body">
     <div class="container">
         <footer class="footer">
-            <p class="pull-right"><a class="footer-logo" href="#"><?php echo Yii::t('phrase', 'Back to top') ?></a></p>
+            <?php if(empty($domainname)){ ?><p class="pull-right"><a class="footer-logo" href="#"><?php echo Yii::t('phrase', 'Back to top') ?></a></p><?php } ?>
             <span class="footer-menu">
+
+                <?php if(empty($domainname)){ ?>
                 <ul class="nav nav-pills navbar-footer" style="border-right: 1px solid #ddd">
                     <li>
                         <a style="color: #aaa"><?php echo Yii::t('phrase', '&copy; 2013 Jebmarket') ?></a>
                     </li>
                 </ul>
+                <?php } ?>
+
                 <?php
                 $this->widget('zii.widgets.CMenu', array(
                     'items' => Menu::model()->renderMenuItems("footermenu"),
