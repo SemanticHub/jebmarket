@@ -632,8 +632,8 @@ form .alert {
     margin: 0;
 }
 #header_right .navbar-collapse {
-    margin-top: 8px;
-    background: none;
+    margin-top: -2px;
+    margin-right: 1px;
 }
 #header_right{
     margin: 0 0 0 -100px;
@@ -1203,16 +1203,25 @@ form .alert {
 }
 #header_right .navbar-inverse .navbar-toggle{
     border: none;
+    background-color: #000;
 }
 #header_right .navbar-toggle{
     border: none;
-    background: #000000;
+
 }
 #header_right .navbar-nav{
     float: left;
 }
 #header_right .navbar-collapse{
-    background: none;
+    background: #000;
+}
+.logo_title {
+    color: #3f3b3b;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 15px 0 0;
+    text-transform: uppercase;
 }
 .content_body{
     min-height: 600px;
@@ -1224,6 +1233,20 @@ form .alert {
 .footer_body{
     background: #ffffff;
     border-top: 1px solid #e3e3e3;
+}
+.nav_active{
+    left: 15px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: -10px;
+}
+.nav_active li{
+    padding: 3px 10px 6px 4px;
+    text-shadow: 1px 1px 1px #999;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 8px;
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
@@ -1320,6 +1343,16 @@ form .alert {
     .navbar-footer > li > a {
         font-size: 12px;
     }
+    .logo_title{
+        font-size: 30px;
+    }
+    .nav_active li{
+        font-size: 10px;
+    }
+    #header_right .navbar-collapse {
+        margin-top: 8px;
+        background: none;
+    }
 }
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992) {
@@ -1395,6 +1428,16 @@ form .alert {
     .navbar-footer > li > a {
         font-size: 12px;
     }
+    .logo_title{
+        font-size: 30px;
+    }
+    .nav_active li{
+        font-size: 10px;
+    }
+    #header_right .navbar-collapse {
+        margin-top: 8px;
+        background: none;
+    }
 }
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200) {
@@ -1466,5 +1509,15 @@ form .alert {
     }
     .navbar-footer > li > a {
         font-size: 12px;
+    }
+    .logo_title{
+        font-size: 30px;
+    }
+    .nav_active li{
+        font-size: 10px;
+    }
+    #header_right .navbar-collapse {
+        margin-top: 8px;
+        background: none;
     }
 }

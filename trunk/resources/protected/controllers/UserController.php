@@ -294,7 +294,9 @@ class UserController extends Controller {
             if ($model->validate()) {
                 if ($model->save()) {
                     $homecontent = <<<EOF
-<p><img alt="30.png" class="thumb-image loaded" data-image="http://static.squarespace.com/static/4f6798afe4b097349e410d49/t/527d3a50e4b04d1c0c14e385/1383938643085/30.png" data-image-dimensions="465x465" data-image-focal-point="0.5,0.5" data-image-id="527d3a50e4b04d1c0c14e385" data-image-resolution="500w" data-load="false" data-src="http://static.squarespace.com/static/4f6798afe4b097349e410d49/t/527d3a50e4b04d1c0c14e385/1383938643085/30.png" data-type="image" id="yui_3_10_1_1_1394392957326_912" src="https://static.squarespace.com/static/4f6798afe4b097349e410d49/t/527d3a50e4b04d1c0c14e385/1383938643085/30.png?format=500w" style="" /></p>
+<div class="container">
+<div class="editable">
+<div id="com1">
 <h3><strong>There once was a man from down under...</strong></h3>
 <p>Pixel the rule of thirds jakob nielsen. Splash screen dribbble usability testing oblique complementary affordance jakob nielsen. Brainstorm modal delightful prototype navigation mockup script. Leading design thinking rounded corners type mental model. Bevel urbanized paper prototype heuristic photoshop usability. Helvetica color theory classical conditioning storyboard mockup abstraction coach marks fireworks delightful. Hover state usability testing balance sitemap golden ratio. Gradient cognitive dissonance modular scale sidebar jony ive hero message. Bauhaus focus group the user interface sidebar. Aspect ratio user-centered coach marks classical conditioning brainstorm. Palette steve jobs italic constraints icon braindump simplicity. Italic icon usability testing grouping figure-ground jony ive urbanized IDEO. Abstraction storyboard footer.</p>
 <p style="margin: 0px 0px 20px; line-height: 23px; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px;">The&nbsp;<span style="font-weight: 700;">About Us</span>&nbsp;page of your shop is vital because it&rsquo;s where users go when first trying to determine a level of trust. Since trust is such an important part of selling online, it&rsquo;s a good idea to give people a fair amount information about yourself and your shop. Here are a few things you should touch on:</p>
@@ -307,8 +309,14 @@ class UserController extends Controller {
 	<li style="margin-bottom: 5px;">Who are the people on your team</li>
 </ul>
 <p style="margin: 0px 0px 20px; line-height: 23px; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px;">To edit this information you can go to the&nbsp;<a href="https://sdgsdgdsg.myshopify.com/admin/pages" style="color: rgb(244, 91, 79); text-decoration: none; outline: none;">Pages section</a>&nbsp;of the administration menu.</p>
+</div>
+</div>
+</div>
 EOF;
                     $aboutcontent = <<<EOF
+<div class="container">
+<div class="editable">
+<div id="com1">
 <p style="margin: 0px 0px 20px; line-height: 23px; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px;">The&nbsp;<span style="font-weight: 700;">About Us</span>&nbsp;page of your shop is vital because it&rsquo;s where users go when first trying to determine a level of trust. Since trust is such an important part of selling online, it&rsquo;s a good idea to give people a fair amount information about yourself and your shop. Here are a few things you should touch on:</p>
 <ul style="margin: 0px 0px 20px 20px; padding-right: 0px; padding-left: 0px; list-style-position: outside; list-style-image: none; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 21.75px;">
 	<li style="margin-bottom: 5px;">Who you are</li>
@@ -319,6 +327,9 @@ EOF;
 	<li style="margin-bottom: 5px;">Who are the people on your team</li>
 </ul>
 <p style="margin: 0px 0px 20px; line-height: 23px; color: rgb(85, 85, 85); font-family: Helvetica, Arial, sans-serif; font-size: 15px;">To edit this information you can go to the&nbsp;<a href="https://sdgsdgdsg.myshopify.com/admin/pages" style="color: rgb(244, 91, 79); text-decoration: none; outline: none;">Pages section</a>&nbsp;of the administration menu.</p>
+</div>
+</div>
+</div>
 EOF;
                     $builder=Yii::app()->db->schema->commandBuilder;
                     $createpage=$builder->createMultipleInsertCommand('jebapp_pages', array(

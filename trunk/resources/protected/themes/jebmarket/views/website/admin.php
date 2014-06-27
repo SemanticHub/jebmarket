@@ -16,7 +16,7 @@ $this->pageHeader = "Website Settings";
     <div class="col-md-4">
         <div class="panel panel-info avater_image" style="min-height: 159px;">
             <div class="panel-heading"><span class="glyphicon glyphicon-picture"></span> Upload Logo</div>
-            <img id='avater_image' src="<?php echo $model->logo ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Yii::app()->user->id.'/logo/'.$model->logo : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'jebmarket_logo.png'; ?>" alt="" />
+            <img id='avater_image' src="<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Yii::app()->user->id.'/logo/'.$model->logo; ?>" alt="" />
             <?php
             $this->widget('ext.JebUpload.JebUpload',
                 array(
@@ -45,7 +45,7 @@ $this->pageHeader = "Website Settings";
         </div>
         <div class="panel panel-info" style="min-height: 159px;">
             <div class="panel-heading"><span class="glyphicon glyphicon-picture"></span> Upload Favicon</div>
-            <img id='website_favicon' src="<?php echo $model->favicon ? Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Yii::app()->user->id.'/logo/'.$model->favicon : Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].'favicon.ico'; ?>" alt="" />
+            <img id='website_favicon' src="<?php echo Yii::app()->baseUrl.'/'.Yii::app()->params['uploadPath'].Yii::app()->user->id.'/logo/'.$model->favicon; ?>" alt="" />
             <?php
             $this->widget('ext.JebUpload.JebUpload',
                 array(

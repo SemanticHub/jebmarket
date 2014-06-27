@@ -590,26 +590,26 @@ a.language-selected { font-style: italic; font-weight: bold; }
     margin: 10px 46px 10px 0;
 }
 #tab_iframe{
-    top: -98px;
+    top: 0;
     position: absolute;
     outline: none;
-    border: none;
-    background-image: url("../image/tab_screen.png");
-    width: 963px;
-    height: 1437px;
-    padding: 240px 175px;
-    left: 17%;
+    width: 613px;
+    height: 779px;
+    padding: 0;
+    left: 30%;
+    border: 8px solid #695F5F;
+    border-radius: 8px;
 }
 #mobile_iframe{
-    top: -96px;
+    top: 0;
     position: absolute;
     outline: none;
-    border: none;
-    background-image: url("../image/mobile_screen.png");
-    width: 586px;
-    height: 1001px;
-    padding: 215px 130px;
-    left: 31%;
+    width: 330px;
+    height: 578px;
+    padding: 0;
+    left: 41%;
+    border: 8px solid #695F5F;
+    border-radius: 8px;
 }
 .theme_edit .component_img{
     display: none;
