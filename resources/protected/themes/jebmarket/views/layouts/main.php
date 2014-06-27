@@ -20,7 +20,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <?php Yii::app()->clientScript->registerCoreScript('jquery'); } ?>
+    <?php Yii::app()->clientScript->registerCoreScript('jquery'); }else{Yii::app()->clientScript->scriptMap=array('jquery.js'=>false);} ?>
 
     <link rel="stylesheet" href="<?php echo $this->assetUrl; ?>/css/theme.css">
 
