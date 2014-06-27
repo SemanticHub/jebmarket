@@ -428,6 +428,10 @@ h1.page-title {
     font-size: 13px;
     text-transform: uppercase;
     color: #ffffff;
+    width: 118px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .add_gap_left{
     margin-left: 20px;
