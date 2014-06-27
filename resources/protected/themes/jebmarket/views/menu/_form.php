@@ -1,5 +1,6 @@
 <div class="menu_form">
 <?php
+$domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'menu-form',
     'enableAjaxValidation' => true,
@@ -68,7 +69,7 @@ Yii::app()->clientScript->registerScript(
             url: '<?php echo  CHtml::normalizeUrl(array('menu/update','id'=>$model->id)); ?>',
             data:data,
             success:function(data){
-                $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.'?edit=n'; ?>");
+                $(".pages_update").load("<?php echo Yii::app()->baseUrl.'/'.$domainName->domain.'?edit=n'; ?>");
                 $('.dash_second_menu .navbar-right').html('<ul class="nav navbar-nav navbar-right"></ul>');
                 <?php
                     if($model->tag == 'topmenu'){
