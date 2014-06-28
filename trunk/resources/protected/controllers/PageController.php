@@ -31,6 +31,7 @@ class PageController extends Controller {
             }
             $page = Pages::model()->find($criteria);
             if($page) $this->render('page', array('model' => $page));
+            else throw new CHttpException(404,'Page not found.');
         } 
     }
 }
