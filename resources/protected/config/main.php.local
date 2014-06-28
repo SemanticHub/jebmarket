@@ -109,6 +109,17 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                #'http://<sub:[^www]\w+>.myjeb.com' => 'site/index',
+                #'<module:\w+>/<controller:\w+>' => '<module>/<controller>',
+                #'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+
+                #'<controller:\w+>/<id:\d+>' => '<controller>/view',
+                #'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                #'<controller:\w+>/<action:\w+>/<view:\w+>' => '<controller>/<action>',
+                #'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                #'<controller:>' => '<controller>',
+                #'<view:[a-zA-Z0-9-]+>/'=>'page/view',
+                #'<controller:>' => '<controller>',
                 '<_c:(faq)>' => '<_c>/index',
                 '<view:[a-zA-Z0-9-]+>/'=>'page/view',
 
@@ -119,10 +130,12 @@ return array(
         # AWS RDS
         # --------
         'db' => array(
-            'connectionString' => 'mysql:host=myjebwebpro.chitkpzlvepd.us-west-2.rds.amazonaws.com;dbname=myjebwebprodb',
+            'connectionString' => 'mysql:host=localhost;dbname=jassifie_yii_jeb',
             'emulatePrepare' => true,
-            'username' => 'myjebwebprouser',
-            'password' => '99.95%access',
+            'username' => 'root',
+            'password' => '1234',
+            #'username' => 'jassifie_yiijeb',
+            #'password' => '99.9%available',
             'charset' => 'utf8',
             'initSQLs'=>array("set time_zone='+00:00';"),
         ),

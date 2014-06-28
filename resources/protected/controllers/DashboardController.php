@@ -19,7 +19,7 @@ class DashboardController extends Controller {
 	/**
 	 * Show Dashboard Widgets UI based on rights and user
 	 */
-	public function actionIndex() {
+	public function actionAdmin() {
         $widgets = array();
 		$this->render('dashboard', array('widgets'=>$widgets));
 	}
