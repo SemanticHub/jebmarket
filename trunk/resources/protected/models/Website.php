@@ -148,6 +148,7 @@ class Website extends CActiveRecord
         if(Yii::app()->user->checkAccess(Rights::module()->superuserName)){
             return '/page/view?view='.$menuName->url.'&edit=y';
         }else{
+            if ($domainName && $menuName)
             return '/'.$domainName->domain.'/'.$menuName->url.'?edit=y';
         }
     }
