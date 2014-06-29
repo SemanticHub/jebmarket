@@ -18,7 +18,7 @@
     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     <title><?php echo Yii::t('phrase', CHtml::encode($this->pageTitle)); ?></title>
 </head>
-<body style="background: #F7F7F7;">
+<body>
 <div class="container-fluid">
     <div class="row dashboard">
         <div class="col-md-2 sidebar sidebar-left">
@@ -44,7 +44,8 @@
             </div>
             <?php
             if(!empty($domainName->domain)){
-                echo CHtml::link('<span class="glyphicon glyphicon-export"></span> View Your WebSite',array("/$domainName->domain"), array('target'=>'_blank', 'class'=>'viewyoursite'));
+                echo CHtml::link('<span class="glyphicon glyphicon-eye-open"></span> View WebSite',array("/$domainName->domain"), array('target'=>'_blank', 'class'=>'viewyoursite'));
+                echo CHtml::link('<span class="glyphicon glyphicon-pencil"></span> Edit WebSite',array(Website::model()->editTheme()), array('target'=>'_blank', 'class'=>'edityoursite'));
             }
             $this->widget('zii.widgets.CMenu', array(
                 'items' => Yii::app()->params['usermenu'],

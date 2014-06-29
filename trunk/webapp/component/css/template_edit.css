@@ -60,7 +60,7 @@ body {
     height: 28px;
     float: left;
 }
-.colponent_list_pop, .colponent_list_pop2{
+.colponent_list_pop, .colponent_list_pop2, .colponent_list_pop3{
     position: fixed;
     margin: 0;
     padding: 0;
@@ -94,13 +94,13 @@ body {
     font-size: 16px;
     font-weight: bold;
 }
-.colponent_list_pop2 .colponent_list li{
+.colponent_list_pop2 .colponent_list li, .colponent_list_pop3 .colponent_list li{
     margin: 0 0 0 10px;
     padding: 0;
     display: inline;
     cursor: pointer;
 }
-.colponent_list_pop2 .colponent_list li img{
+.colponent_list_pop2 .colponent_list li img, .colponent_list_pop3 .colponent_list li img{
     margin: 0 0 10px 0;
     padding: 0;
     width: 78px;
@@ -139,21 +139,20 @@ body {
     float: left;
     width: 100%;
     z-index: 1;
-    margin: 0 0 5px 0;
+    margin: 0;
     padding: 0;
     height: 22px;
     background: #27292B;
     opacity: .85;
     line-height: 21px;
     font-size: 12px;
-    font-weight: normal;
     letter-spacing: 1px;
     text-transform: uppercase;
     text-align: center;
     color: #fff;
     font-weight: bold;
     text-shadow: 0 -1px 1px #000;
-    border-bottom: 1px solid #332A2A;
+    border-bottom: 1px solid #000000;
     border-top: 1px solid #332A2A;
     box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     -moz-box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -575,7 +574,7 @@ a.language-selected { font-style: italic; font-weight: bold; }
     margin: 2px 0 10px 0;
     width: 100%;
 }
-.colponent_list_pop2 .accordion-group{
+.colponent_list_pop2 .accordion-group, .colponent_list_pop3 .accordion-group{
     margin: 0;
 }
 .custom_color{
@@ -619,4 +618,39 @@ a.language-selected { font-style: italic; font-weight: bold; }
     font-size: 27px;
     color: white;
     margin: -5px 0 0 3px;
+}
+.menu_list_all{
+    float: left;
+    width: 100%;
+}
+.menu_list_all .table-responsive{
+    margin: 0;
+    padding: 0;
+}
+.menu_list_all .table-responsive .table thead{
+    display: none;
+}
+.menu_list_all .table-responsive .table tbody a{
+    color: #ffffff;
+    font-weight: normal;
+    padding: 5px 0 8px 10px;
+    float: left;
+    width: 100%;
+    font-size: 13px;
+    border-bottom: 1px #000 solid;
+}
+.menu_list_all .table-responsive .table tbody a:hover{
+    text-decoration: none;
+    background: #000;
+    font-weight: bold;
+}
+.menu_list_all .table-responsive .table-striped>tbody>tr:nth-child(odd)>td, .menu_list_all .table-responsive .table-striped>tbody>tr:nth-child(odd)>th{
+     background: none;
+}
+.menu_list_all .table-hover>tbody>tr:hover>td, .menu_list_all .table-hover>tbody>tr:hover>th {
+    background: none;
+}
+.menu_list_all .table>tbody>tr>td{
+    padding: 0;
+    line-height: normal;
 }

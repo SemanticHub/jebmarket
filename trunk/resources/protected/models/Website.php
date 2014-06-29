@@ -140,6 +140,18 @@ class Website extends CActiveRecord
         }
     }
 
+    public function editTheme()
+    {
+        $user_id = Yii::app()->user->id;
+        $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>$user_id));
+        $menuName = Menu::model()->findByAttributes(array('jebapp_user_id'=>$user_id, 'default_home'=>'1'));
+        if(Yii::app()->user->checkAccess(Rights::module()->superuserName)){
+            return '/page/view?view='.$menuName->url.'&edit=y';
+        }else{
+            return '/'.$domainName->domain.'/'.$menuName->url.'?edit=y';
+        }
+    }
+
     /**
      * @return array|mixed|null
      */
