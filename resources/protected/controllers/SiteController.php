@@ -23,11 +23,11 @@ class SiteController extends Controller
      * This is the default 'index' action that is invoked
      */
     public function actionIndex() {
+        $this->layout = '//layouts/main';
         $criteria = new CDbCriteria();
         $criteria->condition = "slug ='home-page-view'";
-        $slider = Slider::model()->findAll(array('condition' => 'tag=:tag', 'params' => array(':tag' => 'home-slider')));
         $page = Pages::model()->find($criteria);
-        $this->render('index', array('page' => $page, 'slider' => $slider));
+        $this->render('index', array('page' => $page));
     }
 
     /**

@@ -20,6 +20,7 @@
     </div>
     <div class="edit_left_component">
         <div class="component_firstico">
+            <span class="glyphicon glyphicon-list-alt list_page"></span>
             <span class="glyphicon glyphicon-plus list_com"></span>
             <span class="glyphicon glyphicon-cog list_sittings"></span>
         </div>
@@ -1444,6 +1445,53 @@
                 </ul>
             </div>
         </div>
+    <div class="colponent_list_pop3">
+        <p class="colponent_list_header">Pages</p>
+        <span class="glyphicon glyphicon-remove colponent_list_remove"></span>
+        <div class="colponent_list">
+            <ul class="nav nav-list accordion-group backgrounds">
+                <div class="component_header">
+                    <p>Select Page For Edit</p>
+                </div>
+                <div class="menu_list_all">
+                    <?php
+                    $this->widget('zii.widgets.grid.CGridView', array(
+                        'id' => 'mainMenu-grid',
+                        'itemsCssClass' => 'table table-striped table-hover',
+                        'summaryCssClass' => 'label label-info pull-right top-21',
+                        'htmlOptions' => array('class' => 'table-responsive'),
+                        'dataProvider' => $menuData,
+                        'enableSorting'=>false,
+                        'enablePagination'=>false,
+                        'summaryText' => false,
+                        'pagerCssClass' => 'page-nav',
+                        'pager'=>array('header'=>'','selectedPageCssClass'=>'active','htmlOptions'=>array('class'=>'pagination')),
+                        'columns' => array(
+                            array(
+                                'name'=>'label',
+                                'header'=>'Select Page For Edit',
+                                'type'  => 'raw',
+                                'value' =>function($data){
+                                        if(Yii::app()->user->checkAccess(Rights::module()->superuserName)){
+                                            $class = CHtml::link($data->label,array('page/view?view='.$data->url.'&edit=y'));
+                                        }else{
+                                            $domainName = Website::model()->findByAttributes(array('jebapp_user_id'=>Yii::app()->user->id));
+                                            $class = CHtml::link($data->label,array($domainName->domain.'/'.'page/view?view='.$data->url.'&edit=y'));
+                                        }
+                                        return $class;
+                                    },
+                            ),
+                            array(
+                                'class' => 'CButtonColumn',
+                                'template'=>''
+                            ),
+                        ),
+                    ));
+                    ?>
+                </div>
+            </ul>
+        </div>
+    </div>
     </div>
 </div>
 <div style="display: none;">

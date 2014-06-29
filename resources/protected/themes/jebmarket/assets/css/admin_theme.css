@@ -1,6 +1,8 @@
 /* GLOBAL STYLES */
 body {
-    color: #5a5a5a; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #5a5a5a;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #F7F7F7;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -1348,8 +1350,13 @@ body.dragging, body.dragging * {
     color: #98a7b5;
     float: left;
 }
+.dashboard .edityoursite{
+    margin: 8px 0 8px 15px;
+    color: #98a7b5;
+    float: left;
+}
 .dashboard .leftsiteview{
-    margin-top: 25px;
+    margin-top: 65px;
 }
 .admin_template .viewimg, .front_template .viewimg{
     max-height: 238px;
@@ -2314,6 +2321,7 @@ Store Module Styles
 }
 .dashboard .dash_second_menu{
     width: 88%;
+    z-index: 9999999;
 }
 .loadin_page_up{
     text-align: center;
