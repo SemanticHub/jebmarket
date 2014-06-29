@@ -85,3 +85,9 @@
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
 </html>
+<script>
+    $(".sidebar.sidebar-left").css("height", $(document).height() + 65);
+    $(window).resize(function () {
+        $(".sidebar.sidebar-left").css("height", $(document).height() + 65);
+    });
+</script>
